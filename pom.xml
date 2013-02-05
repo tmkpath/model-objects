@@ -6,7 +6,7 @@
     http://maven.apache.org/maven-v4_0_0.xsd">
 
   <groupId>edu.berkeley.path</groupId>
-  <artifactId>model-elements</artifactId>
+  <artifactId>model-objects</artifactId>
   <version>0.1-SNAPSHOT</version>
   <modelVersion>4.0.0</modelVersion>
 
@@ -15,9 +15,9 @@
   </properties>
 
   <scm>
-    <connection>scm:git:git@github.com:calpath/model-elements-2.git</connection>
-    <developerConnection>scm:git:git@github.com:calpath/model-elements-2.git</developerConnection>
-    <url>git@github.com:calpath/model-elements-2.git</url>
+    <connection>scm:git:git@github.com:calpath/model-objects.git</connection>
+    <developerConnection>scm:git:git@github.com:calpath/model-objects.git</developerConnection>
+    <url>git@github.com:calpath/model-objects.git</url>
   </scm>
 
   <build>
