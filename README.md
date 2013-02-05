@@ -1,4 +1,4 @@
-model-elements-2
+model-objects
 ================
 
-Base Classes to hold all units of information being passed in Decision Management System
+Base Classes to hold all units of information being passed in Decision Support System
