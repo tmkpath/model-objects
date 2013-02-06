@@ -33,7 +33,7 @@
               <goal>generate</goal>
             </goals>
             <configuration>
-              <generatePackage>edu.berkeley.path.beats.jaxb</generatePackage>
+              <generatePackage>edu.berkeley.path.model_objects.jaxb</generatePackage>
             </configuration>
           </execution>
         </executions>
@@ -41,6 +41,11 @@
    	</plugins>
   </build>
   <dependencies>
+    <dependency>
+      <groupId>edu.berkeley.path</groupId>
+      <artifactId>CORE</artifactId>
+      <version>0.1-SNAPSHOT</version>
+    </dependency>  
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
