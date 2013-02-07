@@ -55,44 +55,9 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	/** @y.exclude */ 	protected boolean issource; 				// [boolean]
 	/** @y.exclude */ 	protected boolean issink;     				// [boolean]
 	
-	// Link type ........................
-
-	/** network that contains this link */
-	public Network getMyNetwork() {
-		return myNetwork;
-	}
-
-	/** upstream node of this link  */
-	public Node getBegin_node() {
-		return begin_node;
-	}
-
-	/** downstream node of this link */
-	public Node getEnd_node() {
-		return end_node;
-	}
-
-	/** Length of this link in meters */
-	public double getLengthInMeters() {
-		return _length;
-	}
-
-	/** Number of lanes in this link */
-	public double get_Lanes() {
-		return _lanes;
-	}
-
-	/** <code>true</code> if this link is a source of demand into the network */
-	public boolean isSource() {
-		return issource;
-	}
-
-	/** <code>true</code> if this link is a sink of demand from the network */
-	public boolean isSink() {
-		return issink;
-	}
-	
-
+	/*
+	 * Populates by creating references for begin and end node
+	 */
 	protected void populate(Network myNetwork) {
 
         this.myNetwork = myNetwork;
@@ -117,7 +82,9 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 			_length = getLength().doubleValue();
 	}
 
-	/** @y.exclude */
+	/* 
+	 * Node validation
+	 */
 	protected void validate() {
 		
 		if(!issource && begin_node==null)
@@ -133,6 +100,53 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 			Monitor.out("Non-positive number of lanes in link id=" + getId() + ".");		
 	}
 
-	
+	/** 
+	 * network that contains this link 
+	 */
+	public Network getMyNetwork() {
+		return myNetwork;
+	}
+
+	/** 
+	 * upstream node of this link  
+	 */
+	public Node getBegin_node() {
+		return begin_node;
+	}
+
+	/** 
+	 * downstream node of this link 
+	 */
+	public Node getEnd_node() {
+		return end_node;
+	}
+
+	/** 
+	 * Length of this link in meters 
+	 */
+	public double getLengthInMeters() {
+		return _length;
+	}
+
+	/** 
+	 * Number of lanes in this link 
+	 */
+	public double get_Lanes() {
+		return _lanes;
+	}
+
+	/** 
+	 * <code>true</code> if this link is a source of demand into the network 
+	 */
+	public boolean isSource() {
+		return issource;
+	}
+
+	/** 
+	 * <code>true</code> if this link is a sink of demand from the network 
+	 */
+	public boolean isSink() {
+		return issink;
+	}
 
 }
