@@ -30,6 +30,7 @@ import java.util.List;
 
 /** Network class
 * @author Gabriel Gomes (gomes@path.berkeley.edu)
+* @author Matthew Juhn (mnjuhn@berkeley.edu)
 */
 public final class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 

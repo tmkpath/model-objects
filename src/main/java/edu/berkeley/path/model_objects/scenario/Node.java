@@ -39,6 +39,7 @@ import core.Monitor;
 * Node class.
 *
 * @author Gabriel Gomes (gomes@path.berkeley.edu)
+* @author Matthew juhn	(mnjuhn@berkeley.edu)
 */
 public final class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 		   
