@@ -37,23 +37,22 @@ import edu.berkeley.path.model_objects.jaxb.Roads;
 /** Link class.
 * 
 * @author Gabriel Gomes (gomes@path.berkeley.edu)
+* @author Matthew Juhn (mnjuhn@berkeley.edu)
 */
 public final class Link extends edu.berkeley.path.model_objects.jaxb.Link { 
 	
 	/** @y.exclude */ 	protected Network myNetwork;
-	/** @y.exclude */ 	protected Node begin_node;
-	/** @y.exclude */ 	protected Node end_node;
+	/** @y.exclude */ 	protected Node beginNode;
+	/** @y.exclude */ 	protected Node endNode;
 
 	// link type
 	protected Link.Type myType;
 	/** Type of link. */
 	public static enum Type	{freeway,HOV,HOT,onramp,offramp,freeway_connector,street,intersection_approach,heavy_vehicle,electric_toll};
 	
-	/** @y.exclude */ 	protected double _length;							// [meters]
-	/** @y.exclude */ 	protected double _lanes;							// [-]
 	
-	/** @y.exclude */ 	protected boolean issource; 				// [boolean]
-	/** @y.exclude */ 	protected boolean issink;     				// [boolean]
+	/** @y.exclude */ 	protected boolean isSource; 				// [boolean]
+	/** @y.exclude */ 	protected boolean isSink;     				// [boolean]
 	
 	/*
 	 * Populates by creating references for begin and end node
@@ -66,20 +65,14 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
         this.myType = Link.Type.valueOf(getType());
         
 		// make network connections
-		begin_node = myNetwork.getNodeWithId(getBegin().getNodeId());
-		end_node = myNetwork.getNodeWithId(getEnd().getNodeId());
+		beginNode = myNetwork.getNodeWithId(getBegin().getNodeId());
+		endNode = myNetwork.getNodeWithId(getEnd().getNodeId());
         
 		// nodes must populate before links
-		if(begin_node!=null)
-			issource = begin_node.isTerminal;
-		if(end_node!=null)
-			issink = end_node.isTerminal;
-
-		// lanes and length
-		if(getLanes()!=null)
-			_lanes = getLanes().doubleValue();
-		if(getLength()!=null)
-			_length = getLength().doubleValue();
+		if(beginNode!=null)
+			isSource = beginNode.isTerminal;
+		if(endNode!=null)
+			isSink = endNode.isTerminal;
 	}
 
 	/* 
@@ -87,16 +80,16 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	 */
 	protected void validate() {
 		
-		if(!issource && begin_node==null)
+		if(!isSource && beginNode==null)
 			Monitor.out("Incorrect begin node id=" + getBegin().getNodeId() + " in link id=" + getId() + ".");
 
-		if(!issink && end_node==null)
+		if(!isSink && endNode==null)
 			Monitor.out("Incorrect end node id=" + getEnd().getNodeId() + " in link id=" + getId() + ".");
 		
-		if(_length<=0)
+		if(getLength().intValue() <= 0)
 			Monitor.out("Non-positive length in link id=" + getId() + ".");
 		
-		if(_lanes<=0)
+		if(getLanes().intValue() <= 0)
 			Monitor.out("Non-positive number of lanes in link id=" + getId() + ".");		
 	}
 
@@ -110,43 +103,55 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	/** 
 	 * upstream node of this link  
 	 */
-	public Node getBegin_node() {
-		return begin_node;
+	public Node getBeginNode() {
+		return beginNode;
 	}
 
 	/** 
 	 * downstream node of this link 
 	 */
-	public Node getEnd_node() {
-		return end_node;
+	public Node getEndNode() {
+		return endNode;
 	}
-
-	/** 
-	 * Length of this link in meters 
+	
+	/**
+	 * Set upstream node of this link
+	 * 
+	 * @param node  the node to set as begin node of link
 	 */
-	public double getLengthInMeters() {
-		return _length;
+	public void setBeginNode(Node node) {
+		this.endNode = node;
+		if (node != null) {
+			setBegin(new Begin());
+			getBegin().setNodeId(node.getId());
+		}
 	}
-
-	/** 
-	 * Number of lanes in this link 
+	
+	/**
+	 * Set downstream node of this link
+	 * 
+	 * @param node  the node to set as end node of link
 	 */
-	public double get_Lanes() {
-		return _lanes;
+	public void setEndNode(Node node) {
+		this.endNode = node;
+		if (node != null) {
+			setEnd(new End());
+			getEnd().setNodeId(node.getId());
+		}
 	}
 
 	/** 
 	 * <code>true</code> if this link is a source of demand into the network 
 	 */
 	public boolean isSource() {
-		return issource;
+		return isSource;
 	}
 
 	/** 
 	 * <code>true</code> if this link is a sink of demand from the network 
 	 */
 	public boolean isSink() {
-		return issink;
+		return isSink;
 	}
 
 }
