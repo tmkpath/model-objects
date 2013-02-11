@@ -27,11 +27,15 @@
 package edu.berkeley.path.model_objects.scenario;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.math.BigDecimal;
 
 import edu.berkeley.path.model_objects.jaxb.Inputs;
 import edu.berkeley.path.model_objects.jaxb.Outputs;
 import edu.berkeley.path.model_objects.jaxb.Position;
 import edu.berkeley.path.model_objects.jaxb.RoadwayMarkers;
+import edu.berkeley.path.model_objects.jaxb.Marker;
+import edu.berkeley.path.model_objects.jaxb.Point;
 
 import core.Monitor;
 
@@ -39,7 +43,7 @@ import core.Monitor;
 * Node class.
 *
 * @author Gabriel Gomes (gomes@path.berkeley.edu)
-* @author Matthew juhn	(mnjuhn@berkeley.edu)
+* @author Matthew Juhn	(mnjuhn@berkeley.edu)
 */
 public final class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 		   
@@ -174,6 +178,63 @@ public final class Node extends edu.berkeley.path.model_objects.jaxb.Node {
      */ 
 	public int getnOut() {
 		return nOut;
+	}
+	
+	/**
+	 * Get First Name roadway marker name of node
+	 * 
+	 * @return	String  The name of the first roadway marker of the node
+	 */
+	public String getName() {
+		List<Marker> markers = getRoadwayMarkers().getMarker();
+		String name = null;
+		if (!markers.isEmpty()) {
+			name = markers.get(0).toString();
+		}
+		return name;
+	}
+	
+	/**
+	 * Adds roadway marker name to node
+	 * 
+	 * @param  String	Name of roadway marker to add to node
+	 */
+	public void setName(String name) {
+		Marker marker = new Marker();
+		marker.setName(name);
+		List<Marker> markers = getRoadwayMarkers().getMarker();
+		markers.add(marker);
+	}
+	
+	/**
+	 * 
+	 */
+	
+	/**
+	 * Set latitude and longitude of Node
+	 * 
+	 * @param Point	The latitude and longitude of node
+	 */
+	public void setPoint(Point point) {
+		Position position = new Position();		
+		// clear position list just to be sure you are only adding one point
+		position.getPoint().clear();
+		position.getPoint().add(point);
+		setPosition(position);
+	}
+	
+	/**
+	 * Get point of node
+	 * 
+	 * @return Point  The point of the node
+	 */
+	public Point getPoint() {
+		List<Point> points =  this.position.getPoint();
+		Point point = null;
+		if (!points.isEmpty()) {
+			points.get(0);
+		}
+		return point;
 	}
 
 }

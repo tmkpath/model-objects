@@ -27,11 +27,15 @@
 package edu.berkeley.path.model_objects.scenario;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 import core.Monitor;
 
 import edu.berkeley.path.model_objects.jaxb.Begin;
 import edu.berkeley.path.model_objects.jaxb.Dynamics;
 import edu.berkeley.path.model_objects.jaxb.End;
+import edu.berkeley.path.model_objects.jaxb.Road;
 import edu.berkeley.path.model_objects.jaxb.Roads;
 
 /** Link class.
@@ -44,6 +48,8 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	/** @y.exclude */ 	protected Network myNetwork;
 	/** @y.exclude */ 	protected Node beginNode;
 	/** @y.exclude */ 	protected Node endNode;
+	/** @y.exclude */	protected String roadName;
+	/** @y.exclude */	protected java.util.List<Point> points;
 
 	// link type
 	protected Link.Type myType;
@@ -93,6 +99,14 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 			Monitor.out("Non-positive number of lanes in link id=" + getId() + ".");		
 	}
 
+	/**
+	 * Parses String Id of link to long
+	 * @return	Long  id of link
+	 */
+	public Long getLongId() {
+		return Long.parseLong(getId().toString());
+	}
+	  
 	/** 
 	 * network that contains this link 
 	 */
@@ -139,7 +153,74 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 			getEnd().setNodeId(node.getId());
 		}
 	}
+	
+	/** 
+	 * upstream node of this link  
+	 * 
+	 * @param String representation of the id of end node 
+	 */
+	public String getBeginNodeId() {
+		return beginNode.getId();
+	}
 
+	/** 
+	 * downstream node of this link
+	 * 
+	 *  @param String 	representation of the id of begin node
+	 */
+	public String getEndNodeId() {
+		return endNode.getId();
+	}
+	
+	/**
+	 * Set upstream node of this link
+	 * 
+	 * @param node  the node to set as begin node of link
+	 */
+	public void setBeginId(Long nodeId) {
+		
+		//TODO: Change schema to represent ID's as long not strings?  
+		// This way no conversion necessary
+		String nodeIdStr = nodeId.toString();
+		setBegin(new Begin());
+		getBegin().setNodeId(nodeIdStr);
+	}
+	
+	/**
+	 * Set downstream node of this link
+	 * 
+	 * @param node  the node to set as end node of link
+	 */
+	public void setEndId(Long nodeId) {
+		
+		//TODO: Change schema to represent ID's as long not strings?  
+		// This way no conversion necessary
+		String nodeIdStr = nodeId.toString();
+		setEnd(new End());
+		getEnd().setNodeId(nodeIdStr);
+	}
+	
+	/**
+	 * Get Links first Road Name
+	 * 
+	 * @return String	the road name of link
+	 */
+	public String getFirstRoadName() {
+		return getRoads().getRoad().get(0).getName(); 
+	}
+
+	/**
+	 * Set link to have Road Name
+	 * 
+	 * @param String	the road name of link
+	 */
+	public void setRoadName(String roadName) {		
+		Road road = new Road();
+		road.setName(roadName);
+		Roads roads = new Roads();
+		roads.getRoad().add(road);
+	}
+	
 	/** 
 	 * <code>true</code> if this link is a source of demand into the network 
 	 */
@@ -153,5 +234,39 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	public boolean isSink() {
 		return isSink;
 	}
+	
+	/**
+	 * Gets the value of the 'points' field.
+	 */
+	public java.util.List<Point> getPoints() {
+		return points;
+	}
 
+	/**
+	 * Sets the value of the 'points' field.
+	 * @param value the value to set.
+	 */
+	public void setPoints(java.util.List<Point> value) {
+		this.points = value;
+	}
+
+	/**
+	 * Set the points. Same as setPoints(), but works with a list of Point.
+	 */
+	@SuppressWarnings("unchecked")
+	public void setPointList(List<Point> value) {
+		setPoints((List<Point>)(List<?>)value);
+	}
+	  
+	/**
+	 * Get the points. Same as getPoints(), but works with a list of Point.
+	 * Never returns null (creates the list if it doesn't exist).
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Point> getPointList() {
+		if (null == getPoints()) {
+			setPoints(new ArrayList<Point>());
+		}
+	    return (List<Point>)(List<?>)getPoints();
+	}
 }

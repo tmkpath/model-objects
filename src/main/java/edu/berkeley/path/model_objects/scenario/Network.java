@@ -28,6 +28,7 @@ package edu.berkeley.path.model_objects.scenario;
 
 import java.util.List;
 
+
 /** Network class
 * @author Gabriel Gomes (gomes@path.berkeley.edu)
 * @author Matthew Juhn (mnjuhn@berkeley.edu)
@@ -43,7 +44,7 @@ public final class Network extends edu.berkeley.path.model_objects.jaxb.Network 
 	 * 
 	 * @return void
 	 */
-	protected void populate() {
+	public void populate() {
 		
 		this.isempty = getNodeList()==null || getLinkList()==null;
 		
@@ -140,5 +141,26 @@ public final class Network extends edu.berkeley.path.model_objects.jaxb.Network 
 			return null;
 		return getLinkList().getLink();	
 	}
+	
+	/**
+	 * Set the nodes. Same as setNodeList(), but works with a list of Node.
+	 * 
+	 * @param List<Node>	List of extended Nodes to add
+	 */
+	@SuppressWarnings("unchecked")
+	public void setExtendedNodeList(List<Node> value) {
+		List<edu.berkeley.path.model_objects.jaxb.Node> nodeList = getNodeList().getNode();
+		nodeList = (List<edu.berkeley.path.model_objects.jaxb.Node>)(List<?>)value;
+	}
+	  
+	/**
+	 * Set the links. Same as setLinkList(), but works with a list of Link.
+	 */
+	@SuppressWarnings("unchecked")
+	public void setExtendedLinkList(List<Link> value) {
+		List<edu.berkeley.path.model_objects.jaxb.Link> linkList = getLinkList().getLink();
+		linkList = (List<edu.berkeley.path.model_objects.jaxb.Link>)(List<?>)value;
+	}
+	
 
 }
