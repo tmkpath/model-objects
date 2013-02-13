@@ -149,8 +149,13 @@ public final class Network extends edu.berkeley.path.model_objects.jaxb.Network 
 	 */
 	@SuppressWarnings("unchecked")
 	public void setExtendedNodeList(List<Node> value) {
-		List<edu.berkeley.path.model_objects.jaxb.Node> nodeList = getNodeList().getNode();
-		nodeList = (List<edu.berkeley.path.model_objects.jaxb.Node>)(List<?>)value;
+	  edu.berkeley.path.model_objects.jaxb.NodeList nodeList = getNodeList();
+		if ( nodeList == null ) {
+		  nodeList = new edu.berkeley.path.model_objects.jaxb.NodeList();  
+		}
+		
+		List<edu.berkeley.path.model_objects.jaxb.Node> listOfNodes = nodeList.getNode();
+		listOfNodes = (List<edu.berkeley.path.model_objects.jaxb.Node>)(List<?>)value;
 	}
 	  
 	/**
@@ -158,8 +163,13 @@ public final class Network extends edu.berkeley.path.model_objects.jaxb.Network 
 	 */
 	@SuppressWarnings("unchecked")
 	public void setExtendedLinkList(List<Link> value) {
-		List<edu.berkeley.path.model_objects.jaxb.Link> linkList = getLinkList().getLink();
-		linkList = (List<edu.berkeley.path.model_objects.jaxb.Link>)(List<?>)value;
+	  edu.berkeley.path.model_objects.jaxb.LinkList linkList = getLinkList();
+    if ( linkList == null ) {
+      linkList = new edu.berkeley.path.model_objects.jaxb.LinkList();  
+    }
+    
+    List<edu.berkeley.path.model_objects.jaxb.Link> listOfLinks = linkList.getLink();
+    listOfLinks = (List<edu.berkeley.path.model_objects.jaxb.Link>)(List<?>)value;
 	}
 	
 
