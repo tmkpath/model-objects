@@ -54,7 +54,7 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	// link type
 	protected Link.Type myType;
 	/** Type of link. */
-	public static enum Type	{freeway,HOV,HOT,onramp,offramp,freeway_connector,street,intersection_approach,heavy_vehicle,electric_toll};
+	public static enum Type	{Freeway,HOV,HOT,onramp,offramp,freeway_connector,street,intersection_approach,heavy_vehicle,electric_toll};
 	
 	
 	/** @y.exclude */ 	protected boolean isSource; 				// [boolean]

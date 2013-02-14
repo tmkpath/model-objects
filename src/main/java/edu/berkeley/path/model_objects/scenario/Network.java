@@ -26,6 +26,8 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import core.Monitor;
+
 import java.util.List;
 
 
@@ -154,8 +156,8 @@ public final class Network extends edu.berkeley.path.model_objects.jaxb.Network 
 		  nodeList = new edu.berkeley.path.model_objects.jaxb.NodeList();  
 		}
 		
-		List<edu.berkeley.path.model_objects.jaxb.Node> listOfNodes = nodeList.getNode();
-		listOfNodes = (List<edu.berkeley.path.model_objects.jaxb.Node>)(List<?>)value;
+		nodeList.getNode().addAll((List<edu.berkeley.path.model_objects.jaxb.Node>)(List<?>)value);
+		setNodeList(nodeList);
 	}
 	  
 	/**
@@ -168,8 +170,8 @@ public final class Network extends edu.berkeley.path.model_objects.jaxb.Network 
       linkList = new edu.berkeley.path.model_objects.jaxb.LinkList();  
     }
     
-    List<edu.berkeley.path.model_objects.jaxb.Link> listOfLinks = linkList.getLink();
-    listOfLinks = (List<edu.berkeley.path.model_objects.jaxb.Link>)(List<?>)value;
+    linkList.getLink().addAll((List<edu.berkeley.path.model_objects.jaxb.Link>)(List<?>)value);
+    setLinkList(linkList);
 	}
 	
 
