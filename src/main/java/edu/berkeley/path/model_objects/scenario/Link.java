@@ -45,30 +45,21 @@ import edu.berkeley.path.model_objects.jaxb.Roads;
 */
 public final class Link extends edu.berkeley.path.model_objects.jaxb.Link { 
 	
-	/** @y.exclude */ 	protected Network myNetwork;
-	/** @y.exclude */ 	protected Node beginNode;
-	/** @y.exclude */ 	protected Node endNode;
-	/** @y.exclude */	protected String roadName;
-	/** @y.exclude */	protected java.util.List<Point> points;
-
-	// link type
-	protected Link.Type myType;
-	/** Type of link. */
-	public static enum Type	{Freeway,HOV,HOT,onramp,offramp,freeway_connector,street,intersection_approach,heavy_vehicle,electric_toll};
+	/** @y.exclude */  protected Network myNetwork;
+	/** @y.exclude */  protected Node beginNode;
+	/** @y.exclude */  protected Node endNode;
+	/** @y.exclude */  protected String roadName;
+	/** @y.exclude */  protected java.util.List<Point> points;
 	
-	
-	/** @y.exclude */ 	protected boolean isSource; 				// [boolean]
-	/** @y.exclude */ 	protected boolean isSink;     				// [boolean]
+	/** @y.exclude */  protected boolean isSource; 				// [boolean]
+	/** @y.exclude */  protected boolean isSink;     				// [boolean]
 	
 	/*
 	 * Populates by creating references for begin and end node
 	 */
 	protected void populate(Network myNetwork) {
 
-        this.myNetwork = myNetwork;
-        
-        // link type
-        this.myType = Link.Type.valueOf(getType());
+    this.myNetwork = myNetwork;
         
 		// make network connections
 		beginNode = myNetwork.getNodeWithId(getBegin().getNodeId());
