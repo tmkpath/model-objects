@@ -24,7 +24,7 @@
  * SUCH DAMAGE.
  */
 
-package edu.berkeley.path.model_objects.scenario;
+package edu.berkeley.path.model_objects.network;
 
 public class Point extends edu.berkeley.path.model_objects.jaxb.Point {
 }

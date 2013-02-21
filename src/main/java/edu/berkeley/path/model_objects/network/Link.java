@@ -24,7 +24,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  **/
 
-package edu.berkeley.path.model_objects.scenario;
+package edu.berkeley.path.model_objects.network;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

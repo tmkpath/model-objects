@@ -24,7 +24,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  **/
 
-package edu.berkeley.path.model_objects.scenario;
+package edu.berkeley.path.model_objects.network;
 
 import core.Monitor;
 
@@ -162,6 +162,8 @@ public final class Network extends edu.berkeley.path.model_objects.jaxb.Network 
 	  
 	/**
 	 * Set the links. Same as setLinkList(), but works with a list of Link.
+	 * 
+	 * @param List<Link>  List of extended Links to add
 	 */
 	@SuppressWarnings("unchecked")
 	public void setExtendedLinkList(List<Link> value) {
