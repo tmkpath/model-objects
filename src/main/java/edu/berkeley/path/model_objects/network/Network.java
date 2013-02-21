@@ -37,53 +37,55 @@ import java.util.List;
 */
 public final class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 
-	protected boolean isempty;
+  /** @y.exclude */  protected boolean isempty;
 	
-	/**
-	 * Populates all network dependencies by moving along it's node list
-	 * and creating references to it's input and output links and moving 
-	 * along it's links list and creating references for begin and end node
-	 * 
-	 * @return void
-	 */
-	public void populate() {
-		
-		this.isempty = getNodeList()==null || getLinkList()==null;
-		
-		if(isempty) 
-			return;
-	
-		for (edu.berkeley.path.model_objects.jaxb.Node node : getNodeList().getNode())
-			((Node) node).populate(this);
-	
-		for (edu.berkeley.path.model_objects.jaxb.Link link : getLinkList().getLink())
-			((Link) link).populate(this);		
-	}
+  /**
+   * Return id of network
+   * 
+   * @return id of network as string
+   */
+  @Override
+  public String getId() {
+    return getId();
+  }
+  
+  /**
+   * Set id of network
+   * 
+   * @param id of network as string
+   */
+  @Override
+  public void setId(String id) {
+    setId(id);
+  }
+  
+  /**
+   * Return name of network
+   * 
+   * @return id of link as string
+   */
+  @Override
+  public String getName() {
+    return getName();
+  }
+  
+  /**
+   * Set name of network
+   * 
+   * @param name of network as string
+   */
+  @Override
+  public void setName(String name) {
+    setName(name);
+  }
 	
 	/** 
-	 * Returns whether network has a node(s) and link(s)
+	 * Returns whether network has a node(s) and link(s) after it has been populated
 	 * 
-	 * @return boolean
+	 * @return true if Node list or Link list is empty
 	 */
-	public boolean isEmpty() {
+	public Boolean isEmpty() {
 		return isempty;
-	}
-
-	/**
-	 * Network wide validation
-	 */
-	protected void validate() {
-
-		if(isempty)
-			return;
-		
-		// node list
-		for (edu.berkeley.path.model_objects.jaxb.Node node : getNodeList().getNode())
-			((Node)node).validate();
-
-		// link list
-		for (edu.berkeley.path.model_objects.jaxb.Link link : getLinkList().getLink())
-			((Link)link).validate();
 	}
 
 	/** 
@@ -176,5 +178,58 @@ public final class Network extends edu.berkeley.path.model_objects.jaxb.Network 
     setLinkList(linkList);
 	}
 	
+	/**
+   * Populates all network dependencies by moving along it's node list
+   * and creating references to it's input and output links and moving 
+   * along it's links list and creating references for begin and end node
+   * 
+   * @return void
+   */
+  public void populate() {
+    
+    this.isempty = getNodeList()==null || getLinkList()==null;
+    
+    if(isempty) 
+      return;
+  
+    for (edu.berkeley.path.model_objects.jaxb.Node node : getNodeList().getNode())
+      ((Node) node).populate(this);
+  
+    for (edu.berkeley.path.model_objects.jaxb.Link link : getLinkList().getLink())
+      ((Link) link).populate(this);   
+  }
+  
+  /**
+   * Network wide validation
+   * 
+   * @return true if network is valid
+   */
+  protected Boolean isValid() {
 
+    Boolean validLinks = true;
+    Boolean validNodes = true;
+    // Check if network is empty  
+    if(isempty) {
+      Monitor.out("Invalid Network. Network is empty.");
+      return false;
+    }
+
+    // node list validation
+    for (edu.berkeley.path.model_objects.jaxb.Node node : getNodeList().getNode()) { 
+      validNodes = ((Node)node).isValid();
+    }
+    // link list validation
+    for (edu.berkeley.path.model_objects.jaxb.Link link : getLinkList().getLink()) {
+      validLinks = ((Link)link).isValid();
+    }
+    
+    // return true if nodelist and linklist is valid, otherwise false
+    if (validLinks && validNodes) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  
 }

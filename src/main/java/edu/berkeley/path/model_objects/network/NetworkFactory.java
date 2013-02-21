@@ -26,15 +26,15 @@
 
 package edu.berkeley.path.model_objects.network;
 
+/**
+ * Network Model Object Factory that can be used to create new instances of 
+ * newtork based model object classes.  This factory can be extended, 
+ * it's methods over-ridden and then passed into the model object database access
+ * layer to return application specific extended model object classes
+ *  
+ */
 public class NetworkFactory {
-
-    /**
-     * Network Model Object Factory that can be used to create new instances of 
-     * newtork based model object classes.  This factory can be extended, 
-     * it's methods over-ridden and then passed into the model object database access
-     * layer to return application specific extended model object classes
-     *  
-     */
+  
     public NetworkFactory() {
     }
 

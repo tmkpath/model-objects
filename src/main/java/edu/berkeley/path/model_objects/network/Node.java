@@ -50,133 +50,126 @@ public final class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 	/** @y.exclude */ 	protected Network myNetwork;
 
 	// network references
-	/** @y.exclude */ 	protected Link [] output_link;
-	/** @y.exclude */ 	protected Link [] input_link;
+	/** @y.exclude */ 	protected Link [] outputLink;
+	/** @y.exclude */ 	protected Link [] inputLink;
 
 	/** @y.exclude */ 	protected int nIn;
 	/** @y.exclude */ 	protected int nOut;
 	/** @y.exclude */ 	protected boolean isTerminal;
 	
-    
 	/**
-	 * Populates node input and output links by creating
-	 * references to it's input and output links 
-	 * 
-	 * @return void
-	 */ 	
-	protected void populate(Network myNetwork) {
-    	// Note: It is assumed that this comes *before* SplitRatioProfile.populate
-		
-		this.myNetwork = myNetwork;
-		
-		nOut = 0;
-		if(getOutputs()!=null){
-			nOut = getOutputs().getOutput().size();
-			output_link = new Link[nOut];
-			for(int i=0;i<nOut;i++){
-				edu.berkeley.path.model_objects.jaxb.Output output = getOutputs().getOutput().get(i);
-				output_link[i] = myNetwork.getLinkWithId(output.getLinkId());
-			}
-		}
-
-		nIn = 0;
-		if(getInputs()!=null){
-			nIn = getInputs().getInput().size();
-			input_link = new Link[nIn];
-			for(int i=0;i<nIn;i++){
-				edu.berkeley.path.model_objects.jaxb.Input input = getInputs().getInput().get(i);
-				input_link[i] = myNetwork.getLinkWithId(input.getLinkId());
-			}
-		}
-		
-		isTerminal = nOut==0 || nIn==0;
-
-    	if(isTerminal)
-    		return;
-	}
-    
-	/**
-	 * Node validation
-	 */	
-	protected void validate() {
-				
-		if(isTerminal)
-			return;
-		
-		if(output_link!=null)
-			for(Link link : output_link)
-				if(link==null)
-					Monitor.out("Incorrect output link id in node id=" + getId());
-
-		if(input_link!=null)
-			for(Link link : input_link)
-				if(link==null)
-					Monitor.out("Incorrect input link id in node id=" + getId());
-		
-		if(nIn==0)
-			Monitor.out("No inputs into non-terminal node id=" + getId());
-
-		if(nOut==0)
-			Monitor.out("No outputs from non-terminal node id=" + getId());
-		
-	}
-    
+   * Return id of node
+   * 
+   * @return id of node as string
+   */
+  @Override
+  public String getId() {
+    return getId();
+  }
+  
+  /**
+   * Set id of node
+   * 
+   * @param id of node as string
+   */
+  @Override
+  public void setId(String id) {
+    setId(id);
+  }
+  
+  /**
+   * Return type of node
+   * 
+   * @return type of node as string
+   */
+  @Override
+  public String getType() {
+    // TODO: This should be changed to return Type object (id, string) mappings
+    return getType();
+  }
+  
+  /**
+   * Set type of node
+   * 
+   * @param type of node as string
+   */
+  @Override
+  public void setType(String type) {
+    // TODO: This should be changed to take in Type object (id, string)
+    setType(type);
+  }
+  
 	/** 
-	 * network that contains this node 
-	 */ 	
+   * Get network that contains this node, only valid if node has been associated 
+   * with a network by calling the populate function.
+   * 
+   * @return  Network node belongs to
+   */	
 	public Network getMyNetwork() {
 		return myNetwork;
 	}
 	    
-    /** 
-     * List of links exiting this node 
-     */ 
-    public Link[] getOutput_link() {
-		return output_link;
+  /** 
+   * Get Array of links exiting this node 
+   * 
+   * @return Array of links 
+   */ 
+	public Link[] getOutputLink() {
+		return outputLink;
 	}
 
-    /** 
-     * List of links entering this node 
-     */ 
-	public Link[] getInput_link() {
-		return input_link;
+  /** 
+   * Get Array of links entering this node 
+   * 
+   * @return  Array of links 
+   */ 
+	public Link[] getInputLink() {
+		return inputLink;
 	}
 
-    /** 
-     * Index of link with given id in the list of input links of this node 
-     */ 
-	public int getInputLinkIndex(String id){
-		for(int i=0;i<getnIn();i++){
-			if(input_link[i]!=null)
-				if(input_link[i].getId().equals(id))
+  /** 
+   * Get Index of link with given id in the list of input links of this node
+   * 
+   * @return  Index of link in input links array
+   */ 
+	public Integer getInputLinkIndex(String id){
+		for(int i=0;i<nIn;i++){
+			if(inputLink[i]!=null)
+				if(inputLink[i].getId().equals(id))
 					return i;
 		}
 		return -1;
 	}
 	
-    /** 
-     * Index of link with given id in the list of output links of this node 
-     */ 
+  /** 
+   * Get Index of link with given id in the list of output links of this node
+   * 
+   * @return  Index of link in output links array
+   */ 
 	public int getOutputLinkIndex(String id){
-		for(int i=0;i<getnOut();i++){
-			if(output_link[i]!=null)
-				if(output_link[i].getId().equals(id))
+		for(int i=0;i<nIn;i++){
+			if(outputLink[i]!=null)
+				if(outputLink[i].getId().equals(id))
 					return i;
 		}
 		return -1;
 	}
 	
-    /** 
-     * Number of links entering this node 
-     */ 
-	public int getnIn() {
+  /** 
+   * Get Number of links entering this node 
+   * 
+   * @return  Number of links entering node
+   */ 
+	public Integer getInputLinkCount() {
 		return nIn;
 	}
 
-    /** 
-     * Number of links exiting this node 
-     */ 
-	public int getnOut() {
+  /** 
+   * Get Number of links exiting this node 
+   * 
+   * @return Number of links exiting node
+   */ 
+	public int getOutputLinkCount() {
 		return nOut;
 	}
 	
@@ -213,10 +206,6 @@ public final class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 	}
 	
 	/**
-	 * 
-	 */
-	
-	/**
 	 * Set latitude and longitude of Node
 	 * 
 	 * @param Point	The latitude and longitude of node
@@ -242,5 +231,86 @@ public final class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 		}
 		return point;
 	}
+	
+	/**
+   * Populates node input and output links by creating
+   * references to it's input and output links.  
+   * 
+   * @param   Reference to Network node is on
+   */   
+  protected void populate(Network myNetwork) {
+    
+    this.myNetwork = myNetwork;
+    
+    nOut = 0;
+    if(getOutputs()!=null){
+      nOut = getOutputs().getOutput().size();
+      outputLink = new Link[nOut];
+      for(int i=0;i<nOut;i++){
+        edu.berkeley.path.model_objects.jaxb.Output output = getOutputs().getOutput().get(i);
+        outputLink[i] = myNetwork.getLinkWithId(output.getLinkId());
+      }
+    }
+
+    nIn = 0;
+    if(getInputs()!=null){
+      nIn = getInputs().getInput().size();
+      inputLink = new Link[nIn];
+      for(int i=0;i<nIn;i++){
+        edu.berkeley.path.model_objects.jaxb.Input input = getInputs().getInput().get(i);
+        inputLink[i] = myNetwork.getLinkWithId(input.getLinkId());
+      }
+    }
+    
+    isTerminal = nOut==0 || nIn==0;
+
+      if(isTerminal)
+        return;
+  }
+    
+  /**
+   * Node validation checks
+   * 
+   * @return True if all node validation is correct
+   */ 
+  protected Boolean isValid() {
+    
+    Boolean isValid = true;
+    if(isTerminal) {
+      return isValid;
+    }
+      
+    if(outputLink!=null) {
+      for(Link link : outputLink) {
+        if(link==null) {
+          Monitor.out("Incorrect output link id in node id=" + getId());
+          isValid = false;
+        }
+      }
+    }
+
+    if(inputLink!=null) {
+      for(Link link : inputLink) {
+        if(link==null) {
+          Monitor.out("Incorrect input link id in node id=" + getId());
+          isValid = false;
+        }
+      }
+    }
+    
+    if(nIn==0) {
+      Monitor.out("No inputs into non-terminal node id=" + getId());
+      isValid = false;
+    }
+
+    if(nOut==0) {
+      Monitor.out("No outputs from non-terminal node id=" + getId());
+      isValid = false;
+    }
+    
+    return isValid;
+    
+  }
+    
 
 }

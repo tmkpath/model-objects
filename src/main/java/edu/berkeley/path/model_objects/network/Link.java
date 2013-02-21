@@ -145,7 +145,7 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
   @Override
   public String getType() {
     // TODO: This should be changed to return Type object (id, string) mappings
-    return getId();
+    return getType();
   }
   
   /**
@@ -170,7 +170,7 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
     
   /** 
    * Get network that contains this link, only valid if link has been associated 
-   * with a network by calling the populate function has been called.
+   * with a network by calling the populate function.
    * 
    * @return  Network link belongs to
    */
@@ -349,7 +349,7 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	/** 
 	 * Link validation checks
 	 *
-	 *@return  Returns false 
+	 * @return  True if all link validation is correct
 	 */
 	protected Boolean isValid() {
 		
