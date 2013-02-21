@@ -26,5 +26,63 @@
 
 package edu.berkeley.path.model_objects.network;
 
+import java.math.BigDecimal;
+
 public class Point extends edu.berkeley.path.model_objects.jaxb.Point {
+  
+  /**
+   * Returns the Latitude of Point
+   * 
+   * @return  Latitude of Point      
+   */
+  public BigDecimal getLatitude() {
+      return getLat();
+  }
+
+  /**
+   * Sets the Latitude of Point
+   * 
+   * @param   Latitude  
+   */
+  public void setLatitude(BigDecimal lat) {
+      setLat(lat);
+  }
+
+  /**
+   * Returns the Longitude of Point
+   * 
+   * @return  Longitude of Point  
+   */
+  public BigDecimal getLongitude() {
+      return getLng();
+  }
+
+  /**
+   * Sets the Longitude of Point
+   * 
+   * @param   Longitude
+   */
+  public void setLongitue(BigDecimal lng) {
+      setLng(lng);
+  }
+
+  /**
+   * Returns the Elevation of Point
+   * 
+   * @return  Elevation of Point   
+   */
+  @Override
+  public BigDecimal getElevation() {
+      return super.getElevation();
+  }
+
+  /**
+   * Sets the Elevation of point.
+   * 
+   * @param Elevation
+   */
+  @Override
+  public void setElevation(BigDecimal elevation) {
+      super.setElevation(elevation);
+  }
 }
