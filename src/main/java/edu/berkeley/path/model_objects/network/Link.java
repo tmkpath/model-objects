@@ -38,11 +38,12 @@ import edu.berkeley.path.model_objects.jaxb.End;
 import edu.berkeley.path.model_objects.jaxb.Road;
 import edu.berkeley.path.model_objects.jaxb.Roads;
 
-/** Link class.
-* 
-* @author Gabriel Gomes (gomes@path.berkeley.edu)
-* @author Matthew Juhn (mnjuhn@berkeley.edu)
-*/
+/** 
+ * Model Object Link class.
+ *  
+ * @author Gabriel Gomes (gomes@path.berkeley.edu)
+ * @author Matthew Juhn (mnjuhn@berkeley.edu)
+ */
 public final class Link extends edu.berkeley.path.model_objects.jaxb.Link { 
 	
 	/** @y.exclude */  protected Network myNetwork;
@@ -51,11 +52,284 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	/** @y.exclude */  protected String roadName;
 	/** @y.exclude */  protected java.util.List<Point> points;
 	
-	/** @y.exclude */  protected boolean isSource; 				// [boolean]
-	/** @y.exclude */  protected boolean isSink;     				// [boolean]
+	/** @y.exclude */  protected Boolean isSource;
+	/** @y.exclude */  protected Boolean isSink;
 	
-	/*
-	 * Populates by creating references for begin and end node
+	/**
+	 * Return id of link
+	 * 
+	 * @return id of link as string
+	 */
+	@Override
+	public String getId() {
+	  return getId();
+	}
+	
+	/**
+	 * Set id of link
+	 * 
+	 * @param id of link as string
+	 */
+	@Override
+	public void setId(String id) {
+	  setId(id);
+	}
+	
+	/**
+   * Return number of lanes of link
+   * 
+   * @return number of lanes 
+   */
+  @Override
+  public BigDecimal getLanes() {
+    return getLanes();
+  }
+  
+  /**
+   * Set number of lanes of link
+   * 
+   * @param number lanes of link 
+   */
+  @Override
+  public void setLanes(BigDecimal lanes) {
+    setLanes(lanes);
+  }
+
+  /**
+   * Return lane offset of link
+   * 
+   * @return number of lanes 
+   */
+  @Override
+  public BigDecimal getLaneOffset() {
+    return getLaneOffset();
+  }
+  
+  /**
+   * Set lane offset of link
+   * 
+   * @param number lanes of link 
+   */
+  @Override
+  public void setLaneOffset(BigDecimal laneOffset) {
+    setLaneOffset(laneOffset);
+  }
+	
+  /**
+   * Return length of link in SI
+   * 
+   * @return length of link in SI 
+   */
+  @Override
+  public BigDecimal getLength() {
+    // TODO: Should we be returning a Measurement object (value, unit) pair? 
+    return getLength();
+  }
+  
+  /**
+   * Set length of link in SI
+   * 
+   * @param length of link in SI
+   */
+  @Override
+  public void setLength(BigDecimal length) {
+    // TODO: Should we be passing in a Measurements object (value, unit) pair?
+    setLength(length);
+  }
+  
+  /**
+   * Return type of link
+   * 
+   * @return type of link as string
+   */
+  @Override
+  public String getType() {
+    // TODO: This should be changed to return Type object (id, string) mappings
+    return getId();
+  }
+  
+  /**
+   * Set type of link
+   * 
+   * @param type of link as string
+   */
+  @Override
+  public void setType(String type) {
+    // TODO: This should be changed to take in Type object (id, string)
+    setType(type);
+  }
+  
+	/**
+   * Parses String Id of link to long
+   * 
+   * @return id of link as long
+   */
+  public Long getLongId() {
+    return Long.parseLong(getId().toString());
+  }
+    
+  /** 
+   * Get network that contains this link, only valid if link has been associated 
+   * with a network by calling the populate function has been called.
+   * 
+   * @return  Network link belongs to
+   */
+  public Network getMyNetwork() {
+    return myNetwork;
+  }
+
+  /** 
+   * Get upstream (begin) node of this link
+   * 
+   * @return  Begin Node Model object
+   */
+  public Node getBeginNode() {
+    return beginNode;
+  }
+
+  /** 
+   * Get downstream (end) node of this link 
+   * 
+   * @return  End Node Model object
+   */
+  public Node getEndNode() {
+    return endNode;
+  }
+  
+  /**
+   * Set upstream (begin) node of this link
+   * 
+   * @param   The node to set as begin node of link
+   */
+  public void setBeginNode(Node node) {
+    this.endNode = node;
+    if (node != null) {
+      setBegin(new Begin());
+      getBegin().setNodeId(node.getId());
+    }
+  }
+  
+  /**
+   * Set downstream (end) node of this link
+   * 
+   * @param   The node to set as end node of link
+   */
+  public void setEndNode(Node node) {
+    this.endNode = node;
+    if (node != null) {
+      setEnd(new End());
+      getEnd().setNodeId(node.getId());
+    }
+  }
+  
+  /** 
+   * Get Upstream (begin) node of this link  
+   * 
+   * @param   String representation of the id of end node 
+   */
+  public String getBeginNodeId() {
+    return beginNode.getId();
+  }
+
+  /** 
+   * Get downstream (end) node of this link
+   * 
+   *  @param  String representation of the id of begin node
+   */
+  public String getEndNodeId() {
+    return endNode.getId();
+  }
+  
+  /**
+   * Set upstream (begin) node of this link
+   * 
+   * @param   The node to set as begin node of link
+   */
+  public void setBeginId(Long nodeId) {
+    
+    //TODO: Change schema to represent ID's as long not strings?  
+    // This way no conversion necessary
+    String nodeIdStr = nodeId.toString();
+    setBegin(new Begin());
+    getBegin().setNodeId(nodeIdStr);
+  }
+  
+  /**
+   * Set downstream (end) node of this link
+   * 
+   * @param  The node to set as end node of link
+   */
+  public void setEndId(Long nodeId) {
+    
+    //TODO: Change schema to represent ID's as long not strings?  
+    // This way no conversion necessary
+    String nodeIdStr = nodeId.toString();
+    setEnd(new End());
+    getEnd().setNodeId(nodeIdStr);
+  }
+  
+  /**
+   * Get Links first Road Name
+   * 
+   * @return  The road name of link
+   */
+  public String getFirstRoadName() {
+    if ( getRoads().getRoad().size() > 0 ) {
+      return getRoads().getRoad().get(0).getName();
+    }
+    else {
+      return null;
+    }
+  }
+
+  /**
+   * Set link to have Road Name
+   * 
+   * @param The road name of link
+   */
+  public void setRoadName(String roadName) {    
+    Road road = new Road();
+    road.setName(roadName);
+    Roads roads = new Roads();
+    roads.getRoad().add(road);
+  }
+  
+  /** 
+   * Returns <code>true</code> if this link is a source of demand into the network 
+   */
+  public Boolean isSource() {
+    return isSource;
+  }
+
+  /** 
+   * Returns <code>true</code> if this link is a sink of demand from the network 
+   */
+  public Boolean isSink() {
+    return isSink;
+  }
+  
+  /**
+   * Returns list of Points representing link Geometry
+   * 
+   * @return  list of points
+   */
+  public java.util.List<Point> getPoints() {
+    return points;
+  }
+
+  /**
+   * Sets a list of Points to represent link Geometry
+   * 
+   * @param   List of points
+   */
+  public void setPoints(java.util.List<Point> points) {
+    this.points = points;
+  }
+	
+	/**
+	 * Populates link by creating references for begin and end node
+	 * 
+	 * @param    Network link is associated with
 	 */
 	protected void populate(Network myNetwork) {
 
@@ -72,192 +346,37 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 			isSink = endNode.isTerminal;
 	}
 
-	/* 
-	 * Node validation
+	/** 
+	 * Link validation checks
+	 *
+	 *@return  Returns false 
 	 */
-	protected void validate() {
+	protected Boolean isValid() {
 		
-		if(!isSource && beginNode==null)
-			Monitor.out("Incorrect begin node id=" + getBegin().getNodeId() + " in link id=" + getId() + ".");
-
-		if(!isSink && endNode==null)
+	  Boolean isValid = true;
+	  
+		if(!isSource && beginNode==null) {
+		  isValid = false;
+		  Monitor.out("Incorrect begin node id=" + getBegin().getNodeId() + " in link id=" + getId() + ".");
+		}
+			
+		if(!isSink && endNode==null) {
+		  isValid = false;
 			Monitor.out("Incorrect end node id=" + getEnd().getNodeId() + " in link id=" + getId() + ".");
+		}
 		
-		if(getLength().intValue() <= 0)
+		if(getLength().intValue() <= 0) {
+		  isValid = false;
 			Monitor.out("Non-positive length in link id=" + getId() + ".");
-		
-		if(getLanes().intValue() <= 0)
-			Monitor.out("Non-positive number of lanes in link id=" + getId() + ".");		
-	}
-
-	/**
-	 * Parses String Id of link to long
-	 * @return	Long  id of link
-	 */
-	public Long getLongId() {
-		return Long.parseLong(getId().toString());
-	}
-	  
-	/** 
-	 * network that contains this link 
-	 */
-	public Network getMyNetwork() {
-		return myNetwork;
-	}
-
-	/** 
-	 * upstream node of this link  
-	 */
-	public Node getBeginNode() {
-		return beginNode;
-	}
-
-	/** 
-	 * downstream node of this link 
-	 */
-	public Node getEndNode() {
-		return endNode;
-	}
-	
-	/**
-	 * Set upstream node of this link
-	 * 
-	 * @param node  the node to set as begin node of link
-	 */
-	public void setBeginNode(Node node) {
-		this.endNode = node;
-		if (node != null) {
-			setBegin(new Begin());
-			getBegin().setNodeId(node.getId());
 		}
-	}
-	
-	/**
-	 * Set downstream node of this link
-	 * 
-	 * @param node  the node to set as end node of link
-	 */
-	public void setEndNode(Node node) {
-		this.endNode = node;
-		if (node != null) {
-			setEnd(new End());
-			getEnd().setNodeId(node.getId());
-		}
-	}
-	
-	/** 
-	 * upstream node of this link  
-	 * 
-	 * @param String representation of the id of end node 
-	 */
-	public String getBeginNodeId() {
-		return beginNode.getId();
-	}
-
-	/** 
-	 * downstream node of this link
-	 * 
-	 *  @param String 	representation of the id of begin node
-	 */
-	public String getEndNodeId() {
-		return endNode.getId();
-	}
-	
-	/**
-	 * Set upstream node of this link
-	 * 
-	 * @param node  the node to set as begin node of link
-	 */
-	public void setBeginId(Long nodeId) {
 		
-		//TODO: Change schema to represent ID's as long not strings?  
-		// This way no conversion necessary
-		String nodeIdStr = nodeId.toString();
-		setBegin(new Begin());
-		getBegin().setNodeId(nodeIdStr);
-	}
-	
-	/**
-	 * Set downstream node of this link
-	 * 
-	 * @param node  the node to set as end node of link
-	 */
-	public void setEndId(Long nodeId) {
-		
-		//TODO: Change schema to represent ID's as long not strings?  
-		// This way no conversion necessary
-		String nodeIdStr = nodeId.toString();
-		setEnd(new End());
-		getEnd().setNodeId(nodeIdStr);
-	}
-	
-	/**
-	 * Get Links first Road Name
-	 * 
-	 * @return String	the road name of link
-	 */
-	public String getFirstRoadName() {
-		return getRoads().getRoad().get(0).getName(); 
-	}
-
-	/**
-	 * Set link to have Road Name
-	 * 
-	 * @param String	the road name of link
-	 */
-	public void setRoadName(String roadName) {		
-		Road road = new Road();
-		road.setName(roadName);
-		Roads roads = new Roads();
-		roads.getRoad().add(road);
-	}
-	
-	/** 
-	 * <code>true</code> if this link is a source of demand into the network 
-	 */
-	public boolean isSource() {
-		return isSource;
-	}
-
-	/** 
-	 * <code>true</code> if this link is a sink of demand from the network 
-	 */
-	public boolean isSink() {
-		return isSink;
-	}
-	
-	/**
-	 * Gets the value of the 'points' field.
-	 */
-	public java.util.List<Point> getPoints() {
-		return points;
-	}
-
-	/**
-	 * Sets the value of the 'points' field.
-	 * @param value the value to set.
-	 */
-	public void setPoints(java.util.List<Point> value) {
-		this.points = value;
-	}
-
-	/**
-	 * Set the points. Same as setPoints(), but works with a list of Point.
-	 */
-	@SuppressWarnings("unchecked")
-	public void setPointList(List<Point> value) {
-		setPoints((List<Point>)(List<?>)value);
-	}
-	  
-	/**
-	 * Get the points. Same as getPoints(), but works with a list of Point.
-	 * Never returns null (creates the list if it doesn't exist).
-	 */
-	@SuppressWarnings("unchecked")
-	public List<Point> getPointList() {
-		if (null == getPoints()) {
-			setPoints(new ArrayList<Point>());
+		if(getLanes().intValue() <= 0) {
+		  isValid = false;
+			Monitor.out("Non-positive number of lanes in link id=" + getId() + ".");	
 		}
-	    return (List<Point>)(List<?>)getPoints();
+		
+		return isValid;
 	}
+
+	
 }
