@@ -44,7 +44,7 @@ import edu.berkeley.path.model_objects.jaxb.Roads;
  * @author Gabriel Gomes (gomes@path.berkeley.edu)
  * @author Matthew Juhn (mnjuhn@berkeley.edu)
  */
-public final class Link extends edu.berkeley.path.model_objects.jaxb.Link { 
+public class Link extends edu.berkeley.path.model_objects.jaxb.Link { 
 	
 	/** @y.exclude */  protected Network myNetwork;
 	/** @y.exclude */  protected Node beginNode;
@@ -62,7 +62,7 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	 */
 	@Override
 	public String getId() {
-	  return getId();
+	  return super.getId();
 	}
 	
 	/**
@@ -72,7 +72,7 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	 */
 	@Override
 	public void setId(String id) {
-	  setId(id);
+	  super.setId(id);
 	}
 	
 	/**
@@ -82,7 +82,7 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    */
   @Override
   public BigDecimal getLanes() {
-    return getLanes();
+    return super.getLanes();
   }
   
   /**
@@ -92,7 +92,7 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    */
   @Override
   public void setLanes(BigDecimal lanes) {
-    setLanes(lanes);
+    super.setLanes(lanes);
   }
 
   /**
@@ -102,7 +102,7 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    */
   @Override
   public BigDecimal getLaneOffset() {
-    return getLaneOffset();
+    return super.getLaneOffset();
   }
   
   /**
@@ -112,7 +112,7 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    */
   @Override
   public void setLaneOffset(BigDecimal laneOffset) {
-    setLaneOffset(laneOffset);
+    super.setLaneOffset(laneOffset);
   }
 	
   /**
@@ -123,7 +123,7 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
   @Override
   public BigDecimal getLength() {
     // TODO: Should we be returning a Measurement object (value, unit) pair? 
-    return getLength();
+    return super.getLength();
   }
   
   /**
@@ -134,7 +134,7 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
   @Override
   public void setLength(BigDecimal length) {
     // TODO: Should we be passing in a Measurements object (value, unit) pair?
-    setLength(length);
+    super.setLength(length);
   }
   
   /**
@@ -145,7 +145,7 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
   @Override
   public String getType() {
     // TODO: This should be changed to return Type object (id, string) mappings
-    return getType();
+    return super.getType();
   }
   
   /**
@@ -156,7 +156,7 @@ public final class Link extends edu.berkeley.path.model_objects.jaxb.Link {
   @Override
   public void setType(String type) {
     // TODO: This should be changed to take in Type object (id, string)
-    setType(type);
+    super.setType(type);
   }
   
 	/**

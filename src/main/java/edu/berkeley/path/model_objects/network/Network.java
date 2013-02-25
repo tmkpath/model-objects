@@ -35,7 +35,7 @@ import java.util.List;
 * @author Gabriel Gomes (gomes@path.berkeley.edu)
 * @author Matthew Juhn (mnjuhn@berkeley.edu)
 */
-public final class Network extends edu.berkeley.path.model_objects.jaxb.Network {
+public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 
   /** @y.exclude */  protected boolean isempty;
 	
@@ -46,7 +46,7 @@ public final class Network extends edu.berkeley.path.model_objects.jaxb.Network 
    */
   @Override
   public String getId() {
-    return getId();
+    return super.getId();
   }
   
   /**
@@ -56,7 +56,7 @@ public final class Network extends edu.berkeley.path.model_objects.jaxb.Network 
    */
   @Override
   public void setId(String id) {
-    setId(id);
+    super.setId(id);
   }
   
   /**
@@ -66,7 +66,7 @@ public final class Network extends edu.berkeley.path.model_objects.jaxb.Network 
    */
   @Override
   public String getName() {
-    return getName();
+    return super.getName();
   }
   
   /**
@@ -76,7 +76,7 @@ public final class Network extends edu.berkeley.path.model_objects.jaxb.Network 
    */
   @Override
   public void setName(String name) {
-    setName(name);
+    super.setName(name);
   }
 	
 	/** 
