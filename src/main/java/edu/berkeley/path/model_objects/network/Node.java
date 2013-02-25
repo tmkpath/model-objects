@@ -45,7 +45,7 @@ import core.Monitor;
 * @author Gabriel Gomes (gomes@path.berkeley.edu)
 * @author Matthew Juhn	(mnjuhn@berkeley.edu)
 */
-public final class Node extends edu.berkeley.path.model_objects.jaxb.Node {
+public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 		   
 	/** @y.exclude */ 	protected Network myNetwork;
 
@@ -64,7 +64,7 @@ public final class Node extends edu.berkeley.path.model_objects.jaxb.Node {
    */
   @Override
   public String getId() {
-    return getId();
+    return super.getId();
   }
   
   /**
@@ -74,7 +74,7 @@ public final class Node extends edu.berkeley.path.model_objects.jaxb.Node {
    */
   @Override
   public void setId(String id) {
-    setId(id);
+    super.setId(id);
   }
   
   /**
@@ -85,7 +85,7 @@ public final class Node extends edu.berkeley.path.model_objects.jaxb.Node {
   @Override
   public String getType() {
     // TODO: This should be changed to return Type object (id, string) mappings
-    return getType();
+    return super.getType();
   }
   
   /**
@@ -96,7 +96,7 @@ public final class Node extends edu.berkeley.path.model_objects.jaxb.Node {
   @Override
   public void setType(String type) {
     // TODO: This should be changed to take in Type object (id, string)
-    setType(type);
+    super.setType(type);
   }
   
 	/** 
