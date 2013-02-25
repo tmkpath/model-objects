@@ -182,7 +182,7 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 		List<Marker> markers = getRoadwayMarkers().getMarker();
 		String name = null;
 		if (!markers.isEmpty()) {
-			name = markers.get(0).toString();
+			name = markers.get(0).getName();
 		}
 		return name;
 	}
@@ -230,6 +230,15 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 			points.get(0);
 		}
 		return point;
+	}
+	
+	/**
+	 * Returns whether node is termial or not, must have first run terminal
+	 * 
+	 * @return true if node is terminal, otherwise false
+	 */
+	public Boolean isTerminal() {
+	  return isTerminal;
 	}
 	
 	/**

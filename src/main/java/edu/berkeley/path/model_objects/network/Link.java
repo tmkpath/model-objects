@@ -274,11 +274,11 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * @return  The road name of link
    */
   public String getFirstRoadName() {
-    if ( getRoads().getRoad().size() > 0 ) {
-      return getRoads().getRoad().get(0).getName();
+    if ( getRoads() != null && getRoads().getRoad() != null) {
+        return getRoads().getRoad().get(0).getName();
     }
     else {
-      return null;
+      return "";
     }
   }
 
@@ -292,6 +292,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
     road.setName(roadName);
     Roads roads = new Roads();
     roads.getRoad().add(road);
+    setRoads(roads);
   }
   
   /** 
@@ -314,7 +315,10 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * @return  list of points
    */
   public java.util.List<Point> getPoints() {
-    return points;
+    if (this.points == null) {
+      this.points = new ArrayList<Point>();
+    }
+    return this.points;
   }
 
   /**
