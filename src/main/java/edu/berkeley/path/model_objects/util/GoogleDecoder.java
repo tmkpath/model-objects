@@ -36,7 +36,6 @@ import edu.berkeley.path.model_objects.jaxb.Point;
 public class GoogleDecoder extends DecoderBase implements DecoderIF {
 	public GoogleDecoder() {}
 
-	@Override
 	public List<Point> decode(String str) throws Exception {
 		if (null == factory) factory = new ObjectFactory();
 		List<Point> result = new java.util.ArrayList<Point>();
@@ -85,7 +84,6 @@ public class GoogleDecoder extends DecoderBase implements DecoderIF {
 		return coords;
 	}
 
-	@Override
 	public void reset() {}
 
 }

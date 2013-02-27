@@ -37,6 +37,7 @@ import edu.berkeley.path.model_objects.jaxb.Dynamics;
 import edu.berkeley.path.model_objects.jaxb.End;
 import edu.berkeley.path.model_objects.jaxb.Road;
 import edu.berkeley.path.model_objects.jaxb.Roads;
+import edu.berkeley.path.model_objects.shared.Point;
 
 /** 
  * Model Object Link class.
@@ -335,7 +336,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	 * 
 	 * @param    Network link is associated with
 	 */
-	protected void populate(Network myNetwork) {
+	public void populate(Network myNetwork) {
 
     this.myNetwork = myNetwork;
         
@@ -355,7 +356,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	 *
 	 * @return  True if all link validation is correct
 	 */
-	protected Boolean isValid() {
+	public final Boolean isValid() {
 		
 	  Boolean isValid = true;
 	  
