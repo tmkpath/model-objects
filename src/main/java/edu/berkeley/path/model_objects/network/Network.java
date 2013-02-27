@@ -122,59 +122,71 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 
 	/** 
 	 * Get the list of nodes in this network.
-	 * @return List of all nodes as jaxb objects. 
-	 * Each of these may be cast to a {@link Node}.
+	 * 
+	 * @return List of all nodes as Node Model Objects. 
 	 */
-	public List<edu.berkeley.path.model_objects.jaxb.Node> getListOfNodes() {
-		if(isempty)
-			return null;
-		if(getNodeList().getNode()==null)
-			return null;
-		return getNodeList().getNode();
-	}
+	@SuppressWarnings("unchecked")
+	public List<Node> getListOfNodes() {
+	  edu.berkeley.path.model_objects.jaxb.NodeList nodeList = getNodeList();
+	  // check if node list exists, if not create it and add empty list of nodes
+    if ( nodeList == null ) {
+      nodeList = new edu.berkeley.path.model_objects.jaxb.NodeList();  
+      nodeList.getNode().clear();
+      // set newly created node list object to network class, so a Nodelist now exists
+      setNodeList(nodeList);
+    }
+    // return casted list of Nodes from JAXB base class
+    return (List<Node>)(List<?>)nodeList.getNode();
+  }
 
 	/** 
 	 * Get the list of links in this network.
-	 * @return List of all links as jaxb objects. 
-	 * Each of these may be cast to a {@link Link}.
+	 * 
+	 * @return List of all links as Link model objects. 
 	 */
-	public List<edu.berkeley.path.model_objects.jaxb.Link> getListOfLinks() {
-		if(isempty)
-			return null;
-		if(getLinkList().getLink()==null)
-			return null;
-		return getLinkList().getLink();	
+  @SuppressWarnings("unchecked")
+	public List<Link> getListOfLinks() {
+	  edu.berkeley.path.model_objects.jaxb.LinkList nodeList = getLinkList();
+    // check if node list exists, if not create it and add empty list of nodes
+    if ( nodeList == null ) {
+      linkList = new edu.berkeley.path.model_objects.jaxb.LinkList();  
+      linkList.getLink().clear();
+      // set newly created node list object to network class, so a Nodelist now exists
+      setLinkList(nodeList);
+    }
+    // return casted list of Nodes from JAXB base class
+    return (List<Link>)(List<?>)linkList.getLink();	
 	}
 	
 	/**
-	 * Set the nodes. Same as setNodeList(), but works with a list of Node.
+	 * Set the nodes. Attaches list of Node Model Objects to network.
 	 * 
 	 * @param List<Node>	List of extended Nodes to add
 	 */
 	@SuppressWarnings("unchecked")
-	public void setExtendedNodeList(List<Node> value) {
+	public void setListOfNodes(List<Node> nodes) {
 	  edu.berkeley.path.model_objects.jaxb.NodeList nodeList = getNodeList();
 		if ( nodeList == null ) {
 		  nodeList = new edu.berkeley.path.model_objects.jaxb.NodeList();  
 		}
 		
-		nodeList.getNode().addAll((List<edu.berkeley.path.model_objects.jaxb.Node>)(List<?>)value);
+		nodeList.getNode().addAll((List<edu.berkeley.path.model_objects.jaxb.Node>)(List<?>)nodes);
 		setNodeList(nodeList);
 	}
 	  
 	/**
-	 * Set the links. Same as setLinkList(), but works with a list of Link.
+	 * Set the links. Attaches list of Link Model Objects to network.
 	 * 
 	 * @param List<Link>  List of extended Links to add
 	 */
 	@SuppressWarnings("unchecked")
-	public void setExtendedLinkList(List<Link> value) {
+	public void setListOfLinks(List<Link> links) {
 	  edu.berkeley.path.model_objects.jaxb.LinkList linkList = getLinkList();
     if ( linkList == null ) {
       linkList = new edu.berkeley.path.model_objects.jaxb.LinkList();  
     }
     
-    linkList.getLink().addAll((List<edu.berkeley.path.model_objects.jaxb.Link>)(List<?>)value);
+    linkList.getLink().addAll((List<edu.berkeley.path.model_objects.jaxb.Link>)(List<?>)links);
     setLinkList(linkList);
 	}
 	
@@ -204,7 +216,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
    * 
    * @return true if network is valid
    */
-  protected Boolean isValid() {
+  public final Boolean isValid() {
 
     Boolean validLinks = true;
     Boolean validNodes = true;

@@ -26,6 +26,8 @@
 
 package edu.berkeley.path.model_objects.network;
 
+import edu.berkeley.path.model_objects.shared.*;
+
 /**
  * Network Model Object Factory that can be used to create new instances of 
  * newtork based model object classes.  This factory can be extended, 
@@ -63,6 +65,15 @@ public class NetworkFactory {
      */
     public Node createNode(String nodeType) {
         return new Node();
+    }
+    
+    /**
+     * Create an instance of Node Model Object
+     * 
+     * @return  Node Model Object
+     */
+    public Point createPoint() {
+        return new Point();
     }
 
 }

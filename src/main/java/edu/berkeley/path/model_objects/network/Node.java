@@ -247,7 +247,7 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
    * 
    * @param   Reference to Network node is on
    */   
-  protected void populate(Network myNetwork) {
+  public void populate(Network myNetwork) {
     
     this.myNetwork = myNetwork;
     
@@ -282,7 +282,7 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
    * 
    * @return True if all node validation is correct
    */ 
-  protected Boolean isValid() {
+  public final Boolean isValid() {
     
     Boolean isValid = true;
     if(isTerminal) {

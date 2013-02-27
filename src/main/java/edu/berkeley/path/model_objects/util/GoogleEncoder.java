@@ -40,7 +40,6 @@ public class GoogleEncoder extends EncoderBase implements EncoderIF {
 		sb = new StringBuilder();
 	}
 
-	@Override
 	public void add(Point point) {
 		encode(point.getLat(), null == prev ? null : prev.getLat());
 		encode(point.getLng(), null == prev ? null : prev.getLng());
@@ -94,7 +93,6 @@ public class GoogleEncoder extends EncoderBase implements EncoderIF {
 			sb.append((char) (chunk.intValue() + 63));
 	}
 
-	@Override
 	public void reset() {
 		sb.setLength(0);
 		prev = null;

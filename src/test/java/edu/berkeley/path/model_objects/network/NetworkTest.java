@@ -41,8 +41,8 @@ public class NetworkTest {
     nw.setName("test network");
     nw.setId("42");
 
-    nw.setExtendedNodeList(new ArrayList<Node>());
-    nw.setExtendedLinkList(new ArrayList<Link>());
+    nw.setListOfNodes(new ArrayList<Node>());
+    nw.setListOfLinks(new ArrayList<Link>());
     
     Node nd1;
     Node nd2;
