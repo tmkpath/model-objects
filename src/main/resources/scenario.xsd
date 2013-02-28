@@ -54,16 +54,17 @@
 	<xs:element ref="SensorSet" minOccurs="0" maxOccurs="1"  />
         <xs:element ref="InitialDensitySet" minOccurs="0" maxOccurs="1" />
         <xs:element ref="WeavingFactorSet" minOccurs="0" maxOccurs="1" />
-        <xs:element ref="SplitRatioProfileSet" minOccurs="0" maxOccurs="1" />
-        <xs:element ref="DownstreamBoundaryCapacityProfileSet" minOccurs="0" maxOccurs="1" />
+        <xs:element ref="SplitRatioSet" minOccurs="0" maxOccurs="1" />
+        <xs:element ref="DownstreamBoundaryCapacitySet" minOccurs="0" maxOccurs="1" />
         <xs:element ref="EventSet" minOccurs="0" maxOccurs="1" />
-        <xs:element ref="DemandProfileSet" minOccurs="0" maxOccurs="1" />
+        <xs:element ref="DemandSet" minOccurs="0" maxOccurs="1" />
         <xs:element ref="ControllerSet" minOccurs="0" maxOccurs="1" />
-        <xs:element ref="FundamentalDiagramProfileSet" minOccurs="0" maxOccurs="1" />
+        <xs:element ref="FundamentalDiagramSet" minOccurs="0" maxOccurs="1" />
         <xs:element ref="NetworkConnections" minOccurs="0" maxOccurs="1" />
         <xs:element ref="DestinationNetworks" minOccurs="0" maxOccurs="1" />
         <xs:element ref="Routes" minOccurs="0" />
       </xs:all>
+      <xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
       <xs:attribute name="id" type="xs:long" use="required"/>
       <xs:attribute name="name" type="xs:string" use="optional" />
       <xs:attribute name="schemaVersion" type="xs:string" use="required" />
@@ -266,9 +267,9 @@
 			</xs:complexType>
 		  </xs:element>
 
-  <!-- SplitRatioProfileSet ...................................................... -->
+  <!-- SplitRatioSet ...................................................... -->
 
-	  <xs:element name="SplitRatioProfileSet">
+	  <xs:element name="SplitRatioSet">
 		<xs:complexType>
 		  <xs:sequence>
 			<xs:element ref="description" minOccurs="0" />
@@ -300,9 +301,9 @@
 				</xs:complexType>
 			  </xs:element>  
   
-  <!-- DownstreamBoundaryCapacityProfileSet ............................................. -->  
+  <!-- DownstreamBoundaryCapacitySet ............................................. -->  
   
-	  <xs:element name="DownstreamBoundaryCapacityProfileSet">
+	  <xs:element name="DownstreamBoundaryCapacitySet">
 		<xs:complexType>
 		  <xs:sequence>
 			<xs:element ref="description" minOccurs="0" />
@@ -368,9 +369,9 @@
 			    </xs:complexType>
 			  </xs:element>	 
 
-  <!-- DemandProfileSet .......................................................... -->
+  <!-- DemandSet .......................................................... -->
   
-	  <xs:element name="DemandProfileSet">
+	  <xs:element name="DemandSet">
 		<xs:complexType>
 		  <xs:sequence>
 			<xs:element ref="description" minOccurs="0" />
@@ -466,9 +467,9 @@
 					</xs:complexType>
 				</xs:element>
 			  
-  <!-- FundamentalDiagramProfileSet .............................................. -->
+  <!-- FundamentalDiagramSet .............................................. -->
 
-	  <xs:element name="FundamentalDiagramProfileSet">
+	  <xs:element name="FundamentalDiagramSet">
 		<xs:complexType>
 		  <xs:sequence>
 			<xs:element ref="description" minOccurs="0" />
