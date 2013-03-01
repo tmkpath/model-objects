@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0.2">
+  <xs:include schemaLocation="generic.xsd"/>
+
+  <xs:element name="begin"> 												<!-- used by link, od -->
+    <xs:complexType>
+      <xs:attribute name="node_id" type="xs:long" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="end"> 													<!-- used by link, od -->
+    <xs:complexType>
+      <xs:attribute name="node_id" type="xs:long" use="required" />
+    </xs:complexType>
+  </xs:element>
+  
+	  
+   <xs:element name="link_references">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="link_reference" minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+	  <xs:element name="link_reference"> 
+		<xs:complexType>
+		  <xs:attribute name="id" type="xs:long" use="required" />
+		</xs:complexType>
+	  </xs:element>
+	  
+		
+  <!-- network ................................................................... -->
+	  
+		  <xs:element name="network">
+			<xs:complexType>
+			  <xs:all>
+				<xs:element ref="description" minOccurs="0" />
+				<xs:element ref="position" minOccurs="0" />
+				<xs:element ref="NodeList" minOccurs="0" />
+				<xs:element ref="LinkList" minOccurs="0" />
+			  </xs:all>
+			  <xs:attribute name="name" type="xs:string" use="required" />
+			  <xs:attribute name="id" type="xs:long" use="required" />
+			  <xs:attribute name="locked" type="xs:boolean" use="optional" default="false" />
+			</xs:complexType>
+		  </xs:element>
+		  
+  <!-- NodeList .................................................................. -->
+  
+		  <xs:element name="NodeList">
+			<xs:complexType>
+			  <xs:sequence>
+				<xs:element ref="node" minOccurs="0" maxOccurs="unbounded" />
+			  </xs:sequence>
+			</xs:complexType>
+		  </xs:element>
+		  
+			  <xs:element name="node">
+				<xs:complexType>
+				  <xs:all>
+					<xs:element ref="roadway_markers" minOccurs="0" maxOccurs="1"/>
+					<xs:element ref="outputs" />
+					<xs:element ref="inputs" />
+					<xs:element ref="position" minOccurs="0" />
+				  </xs:all>
+				  <xs:attribute name="type" use="required">
+					<xs:simpleType>
+					  <xs:restriction base="xs:string">
+						<xs:pattern value="simple|onramp|offramp|signalized_intersection|unsignalized_intersection|terminal|highway|stop_intersection|other"/>
+					  </xs:restriction>
+					</xs:simpleType>
+				  </xs:attribute>
+				  <xs:attribute name="id" type="xs:long" use="required" />
+				  <xs:attribute name="in_sync" type="xs:boolean" use="optional" default="true" />
+				</xs:complexType>
+			  </xs:element>
+			  
+				  <xs:element name="roadway_markers">
+				  	<xs:complexType>
+					  <xs:sequence>
+						<xs:element ref="marker" minOccurs="1" maxOccurs="unbounded" />
+					  </xs:sequence>
+					</xs:complexType>
+			  	  </xs:element>
+
+				  <xs:element name="marker">
+				  	<xs:complexType>
+				  		<xs:attribute name="name" type="xs:string" use="required" />
+				  		<xs:attribute name="postmile" type="xs:double" use="optional" />
+					</xs:complexType>
+			  	  </xs:element>
+
+				  <xs:element name="outputs">
+					<xs:complexType>
+					  <xs:sequence>
+						<xs:element ref="output" minOccurs="0" maxOccurs="unbounded" />
+					  </xs:sequence>
+					</xs:complexType>
+				  </xs:element>
+
+				  <xs:element name="output">
+					<xs:complexType>
+					  <xs:attribute name="link_id" type="xs:long" use="required" />
+					</xs:complexType>
+				  </xs:element>
+
+				  <xs:element name="inputs">
+					<xs:complexType>
+					  <xs:sequence>
+						<xs:element ref="input" minOccurs="0" maxOccurs="unbounded" />
+					  </xs:sequence>
+					</xs:complexType>
+				  </xs:element>
+				  
+				  <xs:element name="input">
+					<xs:complexType>
+					  <xs:attribute name="link_id" type="xs:long" use="required" />
+					</xs:complexType>
+				  </xs:element>		  
+		  
+  <!-- LinkList .................................................................. -->
+
+		  <xs:element name="LinkList">
+			<xs:complexType>
+			  <xs:sequence>
+				<xs:element ref="link" minOccurs="0" maxOccurs="unbounded" />
+			  </xs:sequence>
+			</xs:complexType>
+		  </xs:element>
+		  
+			  <xs:element name="link">
+				<xs:complexType>
+				  <xs:all>
+					<xs:element ref="begin" minOccurs="0" maxOccurs="1" />
+					<xs:element ref="end" minOccurs="0" maxOccurs="1" />
+					<xs:element ref="roads" minOccurs="0" maxOccurs="1" />
+					<xs:element ref="dynamics" minOccurs="0" maxOccurs="1" />
+					<xs:element ref="shape" minOccurs="0" />
+				  </xs:all>
+				  <xs:attribute name="lanes" type="xs:double" use="required" />
+				  <xs:attribute name="lane_offset" type="xs:double" use="optional" default="0" />
+				  <xs:attribute name="length" type="xs:double" use="required" /> 							<!-- in length units -->
+				  <xs:attribute name="type" use="required">
+					<xs:simpleType>
+					  <xs:restriction base="xs:string">
+						<xs:pattern value="freeway|HOV|HOT|onramp|offramp|freeway_connector|street|intersection_approach|heavy_vehicle|electric_toll"/>
+					  </xs:restriction>
+					</xs:simpleType>
+				  </xs:attribute>
+				  <xs:attribute name="id" type="xs:long" use="required" />
+				  <xs:attribute name="in_sync" type="xs:boolean" use="optional" default="true" />
+				</xs:complexType>
+			  </xs:element>
+
+				  <xs:element name="roads">
+				  	<xs:complexType>
+					  <xs:sequence>
+						<xs:element ref="road" minOccurs="1" maxOccurs="unbounded" />
+					  </xs:sequence>
+					</xs:complexType>
+			  	  </xs:element>
+
+				  <xs:element name="road">
+				  	<xs:complexType>
+				  		<xs:attribute name="name" type="xs:string" use="required" />
+					</xs:complexType>
+			  	  </xs:element>
+
+				  <xs:element name="dynamics">
+					<xs:complexType>
+					  <xs:attribute name="type" use="required">
+						<xs:simpleType>
+						  <xs:restriction base="xs:string">
+							<xs:pattern value="CTM|region_tracking|discrete_departure"/>
+						  </xs:restriction>
+						</xs:simpleType>
+					  </xs:attribute>
+					</xs:complexType>
+				  </xs:element>
+
+	<xs:element name="shape" type="xs:string"/>
+  
+	 <!-- Routes ...................................................  -->
+
+	  <xs:element name="Routes">
+		<xs:complexType>
+		  <xs:sequence>
+			<xs:element ref="route" minOccurs="0" maxOccurs="unbounded" />
+		  </xs:sequence>
+		</xs:complexType>
+	  </xs:element>
+
+		  <xs:element name="route">
+			<xs:complexType>
+			  <xs:all>
+				<xs:element ref="link_references" minOccurs="1" maxOccurs="1" />
+			  </xs:all>
+			  <xs:attribute name="id" type="xs:long" use="required" />
+			  <xs:attribute name="name" type="xs:string" use="required" />
+			</xs:complexType>
+		  </xs:element>
+
+</xs:schema>
+

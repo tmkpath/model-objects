@@ -39,7 +39,7 @@ public class NetworkTest {
   public void setup() {
     nw = new Network();
     nw.setName("test network");
-    nw.setId("42");
+    nw.setId(42);
 
     nw.setListOfNodes(new ArrayList<Node>());
     nw.setListOfLinks(new ArrayList<Link>());
@@ -49,23 +49,23 @@ public class NetworkTest {
     Link ln;
 
     nd1 = new Node();
-    nd1.setId("1");
+    nd1.setId(1);
     nd1.setName("one");
     nd1.setType("Highway");
     nw.getListOfNodes().add(nd1);
 
     nd2 = new Node();
-    nd2.setId("2");
+    nd2.setId(2);
     nd2.setName("two");
     nd2.setType("Highway");
     nw.getListOfNodes().add(nd2);
 
     ln = new Link();
-    ln.setId("3");
+    ln.setId(3);
     ln.setRoadName("three");
     ln.setType("Highway");
-    ln.setLanes(new BigDecimal(4.0));
-    ln.setLength(new BigDecimal(1000.0));
+    ln.setLanes(4.0d);
+    ln.setLength(1000.0d);
     
     ln.setBeginNode(nd1);
     ln.setEndNode(nd2);
@@ -82,20 +82,20 @@ public class NetworkTest {
   public void testPopulate() {
     nw.populate();
     
-    Node n1 = nw.getNodeWithId("1");
+    Node n1 = nw.getNodeWithId(1);
     assertTrue(n1 != null);
     assert(n1 != null);
 
     assertEquals("one", n1.getName());
     
-    Link ln3 = nw.getLinkWithId("3");
+    Link ln3 = nw.getLinkWithId(3);
     assertTrue(ln3 != null);
     assert(ln3 != null);
     System.out.println(ln3.getFirstRoadName());
     assertEquals("three", ln3.getFirstRoadName() );
 
     // note that lookups by string ID work too:
-    Node n2 = nw.getNodeWithId("2");
+    Node n2 = nw.getNodeWithId(2);
     assertTrue(n2 != null);
     assert(n2 != null);
     assertEquals("two", n2.getName());
@@ -113,7 +113,7 @@ public class NetworkTest {
   
   @Test
   public void testTerminal() {
-    Node n1 = nw.getNodeWithId("1");
+    Node n1 = nw.getNodeWithId(1);
     assertTrue(n1 != null);
     assert(n1 != null);
     assertEquals(false, n1.isTerminal());
