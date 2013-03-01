@@ -60,20 +60,20 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 	/**
    * Return id of node
    * 
-   * @return id of node as string
+   * @return id of node as long
    */
   @Override
-  public String getId() {
+  public long getId() {
     return super.getId();
   }
   
   /**
    * Set id of node
    * 
-   * @param id of node as string
+   * @param id of node as long
    */
   @Override
-  public void setId(String id) {
+  public void setId(long id) {
     super.setId(id);
   }
   
@@ -132,10 +132,10 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
    * 
    * @return  Index of link in input links array
    */ 
-	public Integer getInputLinkIndex(String id){
+	public Integer getInputLinkIndex(long id){
 		for(int i=0;i<nIn;i++){
 			if(inputLink[i]!=null)
-				if(inputLink[i].getId().equals(id))
+				if(inputLink[i].getId() == id)
 					return i;
 		}
 		return -1;
@@ -146,10 +146,10 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
    * 
    * @return  Index of link in output links array
    */ 
-	public int getOutputLinkIndex(String id){
+	public int getOutputLinkIndex(long id){
 		for(int i=0;i<nIn;i++){
 			if(outputLink[i]!=null)
-				if(outputLink[i].getId().equals(id))
+				if(outputLink[i].getId() == id)
 					return i;
 		}
 		return -1;

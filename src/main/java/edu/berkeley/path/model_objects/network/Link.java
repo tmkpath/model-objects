@@ -26,14 +26,11 @@
 
 package edu.berkeley.path.model_objects.network;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.List;
 
 import core.Monitor;
 
 import edu.berkeley.path.model_objects.jaxb.Begin;
-import edu.berkeley.path.model_objects.jaxb.Dynamics;
 import edu.berkeley.path.model_objects.jaxb.End;
 import edu.berkeley.path.model_objects.jaxb.Road;
 import edu.berkeley.path.model_objects.jaxb.Roads;
@@ -59,20 +56,20 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	/**
 	 * Return id of link
 	 * 
-	 * @return id of link as string
+	 * @return id of link as long
 	 */
 	@Override
-	public String getId() {
+	public long getId() {
 	  return super.getId();
 	}
 	
 	/**
 	 * Set id of link
 	 * 
-	 * @param id of link as string
+	 * @param id of link as long
 	 */
 	@Override
-	public void setId(String id) {
+	public void setId(long id) {
 	  super.setId(id);
 	}
 	
@@ -82,7 +79,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * @return number of lanes 
    */
   @Override
-  public BigDecimal getLanes() {
+  public double getLanes() {
     return super.getLanes();
   }
   
@@ -92,7 +89,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * @param number lanes of link 
    */
   @Override
-  public void setLanes(BigDecimal lanes) {
+  public void setLanes(double lanes) {
     super.setLanes(lanes);
   }
 
@@ -102,7 +99,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * @return number of lanes 
    */
   @Override
-  public BigDecimal getLaneOffset() {
+  public double getLaneOffset() {
     return super.getLaneOffset();
   }
   
@@ -112,7 +109,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * @param number lanes of link 
    */
   @Override
-  public void setLaneOffset(BigDecimal laneOffset) {
+  public void setLaneOffset(Double laneOffset) {
     super.setLaneOffset(laneOffset);
   }
 	
@@ -122,7 +119,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * @return length of link in SI 
    */
   @Override
-  public BigDecimal getLength() {
+  public double getLength() {
     // TODO: Should we be returning a Measurement object (value, unit) pair? 
     return super.getLength();
   }
@@ -133,7 +130,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * @param length of link in SI
    */
   @Override
-  public void setLength(BigDecimal length) {
+  public void setLength(double length) {
     // TODO: Should we be passing in a Measurements object (value, unit) pair?
     super.setLength(length);
   }
@@ -158,15 +155,6 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
   public void setType(String type) {
     // TODO: This should be changed to take in Type object (id, string)
     super.setType(type);
-  }
-  
-	/**
-   * Parses String Id of link to long
-   * 
-   * @return id of link as long
-   */
-  public Long getLongId() {
-    return Long.parseLong(getId().toString());
   }
     
   /** 
@@ -226,18 +214,18 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
   /** 
    * Get Upstream (begin) node of this link  
    * 
-   * @param   String representation of the id of end node 
+   * @param   long representation of the id of end node 
    */
-  public String getBeginNodeId() {
+  public long getBeginNodeId() {
     return beginNode.getId();
   }
 
   /** 
    * Get downstream (end) node of this link
    * 
-   *  @param  String representation of the id of begin node
+   *  @param  long representation of the id of begin node
    */
-  public String getEndNodeId() {
+  public long getEndNodeId() {
     return endNode.getId();
   }
   
@@ -246,13 +234,9 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * 
    * @param   The node to set as begin node of link
    */
-  public void setBeginId(Long nodeId) {
-    
-    //TODO: Change schema to represent ID's as long not strings?  
-    // This way no conversion necessary
-    String nodeIdStr = nodeId.toString();
+  public void setBeginId(Long nodeId) {   
     setBegin(new Begin());
-    getBegin().setNodeId(nodeIdStr);
+    getBegin().setNodeId(nodeId);
   }
   
   /**
@@ -261,12 +245,8 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * @param  The node to set as end node of link
    */
   public void setEndId(Long nodeId) {
-    
-    //TODO: Change schema to represent ID's as long not strings?  
-    // This way no conversion necessary
-    String nodeIdStr = nodeId.toString();
     setEnd(new End());
-    getEnd().setNodeId(nodeIdStr);
+    getEnd().setNodeId(nodeId);
   }
   
   /**
@@ -370,12 +350,12 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 			Monitor.out("Incorrect end node id=" + getEnd().getNodeId() + " in link id=" + getId() + ".");
 		}
 		
-		if(getLength().intValue() <= 0) {
+		if(getLength() <= 0) {
 		  isValid = false;
 			Monitor.out("Non-positive length in link id=" + getId() + ".");
 		}
 		
-		if(getLanes().intValue() <= 0) {
+		if(getLanes() <= 0) {
 		  isValid = false;
 			Monitor.out("Non-positive number of lanes in link id=" + getId() + ".");	
 		}

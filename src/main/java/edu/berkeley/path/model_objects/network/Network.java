@@ -42,20 +42,20 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
   /**
    * Return id of network
    * 
-   * @return id of network as string
+   * @return id of network as long
    */
   @Override
-  public String getId() {
+  public long getId() {
     return super.getId();
   }
   
   /**
    * Set id of network
    * 
-   * @param id of network as string
+   * @param id of network as long
    */
   @Override
-  public void setId(String id) {
+  public void setId(long id) {
     super.setId(id);
   }
   
@@ -90,15 +90,14 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 
 	/** 
 	 * Get link with given id.
-	 * @param id String id of the link.
+	 * @param id of the link as a long.
 	 * @return Link object.
 	 */
-	public Link getLinkWithId(String id){
+	public Link getLinkWithId(long id){
 		if(isempty)
 			return null;
-		id.replaceAll("\\s","");
 		for(edu.berkeley.path.model_objects.jaxb.Link link : getLinkList().getLink()){
-			if(link.getId().equals(id))
+			if(link.getId() == id)
 				return (Link) link;
 		}
 		return null;
@@ -106,15 +105,14 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 
 	/** 
 	 * Get node with given id.
-	 * @param id String id of the node.
+	 * @param id of the node as long
 	 * @return Node object.
 	 */
-	public Node getNodeWithId(String id){
+	public Node getNodeWithId(long id){
 		if(isempty)
 			return null;
-		id.replaceAll("\\s","");
 		for(edu.berkeley.path.model_objects.jaxb.Node node : getNodeList().getNode()){
-			if(node.getId().equals(id))
+			if(node.getId() == id)
 				return (Node) node;
 		}
 		return null;

@@ -47,9 +47,11 @@ public class GoogleDecoder extends DecoderBase implements DecoderIF {
 			final int np = nc / 2; // point index
 			Point prev = np > 0 ? result.get(np - 1) : null;
 			if (0 == nc % 2)
-				result.get(np).setLat(null == prev ? coords.get(nc) : coords.get(nc).add(prev.getLat()));
+				result.get(np).setLat(null == prev ? coords.get(nc).doubleValue() : 
+				  coords.get(nc).add(new BigDecimal(prev.getLat())).doubleValue());
 			else
-				result.get(np).setLng(null == prev ? coords.get(nc) : coords.get(nc).add(prev.getLng()));
+				result.get(np).setLng(null == prev ? coords.get(nc).doubleValue() : 
+				  coords.get(nc).add(new BigDecimal(prev.getLng())).doubleValue());
 		}
 		return result;
 	}

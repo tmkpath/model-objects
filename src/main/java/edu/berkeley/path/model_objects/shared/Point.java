@@ -35,7 +35,7 @@ public class Point extends edu.berkeley.path.model_objects.jaxb.Point {
    * 
    * @return  Latitude of Point      
    */
-  public BigDecimal getLatitude() {
+  public double getLatitude() {
       return getLat();
   }
 
@@ -44,7 +44,7 @@ public class Point extends edu.berkeley.path.model_objects.jaxb.Point {
    * 
    * @param   Latitude  
    */
-  public void setLatitude(BigDecimal lat) {
+  public void setLatitude(double lat) {
       setLat(lat);
   }
 
@@ -53,7 +53,7 @@ public class Point extends edu.berkeley.path.model_objects.jaxb.Point {
    * 
    * @return  Longitude of Point  
    */
-  public BigDecimal getLongitude() {
+  public double getLongitude() {
       return getLng();
   }
 
@@ -62,7 +62,7 @@ public class Point extends edu.berkeley.path.model_objects.jaxb.Point {
    * 
    * @param   Longitude
    */
-  public void setLongitude(BigDecimal lng) {
+  public void setLongitude(double lng) {
       setLng(lng);
   }
 
@@ -72,7 +72,7 @@ public class Point extends edu.berkeley.path.model_objects.jaxb.Point {
    * @return  Elevation of Point   
    */
   @Override
-  public BigDecimal getElevation() {
+  public double getElevation() {
       return super.getElevation();
   }
 
@@ -82,7 +82,7 @@ public class Point extends edu.berkeley.path.model_objects.jaxb.Point {
    * @param Elevation
    */
   @Override
-  public void setElevation(BigDecimal elevation) {
+  public void setElevation(Double elevation) {
       super.setElevation(elevation);
   }
 }

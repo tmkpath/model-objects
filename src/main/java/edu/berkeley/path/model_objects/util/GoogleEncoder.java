@@ -41,8 +41,10 @@ public class GoogleEncoder extends EncoderBase implements EncoderIF {
 	}
 
 	public void add(Point point) {
-		encode(point.getLat(), null == prev ? null : prev.getLat());
-		encode(point.getLng(), null == prev ? null : prev.getLng());
+		encode(new BigDecimal(point.getLat()), null == prev ? null : 
+		  new BigDecimal(prev.getLat()));
+		encode(new BigDecimal(point.getLng()), null == prev ? null : 
+		  new BigDecimal(prev.getLng()));
 		prev = point;
 	}
 
