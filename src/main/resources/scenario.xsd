@@ -76,7 +76,6 @@
 	  <xs:element name="settings">
 		<xs:complexType>
 		  <xs:all>
-			<xs:element ref="VehicleTypeSet" minOccurs="1" />
 			<xs:element ref="units" minOccurs="1" />
 		  </xs:all>
 		</xs:complexType>
@@ -98,14 +97,14 @@
 	  <xs:element name="VehicleTypeSet">
 		<xs:complexType>
 		  <xs:sequence>
-			<xs:element ref="vehicle_type" minOccurs="1" maxOccurs="unbounded" />
+			<xs:element ref="vehicleType" minOccurs="1" maxOccurs="unbounded" />
 		  </xs:sequence>
 	  	  <xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
 		  <xs:attribute name="id" type="xs:long" use="required"/>
 		</xs:complexType>
 	  </xs:element>
 
-		  <xs:element name="vehicle_type">
+		  <xs:element name="vehicleType">
 			<xs:complexType>
 			  <xs:attribute name="name" type="xs:string" use="required" />
 			  <xs:attribute name="weight" type="xs:double" use="optional" />			       <!-- default is 1, not used if part if VehicleTypeOrder -->
