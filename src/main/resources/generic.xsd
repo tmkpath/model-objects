@@ -86,5 +86,9 @@
       <xs:attribute name="milliseconds" type="xs:long" use="required" />
     </xs:complexType>
 
+    <xs:complexType name="dateTime">
+      <xs:attribute name="milliseconds" type="xs:long" use="required" />
+    </xs:complexType>
+
 </xs:schema>
 

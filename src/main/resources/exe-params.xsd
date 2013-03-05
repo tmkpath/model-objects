@@ -6,11 +6,13 @@
     <xs:complexType>
       <xs:all>
         <xs:element name="dtEnKF" type="duration" minOccurs="0"/>
+        <xs:element name="PemsBlackList" type="valueList"/>
       </xs:all>
-
       <xs:attribute name="enkfType" type="xs:string" use="required"/>
-      <xs:attribute name="includePeMS" type="xs:boolean" use="required"/>
-      <xs:attribute name="pemsNoiseMean" type="xs:double" use="required"/>
+      <xs:attribute name="includePeMS" type="xs:boolean" use="required"/> 
+      <xs:attribute name="pemsNoiseMean" type="xs:double" use="optional" default="0"/>
+      <xs:attribute name="pemsNoiseStdev" type="xs:double" use="optional" default="0"/>
+      
       <xs:attribute name="probeProbabilityThreshold" type="xs:double" use="required"/>
       <xs:attribute name="probeSpeedThreshold" type="xs:double" use="required"/>
       <xs:attribute name="includeNavteq" type="xs:boolean" use="required" />
@@ -29,10 +31,11 @@
   <xs:element name="EstimationParams">
     <xs:complexType>
       <xs:all>
-        <xs:element ref="EnKFConfig" minOccurs="0" maxOccurs="1" />
-        <xs:element name="dtOutput" type="duration" minOccurs="0" maxOccurs="1"  />
-        <xs:element name="dtCTM" type="duration" minOccurs="0" maxOccurs="1" />
-        <xs:element name="liveModeLag" type="duration" minOccurs="0" maxOccurs="1" />
+        <xs:element ref="EnKFConfig" minOccurs="1" />
+        <xs:element name="dtOutput" type="duration" minOccurs="1" />
+        <xs:element name="liveModeLag" type="duration" minOccurs="1" />
+        <xs:element name="timeBegin" type="dateTime" minOccurs="1" />
+        <xs:element name="timeEnd" type="dateTime" minOccurs="1" />
       </xs:all>
       <xs:attribute name="id" type="xs:long" use="required"/>
       <xs:attribute name="name" type="xs:long" use="required"/>
@@ -60,13 +63,16 @@
       <xs:attribute name="reportToDB" type="xs:boolean" use="required" />
       <xs:attribute name="reportToDirectory" type="xs:boolean" use="required" />
       <xs:attribute name="reportDirectory" type="xs:string" use="required" />
-      <xs:attribute name="timeBegin" type="xs:dateTime" use="required" />
-      <xs:attribute name="timeEnd" type="xs:dateTime" use="required" />
       <xs:attribute name="initialStateUncertainty" type="xs:double" use="optional" default="0.0" />
       <xs:attribute name="initialDensityFraction" type="xs:double" use="required" />
 
       <!-- TODO ADD freewayCTMEnsembleState and FreewayCTMState -->
     </xs:complexType>
   </xs:element>
+
+  
+  <xs:simpleType name="valueList">
+    <xs:list itemType="xs:int"/>
+  </xs:simpleType>
 
   </xs:schema>
