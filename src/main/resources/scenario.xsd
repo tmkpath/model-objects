@@ -36,7 +36,7 @@
   <xs:element name="VehicleTypeOrder">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="vehicle_type" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element ref="vehicleType" minOccurs="0" maxOccurs="unbounded" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>  
