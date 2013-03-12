@@ -27,8 +27,11 @@
 package edu.berkeley.path.model_objects.network;
 
 import core.Monitor;
+import edu.berkeley.path.model_objects.jaxb.Position;
+import edu.berkeley.path.model_objects.shared.Point;
 
 import java.util.List;
+import java.util.ArrayList;
 
 
 /** Network class
@@ -37,7 +40,8 @@ import java.util.List;
 */
 public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 
-  /** @y.exclude */  protected boolean isempty;
+  /** @y.exclude */ protected boolean isempty;
+  /** @y.exclude */ protected Point center; 
 	
   /**
    * Return id of network
@@ -62,7 +66,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
   /**
    * Return name of network
    * 
-   * @return id of link as string
+   * @return id of network as string
    */
   @Override
   public String getName() {
@@ -77,6 +81,31 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
   @Override
   public void setName(String name) {
     super.setName(name);
+  }
+  
+  /**
+   * Get Center Position of network, which is an average of
+   * 
+   * @return Center Point of Network in Degrees
+   */
+	public Point getCenter() {
+	  return center;
+	}
+	
+	/**
+   * Get Bounding box around network
+   * 
+   * @return Bounding Box of Network in Degrees
+   */
+  public List<Point> getBoundingBox() {
+    // if center position is not set, calculate it and set it
+    if (getPosition() != null && getPosition().getPoint() != null) {
+      return (List<Point>)(List<?>)getPosition().getPoint();
+    }
+    else {
+      Monitor.err("Bounding Box not set.");
+      return null;
+    }
   }
 	
 	/** 
@@ -144,13 +173,13 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 	 */
   @SuppressWarnings("unchecked")
 	public List<Link> getListOfLinks() {
-	  edu.berkeley.path.model_objects.jaxb.LinkList nodeList = getLinkList();
+	  edu.berkeley.path.model_objects.jaxb.LinkList linkList = getLinkList();
     // check if node list exists, if not create it and add empty list of nodes
-    if ( nodeList == null ) {
+    if ( linkList == null ) {
       linkList = new edu.berkeley.path.model_objects.jaxb.LinkList();  
       linkList.getLink().clear();
       // set newly created node list object to network class, so a Nodelist now exists
-      setLinkList(nodeList);
+      setLinkList(linkList);
     }
     // return casted list of Nodes from JAXB base class
     return (List<Link>)(List<?>)linkList.getLink();	
@@ -167,7 +196,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 		if ( nodeList == null ) {
 		  nodeList = new edu.berkeley.path.model_objects.jaxb.NodeList();  
 		}
-		
+		nodeList.getNode().clear();
 		nodeList.getNode().addAll((List<edu.berkeley.path.model_objects.jaxb.Node>)(List<?>)nodes);
 		setNodeList(nodeList);
 	}
@@ -183,7 +212,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
     if ( linkList == null ) {
       linkList = new edu.berkeley.path.model_objects.jaxb.LinkList();  
     }
-    
+    linkList.getLink().clear();
     linkList.getLink().addAll((List<edu.berkeley.path.model_objects.jaxb.Link>)(List<?>)links);
     setLinkList(linkList);
 	}
@@ -242,4 +271,80 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
     }
   }
   
+  /**
+   * Calculates bounding box by finding the min and max, lat and long
+   * of all nodes
+   * 
+   * @return  Bounding Box of network
+   */
+  public void calculateBoundingBox() {
+    List<Node> nodes = getListOfNodes();
+    // set all values to null
+    Double minLat = null;
+    Double maxLat = null;
+    Double minLong = null;
+    Double maxLong = null;
+    if ( nodes != null && nodes.size() > 0) {
+      for (Node node : nodes) {
+        // if latitude is not set or is less than current min, set a new minimum latitude 
+        if (minLat == null || minLat > ((Point) node.getPoint()).getLatitude() ){
+          minLat = ((Point) node.getPoint()).getLatitude();
+        }
+        // if longitude is not set or is less than current min, set a new minimum longitude 
+        if (minLong== null || minLong > ((Point) node.getPoint()).getLongitude() ){
+          minLong = ((Point) node.getPoint()).getLongitude();
+        }
+        // if latitude is not set or is greater than current max, set a new maximum latitude 
+        if (maxLat == null || maxLat < ((Point) node.getPoint()).getLatitude() ){
+          maxLat = ((Point) node.getPoint()).getLatitude();
+        }
+        // if longitude is not set or is greater than current max, set a new maximum longitude 
+        if (maxLong== null || maxLong > ((Point) node.getPoint()).getLongitude() ){
+          maxLong = ((Point) node.getPoint()).getLongitude();
+        }
+      } 
+      // set network bounding box
+      Position boundingBox= new Position();
+      
+      Point topLeft = new Point();
+      topLeft.setLatitude(maxLat);
+      topLeft.setLongitude(maxLong); 
+      
+      Point bottomRight = new Point();
+      bottomRight.setLatitude(minLat);
+      bottomRight.setLatitude(minLong);
+      
+      boundingBox.getPoint().add(topLeft);
+      boundingBox.getPoint().add(bottomRight);
+      
+      setPosition(boundingBox);
+    }
+    else {
+      Monitor.err("Could not calculate Bounding Box. No Nodes set in network.");
+    }
+    
+  }
+  
+  /**
+   * Calculate Center Position of network, which is an average of all positions
+   * 
+   * @return Center Point of Network in Degrees
+   */
+  public void calculateCenter() {
+    List<Node> nodes = getListOfNodes();
+    Double avgLat = 0.0d;
+    Double avgLong = 0.0d;
+    if ( nodes != null && nodes.size() > 0) {
+      for (Node node : nodes) {
+        avgLat += ((Point) node.getPoint()).getLatitude();
+        avgLong += ((Point) node.getPoint()).getLongitude();
+      }
+      // set network center point
+      center.setLatitude(avgLat/nodes.size());
+      center.setLongitude(avgLong/nodes.size());
+    }
+    else {
+      Monitor.err("Could not calculate Bounding Box. No Nodes set in network.");
+    }
+  }
 }
