@@ -27,6 +27,7 @@
 package edu.berkeley.path.model_objects.scenario;
 
 import edu.berkeley.path.model_objects.jaxb.Link;
+import java.math.BigInteger;
 
 /** Base class for sensors. 
  *
@@ -45,9 +46,6 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	/** Current display position where the sensor is located. */
 	/** @y.exclude */ protected DisplayPosition displayPosition;
 
-	/** Current link position where the sensor is located. */
-	/** @y.exclude */ protected double linkPosition;
-
 	/** Current link id for this sensor. */
 	/** @y.exclude */ protected LinkReference linkReference; 
 	
@@ -57,18 +55,6 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	/** A collection of column names and rows for generic data */
 	/** @y.exclude */ protected Table table;
 	
-	/** sensor id */	
-	/** @y.exclude */ protected long id; 
-	
-	/** The original link id the sensor was associated with */
-	/** @y.exclude */ protected String sensorIdOriginal;
-
-	/** The lane number the sensor position  */
-	/** @y.exclude */ protected int laneNumber;
-	
-	/** A value from 0 to 1 describing the sensors health */
-	/** @y.exclude */ protected double healthStatus;
-
 	/** Type of sensor.
 	 *
 	 * TMC = Traffic Message Channel.
@@ -128,7 +114,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @return the linkPosition
 	 */
 	public double getSensorLinkPosition() {
-		return linkPosition;
+		return super.getLinkPosition();
 	}
 
 
@@ -136,10 +122,10 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @param linkPosition the linkPosition to set
 	 */
 	public void setLinkPosition(double linkPosition) {
-		this.linkPosition = linkPosition;
+		super.setLinkPosition(linkPosition);
 	}
 
-
+	
 	/**
 	 * @return the linkReference
 	 */
@@ -176,7 +162,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @return the id
 	 */
 	public long getId() {
-		return id;
+		return super.getId();
 	}
 
 
@@ -184,7 +170,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @param id the id to set
 	 */
 	public void setId(long id) {
-		this.id = id;
+		super.setId(id);
 	}
 
 
@@ -192,7 +178,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @return the sensorIdOriginal
 	 */
 	public String getSensorIdOriginal() {
-		return sensorIdOriginal;
+		return super.getSensorIdOriginal();
 	}
 
 
@@ -200,7 +186,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @param sensorIdOriginal the sensorIdOriginal to set
 	 */
 	public void setSensorIdOriginal(String sensorIdOriginal) {
-		this.sensorIdOriginal = sensorIdOriginal;
+		super.setSensorIdOriginal(sensorIdOriginal);
 	}
 
 
@@ -208,7 +194,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @return the laneNumber
 	 */
 	public int getSensorLaneNumber() {
-		return laneNumber;
+		return super.getLaneNumber().intValue();
 	}
 
 
@@ -216,7 +202,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @param laneNumber the laneNumber to set
 	 */
 	public void setLaneNumber(int laneNumber) {
-		this.laneNumber = laneNumber;
+		super.setLaneNumber(new BigInteger(laneNumber + ""));
 	}
 
 
@@ -224,7 +210,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @return the healthStatus
 	 */
 	public Double getHealthStatus() {
-		return healthStatus;
+		return super.getHealthStatus();
 	}
 
 
@@ -232,7 +218,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @param healthStatus the healthStatus to set
 	 */
 	public void setHealthStatus(double healthStatus) {
-		this.healthStatus = healthStatus;
+		super.setHealthStatus(healthStatus);
 	}
 	
 	/** 

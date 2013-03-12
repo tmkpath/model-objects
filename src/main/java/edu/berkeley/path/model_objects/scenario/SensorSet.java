@@ -6,8 +6,7 @@ import edu.berkeley.path.model_objects.util.ObjectFactory;
 
 public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 
-	protected ArrayList<Sensor> sensor = new ArrayList<Sensor>();
-	protected long projectId;
+	/** @y.exclude */ protected ArrayList<Sensor> sensor = new ArrayList<Sensor>();
 
 	/////////////////////////////////////////////////////////////////////
 	// populate / reset / validate / update
@@ -60,31 +59,24 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	}
 
 	/**
-	 * @return the sensors
+	 * @return the list of sensors
 	 */
 	public ArrayList<Sensor> getSensors() {
 		return sensor;
 	}
 
 	/**
-	 * @param sensors the sensors to set
-	 */
-	public void setSensors(ArrayList<Sensor> sensor) {
-		this.sensor = sensor;
-	}
-
-	/**
 	 * @return the projectId
 	 */
 	public long getProjectId() {
-		return projectId;
+		return super.getProjectId();
 	}
 
 	/**
 	 * @param projectId the projectId to set
 	 */
 	public void setProjectId(long projectId) {
-		this.projectId = projectId;
+		 super.setProjectId(projectId);
 	}
 
 }

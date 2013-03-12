@@ -26,8 +26,6 @@
 
 package edu.berkeley.path.model_objects.shared;
 
-import java.math.BigDecimal;
-
 public class Point extends edu.berkeley.path.model_objects.jaxb.Point {
   
   /**
