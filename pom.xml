@@ -42,6 +42,16 @@
   </build>
   <dependencies>
     <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.joda</groupId>
+      <artifactId>joda-convert</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <dependency>
       <groupId>edu.berkeley.path</groupId>
       <artifactId>CORE</artifactId>
       <version>0.1-SNAPSHOT</version>
