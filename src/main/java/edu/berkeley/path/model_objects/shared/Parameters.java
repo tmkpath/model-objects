@@ -1,6 +1,7 @@
-package edu.berkeley.path.model_objects.scenario;
+package edu.berkeley.path.model_objects.shared;
 
 import java.util.ArrayList;
+
 
 public class Parameters extends edu.berkeley.path.model_objects.jaxb.Parameters{
 	/** @y.exclude */ protected ArrayList<Parameter> parameter = new ArrayList<Parameter>();

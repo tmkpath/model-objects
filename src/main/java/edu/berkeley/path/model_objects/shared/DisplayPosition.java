@@ -1,8 +1,7 @@
-package edu.berkeley.path.model_objects.scenario;
+package edu.berkeley.path.model_objects.shared;
 
 import java.util.ArrayList;
 
-import edu.berkeley.path.model_objects.shared.Point;
 
 public class DisplayPosition extends edu.berkeley.path.model_objects.jaxb.DisplayPosition{
 	/** @y.exclude */ protected ArrayList<Point> point = new ArrayList<Point>();
