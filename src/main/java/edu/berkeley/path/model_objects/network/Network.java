@@ -97,6 +97,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
    * 
    * @return Bounding Box of Network in Degrees
    */
+	@SuppressWarnings("unchecked")
   public List<Point> getBoundingBox() {
     // if center position is not set, calculate it and set it
     if (getPosition() != null && getPosition().getPoint() != null) {
@@ -306,16 +307,16 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
       // set network bounding box
       Position boundingBox= new Position();
       
-      Point topLeft = new Point();
-      topLeft.setLatitude(maxLat);
-      topLeft.setLongitude(maxLong); 
+      Point max = new Point();
+      max.setLatitude(maxLat);
+      max.setLongitude(maxLong); 
       
-      Point bottomRight = new Point();
-      bottomRight.setLatitude(minLat);
-      bottomRight.setLatitude(minLong);
+      Point min = new Point();
+      min.setLatitude(minLat);
+      min.setLatitude(minLong);
       
-      boundingBox.getPoint().add(topLeft);
-      boundingBox.getPoint().add(bottomRight);
+      boundingBox.getPoint().add(max);
+      boundingBox.getPoint().add(min);
       
       setPosition(boundingBox);
     }
