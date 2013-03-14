@@ -2,8 +2,6 @@ package edu.berkeley.path.model_objects.scenario;
 
 import java.util.ArrayList;
 
-import edu.berkeley.path.model_objects.util.ObjectFactory;
-
 public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 
 	/** @y.exclude */ protected ArrayList<Sensor> sensor = new ArrayList<Sensor>();
@@ -13,8 +11,6 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	/////////////////////////////////////////////////////////////////////
 
 	protected void populate() {
-		
-		// replace jaxb.Sensor with simulator.Sensor
 		for(edu.berkeley.path.model_objects.scenario.Sensor sens : sensor) {
 			
 			Sensor.Type type = null;
@@ -26,7 +22,7 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 			
 			// generate sensor
 			if(type != null){
-				Sensor s = ObjectFactory.createSensorFromJaxb(myScenario,sensor,type);
+				Sensor s = ScenarioFactory.createSensorByType(sens,type);
 				if(s != null)
 					sensor.add(s);
 			}		    	
@@ -45,19 +41,6 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	}
 	
 	
-	protected void reset() throws SiriusException {
-		for(Sensor s : sensor)
-			s.reset();
-	}
-
-	protected void update() throws SiriusException {
-
-        // NOTE: ensembles have not been implemented for sensors. They do not apply
-        // to the loop sensor, but would make a difference for floating sensors.
-		for(Sensor sens : sensor)
-			sens.update();
-	}
-
 	/**
 	 * @return the list of sensors
 	 */

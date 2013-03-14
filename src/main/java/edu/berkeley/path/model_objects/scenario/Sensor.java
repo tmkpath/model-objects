@@ -29,6 +29,7 @@ package edu.berkeley.path.model_objects.scenario;
 import edu.berkeley.path.model_objects.jaxb.Link;
 import edu.berkeley.path.model_objects.shared.DisplayPosition;
 import edu.berkeley.path.model_objects.shared.Parameters;
+import edu.berkeley.path.model_objects.shared.Table;
 
 import java.math.BigInteger;
 
@@ -116,7 +117,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	/**
 	 * @return the linkPosition
 	 */
-	public double getSensorLinkPosition() {
+	public Double getSensorLinkPosition() {
 		return super.getLinkPosition();
 	}
 
@@ -229,18 +230,11 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 *
 	 * @return  True if all sensor validation is correct
 	 */
+	//TODO: Wait for writers to implement
 	public final Boolean isValid() {
 		boolean isValid = true;
 		  
 		
 		return isValid;
 	}
-	
-	public void reset(){
-		
-	}
-	
-	public void update(){
-	}
-
 }
