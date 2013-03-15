@@ -22,7 +22,7 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 			
 			// generate sensor
 			if(type != null){
-				Sensor s = ScenarioFactory.createSensorByType(sens,type);
+				Sensor s = ScenarioFactory.createSensor(type);
 				if(s != null)
 					sensor.add(s);
 			}		    	
