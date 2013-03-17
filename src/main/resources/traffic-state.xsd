@@ -3,6 +3,45 @@
   <xs:include schemaLocation="scenario.xsd"/>
 
 
+  <!-- Route Performance Set -->
+  <xs:element name="routePerformanceSet">
+    <xs:complexType>
+      <!-- Run ID - if used at this level, it
+           applies to the states of all links in the set. -->
+      <xs:attribute name="run_id" type="xs:long" use="optional"/>
+
+      <xs:all>
+	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="routePerformance" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+
+  <!-- Route Performance -->
+  <xs:element name="routePerformance">
+    <xs:complexType>
+      <!-- Route ID. -->
+      <xs:attribute name="id" type="xs:long" use="required"/>
+
+      <!-- Run ID is optional - it can be 
+           assigned at the <routePerformanceSet> level. -->
+      <xs:attribute name="run_id" type="xs:long" use="optional"/>
+
+      <!-- Actual travel time through the route. -->
+      <xs:attribute name="travel_time" type="xs:double" use="optional"/>
+
+      <xs:all>
+        <!-- Timestamp for the route performance - optional, because
+	     it can be assigned to the <routePerformanceSet> at once. -->
+	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="linkStateSet" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="linkPerformanceSet" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+
   <!-- Link State Set -->
   <xs:element name="linkStateSet">
     <xs:complexType>
@@ -87,17 +126,17 @@
       <!-- Network reference is optional at this level:
            it is only used when the state is requested
            for a standalone link. Otherwise, look for
-           network_id in <LinkStateSet>. -->
+           network_id in <linkStateSet>. -->
       <xs:attribute name="network_id" type="xs:long" use="optional"/>
 
       <!-- Run ID is optional - it can be 
-           assigned at the <LinkStateSet> level. -->
+           assigned at the <linkStateSet> level. -->
       <xs:attribute name="run_id" type="xs:long" use="optional"/>
 
       <!-- Particle ID is used in enseble estimation or prediction
            for debug purpose only. When particle ID is set,
            quantity_type is implied to be 'standard'.
-           Particle ID can be also assigned at the <LinkStateSet> level. -->
+           Particle ID can be also assigned at the <linkStateSet> level. -->
       <xs:attribute name="particle_id" type="xs:long" use="optional" default="-1"/>
       
       <!-- dt is the time interval, for which the state is
@@ -106,7 +145,7 @@
       <xs:attribute name="dt" type="xs:double" use="optional"/>
       
       <!-- Quantity type is optional because it can be
-           assigned at the <LinkStateSet> level. -->
+           assigned at the <linkStateSet> level. -->
       <xs:attribute name="quantity_type" use="optional">
         <xs:simpleType>
           <xs:restriction base="xs:string">
@@ -124,12 +163,12 @@
       
       <xs:all>
         <!-- Timestamp for the link state - optional, because
-	     it can be assigned to the <LinkStateSet> at once. -->
+	     it can be assigned to the <linkStateSet> at once. -->
 	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
 
 	<!-- Vehicle type order defines the order of density
              and flow values in the corresponding elements.
-             This can be assigned at the <LinkStateSet> level. -->
+             This can be assigned at the <linkStateSet> level. -->
         <xs:element ref="VehicleTypeOrder" minOccurs="0" maxOccurs="1"/>
 
 	<!-- Traffic data by vehicle type. -->
@@ -148,11 +187,11 @@
       <!-- Network reference is optional at this level:
            it is only used when the performance is requested
            for a standalone link. Otherwise, look for
-           network_id in <LinkPerformanceSet>. -->
+           network_id in <linkPerformanceSet>. -->
       <xs:attribute name="network_id" type="xs:long" use="optional"/>
 
       <!-- Run ID is optional - it can be 
-           assigned at the <LinkPerformanceSet> level. -->
+           assigned at the <linkPerformanceSet> level. -->
       <xs:attribute name="run_id" type="xs:long" use="optional"/>
 
       <!-- dt is the time interval, for which the performance is
@@ -161,7 +200,7 @@
       <xs:attribute name="dt" type="xs:double" use="optional"/>
       
       <!-- Quantity type is optional because it can be
-           assigned at the <LinkPerformanceSet> level. -->
+           assigned at the <linkPerformanceSet> level. -->
       <xs:attribute name="quantity_type" use="optional">
         <xs:simpleType>
           <xs:restriction base="xs:string">
@@ -184,12 +223,12 @@
       
       <xs:all>
         <!-- Timestamp for the link performance - optional, because
-	     it can be assigned to the <LinkPerformanceSet> at once. -->
+	     it can be assigned to the <linkPerformanceSet> at once. -->
 	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
 
 	<!-- Vehicle type order defines the order of density
              and flow values in the corresponding elements.
-             This can be assigned at the <LinkPerformanceSet> level. -->
+             This can be assigned at the <linkPerformanceSet> level. -->
         <xs:element ref="VehicleTypeOrder" minOccurs="0" maxOccurs="1"/>
 
 	<!-- Traffic performance by vehicle type. -->
@@ -253,7 +292,7 @@
       <!-- Delay: VHT - VMT / ff_speed. -->
       <xs:attribute name="delay" type="xs:double" use="optional"/>
 
-      <!-- Average travel time  throgh the link. -->
+      <!-- Average travel time through the link. -->
       <xs:attribute name="travel_time" type="xs:double" use="optional"/>
     </xs:complexType>
   </xs:element>
@@ -342,11 +381,11 @@
       <!-- Network reference is optional at this level:
            it is only used when the state is requested
            for a standalone signal. Otherwise, look for
-           network_id in <SignalStateSet>. -->
+           network_id in <signalStateSet>. -->
       <xs:attribute name="network_id" type="xs:long" use="optional"/>
 
       <!-- Run ID is optional - it can be 
-           assigned at the <SignalStateSet> level. -->
+           assigned at the <signalStateSet> level. -->
       <xs:attribute name="run_id" type="xs:long" use="optional"/>
 
       <!-- dt is the time interval, for which the performance is
@@ -355,7 +394,7 @@
       <xs:attribute name="dt" type="xs:double" use="optional"/>
       
       <!-- Quantity type is optional because it can be
-           assigned at the <SignalStateSet> level. -->
+           assigned at the <signalStateSet> level. -->
       <xs:attribute name="quantity_type" use="optional">
         <xs:simpleType>
           <xs:restriction base="xs:string">
@@ -366,7 +405,7 @@
 
       <xs:all>
         <!-- Timestamp for the signal state - optional, because
-	     it can be assigned to the <SignalStateSet> at once. -->
+	     it can be assigned to the <signalStateSet> at once. -->
 	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
 
         <!-- Green information per  phase. -->
@@ -421,7 +460,7 @@
 
       <xs:all>
         <!-- Timestamp for the signal performance - optional, because
-	     it can be assigned to the <SignalPerformanceSet> at once. -->
+	     it can be assigned to the <signalPerformanceSet> at once. -->
 	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
 
         <!-- Signal performance per phase. -->
@@ -440,11 +479,11 @@
       <!-- Network reference is optional at this level:
            it is only used when the performance is requested
            for a standalone signal. Otherwise, look for
-           network_id in <SignalPerformance>. -->
+           network_id in <signalPerformance>. -->
       <xs:attribute name="network_id" type="xs:long" use="optional"/>
 
       <!-- Run ID is optional - it can be 
-           assigned at the <SignalPerformance> level. -->
+           assigned at the <signalPerformance> level. -->
       <xs:attribute name="run_id" type="xs:long" use="optional"/>
 
       <!-- dt is the time interval, for which the performance is
@@ -453,7 +492,7 @@
       <xs:attribute name="dt" type="xs:double" use="optional"/>
       
       <!-- Quantity type is optional because it can be
-           assigned at the <SignalPerformance> level. -->
+           assigned at the <signalPerformance> level. -->
       <xs:attribute name="quantity_type" use="optional">
         <xs:simpleType>
           <xs:restriction base="xs:string">
@@ -487,10 +526,4 @@
 
 
 
-
-
-
-
-
-  
 </xs:schema>
