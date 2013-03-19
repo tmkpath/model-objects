@@ -49,6 +49,13 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	}
 
 	/**
+	 * @return the list of sensors
+	 */
+	public void setSensors(ArrayList<Sensor> sensors) {
+		sensor = sensors;
+	}
+
+	/**
 	 * @return the projectId
 	 */
 	public long getProjectId() {
