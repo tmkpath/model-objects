@@ -46,8 +46,8 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="GFactor" minOccurs="1" maxOccurs="unbounded" />
+        <xs:element name="timestamp" type="dateTime" minOccurs="1" maxOccurs="1" />
       </xs:sequence>
-      <xs:attribute name="timestamp" type="xs:dateTime" use="required"/>
       <xs:attribute name="flow" type="xs:double" use="optional" default="0.0"/>
       <xs:attribute name="density" type="xs:double" use="optional" default="0.0"/>
       <xs:attribute name="density_error" type="xs:double" use="optional" default="0.0"/>
@@ -71,10 +71,10 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="PeMSAggregate" minOccurs="1" maxOccurs="unbounded" />
+        <xs:element name="timestamp" type="dateTime" minOccurs="1" maxOccurs="1" />
       </xs:sequence>
       <xs:attribute name="vds_id" type="xs:long" use="required"/>
-      <xs:attribute name="timestamp" type="xs:dateTime" use="required"/>
-    </xs:complexType>
+      </xs:complexType>
   </xs:element>
 
 
@@ -100,11 +100,13 @@
 
 
   <xs:element name="PIFProbeData">
-    <xs:complexType>
+  	<xs:complexType>
+	  	<xs:sequence>
+	  		<xs:element name="timestamp" type="dateTime" minOccurs="1" maxOccurs="1" />
+	  	</xs:sequence>  
       <xs:attribute name="network_id" type="xs:long" use="required"/>
       <xs:attribute name="link_id" type="xs:long" use="required"/>
       <xs:attribute name="run_id" type="xs:long" use="required"/>
-      <xs:attribute name="timestamp" type="xs:dateTime" use="required"/>
       <xs:attribute name="offset" type="xs:double" use="required"/>
       <xs:attribute name="speed" type="xs:double" use="required"/>
       <xs:attribute name="probability" type="xs:double" use="optional" default="1.0"/>
