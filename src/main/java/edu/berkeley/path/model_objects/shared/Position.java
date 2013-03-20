@@ -24,65 +24,49 @@
  * POSSIBILITY OF SUCH DAMAGE.
  **/
 
-package edu.berkeley.path.model_objects.measurements;
+package edu.berkeley.path.model_objects.shared;
 
-/** Measurement Model Object Factory that can be used to create instances of Measurement Objects. This
- * factory can be extended, it's methods overridden and then passed into the model database access layer
- * to return application specific extended model objects.
+import java.util.ArrayList;
+import java.util.List;
+
+/** 
+ * Model Object Position class
+ * 
  * @author Gunes Dervisoglu (gunesder@berkeley.edu)
- *
  */
-public class MeasurementObjectFactory {
+public class Position extends edu.berkeley.path.model_objects.jaxb.Position{
 	
-	public MeasurementObjectFactory(){
-	}
-	
-	/** 
-	 * Create an instance of PeMSDatum object
-	 * @return PeMSDatum object
+	/**
+	 * TODO: Validation
+	 * TODO: Readers and Writers
+	 * TODO: Unit Tests
 	 */
-	public PeMSDatum createPeMSDatum(){
-		return new PeMSDatum();
-	}
 	
-	/** 
-	 * Create an instance of PeMSStationAggregate object
-	 * @return PeMSStationAggregate object
-	 */
-	public PeMSStationAggregate createPeMSStationAggregate(){
-		return new PeMSStationAggregate();
-	}
+	/**
+     * Gets the value of the point property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the point property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getPoints().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Point }
+     * 
+     * 
+     */
 	
-	/** 
-	 * Create an instance of PeMSDataSet object
-	 * @return PeMSDataSet object
-	 */
-	public PeMSDataSet createPeMSDataSet(){
-		return new PeMSDataSet();
+	public List<edu.berkeley.path.model_objects.jaxb.Point> getPoint() {
+		return super.getPoint();
 	}
-	
-	/** 
-	 * Create an instance of PeMSDataProfile object
-	 * @return PeMSDataProfile object
-	 */
-	public PeMSDataProfile createPeMSDataProfile(){
-		return new PeMSDataProfile();
-	}
-	
-	/** 
-	 * Create an instance of PeMSAggregate object
-	 * @return PeMSAggregate object
-	 */
-	public PeMSAggregate createPeMSAggregate(){
-		return new PeMSAggregate();
-	}
-	
-	/** 
-	 * Create an instance of VDS object
-	 * @return PeMSDatum object
-	 */
-	public VDS createVDS(){
-		return new VDS();
-	}
-	
+
 }

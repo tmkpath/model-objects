@@ -10,10 +10,10 @@
         <xs:element ref="parameters" minOccurs="1" maxOccurs="1" />
       </xs:sequence>
       <xs:attribute name="id" type="xs:long" use="required"/>
-      <xs:attribute name="freeway_num" type="xs:integer" use="required"/>
+      <xs:attribute name="freeway_num" type="xs:int" use="required"/>
       <xs:attribute name="direction" type="xs:string" use="required"/>
-      <xs:attribute name="lane_count" type="xs:integer" use="required"/>
-      <xs:attribute name="district" type="xs:integer" use="required"/>
+      <xs:attribute name="lane_count" type="xs:int" use="required"/>
+      <xs:attribute name="district" type="xs:int" use="required"/>
       <xs:attribute name="county" type="xs:string" use="required"/>
       <xs:attribute name="city" type="xs:string" use="required"/>
       <xs:attribute name="state_postmile" type="xs:double" use="required" />
@@ -43,6 +43,22 @@
 
 
   <xs:element name="PeMSDatum">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="GFactor" minOccurs="1" maxOccurs="unbounded" />
+        <xs:element name="timestamp" type="dateTime" minOccurs="1" maxOccurs="1" />
+      </xs:sequence>
+      <xs:attribute name="flow" type="xs:double" use="optional" default="0.0"/>
+      <xs:attribute name="density" type="xs:double" use="optional" default="0.0"/>
+      <xs:attribute name="density_error" type="xs:double" use="optional" default="0.0"/>
+      <xs:attribute name="speed" type="xs:double" use="optional" default="27.0"/>
+      <xs:attribute name="speed_error" type="xs:double" use="optional" default="0.0"/>
+      <xs:attribute name="free_flow_speed" type="xs:double" use="optional" default="27.0"/>
+      <xs:attribute name="func_loop_fact" type="xs:double" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="PeMSStation">
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="GFactor" minOccurs="1" maxOccurs="unbounded" />
