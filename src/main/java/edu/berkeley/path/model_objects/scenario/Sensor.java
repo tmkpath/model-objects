@@ -206,7 +206,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @param laneNumber the laneNumber to set
 	 */
 	public void setLaneNumber(int laneNumber) {
-		this.laneNumber = laneNumber;
+		super.setLaneNumber(laneNumber);
 	}
 
 	/**
@@ -232,19 +232,34 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
      *     
      */
     public void setDataFeedId(Long feedId) {
-        this.dataFeedId = feedId;
+        super.setDataFeedId(feedId);
     }
 
+	/**
+	 * Sets the value of the sensor original id property.
+	 * 
+	 * @param entityId the entityId to set for sensorIdOriginal
+	 */
 	public void setSensorOriginalId(String entityId) {
-		this.sensorIdOriginal = entityId;
+		super.setSensorIdOriginal(entityId);
 	}
 
+	/**
+	 * Sets the value of the link id property.
+	 * 
+	 * @param linkId the linkId to set 
+	 */
 	public void setLinkId(Long linkId) {
-		this.linkId = linkId;
+		super.setLinkId(linkId);
 	}
 
+	/**
+	 * Sets the value of the link offset property.
+	 * 
+	 * @param linkOffset the linkOffset to set
+	 */
 	public void setLinkOffset(Double linkOffset) {  
-		this.linkOffset = linkOffset;		
+		super.setLinkOffset(linkOffset);		
 	}
 
 	/** 
