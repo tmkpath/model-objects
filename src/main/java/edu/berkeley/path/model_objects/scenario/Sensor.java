@@ -33,7 +33,7 @@ import edu.berkeley.path.model_objects.shared.Table;
 
 import java.math.BigInteger;
 
-/** Base class for sensors. 
+/** Extended class for sensors. 
  *
  * @author Gabriel Gomes (gomes@path.berkeley.edu)
  * @author Sean Morris (sean.smorris@gmail.com)
@@ -206,9 +206,8 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @param laneNumber the laneNumber to set
 	 */
 	public void setLaneNumber(int laneNumber) {
-		super.setLaneNumber(new BigInteger(laneNumber + ""));
+		super.setLaneNumber(laneNumber);
 	}
-
 
 	/**
 	 * @return the healthStatus
@@ -217,7 +216,6 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 		return super.getHealthStatus();
 	}
 
-
 	/**
 	 * @param healthStatus the healthStatus to set
 	 */
@@ -225,6 +223,45 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 		super.setHealthStatus(healthStatus);
 	}
 	
+    /**
+     * Sets the value of the dataFeedId property.
+     * 
+     * @param feedId
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setDataFeedId(Long feedId) {
+        super.setDataFeedId(feedId);
+    }
+
+	/**
+	 * Sets the value of the sensor original id property.
+	 * 
+	 * @param entityId the entityId to set for sensorIdOriginal
+	 */
+	public void setSensorOriginalId(String entityId) {
+		super.setSensorIdOriginal(entityId);
+	}
+
+	/**
+	 * Sets the value of the link id property.
+	 * 
+	 * @param linkId the linkId to set 
+	 */
+	public void setLinkId(Long linkId) {
+		super.setLinkId(linkId);
+	}
+
+	/**
+	 * Sets the value of the link offset property.
+	 * 
+	 * @param linkOffset the linkOffset to set
+	 */
+	public void setLinkOffset(Double linkOffset) {  
+		super.setLinkOffset(linkOffset);		
+	}
+
 	/** 
 	 * Sensor validation checks
 	 *
@@ -237,4 +274,6 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 		
 		return isValid;
 	}
+
+
 }

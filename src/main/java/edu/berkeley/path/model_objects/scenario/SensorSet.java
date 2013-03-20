@@ -6,6 +6,7 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 
 	/** @y.exclude */ protected ArrayList<Sensor> sensor = new ArrayList<Sensor>();
 
+	
 	/////////////////////////////////////////////////////////////////////
 	// populate / reset / validate / update
 	/////////////////////////////////////////////////////////////////////
@@ -49,6 +50,13 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	}
 
 	/**
+	 * @return the list of sensors
+	 */
+	public void setSensors(ArrayList<Sensor> sensors) {
+		sensor = sensors;
+	}
+
+	/**
 	 * @return the projectId
 	 */
 	public long getProjectId() {
@@ -60,6 +68,64 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	 */
 	public void setProjectId(long projectId) {
 		 super.setProjectId(projectId);
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		super.setId(id);	
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		super.setName(name);
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String desc) {
+		super.setDescription(desc);
+		
+	}
+
+	/**
+	 * @param modstampMicros the modstamp to set
+	 */
+	public void setModStamp(Long modstampMicros) {
+		super.setModStamp(modstampMicros);
+	}
+
+
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @return the modStamp
+	 */
+	public long getModStamp() {
+		return modStamp;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
 	}
 
 }
