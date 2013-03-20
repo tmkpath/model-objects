@@ -6,14 +6,14 @@
   <!-- Route Performance Set -->
   <xs:element name="routePerformanceSet">
     <xs:complexType>
-      <!-- Run ID - if used at this level, it
-           applies to the states of all links in the set. -->
-      <xs:attribute name="run_id" type="xs:long" use="optional"/>
-
       <xs:all>
 	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="routePerformance" minOccurs="1" maxOccurs="unbounded"/>
       </xs:all>
+
+      <!-- Run ID - if used at this level, it
+           applies to the states of all links in the set. -->
+      <xs:attribute name="run_id" type="xs:long" use="optional"/>
     </xs:complexType>
   </xs:element>
 
@@ -21,6 +21,14 @@
   <!-- Route Performance -->
   <xs:element name="routePerformance">
     <xs:complexType>
+      <xs:all>
+        <!-- Timestamp for the route performance - optional, because
+	     it can be assigned to the <routePerformanceSet> at once. -->
+	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="linkStateSet" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="linkPerformanceSet" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:all>
+
       <!-- Route ID. -->
       <xs:attribute name="id" type="xs:long" use="required"/>
 
@@ -30,14 +38,6 @@
 
       <!-- Actual travel time through the route. -->
       <xs:attribute name="travel_time" type="xs:double" use="optional"/>
-
-      <xs:all>
-        <!-- Timestamp for the route performance - optional, because
-	     it can be assigned to the <routePerformanceSet> at once. -->
-	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="linkStateSet" minOccurs="0" maxOccurs="unbounded"/>
-        <xs:element ref="linkPerformanceSet" minOccurs="0" maxOccurs="unbounded"/>
-      </xs:all>
     </xs:complexType>
   </xs:element>
 
@@ -45,6 +45,12 @@
   <!-- Link State Set -->
   <xs:element name="linkStateSet">
     <xs:complexType>
+      <xs:all>
+	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="VehicleTypeOrder" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="linkState" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:all>
+
       <!-- Network reference - if used at this level, it
            applies to the states of all links in the set. -->
       <xs:attribute name="network_id" type="xs:long" use="optional"/>
@@ -73,12 +79,6 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>
-
-      <xs:all>
-	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="VehicleTypeOrder" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="linkState" minOccurs="1" maxOccurs="unbounded"/>
-      </xs:all>
     </xs:complexType>
   </xs:element>
 
@@ -86,6 +86,12 @@
    <!-- Link Performance Set -->
   <xs:element name="linkPerformanceSet">
     <xs:complexType>
+      <xs:all>
+	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="VehicleTypeOrder" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="linkPerformance" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:all>
+
       <!-- Network reference - if used at this level, it
            applies to the performances of all links in the set. -->
       <xs:attribute name="network_id" type="xs:long" use="optional"/>
@@ -107,12 +113,6 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>
-
-      <xs:all>
-	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="VehicleTypeOrder" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="linkPerformance" minOccurs="1" maxOccurs="unbounded"/>
-      </xs:all>
     </xs:complexType>
   </xs:element>
 
@@ -120,6 +120,20 @@
   <!-- Link State -->
   <xs:element name="linkState">
     <xs:complexType>
+      <xs:all>
+        <!-- Timestamp for the link state - optional, because
+	     it can be assigned to the <linkStateSet> at once. -->
+	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
+
+	<!-- Vehicle type order defines the order of density
+             and flow values in the corresponding elements.
+             This can be assigned at the <linkStateSet> level. -->
+        <xs:element ref="VehicleTypeOrder" minOccurs="0" maxOccurs="1"/>
+
+	<!-- Traffic data by vehicle type. -->
+        <xs:element ref="byVehicleType" minOccurs="1" maxOccurs="1"/>
+      </xs:all>
+
       <!-- Link ID. -->
       <xs:attribute name="id" type="xs:long" use="required"/>
 
@@ -160,20 +174,6 @@
       <xs:attribute name="ff_speed" type="xs:double" use="optional"/>
       <xs:attribute name="crit_speed" type="xs:double" use="optional"/>
       <xs:attribute name="capacity" type="xs:double" use="optional"/>
-      
-      <xs:all>
-        <!-- Timestamp for the link state - optional, because
-	     it can be assigned to the <linkStateSet> at once. -->
-	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
-
-	<!-- Vehicle type order defines the order of density
-             and flow values in the corresponding elements.
-             This can be assigned at the <linkStateSet> level. -->
-        <xs:element ref="VehicleTypeOrder" minOccurs="0" maxOccurs="1"/>
-
-	<!-- Traffic data by vehicle type. -->
-        <xs:element ref="byVehicleType" minOccurs="1" maxOccurs="1"/>
-      </xs:all>
     </xs:complexType>
   </xs:element>
 
@@ -181,6 +181,20 @@
   <!-- Link Performance -->
   <xs:element name="linkPerformance">
     <xs:complexType>
+      <xs:all>
+        <!-- Timestamp for the link performance - optional, because
+	     it can be assigned to the <linkPerformanceSet> at once. -->
+	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
+
+	<!-- Vehicle type order defines the order of density
+             and flow values in the corresponding elements.
+             This can be assigned at the <linkPerformanceSet> level. -->
+        <xs:element ref="VehicleTypeOrder" minOccurs="0" maxOccurs="1"/>
+
+	<!-- Traffic performance by vehicle type. -->
+        <xs:element ref="byVehicleType" minOccurs="1" maxOccurs="1"/>
+      </xs:all>
+
       <!-- Link ID. -->
       <xs:attribute name="id" type="xs:long" use="required"/>
 
@@ -220,20 +234,6 @@
 
       <!-- Level Of Service - defined in Highway Capacity Manual. -->
       <xs:attribute name="los" type="xs:double" use="optional"/>
-      
-      <xs:all>
-        <!-- Timestamp for the link performance - optional, because
-	     it can be assigned to the <linkPerformanceSet> at once. -->
-	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
-
-	<!-- Vehicle type order defines the order of density
-             and flow values in the corresponding elements.
-             This can be assigned at the <linkPerformanceSet> level. -->
-        <xs:element ref="VehicleTypeOrder" minOccurs="0" maxOccurs="1"/>
-
-	<!-- Traffic performance by vehicle type. -->
-        <xs:element ref="byVehicleType" minOccurs="1" maxOccurs="1"/>
-      </xs:all>
     </xs:complexType>
   </xs:element>
 
@@ -305,6 +305,13 @@
   <!-- Signal State Set -->
   <xs:element name="signalStateSet">
     <xs:complexType>
+      <xs:all>
+	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
+
+        <!-- List of signal states. -->
+        <xs:element ref="signalState" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:all>
+
       <!-- Network reference - if used at this level, it
            applies to the states of all signals in the set. -->
       <xs:attribute name="network_id" type="xs:long" use="optional"/>
@@ -326,13 +333,6 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>
-
-      <xs:all>
-	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
-
-        <!-- List of signal states. -->
-        <xs:element ref="signalState" minOccurs="1" maxOccurs="unbounded"/>
-      </xs:all>
     </xs:complexType>
   </xs:element>
 
@@ -340,6 +340,13 @@
   <!-- Signal Performance Set -->
   <xs:element name="signalPerformanceSet">
     <xs:complexType>
+      <xs:all>
+	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
+
+        <!-- List of signal performances. -->
+        <xs:element ref="signalPerformance" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:all>
+
       <!-- Network reference - if used at this level, it
            applies to the performances of all signals in the set. -->
       <xs:attribute name="network_id" type="xs:long" use="optional"/>
@@ -361,13 +368,6 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>
-
-      <xs:all>
-	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
-
-        <!-- List of signal performances. -->
-        <xs:element ref="signalPerformance" minOccurs="1" maxOccurs="unbounded"/>
-      </xs:all>
     </xs:complexType>
   </xs:element>
 
@@ -375,6 +375,15 @@
   <!-- Signal State -->
   <xs:element name="signalState">
     <xs:complexType>
+      <xs:all>
+        <!-- Timestamp for the signal state - optional, because
+	     it can be assigned to the <signalStateSet> at once. -->
+	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
+
+        <!-- Green information per  phase. -->
+        <xs:element ref="phaseDatum" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:all>
+
       <!-- Signal ID. -->
       <xs:attribute name="id" type="xs:long" use="required"/>
 
@@ -402,15 +411,6 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>
-
-      <xs:all>
-        <!-- Timestamp for the signal state - optional, because
-	     it can be assigned to the <signalStateSet> at once. -->
-	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
-
-        <!-- Green information per  phase. -->
-        <xs:element ref="phaseDatum" minOccurs="1" maxOccurs="unbounded"/>
-      </xs:all>
     </xs:complexType>
   </xs:element>
 
@@ -418,17 +418,17 @@
   <!-- Phase Datum -->
   <xs:element name="phaseDatum">
     <xs:complexType>
-      <!-- Phase number: 1-16. -->
-      <xs:attribute name="phase" type="xs:integer" use="required"/>
-
-      <!-- Duration of green for the reporting period. -->
-      <xs:attribute name="duration" type="xs:double" use="required"/>
-
       <xs:all>
         <!-- Begin time of the green period of the given signal phase.
              This value makes sense only in raw data. -->
 	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
       </xs:all>
+
+      <!-- Phase number: 1-16. -->
+      <xs:attribute name="phase" type="xs:integer" use="required"/>
+
+      <!-- Duration of green for the reporting period. -->
+      <xs:attribute name="duration" type="xs:double" use="required"/>
     </xs:complexType>
   </xs:element>
 
@@ -436,6 +436,15 @@
   <!-- Signal Performance -->
   <xs:element name="signalPerformance">
     <xs:complexType>
+      <xs:all>
+        <!-- Timestamp for the signal performance - optional, because
+	     it can be assigned to the <signalPerformanceSet> at once. -->
+	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
+
+        <!-- Signal performance per phase. -->
+        <xs:element ref="phasePerformance" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:all>
+
       <!-- Network reference - if used at this level, it
 	   applies to all the phases in the signal. -->
       <xs:attribute name="network_id" type="xs:long" use="optional"/>
@@ -457,15 +466,6 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>
-
-      <xs:all>
-        <!-- Timestamp for the signal performance - optional, because
-	     it can be assigned to the <signalPerformanceSet> at once. -->
-	<xs:element ref="dateTime" minOccurs="0" maxOccurs="1"/>
-
-        <!-- Signal performance per phase. -->
-        <xs:element ref="phasePerformance" minOccurs="1" maxOccurs="unbounded"/>
-      </xs:all>
     </xs:complexType>
   </xs:element>
 
