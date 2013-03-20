@@ -181,6 +181,9 @@
 			<xs:element ref="sensor" minOccurs="0" maxOccurs="unbounded" />
 		  </xs:sequence>
 	  	  <xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
+	  	  <xs:attribute name="id" type="xs:long" use="required" default="0" />
+	  	  <xs:attribute name="name" type="xs:string" use="optional" default="0" />
+	  	  <xs:attribute name="description" type="xs:string" use="optional" default="0" />
 		</xs:complexType>
 	  </xs:element>
 	  
@@ -199,8 +202,9 @@
 				<xs:element ref="table" minOccurs="0" />
 			  </xs:all>
 			  
-		  	  <xs:attribute name="id" type="xs:long" use="required"/>
+		  	<xs:attribute name="id" type="xs:long" use="required"/>
 			  <xs:attribute name="link_position" type="xs:double" use="optional" />
+			  <xs:attribute name="link_id" type="xs:long" use="optional" />
 			  <xs:attribute name="type" use="required">
 				<xs:simpleType>
 				  <xs:restriction base="xs:string">
@@ -209,15 +213,17 @@
 				</xs:simpleType>
 			  </xs:attribute>
 			  <xs:attribute name="sensor_id_original" type="xs:string" use="optional" />
-			  <xs:attribute name="lane_number" type="xs:integer" use="optional" />
+			  <xs:attribute name="data_feed_id" type="xs:long" use="optional" />
+			  <xs:attribute name="lane_number" type="xs:int" use="optional" />
+			  <xs:attribute name="link_offset" type="xs:double" use="optional" />
 			  <xs:attribute name="health_status" use="optional">
-			    <xs:simpleType >
-		          <xs:restriction base="xs:double">
-			        <xs:minInclusive value="0"/>
-			        <xs:maxInclusive value="1"/>
-		          </xs:restriction>
-	            </xs:simpleType>
-	  		  </xs:attribute>
+		    <xs:simpleType >
+	          <xs:restriction base="xs:double">
+		        <xs:minInclusive value="0"/>
+		        <xs:maxInclusive value="1"/>
+	          </xs:restriction>
+            </xs:simpleType>
+  		  </xs:attribute>
 			</xs:complexType>
 		</xs:element>
 

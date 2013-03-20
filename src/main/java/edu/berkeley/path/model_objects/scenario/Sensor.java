@@ -206,9 +206,8 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @param laneNumber the laneNumber to set
 	 */
 	public void setLaneNumber(int laneNumber) {
-		super.setLaneNumber(new BigInteger(laneNumber + ""));
+		this.laneNumber = laneNumber;
 	}
-
 
 	/**
 	 * @return the healthStatus
@@ -217,7 +216,6 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 		return super.getHealthStatus();
 	}
 
-
 	/**
 	 * @param healthStatus the healthStatus to set
 	 */
@@ -225,6 +223,30 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 		super.setHealthStatus(healthStatus);
 	}
 	
+    /**
+     * Sets the value of the dataFeedId property.
+     * 
+     * @param feedId
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setDataFeedId(Long feedId) {
+        this.dataFeedId = feedId;
+    }
+
+	public void setSensorOriginalId(String entityId) {
+		this.sensorIdOriginal = entityId;
+	}
+
+	public void setLinkId(Long linkId) {
+		this.linkId = linkId;
+	}
+
+	public void setLinkOffset(Double linkOffset) {  
+		this.linkOffset = linkOffset;		
+	}
+
 	/** 
 	 * Sensor validation checks
 	 *
@@ -237,4 +259,6 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 		
 		return isValid;
 	}
+
+
 }

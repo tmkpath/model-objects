@@ -66,7 +66,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
   /**
    * Return name of network
    * 
-   * @return id of network as string
+   * @return name of network as string
    */
   @Override
   public String getName() {
@@ -81,6 +81,26 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
   @Override
   public void setName(String name) {
     super.setName(name);
+  }
+  
+  /**
+   * Return description of network
+   * 
+   * @return description of network as string
+   */
+  @Override
+  public String getDescription() {
+    return super.getDescription();
+  }
+  
+  /**
+   * Set name of description
+   * 
+   * @param name of network as string
+   */
+  @Override
+  public void setDescription(String description) {
+    super.setDescription(description);
   }
   
   /**
