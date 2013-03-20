@@ -5,10 +5,7 @@ import java.util.ArrayList;
 public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 
 	/** @y.exclude */ protected ArrayList<Sensor> sensor = new ArrayList<Sensor>();
-	/** @y.exclude */ protected long id;
-	/** @y.exclude */ protected long modStamp;
-	/** @y.exclude */ protected String name;
-	/** @y.exclude */ protected String description;
+
 	
 	/////////////////////////////////////////////////////////////////////
 	// populate / reset / validate / update
@@ -77,28 +74,29 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	 * @param id the id to set
 	 */
 	public void setId(Long id) {
-		this.id = id;	
+		super.setId(id);	
 	}
 
 	/**
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
-		this.name = name;
+		super.setName(name);
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String desc) {
+		super.setDescription(desc);
 		
 	}
 
 	/**
-	 * @param description the descripotion to set
+	 * @param modstampMicros the modstamp to set
 	 */
-	public void setDescription(String desc) {
-		this.description = desc;
-		
-	}
-
-	public void setModstamp(Long modstampMicros) {
-		this.modStamp = modstampMicros;
-		
+	public void setModStamp(Long modstampMicros) {
+		super.setModStamp(modstampMicros);
 	}
 
 

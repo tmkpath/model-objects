@@ -49,9 +49,9 @@
         <xs:element ref="description" minOccurs="0" maxOccurs="1" />
         <xs:element ref="settings" minOccurs="0"  maxOccurs="1" />
         <xs:element ref="NetworkSet" minOccurs="0" maxOccurs="1" />
-	<xs:element ref="VehicleTypeSet" minOccurs="1" />
-	<xs:element ref="SignalSet" minOccurs="0" maxOccurs="1"  />
-	<xs:element ref="SensorSet" minOccurs="0" maxOccurs="1"  />
+				<xs:element ref="VehicleTypeSet" minOccurs="1" />
+				<xs:element ref="SignalSet" minOccurs="0" maxOccurs="1"  />
+				<xs:element ref="SensorSet" minOccurs="0" maxOccurs="1"  />
         <xs:element ref="InitialDensitySet" minOccurs="0" maxOccurs="1" />
         <xs:element ref="WeavingFactorSet" minOccurs="0" maxOccurs="1" />
         <xs:element ref="SplitRatioSet" minOccurs="0" maxOccurs="1" />
@@ -180,10 +180,12 @@
 		  <xs:sequence>
 			<xs:element ref="sensor" minOccurs="0" maxOccurs="unbounded" />
 		  </xs:sequence>
-	  	  <xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
-	  	  <xs:attribute name="id" type="xs:long" use="required" default="0" />
-	  	  <xs:attribute name="name" type="xs:string" use="optional" default="0" />
-	  	  <xs:attribute name="description" type="xs:string" use="optional" default="0" />
+	  	<xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
+	  	<xs:attribute name="id" type="xs:long" use="required" default="0" />
+	  	<xs:attribute name="name" type="xs:string" use="optional" default="0" />
+	  	<xs:attribute name="description" type="xs:string" use="optional" default="0" />
+	  	<xs:attribute name="mod_stamp" type="xs:long" use="optional" default="0" />
+
 		</xs:complexType>
 	  </xs:element>
 	  
