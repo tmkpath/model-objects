@@ -33,7 +33,7 @@ import edu.berkeley.path.model_objects.shared.Table;
 
 import java.math.BigInteger;
 
-/** Base class for sensors. 
+/** Extended class for sensors. 
  *
  * @author Gabriel Gomes (gomes@path.berkeley.edu)
  * @author Sean Morris (sean.smorris@gmail.com)
