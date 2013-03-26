@@ -79,7 +79,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 
     /**
      * Sets the value of the knob property.
-     * 
+     *  
      * @param value
      *     allowed object is
      *     {@link Double }
