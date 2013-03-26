@@ -136,15 +136,8 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Sensor> getListOfSensors() {
-		List<edu.berkeley.path.model_objects.jaxb.Sensor> sensors = getSensor();
-		// check if sensor list exists, if not create it and add empty list of sensors
-		if ( sensors == null ) {
-			sensors = new ArrayList<edu.berkeley.path.model_objects.jaxb.Sensor>(); 
-			// set newly created sensor list sensor field in super class - there is no setter defined
-			this.sensor = sensors;
-		}
-		// return casted list of Nodes from JAXB base class
-		return (List<Sensor>)(List<?>)sensors;
+		// return casted list of Sensors from JAXB base class
+		return (List<Sensor>)(List<?>)super.getSensor();
 	}
 
 }
