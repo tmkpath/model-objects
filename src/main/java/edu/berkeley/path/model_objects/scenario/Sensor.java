@@ -41,7 +41,7 @@ import java.math.BigInteger;
 public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
    
 	//TODO: Deal with Table reference? We are waiting for feedback.
-	//TODO: How are we resolving the link?
+	
 
 
 	/** Resolved Link Object*/
@@ -84,6 +84,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	}
 
 	/** Link where the sensor is located. */
+	//TODO: How are we resolving the link?
 	public Link getSensorLink() {
 		return link;
 	}
@@ -93,7 +94,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @return the displayPosition
 	 */
 	public DisplayPosition getSensorDisplayPosition() {
-		return (DisplayPosition)displayPosition;
+		return (DisplayPosition)super.getDisplayPosition();
 	}
 
 
@@ -101,7 +102,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @param displayPosition the displayPosition to set
 	 */
 	public void setDisplayPosition(DisplayPosition displayPosition) {
-		this.displayPosition = displayPosition;
+		super.setDisplayPosition(displayPosition);
 	}
 
 
@@ -125,7 +126,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @return the linkReference
 	 */
 	public LinkReference getSensorLinkReference() {
-		return (LinkReference)linkReference;
+		return (LinkReference)super.getLinkReference();
 	}
 
 
@@ -133,7 +134,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @param linkReference the linkReference to set
 	 */
 	public void setLinkReference(LinkReference linkReference) {
-		this.linkReference = linkReference;
+		super.setLinkReference(linkReference);
 	}
 
 
@@ -141,7 +142,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @return the parameters
 	 */
 	public Parameters getSensorParameters() {
-		return (Parameters)parameters;
+		return (Parameters)super.getParameters();
 	}
 
 
@@ -149,7 +150,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @param parameters the parameters to set
 	 */
 	public void setParameters(Parameters parameters) {
-		this.parameters = parameters;
+		super.setParameters(parameters);
 	}
 
 
