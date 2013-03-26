@@ -62,7 +62,7 @@ public class NetworkTest {
 
     ln = new Link();
     ln.setId(3);
-    ln.setRoadName("three");
+    ln.addRoadName("three");
     ln.setType("Highway");
     ln.setLanes(4.0d);
     ln.setLength(1000.0d);

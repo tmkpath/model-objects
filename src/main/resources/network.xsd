@@ -143,6 +143,7 @@
 				  <xs:attribute name="lanes" type="xs:double" use="required" />
 				  <xs:attribute name="lane_offset" type="xs:double" use="optional" default="0" />
 				  <xs:attribute name="length" type="xs:double" use="required" /> 							<!-- in length units -->
+				  <xs:attribute name="speed_limit" type="xs:double" use="required"/>
 				  <xs:attribute name="type" use="required">
 					<xs:simpleType>
 					  <xs:restriction base="xs:string">
