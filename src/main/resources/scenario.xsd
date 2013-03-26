@@ -289,10 +289,10 @@
 		</xs:complexType>
 	  </xs:element>
 	  
-		  <xs:element name="splitRatioProfile">
+		  <xs:element name="SplitRatioProfile">
 			<xs:complexType>
 			  <xs:sequence>
-				<xs:element ref="splitratio" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="SplitRatio" minOccurs="0" maxOccurs="unbounded" />
 			  </xs:sequence>
 			  <xs:attribute name="node_id" type="xs:long" use="required" />
 			  <xs:attribute name="start_time" type="xs:double" use="optional" default="0" />		<!-- in time units -->
@@ -301,7 +301,7 @@
 			</xs:complexType>
 		  </xs:element>		  
 
-			  <xs:element name="splitratio">
+			  <xs:element name="SplitRatio">
 				<xs:complexType mixed="true">
 				  <xs:attribute name="link_in" type="xs:long" use="required" />
 				  <xs:attribute name="link_out" type="xs:long" use="required" />
