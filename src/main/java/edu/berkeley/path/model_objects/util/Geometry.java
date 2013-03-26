@@ -40,35 +40,57 @@ import edu.berkeley.path.model_objects.shared.Point;
  */
 public class Geometry {
 
-  public static enum GeomType { POINT, RECTANGLE, POLYGON }
+  public static enum GeomType { POINT, RECTANGLE, POLYGON, MULTIPOINT }
   protected JGeometry geom;
   
   /**
-   * Geometry Constructor, default is 8306 SRID
+   * Geometry Constructor, default is SRID 8307
    * 
    * @param   List of points
    * @param   JGeometry Type
    */
-  public Geometry(List<Point> coords, GeomType geomType) {
-    this(coords, geomType, 8306);
+  public Geometry(List<Point> points, GeomType geomType) {
+    // default to SRID of 8307
+    this(points, geomType, 8307);
   }
 
   /**
    * Geometry Constructor, currently just supports bounding box polygon
    * 
-   * @param   List of points
+   * @param   List of points 
    * @param   JGeometry Type
    * @param   SRID number
    */
-  public Geometry(List<Point> coords, GeomType geomType, int srid) {
+  public Geometry(List<Point> points, GeomType geomType, int srid) {
+    // create array of coordinates which is the size of the list points times 2 (lats and longs)
+    int coordLength = points.size() * 2;
+    Double[] coords = new Double[coordLength];
+    int i = 0;
+    // unpack points into array of doubles, order based on SRID
+    if (srid == 8307) {
+      // For each point add longitude and latitude in that order
+      for (i=0; i < points.size(); i++) {
+        coords[i*2] = points.get(i).getLongitude();
+        coords[i*2 + 1] = points.get(i).getLatitude();
+      }
+    }
+    // Currently this class only supports SRID 8307 so output error message
+    else {
+      Monitor.err("Error invalid SRID, the Geometry class only supports SRID 8307.");
+    }
     switch (geomType) {
+      // Rectangles must have top left and bottom right lat and long coordinates
       case RECTANGLE:
-        this.geom = new JGeometry(coords.get(1).getLatitude(),
-            coords.get(1).getLongitude(),
-            coords.get(0).getLatitude(),
-            coords.get(0).getLongitude(),
+        this.geom = new JGeometry(
+            points.get(1).getLatitude(),
+            points.get(1).getLongitude(),
+            points.get(0).getLatitude(),
+            points.get(0).getLongitude(),
             srid);
         break;
+      // Creates 2D multi-point JGeometry structure
+      case MULTIPOINT:
+        this.geom = JGeometry.createMultiPoint(coords, 2, srid);        
       default:
         break;
     }

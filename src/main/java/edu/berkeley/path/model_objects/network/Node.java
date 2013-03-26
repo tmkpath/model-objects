@@ -35,7 +35,7 @@ import edu.berkeley.path.model_objects.jaxb.Outputs;
 import edu.berkeley.path.model_objects.jaxb.Position;
 import edu.berkeley.path.model_objects.jaxb.RoadwayMarkers;
 import edu.berkeley.path.model_objects.jaxb.Marker;
-import edu.berkeley.path.model_objects.jaxb.Point;
+import edu.berkeley.path.model_objects.shared.Point;
 
 import core.Monitor;
 
@@ -223,8 +223,9 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 	 * 
 	 * @return Point  The point of the node
 	 */
+	@SuppressWarnings("unchecked")
 	public Point getPoint() {
-		List<Point> points =  this.position.getPoint();
+		List<Point> points =  (List<Point>)(List<?>)this.position.getPoint();
 		Point point = null;
 		if (!points.isEmpty()) {
 			points.get(0);
