@@ -29,7 +29,6 @@ package edu.berkeley.path.model_objects.scenario;
 import edu.berkeley.path.model_objects.jaxb.Link;
 import edu.berkeley.path.model_objects.shared.DisplayPosition;
 import edu.berkeley.path.model_objects.shared.Parameters;
-import edu.berkeley.path.model_objects.shared.Table;
 
 import java.math.BigInteger;
 
@@ -40,25 +39,17 @@ import java.math.BigInteger;
  * 
  */
 public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
-   		
-	/** Current link where the sensor is located. */
-	/** @y.exclude */ protected Link link = null;
+   
+	//TODO: Deal with Table reference? We are waiting for feedback.
+	//TODO: How are we resolving the link?
+
+
+	/** Resolved Link Object*/
+	/** @y.exclude */ protected Link link;
 
 	/** Sensor type. */
 	/** @y.exclude */ protected Sensor.Type type;
-	
-	/** Current display position where the sensor is located. */
-	/** @y.exclude */ protected DisplayPosition displayPosition;
-
-	/** Current link id for this sensor. */
-	/** @y.exclude */ protected LinkReference linkReference; 
-	
-	/** A collection of name-value pairs associated with the sensor */
-	/** @y.exclude */ protected Parameters parameters;
-
-	/** A collection of column names and rows for generic data */
-	/** @y.exclude */ protected Table table;
-	
+		
 	/** Type of sensor.
 	 *
 	 * TMC = Traffic Message Channel.
@@ -102,7 +93,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @return the displayPosition
 	 */
 	public DisplayPosition getSensorDisplayPosition() {
-		return displayPosition;
+		return (DisplayPosition)displayPosition;
 	}
 
 
@@ -134,7 +125,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @return the linkReference
 	 */
 	public LinkReference getSensorLinkReference() {
-		return linkReference;
+		return (LinkReference)linkReference;
 	}
 
 
@@ -150,7 +141,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @return the parameters
 	 */
 	public Parameters getSensorParameters() {
-		return parameters;
+		return (Parameters)parameters;
 	}
 
 
