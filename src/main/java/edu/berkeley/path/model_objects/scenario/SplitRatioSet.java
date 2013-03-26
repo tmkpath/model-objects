@@ -174,5 +174,19 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
     public void setName(String value) {
         super.setName(value);
     }
+    
+	/**
+	 * @param modstamp the modstamp to set
+	 */
+	public void setModStamp(String modstamp) {
+		super.setModStamp(modstamp);
+	}
+	
+	/**
+	 * @return the modStamp
+	 */
+	public String getModStamp() {
+		return super.getModStamp();
+	}
 
 }

@@ -237,6 +237,20 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	}
 
 	/**
+	 * @param modstamp the modstamp to set
+	 */
+	public void setModStamp(String modstamp) {
+		super.setModStamp(modstamp);
+	}
+	
+	/**
+	 * @return the modStamp
+	 */
+	public String getModStamp() {
+		return super.getModStamp();
+	}
+	
+	/**
 	 * Sets the value of the link id property.
 	 * 
 	 * @param linkId the linkId to set 

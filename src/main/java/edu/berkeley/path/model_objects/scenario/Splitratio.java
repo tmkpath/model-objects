@@ -28,4 +28,17 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio{
 		super.setLinkIn(linkIn);
 	}
 	
+	/**
+	 * @param modstamp the modstamp to set
+	 */
+	public void setModStamp(String modstamp) {
+		super.setModStamp(modstamp);
+	}
+	
+	/**
+	 * @return the modStamp
+	 */
+	public String getModStamp() {
+		return super.getModStamp();
+	}
 }

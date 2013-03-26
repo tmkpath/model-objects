@@ -68,10 +68,10 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 
 
 	/**
-	 * @param modstampMicros the modstamp to set
+	 * @param modstamp the modstamp to set
 	 */
-	public void setModStamp(Long modstampMicros) {
-		super.setModStamp(modstampMicros);
+	public void setModStamp(String modstamp) {
+		super.setModStamp(modstamp);
 	}
 
 
@@ -79,28 +79,28 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	 * @return the id
 	 */
 	public long getId() {
-		return id;
+		return super.getId();
 	}
 
 	/**
 	 * @return the modStamp
 	 */
-	public long getModStamp() {
-		return modStamp;
+	public String getModStamp() {
+		return super.getModStamp();
 	}
 
 	/**
 	 * @return the name
 	 */
 	public String getName() {
-		return name;
+		return super.getName();
 	}
 
 	/**
 	 * @return the description
 	 */
 	public String getDescription() {
-		return description;
+		return super.getDescription();
 	}
 	
 	/**

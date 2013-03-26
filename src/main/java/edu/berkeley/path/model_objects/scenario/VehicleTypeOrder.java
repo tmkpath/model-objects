@@ -30,4 +30,18 @@ public class VehicleTypeOrder extends edu.berkeley.path.model_objects.jaxb.Vehic
 			vehs.addAll((List<edu.berkeley.path.model_objects.jaxb.VehicleType>)(List<?>)types);
 			vehicleType = vehs;
 	}
+	
+	/**
+	 * @param modstamp the modstamp to set
+	 */
+	public void setModStamp(String modstamp) {
+		super.setModStamp(modstamp);
+	}
+	
+	/**
+	 * @return the modStamp
+	 */
+	public String getModStamp() {
+		return super.getModStamp();
+	}
 }
