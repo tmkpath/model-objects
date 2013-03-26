@@ -1,67 +1,44 @@
 package edu.berkeley.path.model_objects.scenario;
 
-/** Extended class for Splitratios. 
-*
-* @author Sean Morris (sean.smorris@gmail.com)
-* 
-*/
+
 public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio{
 	
+	/**
+	 * @return the split ratio's link in
+	 */
+	public long getLinkIn() {
+		return super.getLinkIn();
+	}
+	/**
+	 * @param linkIn set the split ratio's link in
+	 */
+	public void setLinkIn(long linkIn) {
+		super.setLinkIn(linkIn);
+	}
+	/**
+	 * @return the split ratio's link out
+	 */
+	public long getLinkOut() {
+		return super.getLinkOut();
+	}
+	/**
+	 * @param linkOut set the split ratio's link out
+	 */
+	public void setLinkOut(long linkOut) {
+		super.setLinkIn(linkIn);
+	}
 	
-    /**
-     * Gets the value of the content property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getContent() {
-        return super.getContent();
-    }
-
-    /**
-     * Sets the value of the content property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setContent(String value) {
-        super.setContent(value);
-    }
-
-    /**
-     * Gets the value of the linkIn property.
-     * 
-     */
-    public long getLinkIn() {
-        return super.getLinkIn();
-    }
-
-    /**
-     * Sets the value of the linkIn property.
-     * 
-     */
-    public void setLinkIn(long value) {
-        super.setLinkIn(value);
-    }
-
-    /**
-     * Gets the value of the linkOut property.
-     * 
-     */
-    public long getLinkOut() {
-        return super.getLinkOut();
-    }
-
-    /**
-     * Sets the value of the linkOut property.
-     * 
-     */
-    public void setLinkOut(long value) {
-        super.setLinkOut(value);
-    }
-
+	/**
+	 * @param modstamp the modstamp to set
+	 */
+	public void setModStamp(String modstamp) {
+		super.setModStamp(modstamp);
+	}
+	
+	/**
+	 * @return the modStamp
+	 */
+	public String getModStamp() {
+		return super.getModStamp();
+	}
 }

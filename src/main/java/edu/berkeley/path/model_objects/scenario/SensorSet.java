@@ -1,22 +1,16 @@
 package edu.berkeley.path.model_objects.scenario;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
-
-	/** @y.exclude */ protected ArrayList<Sensor> sensor = new ArrayList<Sensor>();
-
 	
-	/////////////////////////////////////////////////////////////////////
-	// populate / reset / validate / update
-	/////////////////////////////////////////////////////////////////////
-
 	protected void populate() {
-		for(edu.berkeley.path.model_objects.scenario.Sensor sens : sensor) {
-			
+		for(edu.berkeley.path.model_objects.jaxb.Sensor sens : sensor) {
+			Sensor extendedSens = (Sensor)sens;
 			Sensor.Type type = null;
 	    	try {
-				type = sens.getSensorType();
+				type = extendedSens.getSensorType();
 			} catch (IllegalArgumentException e) {
 				continue;
 			}	
@@ -33,28 +27,15 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 
 	protected boolean isValid() {
 		boolean isValid = true;
-		for(Sensor s : sensor){
-			isValid = s.isValid();
+		for(edu.berkeley.path.model_objects.jaxb.Sensor s : sensor){
+			Sensor extendedSensor = (Sensor)s;
+			isValid = extendedSensor.isValid();
 			if(isValid == false)
 				return false;
 		}
 		return isValid;
 	}
 	
-	
-	/**
-	 * @return the list of sensors
-	 */
-	public ArrayList<Sensor> getSensors() {
-		return sensor;
-	}
-
-	/**
-	 * @return the list of sensors
-	 */
-	public void setSensors(ArrayList<Sensor> sensors) {
-		sensor = sensors;
-	}
 
 	/**
 	 * @return the projectId
@@ -84,19 +65,13 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 		super.setName(name);
 	}
 
-	/**
-	 * @param description the description to set
-	 */
-	public void setDescription(String desc) {
-		super.setDescription(desc);
-		
-	}
+
 
 	/**
-	 * @param modstampMicros the modstamp to set
+	 * @param modstamp the modstamp to set
 	 */
-	public void setModStamp(Long modstampMicros) {
-		super.setModStamp(modstampMicros);
+	public void setModStamp(String modstamp) {
+		super.setModStamp(modstamp);
 	}
 
 
@@ -104,28 +79,65 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	 * @return the id
 	 */
 	public long getId() {
-		return id;
+		return super.getId();
 	}
 
 	/**
 	 * @return the modStamp
 	 */
-	public long getModStamp() {
-		return modStamp;
+	public String getModStamp() {
+		return super.getModStamp();
 	}
 
 	/**
 	 * @return the name
 	 */
 	public String getName() {
-		return name;
+		return super.getName();
 	}
 
 	/**
 	 * @return the description
 	 */
 	public String getDescription() {
-		return description;
+		return super.getDescription();
+	}
+	
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String desc) {
+		super.setDescription(desc);
+		
+	}
+	
+
+	/**
+	 * Set the sensors list. Attaches list of Sensor Model Objects to scenario.
+	 * 
+	 * @param List<Sensor>	List of extended Sensors to add
+	 */
+	@SuppressWarnings("unchecked")
+	public void setListOfSensors(List<Sensor> sensors) {
+
+			List<edu.berkeley.path.model_objects.jaxb.Sensor> sensorSet = getSensor();
+			if ( sensorSet == null ) {
+			  sensorSet = new ArrayList<edu.berkeley.path.model_objects.jaxb.Sensor>();  
+			}
+			sensorSet.clear();
+			sensorSet.addAll((List<edu.berkeley.path.model_objects.jaxb.Sensor>)(List<?>)sensors);
+			sensor = sensorSet;
+	}
+	
+	/** 
+	 * Get the list of sensors in the scenario.
+	 * 
+	 * @return List of all sensors as Sensor Model Objects. 
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Sensor> getListOfSensors() {
+		// return casted list of Sensors from JAXB base class
+		return (List<Sensor>)(List<?>)super.getSensor();
 	}
 
 }

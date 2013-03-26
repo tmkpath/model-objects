@@ -92,6 +92,26 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
   public void setLanes(double lanes) {
     super.setLanes(lanes);
   }
+  
+  /**
+   * Return speed Limit of link
+   * 
+   * @return number of s
+   */
+  @Override
+  public double getSpeedLimit() {
+    return super.getSpeedLimit();
+  }
+  
+  /**
+   * Set speed limit of link
+   * 
+   * @param number lanes of link 
+   */
+  @Override
+  public void setSpeedLimit(double speed) {
+    super.setSpeedLimit(speed);
+  }
 
   /**
    * Return lane offset of link
@@ -258,17 +278,35 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
     if ( getRoads() != null && getRoads().getRoad() != null) {
         return getRoads().getRoad().get(0).getName();
     }
+    // otherwise return empty string
     else {
       return "";
     }
   }
 
   /**
-   * Set link to have Road Name
+   * Get all Road Names on link
+   * 
+   * @return  List of road name(s) associated with
+   */
+  public java.util.List<String> getRoadNames() {
+    java.util.ArrayList<String> roadNames = new java.util.ArrayList<String>(); 
+    if ( getRoads() != null && getRoads().getRoad() != null) {
+      // For each road add its name to the list  
+      for (Road road : getRoads().getRoad()) {
+          roadNames.add(road.getName());
+      }
+    }
+    
+    return roadNames;
+  }
+  
+  /**
+   * Add new Road Name to Link
    * 
    * @param The road name of link
    */
-  public void setRoadName(String roadName) {    
+  public void addRoadName(String roadName) {    
     Road road = new Road();
     road.setName(roadName);
     Roads roads = new Roads();
