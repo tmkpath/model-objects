@@ -26,15 +26,12 @@
 
 package edu.berkeley.path.model_objects.network;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.math.BigDecimal;
 
-import edu.berkeley.path.model_objects.jaxb.Inputs;
-import edu.berkeley.path.model_objects.jaxb.Outputs;
 import edu.berkeley.path.model_objects.jaxb.Position;
 import edu.berkeley.path.model_objects.jaxb.RoadwayMarkers;
 import edu.berkeley.path.model_objects.jaxb.Marker;
+import edu.berkeley.path.model_objects.jaxb.NodeType;
 import edu.berkeley.path.model_objects.shared.Point;
 
 import core.Monitor;
@@ -78,25 +75,33 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
   }
   
   /**
-   * Return type of node
+   * Return type name of node
    * 
-   * @return type of node as string
+   * @return type name of node as string
    */
-  @Override
-  public String getType() {
-    // TODO: This should be changed to return Type object (id, string) mappings
-    return super.getType();
+  public String getTypeName() {
+    return getNodeType().getName();
   }
   
   /**
-   * Set type of node
+   * Return node type id
    * 
-   * @param type of node as string
+   * @return id of type of node as long
    */
-  @Override
-  public void setType(String type) {
-    // TODO: This should be changed to take in Type object (id, string)
-    super.setType(type);
+  public long getTypeId() {
+    return getNodeType().getId();
+  }
+  
+  /**
+   * Set type id and name of node
+   * 
+   * @param id of node type as long
+   * @param Name of node type as string
+   */
+  public void setType(long id, String name) {
+    NodeType nodeType = new NodeType();
+    nodeType.setName(name);
+    nodeType.setId(id);
   }
   
 	/** 

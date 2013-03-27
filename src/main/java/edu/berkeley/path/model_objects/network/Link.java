@@ -34,6 +34,7 @@ import edu.berkeley.path.model_objects.jaxb.Begin;
 import edu.berkeley.path.model_objects.jaxb.End;
 import edu.berkeley.path.model_objects.jaxb.Road;
 import edu.berkeley.path.model_objects.jaxb.Roads;
+import edu.berkeley.path.model_objects.jaxb.LinkType;
 import edu.berkeley.path.model_objects.shared.Point;
 
 /** 
@@ -156,25 +157,33 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
   }
   
   /**
-   * Return type of link
+   * Return type name of link
    * 
-   * @return type of link as string
+   * @return type name of link as string
    */
-  @Override
-  public String getType() {
-    // TODO: This should be changed to return Type object (id, string) mappings
-    return super.getType();
+  public String getTypeName() {
+    return getLinkType().getName();
   }
   
   /**
-   * Set type of link
+   * Return link type id
    * 
-   * @param type of link as string
+   * @return id of type of link as long
    */
-  @Override
-  public void setType(String type) {
-    // TODO: This should be changed to take in Type object (id, string)
-    super.setType(type);
+  public long getTypeId() {
+    return getLinkType().getId();
+  }
+  
+  /**
+   * Set type id and name of link
+   * 
+   * @param id of link type as long
+   * @param Name of link type as string
+   */
+  public void setType(long id, String name) {
+    LinkType linkType = new LinkType();
+    linkType.setName(name);
+    linkType.setId(id);
   }
     
   /** 
