@@ -5,26 +5,6 @@ import java.util.List;
 
 public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	
-	protected void populate() {
-		for(edu.berkeley.path.model_objects.jaxb.Sensor sens : sensor) {
-			Sensor extendedSens = (Sensor)sens;
-			Sensor.Type type = null;
-	    	try {
-				type = extendedSens.getSensorType();
-			} catch (IllegalArgumentException e) {
-				continue;
-			}	
-			
-			// generate sensor
-			if(type != null){
-				Sensor s = ScenarioFactory.createSensor(type);
-				if(s != null)
-					sensor.add(s);
-			}		    	
-		}
-	
-	}
-
 	protected boolean isValid() {
 		boolean isValid = true;
 		for(edu.berkeley.path.model_objects.jaxb.Sensor s : sensor){
@@ -36,7 +16,6 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 		return isValid;
 	}
 	
-
 	/**
 	 * @return the projectId
 	 */
