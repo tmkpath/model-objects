@@ -27,7 +27,6 @@
 package edu.berkeley.path.model_objects.network;
 
 import java.util.List;
-
 import edu.berkeley.path.model_objects.jaxb.Position;
 import edu.berkeley.path.model_objects.jaxb.RoadwayMarkers;
 import edu.berkeley.path.model_objects.jaxb.Marker;
