@@ -72,10 +72,11 @@ public class Serializer {
       // is expected to be created
       JAXBContext context = JAXBContext.newInstance(jaxbClass);
       Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
-      o = jaxbUnmarshaller.unmarshal( new StreamSource( new StringReader(xmlStr.toString()) ) );
+      o = jaxbUnmarshaller.unmarshal( new StreamSource( new StringReader(xmlStr.toString()) ), jaxbClass ).getValue();
     } 
     catch (JAXBException exc) {
-      Monitor.err("Error unmarshalling object from XML");
+      Monitor.out("Error unmarshalling object " + jaxbClass.getName() + " from XML");
+      Monitor.out(Exceptions.getStackTrace(exc));
     }
     // Cast from generic object to specified JAXB Class
     return jaxbClass.cast(o);
@@ -101,7 +102,7 @@ public class Serializer {
       xml = result.toString();
     } 
     catch (JAXBException exc) {
-      Monitor.err("Error marshalling object to XML");
+      Monitor.out("Error marshalling object " + jaxbObject.getClass().getName() + " to XML");
     }
     return xml;
   }
@@ -124,16 +125,16 @@ public class Serializer {
       org.codehaus.jettison.mapped.Configuration config = new org.codehaus.jettison.mapped.Configuration();
       XMLStreamReader xmlsr = new MappedXMLStreamReader(jsonStr, new MappedNamespaceConvention(config));
       Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
-      o = jaxbUnmarshaller.unmarshal(xmlsr);
+      o = jaxbUnmarshaller.unmarshal(xmlsr, jaxbClass ).getValue();
     } 
     catch (JAXBException exc) {
-      Monitor.err("Error unmarshalling object from JSON");
+      Monitor.out("Error unmarshalling object " + jaxbClass.getName() + " from JSON");
     }
     catch (JSONException exc) {
-      Monitor.err("Error Reading in JSON");
+      Monitor.out("Error Reading in JSON for " + jaxbClass.getName() );
     }
     catch (XMLStreamException exc) {
-      Monitor.err("Error Binding JSON to JAXB XML Stream");
+      Monitor.out("Error Binding JSON to JAXB XML Stream " + jaxbClass.getName() );
     }
     // Cast from generic object to specified JAXB Class
     return jaxbClass.cast( o );
@@ -161,7 +162,7 @@ public class Serializer {
       json = result.toString();
     } 
     catch (JAXBException exc) {
-      Monitor.err("Error marshalling object to JSON");
+      Monitor.out("Error marshalling object " + jaxbObject.getClass().getName() + "to JSON ");
     }
     return json;
   }
