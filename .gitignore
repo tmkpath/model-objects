@@ -3,6 +3,7 @@
 
 .cache
 .DS_STORE
+bin
 
 # sbt specific
 dist/*

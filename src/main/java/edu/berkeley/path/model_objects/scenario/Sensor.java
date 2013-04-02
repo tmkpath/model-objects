@@ -29,7 +29,6 @@ package edu.berkeley.path.model_objects.scenario;
 import edu.berkeley.path.model_objects.jaxb.Link;
 import edu.berkeley.path.model_objects.shared.DisplayPosition;
 import edu.berkeley.path.model_objects.shared.Parameters;
-import edu.berkeley.path.model_objects.shared.Table;
 
 import java.math.BigInteger;
 
@@ -40,25 +39,17 @@ import java.math.BigInteger;
  * 
  */
 public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
-   		
-	/** Current link where the sensor is located. */
-	/** @y.exclude */ protected Link link = null;
+   
+	//TODO: Deal with Table reference? We are waiting for feedback.
+	
+
+
+	/** Resolved Link Object*/
+	/** @y.exclude */ protected Link link;
 
 	/** Sensor type. */
 	/** @y.exclude */ protected Sensor.Type type;
-	
-	/** Current display position where the sensor is located. */
-	/** @y.exclude */ protected DisplayPosition displayPosition;
-
-	/** Current link id for this sensor. */
-	/** @y.exclude */ protected LinkReference linkReference; 
-	
-	/** A collection of name-value pairs associated with the sensor */
-	/** @y.exclude */ protected Parameters parameters;
-
-	/** A collection of column names and rows for generic data */
-	/** @y.exclude */ protected Table table;
-	
+		
 	/** Type of sensor.
 	 *
 	 * TMC = Traffic Message Channel.
@@ -93,6 +84,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	}
 
 	/** Link where the sensor is located. */
+	//TODO: How are we resolving the link?
 	public Link getSensorLink() {
 		return link;
 	}
@@ -102,7 +94,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @return the displayPosition
 	 */
 	public DisplayPosition getSensorDisplayPosition() {
-		return displayPosition;
+		return (DisplayPosition)super.getDisplayPosition();
 	}
 
 
@@ -110,7 +102,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @param displayPosition the displayPosition to set
 	 */
 	public void setDisplayPosition(DisplayPosition displayPosition) {
-		this.displayPosition = displayPosition;
+		super.setDisplayPosition(displayPosition);
 	}
 
 
@@ -134,7 +126,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @return the linkReference
 	 */
 	public LinkReference getSensorLinkReference() {
-		return linkReference;
+		return (LinkReference)super.getLinkReference();
 	}
 
 
@@ -142,7 +134,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @param linkReference the linkReference to set
 	 */
 	public void setLinkReference(LinkReference linkReference) {
-		this.linkReference = linkReference;
+		super.setLinkReference(linkReference);
 	}
 
 
@@ -150,7 +142,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @return the parameters
 	 */
 	public Parameters getSensorParameters() {
-		return parameters;
+		return (Parameters)super.getParameters();
 	}
 
 
@@ -158,7 +150,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @param parameters the parameters to set
 	 */
 	public void setParameters(Parameters parameters) {
-		this.parameters = parameters;
+		super.setParameters(parameters);
 	}
 
 
@@ -244,6 +236,20 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 		super.setSensorIdOriginal(entityId);
 	}
 
+	/**
+	 * @param modstamp the modstamp to set
+	 */
+	public void setModStamp(String modstamp) {
+		super.setModStamp(modstamp);
+	}
+	
+	/**
+	 * @return the modStamp
+	 */
+	public String getModStamp() {
+		return super.getModStamp();
+	}
+	
 	/**
 	 * Sets the value of the link id property.
 	 * 

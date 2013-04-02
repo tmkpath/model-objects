@@ -51,19 +51,19 @@ public class NetworkTest {
     nd1 = new Node();
     nd1.setId(1);
     nd1.setName("one");
-    nd1.setType("Highway");
+    nd1.setId(1);
     nw.getListOfNodes().add(nd1);
 
     nd2 = new Node();
     nd2.setId(2);
     nd2.setName("two");
-    nd2.setType("Highway");
+    nd2.setType(1, "test");
     nw.getListOfNodes().add(nd2);
 
     ln = new Link();
     ln.setId(3);
-    ln.setRoadName("three");
-    ln.setType("Highway");
+    ln.addRoadName("three");
+    ln.setType(1, "highway");
     ln.setLanes(4.0d);
     ln.setLength(1000.0d);
     

@@ -28,7 +28,20 @@
 		  <xs:attribute name="id" type="xs:long" use="required" />
 		</xs:complexType>
 	  </xs:element>
-	  
+	 
+	 <xs:element name="link_type">
+	 <xs:complexType>
+	   <xs:attribute name="id" type="xs:long" use="required" />
+	   <xs:attribute name="name" type="xs:string" use="required"/>
+	 </xs:complexType>
+	 </xs:element> 
+	 
+	 <xs:element name="node_type">
+	 <xs:complexType>
+	   <xs:attribute name="id" type="xs:long" use="required" />
+	   <xs:attribute name="name" type="xs:string" use="required"/>
+	 </xs:complexType>
+	 </xs:element> 
 		
   <!-- network ................................................................... -->
 	  
@@ -42,7 +55,7 @@
 			  </xs:all>
 			  <xs:attribute name="name" type="xs:string" use="required" />
 			  <xs:attribute name="id" type="xs:long" use="required" />
-			  <xs:attribute name="modStamp" type="xs:string" use="optional" />
+			  <xs:attribute name="mod_stamp" type="xs:string" use="optional" />
 			  <xs:attribute name="locked" type="xs:boolean" use="optional" default="false" />
 			</xs:complexType>
 		  </xs:element>
@@ -64,16 +77,11 @@
 					<xs:element ref="outputs" />
 					<xs:element ref="inputs" />
 					<xs:element ref="position" minOccurs="0" />
+					<xs:element ref="node_type" minOccurs="0" />
 				  </xs:all>
-				  <xs:attribute name="type" use="required">
-					<xs:simpleType>
-					  <xs:restriction base="xs:string">
-						<xs:pattern value="simple|onramp|offramp|signalized_intersection|unsignalized_intersection|terminal|highway|stop_intersection|other"/>
-					  </xs:restriction>
-					</xs:simpleType>
-				  </xs:attribute>
 				  <xs:attribute name="id" type="xs:long" use="required" />
 				  <xs:attribute name="in_sync" type="xs:boolean" use="optional" default="true" />
+				  <xs:attribute name="mod_stamp" type="xs:string" use="optional" />
 				</xs:complexType>
 			  </xs:element>
 			  
@@ -139,17 +147,13 @@
 					<xs:element ref="dynamics" minOccurs="0" maxOccurs="1" />
 					<xs:element ref="position" minOccurs="0" />
 					<xs:element ref="shape" minOccurs="0" />
+					<xs:element ref="link_type" minOccurs="0" />
 				  </xs:all>
 				  <xs:attribute name="lanes" type="xs:double" use="required" />
 				  <xs:attribute name="lane_offset" type="xs:double" use="optional" default="0" />
 				  <xs:attribute name="length" type="xs:double" use="required" /> 							<!-- in length units -->
-				  <xs:attribute name="type" use="required">
-					<xs:simpleType>
-					  <xs:restriction base="xs:string">
-						<xs:pattern value="freeway|HOV|HOT|onramp|offramp|freeway_connector|street|intersection_approach|heavy_vehicle|electric_toll"/>
-					  </xs:restriction>
-					</xs:simpleType>
-				  </xs:attribute>
+				  <xs:attribute name="speed_limit" type="xs:double" use="required"/>
+					<xs:attribute name="mod_stamp" type="xs:string" use="optional" />
 				  <xs:attribute name="id" type="xs:long" use="required" />
 				  <xs:attribute name="in_sync" type="xs:boolean" use="optional" default="true" />
 				</xs:complexType>
