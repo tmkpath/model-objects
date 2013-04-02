@@ -43,7 +43,6 @@ public class SerializerTest {
   /**
    * Mock class to test marshalling and unmarshalling of Extending a model objects
    */
-  @XmlRootElement(name = "node")
   public static class NodeExt extends edu.berkeley.path.model_objects.network.Node {
     private int testAttr;
     
