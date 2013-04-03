@@ -43,7 +43,6 @@ public class SerializerTest {
   /**
    * Mock class to test marshalling and unmarshalling of Extending a model objects
    */
-  @XmlRootElement(name = "node")
   public static class NodeExt extends edu.berkeley.path.model_objects.network.Node {
     private int testAttr;
     
@@ -79,8 +78,8 @@ public class SerializerTest {
     String nodeJSON = Serializer.objectToJSON(node);
     String expectedJSON = "{\"node\":{\"@id\":\"1\"}}";
     // Compare expected with actual
-    assertEquals(nodeXML, expectedXML);
-    assertEquals(nodeJSON, expectedJSON);
+    assertEquals(expectedXML, nodeXML);
+    assertEquals(expectedJSON, expectedJSON);
     
   }
   
@@ -100,6 +99,22 @@ public class SerializerTest {
   }
   
   @Test
+  public void testMarshallerExtenedApp () {
+    // Convert nodeExt object to XML
+    String nodeExtXML = Serializer.objectToXml(nodeExt);
+    String expectedXML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
+        "<node id=\"1\"/>\n";
+    
+    // Convert nodeExt object to JSON
+    String nodeExtJSON = Serializer.objectToJSON(node);
+    String expectedJSON = "{\"node\":{\"@id\":\"1\"}}";
+    
+    // Compare expected with actual results
+    assertEquals(expectedXML, nodeExtXML);
+    assertEquals(expectedJSON, nodeExtJSON);
+  }
+  
+  @Test
   public void testUnMarshallerExtenedApp () {
     String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
         "<node id=\"2\"/>\n";
@@ -112,4 +127,6 @@ public class SerializerTest {
     nodeExt = Serializer.jsonToObject(json, nodeExt.getClass());
     assertEquals(3, nodeExt.getId());
   }
+  
+  
 }
