@@ -32,7 +32,7 @@ package edu.berkeley.path.model_objects.scenario;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.berkeley.path.model_objects.network.DemandProfile;
+import edu.berkeley.path.model_objects.scenario.DemandProfile;
 import edu.berkeley.path.model_objects.jaxb.VehicleTypeOrder;
 
 public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {

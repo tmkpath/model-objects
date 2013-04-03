@@ -25,7 +25,7 @@
  **/
 
 
-package edu.berkeley.path.model_objects.network;
+package edu.berkeley.path.model_objects.scenario;
 
 import edu.berkeley.path.model_objects.scenario.Object_Parameter;
 

@@ -24,7 +24,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  **/
 
-package edu.berkeley.path.model_objects.network;
+package edu.berkeley.path.model_objects.scenario;
 
 public class DemandProfileFactory {
     /**
