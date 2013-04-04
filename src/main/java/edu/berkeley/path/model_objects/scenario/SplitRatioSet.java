@@ -28,11 +28,78 @@ package edu.berkeley.path.model_objects.scenario;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.joda.time.Interval;
+import edu.berkeley.path.model_objects.network.Node;
+
 
 public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRatioSet {
-	//TODO: Look at SplitRatioSet ModelElements. I did not implement any of SplitRatioMap functionality. 
+
+	/**
+	 * This method returns the SplitRatioProfiles with the splitratio field only containing splitratios
+	 * occurring within the interval specified. If the interval start time is before the start time of 
+	 * profile we return none of the ratios.
+	 * 
+	 * If the interval does not match exactly with the start time of the SplitRatioProfile, 
+	 * we find the next smaller start time of the profile and proceed to get the split ratios 
+	 * up until the end time. If the end time doesn't exactly match the profile, 
+	 * we again find the next smallest time in the List.
+	 * 
+	 * For Example, 
+	 * - Interval : 5:05AM to 6:05AM
+	 * - Profile StartTime: 5:00AM
+	 * - Profile Sample Time: Every 4 Minutes
+	 * 
+	 * - Return ratios from the profile at: 5:04, 5:08 ... 6:00, 6:04
+	 *     
+	 * @param interval
+	 * @return List of SplitRatioProfile whose splitratio only contains ratios in the Interval
+	 */
+  public List<SplitRatioProfile> slice(Interval interval) {
+	List<SplitRatioProfile> profiles = new ArrayList<SplitRatioProfile>();
+    double intervalStart = interval.getStartMillis() / 1000;
+    double intervalEnd = interval.getEndMillis() / 1000;
+    double intervalDuration = intervalEnd - intervalStart;
+    
+    for (SplitRatioProfile profile : getListOfSplitRatioProfiles()) {
+      SplitRatioProfile deepCopyProfile = profile.clone();
+      double dt = profile.getDt(); 
+      double t0 = profile.getStartTime(); 
+
+      int nSamples = (int)Math.floor(intervalDuration / dt);
+      if (t0 > intervalStart){
+    	  intervalStart = t0;
+      }
+      List<Splitratio> ratios = new ArrayList<Splitratio>();
+      int ratioStartIndex = ((int)Math.floor(intervalStart / t0)) - 1;
+      for(int x = 0; x < nSamples; x++)
+    	ratios.add(profile.getListOfSplitratios().get(ratioStartIndex + x));
+      deepCopyProfile.setListOfSplitRatios(ratios);
+      profiles.add(deepCopyProfile);
+    
+    }
+    return profiles;
+  }
+     
+  
+  /**
+   * Get the profile at the specified node.
+   * Creates a list of SplitRatioProlies associated with the node passed in.
+   * If there are no profiles associated with this node null is returned.
+   * 
+   * @param Node get split ratio profiles associated with the node
+   * @return List<SplitRatioProfile> or null
+   */
+  public List<SplitRatioProfile> getSplitRatioProfileAt(Node node) {
+	  List<SplitRatioProfile> profiles = new ArrayList<SplitRatioProfile>();
+	  for(SplitRatioProfile p : getListOfSplitRatioProfiles())
+		  if(p.getNodeId() == node.getId())
+			  profiles.add(p);
+    
+	  return profiles.size() != 0 ? profiles : null;
+  }
 
   
+
     /**
      * Gets the value of the description property.
      * 
@@ -90,7 +157,7 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
      * 
      */
  	@SuppressWarnings("unchecked")
-	public List<SplitRatioProfile> getListOfSplitRatioProfile() {
+	public List<SplitRatioProfile> getListOfSplitRatioProfiles() {
 		// return casted list of Nodes from JAXB base class
 		return (List<SplitRatioProfile>)(List<?>)super.getSplitRatioProfile();
     }
