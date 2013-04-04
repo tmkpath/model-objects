@@ -43,7 +43,7 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 	/**
 	 * Get value by name
 	 * @param name
-	 * @return
+	 * @return Object_Parameter
 	 */
 	public Object_Parameter getByName(String name) {
 		
@@ -63,7 +63,7 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 	/**
 	 * Get an array of all parameters
 	 * 
-	 * @return
+	 * @return Object_Parameter array
 	 */
 	public Object_Parameter[] getAll() {
 		
@@ -130,15 +130,10 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
         this.vehicleTypeOrder = value;
     }
 
-    /**
-     * Gets the value of the demandProfile property.
-     * 
-     * This accessory method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the object.
-     * For example, to add a new item, do as follows:
-     *    getDemandProfile().add(newItem);
-     */
+	/**
+	 * Get DemandProfile list
+	 * @return DemandProfile list
+	 */
     @SuppressWarnings("unchecked")
     public List<DemandProfile> getDemandProfileList() {
     	
@@ -149,6 +144,10 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
         return (List<DemandProfile>)(List<?>)this.demandProfile;
     }
 
+    /**
+     * Set DemandProfile list
+     * @param DemandProfile list
+     */
 	@SuppressWarnings("unchecked")
 	public void setDemandProfileList(List<DemandProfile> dpList) {
 

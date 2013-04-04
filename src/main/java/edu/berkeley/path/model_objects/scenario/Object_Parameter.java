@@ -31,7 +31,7 @@ package edu.berkeley.path.model_objects.scenario;
 
 
 /**
- * Parameter class
+ * Object Parameter class
  * @author Alexey Goder (alexey@goder.com)
  */
 public class Object_Parameter {
@@ -49,6 +49,11 @@ public class Object_Parameter {
 		strParam = pStr;
 	}
 	
+	/**
+	 * Set position number of each parameter in the parameter array
+	 * This helps to speed up search in the array
+	 * @param Parameter array
+	 */
 	public static void setPositions(Object_Parameter[] arr) {
 		for(int i=0; i<arr.length; i++) arr[i].objectParameterPosition = i;
 	}
