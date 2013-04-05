@@ -25,7 +25,9 @@
  **/
 
 
-package edu.berkeley.path.model_objects.network;
+package edu.berkeley.path.model_objects.scenario;
+
+import edu.berkeley.path.model_objects.scenario.Object_Parameter;
 
 
 /** 
@@ -41,6 +43,31 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	   * @return true if network is valid
 	   */
 	 public final Boolean isValid() { return true; }
+	 
+		/**
+		 * Get an array of all parameters
+		 * 
+		 * @return
+		 */
+		public Object_Parameter[] getAll() {
+			
+			Object_Parameter[] params = new Object_Parameter[11];
+			
+			params[0] = new Object_Parameter("id", id, 0.0F, null);
+			params[1] = new Object_Parameter("demandSetId", demandSetId, 0.0F, null);
+			params[2] = new Object_Parameter("knob", 0, knob, null);
+			params[3] = new Object_Parameter("startTime", 0, startTime, null);
+			params[4] = new Object_Parameter("SAMPLE_RATE", 0, dt, null);
+			params[6] = new Object_Parameter("orgLinkId", 0, 0.0F, orgLinkId);
+			params[7] = new Object_Parameter("destinationNetworkId", destinationNetworkId, 0.0F, null);
+			params[8] = new Object_Parameter("stdDevAdd", 0, stdDevAdd, null);
+			params[9] = new Object_Parameter("stdDevMult", 0, stdDevMult, null);
+			params[10] = new Object_Parameter("modStamp", 0, 0.0F, modStamp);
+			
+			Object_Parameter.setPositions(params);
+			
+			return params;
+		}
 	
     /**
      * Gets the value of the demandSetId property.
