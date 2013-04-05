@@ -26,11 +26,35 @@
 
 package edu.berkeley.path.model_objects.shared;
 
+import core.Monitor;
+
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatterBuilder;
+import org.joda.time.format.DateTimeParser;
+import org.joda.time.format.DateTimeFormatter;
+
+/**
+ * DateTime class model object which utilizes joda time functionality
+ * 
+ * @author mnjuhn
+ */
 public class DateTime extends edu.berkeley.path.model_objects.jaxb.DateTime {
 
-  public static DateTime fromJoda(org.joda.time.DateTime joda) {
-    return new DateTime(joda.getMillis());
-  }
+  /** 
+   * List of valid datetime parsing patterns
+   * DateTime parsing symbols can be found here: 
+   * http://joda-time.sourceforge.net/apidocs/org/joda/time/format/DateTimeFormat.html
+   */ 
+  private final DateTimeParser[] parsers = { 
+        DateTimeFormat.forPattern("dd-MM-yyyy HH:mm:ss.SS").getParser(),
+        DateTimeFormat.forPattern( "yyyy-MM-dd HH:mm:ss" ).getParser()
+      };
+  
+  /**
+   * DateTime format builder used based on parsing patterns defined above
+   */
+  private DateTimeFormatter formatter = 
+      new DateTimeFormatterBuilder().append( null, parsers ).toFormatter();
   
   /**
    * Constructor takes in milliseconds
@@ -40,13 +64,40 @@ public class DateTime extends edu.berkeley.path.model_objects.jaxb.DateTime {
   public DateTime(long milliseconds) {
     setMilliseconds(milliseconds);
   }
-
-  public DateTime() {
-    super();
-  }
-
+  
+  /**
+   * Convert Datetime object representation to Jodadate time object
+   * 
+   * @return Joda datetime object
+   */
   public org.joda.time.DateTime toJoda() {
     return new org.joda.time.DateTime(getMilliseconds());
   }
-
+  
+  /**
+   * Update Datetime object by parsing date string and return Joda datetime object
+   * 
+   * @return Joda datetime object
+   */
+  public org.joda.time.DateTime setDateString(String date) {
+    org.joda.time.DateTime joda = null;
+    try {
+      joda =  this.formatter.parseDateTime(date);
+      // get milliseconds from to set
+      setMilliseconds(joda.getMillis());
+    } catch (Exception e) {
+      Monitor.debug("Error Setting date string to joda time: " + date);
+    }
+    return joda;
+  }
+  
+  /**
+   * Create new Datetime model object from Joda DateTime
+   * 
+   * @return  New Datetime model object
+   */
+  public static DateTime fromJoda(org.joda.time.DateTime joda) {
+    return new DateTime(joda.getMillis());
+  }
+  
 }
