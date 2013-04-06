@@ -34,6 +34,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Calendar;
 
+import edu.berkeley.path.model_objects.shared.DateTime;
+
 public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.SplitRatioProfile {
 
 	/**
@@ -64,28 +66,21 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	 * @return double
 	 */
 	public double getSplitRatio(long link_in_id, long link_out_id, long vehicle_type_id, String time){
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-M-YYYY HH:mm:ss.SS", Locale.ENGLISH);
 		
-		try {
-			Calendar c = Calendar.getInstance();
-			Date timeWanted = sdf.parse(time);
-			c.setTime(timeWanted);
-			c.set(0,0,0);
-			
-			Calendar c2 = Calendar.getInstance();
-			c2.set(0,0,0,0,0,0);
-			
-			long daySeconds = ((c.getTimeInMillis() - c2.getTimeInMillis()) / 1000) + 1;
-			int offset = (int)Math.ceil(daySeconds / this.getDt());
-			
-			List<Splitratio> ratios = getListOfSplitratios();
-			return Double.parseDouble(ratios.get(offset).getContent());
-			
-
-		} catch (ParseException e) {
-			return -1;
-		}
+		DateTime dateTime = new DateTime(100);
+	    org.joda.time.DateTime joda = dateTime.setDateString("00:00:00");
+	    long milliseconds1 = joda.getMillis();
 		
+		DateTime dateTime2= new DateTime(100);
+	    org.joda.time.DateTime joda2 = dateTime2.setDateString(time);
+	    long milliseconds2 = joda2.getMillis();
+		
+		long daySeconds = ((milliseconds2  - milliseconds1) / 1000) + 1;
+		int offset = (int)Math.ceil(daySeconds / this.getDt());
+		
+		List<Splitratio> ratios = getListOfSplitratios();
+		return Double.parseDouble(ratios.get(offset).getContent());
+					
 	}
 	
 

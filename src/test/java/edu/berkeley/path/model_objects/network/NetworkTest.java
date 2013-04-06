@@ -28,8 +28,6 @@ package edu.berkeley.path.model_objects.network;
 
 import org.junit.*;
 import static org.junit.Assert.*;
-
-import java.math.BigDecimal;
 import java.util.*;
 
 public class NetworkTest {

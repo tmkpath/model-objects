@@ -25,7 +25,7 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio{
 	 * @param linkOut set the split ratio's link out
 	 */
 	public void setLinkOut(long linkOut) {
-		super.setLinkIn(linkIn);
+		super.setLinkOut(linkOut);
 	}
 	
 	/**

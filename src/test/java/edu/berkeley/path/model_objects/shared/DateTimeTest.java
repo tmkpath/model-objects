@@ -3,9 +3,7 @@ package edu.berkeley.path.model_objects.shared;
 import org.junit.*;
 import static org.junit.Assert.*;
 import edu.berkeley.path.model_objects.shared.DateTime;
-import core.*;
 
-import java.util.*;
 
 public class DateTimeTest {
   DateTime dateTime;
