@@ -63,23 +63,48 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
     for (SplitRatioProfile profile : getListOfSplitRatioProfiles()) {
       SplitRatioProfile deepCopyProfile = profile.clone();
       double dt = profile.getDt(); 
-      double t0 = profile.getStartTime(); 
-
-      int nSamples = (int)Math.floor(intervalDuration / dt);
-      if (t0 > intervalStart){
-    	  intervalStart = t0;
+      double t0 = profile.getStartTime();
+      int numRatios = profile.getListOfSplitratios().size();
+      double tEnd = t0 + (dt * (numRatios - 1));
+      int nSamples = (int)Math.floor(intervalDuration / dt) + 1;
+      
+      if(intervalEnd < t0)
+    	  nSamples = 0;
+      else if(intervalStart > tEnd)
+    	  nSamples = 0;
+      else if(intervalStart == t0 && intervalEnd == tEnd)
+    	  nSamples = profile.getListOfSplitratios().size();
+      else{
+    	  if(intervalStart < t0)
+    		  intervalStart = t0;
+    	  if(intervalEnd > tEnd)
+    		  intervalEnd = tEnd;
+    	  
+    	  if(intervalStart > t0){
+    		  intervalStart = intervalStart + ((((intervalStart - t0) / dt) + 1) - (intervalStart - t0));
+    	  }
+    	  if(intervalEnd < tEnd){
+    		  
+    	  }
+    	  nSamples = (int)Math.floor((intervalEnd - intervalStart) / dt) + 1;
+          
       }
+      
+      
       List<Splitratio> ratios = new ArrayList<Splitratio>();
       int ratioStartIndex = ((int)Math.floor(intervalStart / t0)) - 1;
-      for(int x = 0; x < nSamples; x++)
-    	ratios.add(profile.getListOfSplitratios().get(ratioStartIndex + x));
+      int endSamplesToIgnore = (int)(intervalEnd - (t0 + dt * (profile.getListOfSplitratios().size()-1)));
+      if(endSamplesToIgnore < 0)
+    	  nSamples = nSamples  - (Math.abs(endSamplesToIgnore) / ((int)dt) + 1);
+      for(int x = ratioStartIndex; x < nSamples; x++)
+    	ratios.add(profile.getListOfSplitratios().get(x));
       deepCopyProfile.setListOfSplitRatios(ratios);
       profiles.add(deepCopyProfile);
     
     }
     return profiles;
   }
-     
+    
   
   /**
    * Get the profile at the specified node.
@@ -198,7 +223,7 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
      *     {@link Long }
      *     
      */
-    public void setProjectId(Long value) {
+    public void setProjectId(long value) {
         super.setProjectId(value);
     }
 
