@@ -28,12 +28,6 @@ package edu.berkeley.path.model_objects.scenario;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Calendar;
-
 import edu.berkeley.path.model_objects.shared.DateTime;
 
 public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.SplitRatioProfile {
@@ -58,6 +52,8 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	
 	/**
 	 * returns the split ratio value at the time passed in with this in and out link
+	 * If the time falls between sample times we return the ratio closer to the beginning of the sample
+	 *
 	 * 
 	 * @param link_in_id
 	 * @param link_out_id
@@ -67,25 +63,25 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	 */
 	public double getSplitRatio(long link_in_id, long link_out_id, long vehicle_type_id, String time){
 		
-		DateTime dateTime = new DateTime(100);
-	    org.joda.time.DateTime joda = dateTime.setDateString("00:00:00");
+		DateTime dateTime = new DateTime();
+	    org.joda.time.DateTime joda = dateTime.setDateString("1970-01-01 00:00:00");
 	    long milliseconds1 = joda.getMillis();
 		
-		DateTime dateTime2= new DateTime(100);
-	    org.joda.time.DateTime joda2 = dateTime2.setDateString(time);
+		DateTime dateTime2= new DateTime();
+	    org.joda.time.DateTime joda2 = dateTime2.setDateString("1970-01-01 " + time);
 	    long milliseconds2 = joda2.getMillis();
 		
 		long daySeconds = ((milliseconds2  - milliseconds1) / 1000) + 1;
-		int offset = (int)Math.ceil(daySeconds / this.getDt());
+		int offset = (int)Math.floor(daySeconds / this.getDt());
 		
 		List<Splitratio> ratios = getListOfSplitratios();
 		return Double.parseDouble(ratios.get(offset).getContent());
-					
 	}
 	
 
 	/**
 	 * returns the split ratio value at the offset from the start time of this profile passed in with this in and out link
+	 * If the offset is between sample times we return the ratio closer to the beginning of the sample
 	 * 
 	 * @param link_in_id
 	 * @param link_out_id
@@ -96,7 +92,7 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	 */
 	public double getSplitRatio(long link_in_id, long link_out_id, long vehicle_type_id, long offsetTime){
 		List<Splitratio> ratios = getListOfSplitratios();
-		int offset = (int)Math.ceil(offsetTime / this.getDt());
+		int offset = (int)Math.floor(offsetTime / this.getDt());
 		
 		return Double.parseDouble(ratios.get(offset).getContent());
 	}
@@ -164,7 +160,7 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
      *     {@link Double }
      *     
      */
-    public void setStartTime(Double value) {
+    public void setStartTime(double value) {
         super.setStartTime(value);
     }
 
@@ -188,7 +184,7 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
      *     {@link Double }
      *     
      */
-    public void setDt(Double value) {
+    public void setDt(double value) {
         super.setDt(value);
     }
 
@@ -212,7 +208,7 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
      *     {@link Long }
      *     
      */
-    public void setDestinationNetworkId(Long value) {
+    public void setDestinationNetworkId(long value) {
     	 super.setDestinationNetworkId(value);
     }
     
