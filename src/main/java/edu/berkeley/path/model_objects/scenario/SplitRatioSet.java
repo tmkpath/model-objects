@@ -80,7 +80,7 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
     	  //samples (t0 + dt * number of sample)
     	  if(intervalStart > t0){
     		  int startSample = (int)t0;
-    		  while(startSample <= intervalStart){
+    		  while(startSample < intervalStart){
     			  ratioStartIndex++;
     			  startSample += (int)dt;
     		  }

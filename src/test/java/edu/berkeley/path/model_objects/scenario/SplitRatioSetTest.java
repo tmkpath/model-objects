@@ -47,7 +47,7 @@ public class SplitRatioSetTest {
 	@Test
 	public void testSlice(){
 		
-		//start the same in middle
+		//start the same  and end in middle
 		Interval i = new Interval(3600000,3680000);
 		List<SplitRatioProfile> profs = set.slice(i);
 		List<Splitratio> ratios1 = profs.get(0).getListOfSplitratios();
@@ -71,7 +71,20 @@ public class SplitRatioSetTest {
 		assertEquals(0, ratios2.size());
 		assertEquals(0, ratios3.size());
 
-		//start in middle and end in middle
+		//end and end
+		i = new Interval(4500000,4500000);
+		profs = set.slice(i);
+		ratios1 = profs.get(0).getListOfSplitratios();
+		ratios2 = profs.get(1).getListOfSplitratios();
+		ratios3 = profs.get(2).getListOfSplitratios();
+		
+		assertEquals(3, profs.size());
+		assertEquals(1, ratios1.size());
+		assertEquals(1, ratios2.size());
+		assertEquals(1, ratios3.size());
+
+		
+		//start in middle and end in middle - do not cross samples
 		i = new Interval(3660000,3730000);
 		profs = set.slice(i);
 		ratios1 = profs.get(0).getListOfSplitratios();
@@ -83,7 +96,7 @@ public class SplitRatioSetTest {
 		assertEquals(2, ratios2.size());
 		assertEquals(2, ratios3.size());
 
-		//start in middle and end in middle
+		//start in middle and end in middle but cross samples
 		i = new Interval(3660000,3990000);
 		profs = set.slice(i);
 		ratios1 = profs.get(0).getListOfSplitratios();
