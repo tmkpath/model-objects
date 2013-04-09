@@ -28,8 +28,6 @@ package edu.berkeley.path.model_objects.network;
 
 import org.junit.*;
 import static org.junit.Assert.*;
-
-import java.math.BigDecimal;
 import java.util.*;
 
 public class NetworkTest {
@@ -91,7 +89,6 @@ public class NetworkTest {
     Link ln3 = nw.getLinkWithId(3);
     assertTrue(ln3 != null);
     assert(ln3 != null);
-    System.out.println(ln3.getFirstRoadName());
     assertEquals("three", ln3.getFirstRoadName() );
 
     // note that lookups by string ID work too:
