@@ -50,13 +50,13 @@ public class NetworkTest {
 
     nd1 = new Node();
     nd1.setId(1);
-    nd1.setName("one");
+    nd1.addMarkerName("one");
     nd1.setId(1);
     nw.getListOfNodes().add(nd1);
 
     nd2 = new Node();
     nd2.setId(2);
-    nd2.setName("two");
+    nd2.addMarkerName("two");
     nd2.setType(1, "test");
     nw.getListOfNodes().add(nd2);
 
@@ -86,7 +86,7 @@ public class NetworkTest {
     assertTrue(n1 != null);
     assert(n1 != null);
 
-    assertEquals("one", n1.getName());
+    assertEquals("one", n1.getFirstMarkerName());
     
     Link ln3 = nw.getLinkWithId(3);
     assertTrue(ln3 != null);
@@ -98,7 +98,7 @@ public class NetworkTest {
     Node n2 = nw.getNodeWithId(2);
     assertTrue(n2 != null);
     assert(n2 != null);
-    assertEquals("two", n2.getName());
+    assertEquals("two", n2.getFirstMarkerName());
     
     assertEquals(n1, ln3.getBeginNode());
     assertEquals(n2, ln3.getEndNode());

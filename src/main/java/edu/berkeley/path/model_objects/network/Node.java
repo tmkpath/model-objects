@@ -28,6 +28,8 @@ package edu.berkeley.path.model_objects.network;
 
 import java.util.List;
 import edu.berkeley.path.model_objects.jaxb.Position;
+import edu.berkeley.path.model_objects.jaxb.Road;
+import edu.berkeley.path.model_objects.jaxb.Roads;
 import edu.berkeley.path.model_objects.jaxb.RoadwayMarkers;
 import edu.berkeley.path.model_objects.jaxb.Marker;
 import edu.berkeley.path.model_objects.jaxb.NodeType;
@@ -178,36 +180,48 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 	}
 	
 	/**
-	 * Get First Name roadway marker name of node
-	 * 
-	 * @return	String  The name of the first roadway marker of the node
-	 */
-	public String getName() {
-		List<Marker> markers = getRoadwayMarkers().getMarker();
-		String name = null;
-		if (!markers.isEmpty()) {
-			name = markers.get(0).getName();
-		}
-		return name;
-	}
-	
-	/**
-	 * Adds roadway marker name to node
-	 * 
-	 * @param  String	Name of roadway marker to add to node
-	 */
-	public void setName(String name) {
-		Marker marker = new Marker();
-		marker.setName(name);
-		
-		// Try and get list of roadway markers
-		RoadwayMarkers markers = getRoadwayMarkers();
-		if (markers == null) {
-		  markers = new RoadwayMarkers();
-		}
-		markers.getMarker().add(marker);
-		setRoadwayMarkers(markers);
-	}
+   * Get Nodes first node Name
+   * 
+   * @return  The marker name of node
+   */
+  public String getFirstMarkerName() {
+    if ( getRoadwayMarkers() != null && getRoadwayMarkers().getMarker() != null) {
+        return getRoadwayMarkers().getMarker().get(0).getName();
+    }
+    // otherwise return empty string
+    else {
+      return "";
+    }
+  }
+
+  /**
+   * Get all Marker Names on Node
+   * 
+   * @return  List of marker name(s) associated with node
+   */
+  public java.util.List<String> getMarkerNames() {
+    java.util.ArrayList<String> markerNames = new java.util.ArrayList<String>(); 
+    if ( getRoadwayMarkers() != null && getRoadwayMarkers().getMarker() != null) {
+      // For each road add its name to the list  
+      for (Marker marker : getRoadwayMarkers().getMarker()) {
+          markerNames.add(marker.getName());
+      }
+    }    
+    return markerNames;
+  }
+  
+  /**
+   * Add new Marker Name to Node
+   * 
+   * @param The marker name of node
+   */
+  public void addMarkerName(String markerName) {    
+    Marker marker = new Marker();
+    marker.setName(markerName);
+    RoadwayMarkers markers = new RoadwayMarkers();
+    markers.getMarker().add(marker);
+    setRoadwayMarkers(markers);
+  }
 	
 	/**
 	 * Set latitude and longitude of Node

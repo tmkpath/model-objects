@@ -32,6 +32,7 @@ import oracle.spatial.util.WKT;
 
 import core.Monitor;
 import edu.berkeley.path.model_objects.shared.Point;
+import edu.berkeley.path.model_objects.MOException;
 
 /**
  * Geometry Utility wrapper around JGeometry Class
@@ -49,7 +50,7 @@ public class Geometry {
    * @param   List of points
    * @param   JGeometry Type
    */
-  public Geometry(List<Point> points, GeomType geomType) {
+  public Geometry(List<Point> points, GeomType geomType) throws MOException {
     // default to SRID of 8307
     this(points, geomType, 8307);
   }
@@ -61,7 +62,7 @@ public class Geometry {
    * @param   JGeometry Type
    * @param   SRID number
    */
-  public Geometry(List<Point> points, GeomType geomType, int srid) {
+  public Geometry(List<Point> points, GeomType geomType, int srid) throws MOException {
     // create array of coordinates which is the size of the list points times 2 (lats and longs)
     int coordLength = points.size() * 2;
     Double[] coords = new Double[coordLength];
@@ -76,7 +77,7 @@ public class Geometry {
     }
     // Currently this class only supports SRID 8307 so output error message
     else {
-      Monitor.err("Error invalid SRID, the Geometry class only supports SRID 8307.");
+      throw new MOException(null, "Error invalid SRID, the Geometry class only supports SRID 8307.");
     }
     switch (geomType) {
       // Rectangles must have top left and bottom right lat and long coordinates
@@ -90,7 +91,18 @@ public class Geometry {
         break;
       // Creates 2D multi-point JGeometry structure
       case MULTIPOINT:
-        this.geom = JGeometry.createMultiPoint(coords, 2, srid);        
+        this.geom = JGeometry.createMultiPoint(coords, 2, srid);  
+      // Creates 2d single point JGeometry structure
+      case POINT:
+        // check to ensure there is only 2 coordinates passed in (longitude, latitude)
+        if (coords.length != 2) {
+          throw new MOException(null, "Error more than one point passed in when trying to create Point JGeometry");
+        }
+        // get first coordinate point and use it as point and pass it in as array of double
+        double[] coord = new double[2];
+        coord[0] = coords[0];
+        coord[1] = coords[1];
+        this.geom = JGeometry.createPoint(coord, 2, srid);
       default:
         break;
     }
