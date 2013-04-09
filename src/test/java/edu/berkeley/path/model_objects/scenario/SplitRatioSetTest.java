@@ -55,8 +55,8 @@ public class SplitRatioSetTest {
 		List<Splitratio> ratios3 = profs.get(2).getListOfSplitratios();
 
 		assertEquals(3, profs.size());
-		assertEquals(1, ratios1.size());
-		assertEquals(1, ratios2.size());
+		assertEquals(2, ratios1.size());
+		assertEquals(2, ratios2.size());
 		assertEquals(0, ratios3.size());
 
 		//start and start
@@ -71,17 +71,17 @@ public class SplitRatioSetTest {
 		assertEquals(0, ratios2.size());
 		assertEquals(0, ratios3.size());
 
-//		//start in middle and end in middle
-//		i = new Interval(3660000,3730000);
-//		profs = set.slice(i);
-//		ratios1 = profs.get(0).getListOfSplitratios();
-//		ratios2 = profs.get(1).getListOfSplitratios();
-//		ratios3 = profs.get(2).getListOfSplitratios();
-//		
-//		assertEquals(3, profs.size());
-//		assertEquals(1, ratios1.size());
-//		assertEquals(1, ratios2.size());
-//		assertEquals(1, ratios3.size());
+		//start in middle and end in middle
+		i = new Interval(3660000,3730000);
+		profs = set.slice(i);
+		ratios1 = profs.get(0).getListOfSplitratios();
+		ratios2 = profs.get(1).getListOfSplitratios();
+		ratios3 = profs.get(2).getListOfSplitratios();
+		
+		assertEquals(3, profs.size());
+		assertEquals(1, ratios1.size());
+		assertEquals(2, ratios2.size());
+		assertEquals(2, ratios3.size());
 
 		//start in middle and end in middle
 		i = new Interval(3660000,3990000);
@@ -91,9 +91,9 @@ public class SplitRatioSetTest {
 		ratios3 = profs.get(2).getListOfSplitratios();
 		
 		assertEquals(3, profs.size());
-		assertEquals(1, ratios1.size());
-		assertEquals(2, ratios2.size());
-		assertEquals(1, ratios3.size());
+		assertEquals(2, ratios1.size());
+		assertEquals(3, ratios2.size());
+		assertEquals(2, ratios3.size());
 		
 		//start and end before
 		i = new Interval(3200000,3500000);
