@@ -64,7 +64,15 @@ public class DateTime extends edu.berkeley.path.model_objects.jaxb.DateTime {
   public DateTime(long milliseconds) {
     setMilliseconds(milliseconds);
   }
-  
+ 
+  /**
+   * Constructor sets to midnight 1970 UTC
+   *
+   */
+  public DateTime() {
+    setMilliseconds(0);
+  }
+ 
   /**
    * Convert Datetime object representation to Jodadate time object
    * 

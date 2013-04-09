@@ -56,40 +56,76 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
 	 */
   public List<SplitRatioProfile> slice(Interval interval) {
 	List<SplitRatioProfile> profiles = new ArrayList<SplitRatioProfile>();
-    double intervalStart = interval.getStartMillis() / 1000;
-    double intervalEnd = interval.getEndMillis() / 1000;
-    double intervalDuration = intervalEnd - intervalStart;
     
     for (SplitRatioProfile profile : getListOfSplitRatioProfiles()) {
+      double intervalStart = interval.getStartMillis() / 1000;
+      double intervalEnd = interval.getEndMillis() / 1000;
+      
       SplitRatioProfile deepCopyProfile = profile.clone();
       double dt = profile.getDt(); 
-      double t0 = profile.getStartTime(); 
-
-      int nSamples = (int)Math.floor(intervalDuration / dt);
-      if (t0 > intervalStart){
-    	  intervalStart = t0;
-      }
+      double t0 = profile.getStartTime();
+      int numRatios = profile.getListOfSplitratios().size();
+ 
+      boolean noSamples = false;
+      
+      double tEnd = t0 + (dt * (numRatios - 1));
+      int ratioStartIndex = 0;
+      //test to see if the interval is completely outside the sample
+      if(intervalEnd < t0)
+    	  noSamples = true;
+      else if(intervalStart > tEnd)
+    	  noSamples = true;
+      else {
+    	  //adjust intervalStart and intervalEnd to multiples of 
+    	  //samples (t0 + dt * number of sample)
+    	  if(intervalStart > t0){
+    		  int startSample = (int)t0;
+    		  while(startSample <= intervalStart){
+    			  ratioStartIndex++;
+    			  startSample += (int)dt;
+    		  }
+    	  
+    		  intervalStart = startSample;
+    	  } else if (intervalStart < t0)
+      		  intervalStart = t0;
+    	    		  
+    		  
+    	  if(intervalEnd > tEnd)
+    		  intervalEnd = (int)tEnd;
+    	  else if (intervalEnd < tEnd){
+    		int endSample = (int)tEnd;
+		  	while(intervalEnd < endSample){
+			  endSample -= (int)dt;
+		  	}
+		  	intervalEnd = endSample;
+		  }
+      }          
+      
       List<Splitratio> ratios = new ArrayList<Splitratio>();
-      int ratioStartIndex = ((int)Math.floor(intervalStart / t0)) - 1;
-      for(int x = 0; x < nSamples; x++)
-    	ratios.add(profile.getListOfSplitratios().get(ratioStartIndex + x));
+      int index = ratioStartIndex;
+      while(intervalStart <= intervalEnd && noSamples == false){
+      	ratios.add(profile.getListOfSplitratios().get(index)); 
+      	intervalStart += (int)dt;
+      	index++;
+      }
+
       deepCopyProfile.setListOfSplitRatios(ratios);
       profiles.add(deepCopyProfile);
     
     }
     return profiles;
   }
-     
-  
+    
+
   /**
    * Get the profile at the specified node.
    * Creates a list of SplitRatioProlies associated with the node passed in.
    * If there are no profiles associated with this node null is returned.
    * 
    * @param Node get split ratio profiles associated with the node
-   * @return List<SplitRatioProfile> or null
+   * @return List<SplitRatioProfile> or null if empty
    */
-  public List<SplitRatioProfile> getSplitRatioProfileAt(Node node) {
+  public List<SplitRatioProfile> getSplitRatioProfileAtNode(Node node) {
 	  List<SplitRatioProfile> profiles = new ArrayList<SplitRatioProfile>();
 	  for(SplitRatioProfile p : getListOfSplitRatioProfiles())
 		  if(p.getNodeId() == node.getId())
@@ -198,7 +234,7 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
      *     {@link Long }
      *     
      */
-    public void setProjectId(Long value) {
+    public void setProjectId(long value) {
         super.setProjectId(value);
     }
 
