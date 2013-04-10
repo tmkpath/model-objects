@@ -27,17 +27,18 @@
 package edu.berkeley.path.model_objects.scenario;
 
 /**
- * DemandProfile Factory
+ * DemandSet Factory
  * @author Alexey Goder alexey@goder.com
  *
  */
-public class DemandProfileFactory {
+public class DemandSetFactory {
     /**
-     * Create an instance of DemandProfile Model Object
+     * Create an instance of DemandSet Model Object
      * 
-     * @return  DemandProfile Model Object 
+     * @return  DemandSet Model Object 
      */
-    public DemandProfile createDemandProfile() {
-        return new DemandProfile();
+    public DemandSet createDemandSet() {
+        return new DemandSet();
     }
+
 }
