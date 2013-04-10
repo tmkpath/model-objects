@@ -171,10 +171,10 @@ public class SplitRatioSetTest {
 		
 		List<Splitratio> ratios = new ArrayList<Splitratio>();
 		
-		ratios.add(SplitRatioProfileTest.createSplitRatio(1,2,3,0.5));
-		ratios.add(SplitRatioProfileTest.createSplitRatio(1,2,3,0.1));
-		ratios.add(SplitRatioProfileTest.createSplitRatio(1,2,3,1));
-		ratios.add(SplitRatioProfileTest.createSplitRatio(1,2,3,0.6));
+		ratios.add(SplitRatioProfileTest.createSplitRatio(1,2,3,0.5,0));
+		ratios.add(SplitRatioProfileTest.createSplitRatio(1,2,3,0.1,1));
+		ratios.add(SplitRatioProfileTest.createSplitRatio(1,2,3,1,2));
+		ratios.add(SplitRatioProfileTest.createSplitRatio(1,2,3,0.6,3));
 		profile.setListOfSplitRatios(ratios);
 		
 		return profile;

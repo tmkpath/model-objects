@@ -49,7 +49,7 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
 	 * - Profile StartTime: 5:00AM
 	 * - Profile Sample Time: Every 4 Minutes
 	 * 
-	 * - Return ratios from the profile at: 5:08, 5:12 ... 6:04, 6:08
+	 * - Return ratios from the profile at: 5:08, 5:12 ... 6:00, 6:04
 	 *     
 	 * @param interval
 	 * @return List of SplitRatioProfile whose splitratio only contains ratios in the Interval

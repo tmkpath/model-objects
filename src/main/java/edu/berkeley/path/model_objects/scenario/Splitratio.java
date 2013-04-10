@@ -70,6 +70,19 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio{
 		return super.getVehTypeId();
 	}
 	
+	/**
+	 * @param offset the order in the set of ratios
+	 */
+	public void setRatioOrder(int offset) {
+		super.setRatioOrder(offset);
+	}
+	
+	/**
+	 * @return the vehicle type id for this ratio
+	 */
+	public int getRatioOrder() {
+		return super.getRatioOrder();
+	}
 	
 	public boolean equals(long linkInId, long linkOutId,long vehTypeId){
 		return linkInId == this.getLinkIn() && linkOutId == this.getLinkOut() && vehTypeId == this.getVehTypeId();

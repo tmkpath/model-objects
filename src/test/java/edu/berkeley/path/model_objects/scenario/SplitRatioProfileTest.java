@@ -24,19 +24,20 @@ public class SplitRatioProfileTest {
 		
 		List<Splitratio> ratios = new ArrayList<Splitratio>();
 		
-		ratios.add(createSplitRatio(1,2,3,0.5));
-		ratios.add(createSplitRatio(1,2,3,0.1));
-		ratios.add(createSplitRatio(1,2,3,1));
-		ratios.add(createSplitRatio(1,2,3,0.6));
+		ratios.add(createSplitRatio(1,2,3,0.5,0));
+		ratios.add(createSplitRatio(1,2,3,0.1,1));
+		ratios.add(createSplitRatio(1,2,3,1,2));
+		ratios.add(createSplitRatio(1,2,3,0.6,3));
 		profile.setListOfSplitRatios(ratios);
 	}
 	
-	public static Splitratio createSplitRatio(int link_in, int link_out, int veh_id, double ratio) {
+	public static Splitratio createSplitRatio(int link_in, int link_out, int veh_id, double ratio, int order) {
 		Splitratio r = new Splitratio();
 		r.setLinkIn(link_in);
 		r.setLinkOut(link_out);
 		r.setVehTypeId(veh_id);
 		r.setContent(ratio + "");
+		r.setRatioOrder(order);	
 		return r;
 		
 	}

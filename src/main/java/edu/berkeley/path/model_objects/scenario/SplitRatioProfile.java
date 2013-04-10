@@ -75,7 +75,13 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 		int offset = (int)Math.floor(daySeconds / this.getDt());
 		
 		List<Splitratio> ratios = getListOfSplitratios();
-		return Double.parseDouble(ratios.get(offset).getContent());
+		for(Splitratio r : ratios)
+		{
+			if(r.equals(link_in_id, link_out_id, vehicle_type_id) && r.getRatioOrder() == offset)
+				return Double.parseDouble(ratios.get(offset).getContent());				
+		}
+		return -1;
+
 	}
 	
 
@@ -86,15 +92,18 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	 * @param link_in_id
 	 * @param link_out_id
 	 * @param vehicle_type_id
-	 * @param destinationNetworkId
 	 * @param integer offset in seconds since start_time of profile
-	 * @return
+	 * @return the split ratio corresponding to the parameters passed in or -1 if not found
 	 */
 	public double getSplitRatio(long link_in_id, long link_out_id, long vehicle_type_id, long offsetTime){
 		List<Splitratio> ratios = getListOfSplitratios();
 		int offset = (int)Math.floor(offsetTime / this.getDt());
-		
-		return Double.parseDouble(ratios.get(offset).getContent());
+		for(Splitratio r : ratios)
+		{
+			if(r.equals(link_in_id, link_out_id, vehicle_type_id) && r.getRatioOrder() == offset)
+				return Double.parseDouble(ratios.get(offset).getContent());				
+		}
+		return -1;
 	}
 
 	/**
