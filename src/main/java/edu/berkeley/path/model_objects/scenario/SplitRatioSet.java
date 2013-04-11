@@ -40,16 +40,16 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
 	 * profile we return none of the ratios.
 	 * 
 	 * If the interval does not match exactly with the start time of the SplitRatioProfile, 
-	 * we find the next smaller start time of the profile and proceed to get the split ratios 
-	 * up until the end time. If the end time doesn't exactly match the profile, 
-	 * we again find the next smallest time in the List.
+	 * we find the next larger start time of the profile and proceed to get the split ratios 
+	 * up until the end time. If the end time doesn't exactly match end time of the profile, 
+	 * we again find the next largest time int the profile.
 	 * 
 	 * For Example, 
 	 * - Interval : 5:05AM to 6:05AM
 	 * - Profile StartTime: 5:00AM
 	 * - Profile Sample Time: Every 4 Minutes
 	 * 
-	 * - Return ratios from the profile at: 5:04, 5:08 ... 6:00, 6:04
+	 * - Return ratios from the profile at: 5:08, 5:12 ... 6:00, 6:04
 	 *     
 	 * @param interval
 	 * @return List of SplitRatioProfile whose splitratio only contains ratios in the Interval
@@ -80,7 +80,7 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
     	  //samples (t0 + dt * number of sample)
     	  if(intervalStart > t0){
     		  int startSample = (int)t0;
-    		  while(startSample <= intervalStart){
+    		  while(startSample < intervalStart){
     			  ratioStartIndex++;
     			  startSample += (int)dt;
     		  }
@@ -93,10 +93,10 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
     	  if(intervalEnd > tEnd)
     		  intervalEnd = (int)tEnd;
     	  else if (intervalEnd < tEnd){
-    		int endSample = (int)tEnd;
-		  	while(intervalEnd < endSample){
-			  endSample -= (int)dt;
-		  	}
+    		int endSample = (int)t0;
+    		while(endSample < intervalEnd){
+  			  endSample += (int)dt;
+  		  	}
 		  	intervalEnd = endSample;
 		  }
       }          
