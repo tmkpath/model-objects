@@ -25,7 +25,7 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio{
 	 * @param linkOut set the split ratio's link out
 	 */
 	public void setLinkOut(long linkOut) {
-		super.setLinkIn(linkIn);
+		super.setLinkOut(linkOut);
 	}
 	
 	/**
@@ -40,5 +40,51 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio{
 	 */
 	public String getModStamp() {
 		return super.getModStamp();
+	}
+	
+	/**
+	 * @param content the content to set
+	 */
+	public void setContent(String content) {
+		super.setContent(content);
+	}
+	
+	/**
+	 * @return the content
+	 */
+	public String getContent() {
+		return super.getContent();
+	}
+	
+	/**
+	 * @param id the vehicle type id for this ratio
+	 */
+	public void setVehTypeId(long id) {
+		super.setVehTypeId(id);
+	}
+	
+	/**
+	 * @return the vehicle type id for this ratio
+	 */
+	public long getVehTypeId() {
+		return super.getVehTypeId();
+	}
+	
+	/**
+	 * @param offset the order in the set of ratios
+	 */
+	public void setRatioOrder(int offset) {
+		super.setRatioOrder(offset);
+	}
+	
+	/**
+	 * @return the vehicle type id for this ratio
+	 */
+	public int getRatioOrder() {
+		return super.getRatioOrder();
+	}
+	
+	public boolean equals(long linkInId, long linkOutId,long vehTypeId){
+		return linkInId == this.getLinkIn() && linkOutId == this.getLinkOut() && vehTypeId == this.getVehTypeId();
 	}
 }

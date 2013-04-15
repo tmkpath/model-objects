@@ -311,6 +311,8 @@
 				<xs:complexType mixed="true">
 				  <xs:attribute name="link_in" type="xs:long" use="required" />
 				  <xs:attribute name="link_out" type="xs:long" use="required" />
+				  <xs:attribute name="veh_type_id" type="xs:long" use="required" />
+				  <xs:attribute name="ratio_order" type="xs:int" use="required" />
 					<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />	  
 				</xs:complexType>
 			  </xs:element>  

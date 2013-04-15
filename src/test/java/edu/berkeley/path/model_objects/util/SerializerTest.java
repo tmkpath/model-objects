@@ -29,16 +29,41 @@ package edu.berkeley.path.model_objects.util;
 import org.junit.*;
 import static org.junit.Assert.*;
 import edu.berkeley.path.model_objects.jaxb.Node;
+import edu.berkeley.path.model_objects.network.*;
+import core.*;
 
 import java.util.*;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 public class SerializerTest {
-  Node node;
+  edu.berkeley.path.model_objects.jaxb.Node node;
+  NodeExt nodeExt;
+  
+  /**
+   * Mock class to test marshalling and unmarshalling of Extending a model objects
+   */
+  public static class NodeExt extends edu.berkeley.path.model_objects.network.Node {
+    private int testAttr;
+    
+    public int getTestAttr() {
+      return this.testAttr;
+    }
+    
+    public void setTestAttr(int value) {
+      this.testAttr = value;
+    }
+  }
   
   @Before
   public void setup() {
+    // Model Object to test JAXB to test JAXB unmarshalling and marshalling fucntionality in Serializer class
     node = new Node();
     node.setId(1);
+    // Extended Model Object to test JAXB unmarshalling and marshalling fucntionality in Serializer class
+    nodeExt = new NodeExt();
+    nodeExt.setId(1);
+    nodeExt.setTestAttr(2);
   }
 
   @Test
@@ -53,8 +78,8 @@ public class SerializerTest {
     String nodeJSON = Serializer.objectToJSON(node);
     String expectedJSON = "{\"node\":{\"@id\":\"1\"}}";
     // Compare expected with actual
-    assertEquals(nodeXML, expectedXML);
-    assertEquals(nodeJSON, expectedJSON);
+    assertEquals(expectedXML, nodeXML);
+    assertEquals(expectedJSON, expectedJSON);
     
   }
   
@@ -72,4 +97,36 @@ public class SerializerTest {
     assertEquals(3, node.getId());
     
   }
+  
+  @Test
+  public void testMarshallerExtenedApp () {
+    // Convert nodeExt object to XML
+    String nodeExtXML = Serializer.objectToXml(nodeExt);
+    String expectedXML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
+        "<node id=\"1\"/>\n";
+    
+    // Convert nodeExt object to JSON
+    String nodeExtJSON = Serializer.objectToJSON(node);
+    String expectedJSON = "{\"node\":{\"@id\":\"1\"}}";
+    
+    // Compare expected with actual results
+    assertEquals(expectedXML, nodeExtXML);
+    assertEquals(expectedJSON, nodeExtJSON);
+  }
+  
+  @Test
+  public void testUnMarshallerExtenedApp () {
+    String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
+        "<node id=\"2\"/>\n";
+    // unmarshal XML into Node object
+    nodeExt = Serializer.xmlToObject(xml, nodeExt.getClass());
+    assertEquals(2, nodeExt.getId());
+    
+    String json = "{\"node\":{\"@id\":\"3\"}}";
+    // unmarshal JSON into Node object
+    nodeExt = Serializer.jsonToObject(json, nodeExt.getClass());
+    assertEquals(3, nodeExt.getId());
+  }
+  
+  
 }

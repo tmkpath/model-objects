@@ -31,8 +31,6 @@ import edu.berkeley.path.model_objects.jaxb.Position;
 import edu.berkeley.path.model_objects.shared.Point;
 
 import java.util.List;
-import java.util.ArrayList;
-
 
 /** Network class
 * @author Gabriel Gomes (gomes@path.berkeley.edu)

@@ -52,6 +52,7 @@
 				<xs:element ref="NodeList" minOccurs="0" />
 				<xs:element ref="LinkList" minOccurs="0" />
 				<xs:element ref="position" minOccurs="0" />
+				<xs:element name="crudFlag" type="crudFlag" minOccurs="0" />
 			  </xs:all>
 			  <xs:attribute name="name" type="xs:string" use="required" />
 			  <xs:attribute name="id" type="xs:long" use="required" />
@@ -78,6 +79,7 @@
 					<xs:element ref="inputs" />
 					<xs:element ref="position" minOccurs="0" />
 					<xs:element ref="node_type" minOccurs="0" />
+					<xs:element name="crudFlag" type="crudFlag" minOccurs="0" />
 				  </xs:all>
 				  <xs:attribute name="id" type="xs:long" use="required" />
 				  <xs:attribute name="in_sync" type="xs:boolean" use="optional" default="true" />
@@ -148,6 +150,7 @@
 					<xs:element ref="position" minOccurs="0" />
 					<xs:element ref="shape" minOccurs="0" />
 					<xs:element ref="link_type" minOccurs="0" />
+					<xs:element name="crudFlag" type="crudFlag" minOccurs="0" />
 				  </xs:all>
 				  <xs:attribute name="lanes" type="xs:double" use="required" />
 				  <xs:attribute name="lane_offset" type="xs:double" use="optional" default="0" />
@@ -193,6 +196,7 @@
 		<xs:complexType>
 		  <xs:sequence>
 			<xs:element ref="route" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="crudFlag" type="crudFlag" minOccurs="0" />
 		  </xs:sequence>
 		</xs:complexType>
 	  </xs:element>

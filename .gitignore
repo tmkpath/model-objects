@@ -24,4 +24,4 @@ project/plugins/project/
 .scala_dependencies
 
 tmp/
-
+bin/
