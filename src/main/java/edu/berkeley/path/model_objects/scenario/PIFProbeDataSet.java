@@ -2,7 +2,7 @@ package edu.berkeley.path.model_objects.scenario;
 
 import java.util.List;
 
-import edu.berkeley.path.model_objects.jaxb.PIFProbeData;
+import edu.berkeley.path.model_objects.scenario.PIFProbeData;
 
 public class PIFProbeDataSet extends edu.berkeley.path.model_objects.jaxb.PIFProbeDataSet{
     /**
@@ -20,8 +20,9 @@ public class PIFProbeDataSet extends edu.berkeley.path.model_objects.jaxb.PIFPro
      * 
      * 
      */
-    public List<PIFProbeData> getPIFProbeData() {
-        return super.getPIFProbeData();
+    @SuppressWarnings("unchecked")
+	public List<PIFProbeData> getPIFProbeDataList() {
+        return (List<PIFProbeData>)(List<?>)super.getPIFProbeData();
     }
     
     /**
@@ -32,4 +33,15 @@ public class PIFProbeDataSet extends edu.berkeley.path.model_objects.jaxb.PIFPro
     public void setPIFProbeData(PIFProbeData data){
     	this.getPIFProbeData().add(data);
     }
+    
+    /**
+     * adds a PIFProbeData list of objects to this method sets to the list of PIFProbeData objects
+     * 
+     * @param PIFProbeData object to be added to list
+     */
+    @SuppressWarnings("unchecked")
+	public void setPIFProbeData(List<PIFProbeData> list){
+    	this.pifProbeData = (List<edu.berkeley.path.model_objects.jaxb.PIFProbeData>)(List<?>)list;
+    }
+
 }
