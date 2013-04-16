@@ -24,6 +24,11 @@ public class PIFProbeDataSet extends edu.berkeley.path.model_objects.jaxb.PIFPro
         return super.getPIFProbeData();
     }
     
+    /**
+     * adds a PIFProbeData object to this sets list of PIFProbeData objects
+     * 
+     * @param PIFProbeData object to be added to list
+     */
     public void setPIFProbeData(PIFProbeData data){
     	this.getPIFProbeData().add(data);
     }
