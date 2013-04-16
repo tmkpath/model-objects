@@ -37,7 +37,30 @@ import edu.berkeley.path.model_objects.jaxb.VehicleTypeOrder;
 
 public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 	
+	protected String modStamp;
 	
+
+
+	 /**
+	  * Get modstamp
+	  * @return
+	  */
+	public String getModStamp() {
+        return modStamp;
+    }
+	
+	/**
+	 * Set modstamp
+	 * @param value
+	 */
+    public void setModStamp(String value) {
+        this.modStamp = value;
+    }
+    
+    /**
+     * Check if this object is valid
+     * @return
+     */
 	public Boolean isValid() { return true; }
 	
 	/**
