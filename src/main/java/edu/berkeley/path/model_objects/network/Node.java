@@ -103,6 +103,7 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
     NodeType nodeType = new NodeType();
     nodeType.setName(name);
     nodeType.setId(id);
+    setNodeType(nodeType);
   }
   
 	/** 
@@ -246,7 +247,7 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 		List<Point> points =  (List<Point>)(List<?>)this.position.getPoint();
 		Point point = null;
 		if (!points.isEmpty()) {
-			points.get(0);
+			point = points.get(0);
 		}
 		return point;
 	}
@@ -339,6 +340,26 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
     return isValid;
     
   }
-    
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Node node = (Node) o;
+
+    if (getId() != node.getId()) return false;
+    if (getTypeId() != node.getTypeId()) return false;
+    //TODO check primary name
+    if (getPoint().getLongitude() != node.getPoint().getLongitude()) return false;
+    if (getPoint().getLatitude() != node.getPoint().getLatitude()) return false;
+
+
+    return true;
+  }
+
+  @Override
+  public int hashCode() {
+    return (isTerminal ? 1 : 0);
+  }
 }
