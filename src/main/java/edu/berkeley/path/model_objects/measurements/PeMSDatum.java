@@ -102,7 +102,7 @@ public class PeMSDatum extends edu.berkeley.path.model_objects.jaxb.PeMSDatum{
 	 */
 	@Override
 	public void setDensity(Double density) {
-	  super.setDensity(flow);
+	  super.setDensity(density);
 	}
 	
 	/**

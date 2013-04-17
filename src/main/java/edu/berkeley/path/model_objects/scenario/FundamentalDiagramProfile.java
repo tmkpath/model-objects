@@ -26,11 +26,100 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import java.util.List;
+
+import edu.berkeley.path.model_objects.jaxb.FundamentalDiagram;
+import edu.berkeley.path.model_objects.jaxb.PeMSDatum;
+
 /** 
  * Model Object Fundamental Diagram Profile class.
  *  
  * @author Gunes Dervisoglu (gunesder@berkeley.edu)
  */
 public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.jaxb.FundamentalDiagramProfile{
+	
+	/**
+	 * Return list of FundamentalDiagram objects (i.e. the profile)
+	 * 
+	 * @return peMSDatum list as List<PeMSDatum>
+	 */
+	@Override
+	public List<FundamentalDiagram> getFundamentalDiagram() {
+	  return super.getFundamentalDiagram();
+	}
+	
+	/**
+	 * Set list of FundamentalDiagram objects (i.e. the profile)
+	 * 
+	 * @param FundamentalDiagram list as List<FundamentalDiagram>
+	 */
+	public void setFundamentalDiagram(List<FundamentalDiagram> FundamentalDiagram) {
+		getFundamentalDiagram().clear();
+		getFundamentalDiagram().addAll(FundamentalDiagram);
+	}
+	
+	/**
+	 * Return Link ID of the FD profile
+	 * 
+	 * @return linkId as long
+	 */
+	@Override
+	public long getLinkId() {
+	  return super.getLinkId();
+	}
+	
+	/**
+	 * Set Link ID of the FD profile
+	 * 
+	 * @param linkId as long
+	 */
+	@Override
+	public void setLinkId(long linkId) {
+	  super.setLinkId(linkId);
+	}
+	
+	/**
+	 * Return start time of the FD profile
+	 * 
+	 * @return startTime as double
+	 */
+	@Override
+	public double getStartTime() {
+	  return super.getStartTime();
+	}
+	
+	/**
+	 * Set start time of the FD profile
+	 * 
+	 * @param startTime as double
+	 */
+	@Override
+	public void setStartTime(Double startTime) {
+	  super.setStartTime(startTime);
+	}
+	
+	/**
+	 * Return dt of the FD profile
+	 * 
+	 * @return dt as double
+	 */
+	@Override
+	public Double getDt() {
+	  return super.getDt();
+	}
+	
+	/**
+	 * Set dt of the FD profile
+	 * 
+	 * @param dt as double
+	 */
+	@Override
+	public void setDt(Double dt) {
+	  super.setDt(dt);
+	}
+	
+	
+	
+	
 
 }
