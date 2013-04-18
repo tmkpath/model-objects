@@ -83,6 +83,7 @@
 					<xs:element name="crudFlag" type="crudFlag" minOccurs="0" />
 				  </xs:all>
 				  <xs:attribute name="id" type="xs:long" use="required" />
+				  <xs:attribute name="node_name" type="xs:string" use="required" />
 				  <xs:attribute name="in_sync" type="xs:boolean" use="optional" default="true" />
 				  <xs:attribute name="mod_stamp" type="xs:string" use="optional" />
 				</xs:complexType>
