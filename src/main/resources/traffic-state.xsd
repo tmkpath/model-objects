@@ -123,15 +123,14 @@
       <xs:all>
         <!-- Timestamp for the link state - optional, because
 	     it can be assigned to the <linkStateSet> at once. -->
-				<xs:element name="timestamp" type="dateTime" minOccurs="0" maxOccurs="1" />
+	    <xs:element name="timestamp" type="dateTime" minOccurs="0" maxOccurs="1" />
 
-	<!-- Vehicle type order defines the order of density
-             and flow values in the corresponding elements.
-             This can be assigned at the <linkStateSet> level. -->
-        <xs:element ref="VehicleTypeOrder" minOccurs="0" maxOccurs="1"/>
+        <!-- Traffic data by vehicle type. -->
+        <xs:element ref="trafficDataByVehicleType" minOccurs="1" maxOccurs="1"/>
 
-	<!-- Traffic data by vehicle type. -->
-        <xs:element ref="byVehicleType" minOccurs="1" maxOccurs="1"/>
+        <!-- Quantity type is optional because it can be
+             assigned at the <linkStateSet> level. -->
+        <xs:element ref="quantity_type" minOccurs="0" maxOccurs="1"/>
       </xs:all>
 
       <!-- Link ID. -->
@@ -143,30 +142,14 @@
            network_id in <linkStateSet>. -->
       <xs:attribute name="network_id" type="xs:long" use="optional"/>
 
-      <!-- Run ID is optional - it can be 
+      <!-- Run ID is optional - it can be
            assigned at the <linkStateSet> level. -->
       <xs:attribute name="run_id" type="xs:long" use="optional"/>
 
-      <!-- Particle ID is used in enseble estimation or prediction
-           for debug purpose only. When particle ID is set,
-           quantity_type is implied to be 'standard'.
-           Particle ID can be also assigned at the <linkStateSet> level. -->
-      <xs:attribute name="particle_id" type="xs:long" use="optional" default="-1"/>
-      
       <!-- dt is the time interval, for which the state is
            aggregated - just like network_id, this attribute
 	   is optional for the same reason. -->
       <xs:attribute name="dt" type="xs:double" use="optional"/>
-      
-      <!-- Quantity type is optional because it can be
-           assigned at the <linkStateSet> level. -->
-      <xs:attribute name="quantity_type" use="optional">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:pattern value="standard|mean|median|1q|3q|95|min|max|best|worst"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
       
       <!-- Optionally, we can stick fundamental diagram parameters
            into the link state: free flow speed, critical speed,
@@ -174,6 +157,111 @@
       <xs:attribute name="ff_speed" type="xs:double" use="optional"/>
       <xs:attribute name="crit_speed" type="xs:double" use="optional"/>
       <xs:attribute name="capacity" type="xs:double" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="linkState-debug">
+    <xs:complexType>
+      <xs:all>
+        <!-- Timestamp for the link state - optional, because
+	     it can be assigned to the <linkStateSet> at once. -->
+        <xs:element name="timestamp" type="dateTime" minOccurs="0" maxOccurs="1" />
+
+        <!-- Traffic data by vehicle type. -->
+        <xs:element ref="trafficDataByVehicleType" minOccurs="1" maxOccurs="1"/>
+
+        <!-- Quantity type is optional because it can be
+             assigned at the <linkStateSet> level. -->
+        <xs:element ref="quantity_type" minOccurs="0" maxOccurs="1"/>
+      </xs:all>
+
+      <!-- Link ID. -->
+      <xs:attribute name="id" type="xs:long" use="required"/>
+
+      <!-- Network reference is optional at this level:
+           it is only used when the state is requested
+           for a standalone link. Otherwise, look for
+           network_id in <linkStateSet>. -->
+      <xs:attribute name="network_id" type="xs:long" use="optional"/>
+
+      <!-- Run ID is optional - it can be
+           assigned at the <linkStateSet> level. -->
+      <xs:attribute name="run_id" type="xs:long" use="optional"/>
+
+      <!-- Particle ID is used in ensemble estimation or prediction
+           for debug purpose only. When particle ID is set,
+           quantity_type is implied to be 'standard'.
+           Particle ID can be also assigned at the <linkStateSet> level. -->
+      <xs:attribute name="particle_id" type="xs:long" use="optional" default="-1"/>
+
+      <!-- dt is the time interval, for which the state is
+           aggregated - just like network_id, this attribute
+	   is optional for the same reason. -->
+      <xs:attribute name="dt" type="xs:double" use="optional"/>
+
+      <!-- Optionally, we can stick fundamental diagram parameters
+           into the link state: free flow speed, critical speed,
+           and capacity. Capacity values are total, not(!) per lane. -->
+      <xs:attribute name="ff_speed" type="xs:double" use="optional"/>
+      <xs:attribute name="crit_speed" type="xs:double" use="optional"/>
+      <xs:attribute name="capacity" type="xs:double" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="linkState-detail">
+    <xs:complexType>
+      <xs:all>
+        <!-- Timestamp for the link state - optional, because
+	     it can be assigned to the <linkStateSet> at once. -->
+        <xs:element name="timestamp" type="dateTime" minOccurs="0" maxOccurs="1" />
+
+        <!-- Vehicle type order defines the order of density
+             and flow values in the corresponding elements.
+             This can be assigned at the <linkStateSet> level. -->
+        <xs:element ref="VehicleTypeOrder" minOccurs="0" maxOccurs="1"/>
+
+        <!-- Traffic data by vehicle type. -->
+        <xs:element ref="trafficDataByVehicleType" minOccurs="1" maxOccurs="1"/>
+
+        <!-- Quantity type is optional because it can be
+             assigned at the <linkStateSet> level. -->
+        <xs:element ref="quantity_type" minOccurs="0" maxOccurs="1"/>
+      </xs:all>
+
+      <!-- Link ID. -->
+      <xs:attribute name="id" type="xs:long" use="required"/>
+
+      <!-- Network reference is optional at this level:
+           it is only used when the state is requested
+           for a standalone link. Otherwise, look for
+           network_id in <linkStateSet>. -->
+      <xs:attribute name="network_id" type="xs:long" use="optional"/>
+
+      <!-- Run ID is optional - it can be
+           assigned at the <linkStateSet> level. -->
+      <xs:attribute name="run_id" type="xs:long" use="optional"/>
+
+      <!-- dt is the time interval, for which the state is
+           aggregated - just like network_id, this attribute
+	   is optional for the same reason. -->
+      <xs:attribute name="dt" type="xs:double" use="optional"/>
+
+      <!-- Optionally, we can stick fundamental diagram parameters
+           into the link state: free flow speed, critical speed,
+           and capacity. Capacity values are total, not(!) per lane. -->
+      <xs:attribute name="ff_speed" type="xs:double" use="optional"/>
+      <xs:attribute name="crit_speed" type="xs:double" use="optional"/>
+      <xs:attribute name="capacity" type="xs:double" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+
+
+  <!-- Quantity Type -->
+  <xs:element name="quantity_type">
+    <xs:complexType>
+      <xs:attribute name="id" type="xs:long" use="required" />
+      <xs:attribute name="name" type="xs:string" use="required"/>
+      <xs:attribute name="description" type="xs:string" use="required"/>
     </xs:complexType>
   </xs:element>
 
@@ -192,7 +280,7 @@
         <xs:element ref="VehicleTypeOrder" minOccurs="0" maxOccurs="1"/>
 
 	<!-- Traffic performance by vehicle type. -->
-        <xs:element ref="byVehicleType" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="trafficPerformanceByVehicleType" minOccurs="1" maxOccurs="1"/>
       </xs:all>
 
       <!-- Link ID. -->
@@ -237,28 +325,25 @@
     </xs:complexType>
   </xs:element>
 
-
-  <!-- Traffic data/ performance by vehicle type. -->
-  <xs:element name="byVehicleType">
+  <!-- Traffic data by vehicle type. -->
+  <xs:element name="trafficDataByVehicleType">
     <xs:complexType>
       <xs:sequence>
-	      <!-- Traffic data/ performance by destination network. -->
-        <xs:element ref="byDestination" minOccurs="1" maxOccurs="unbounded"/>
+	    <!-- Traffic data by destination network. -->
+        <xs:element ref="trafficDatum" minOccurs="1" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
 
-
-  <!-- Traffic data/ performance by destination network. -->
-  <xs:element name="byDestination">
+  <!-- Traffic performance by vehicle type. -->
+  <xs:element name="trafficPerformanceByVehicleType">
     <xs:complexType>
-      <xs:choice>
-        <xs:element ref="trafficDatum" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:sequence>
+	    <!-- Traffic performance by destination network. -->
         <xs:element ref="trafficPerformance" minOccurs="1" maxOccurs="unbounded"/>
-      </xs:choice>
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
-
 
   <!-- Traffic Datum -->
   <xs:element name="trafficDatum">
