@@ -102,6 +102,48 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
   }
   
   /**
+   * Return whether network is locked for edit
+   * 
+   * @return true if locked for edit, false if not
+   */
+  @Override
+  public boolean isLockedForEdit() {
+    return super.isLockedForEdit();
+  }
+  
+  /**
+   * Set whether network is locked for edit or not
+   * 
+   * @param locked is true if locked, false if not locked
+   */
+  @Override
+  public void setLockedForEdit(Boolean locked) {
+    super.setLockedForEdit(locked);
+  }
+  
+  /**
+   * Return whether network is locked historically.  
+   * 
+   * @return true if locked for edit, false if not
+   */
+  @Override
+  public boolean isLockedForHistory() {
+    return super.isLockedForHistory();
+  }
+  
+  /**
+   * Set whether network is locked historically. This should be set
+   * when simulation is run on a network and output needs to reference 
+   * the network state for historical/reproducible purposes.
+   * 
+   * @param locked is true if locked, false if locked
+   */
+  @Override
+  public void setLockedForHistory(Boolean locked) {
+    super.setLockedForHistory(locked);
+  }
+  
+  /**
    * Get Center Position of network, which is an average of
    * 
    * @return Center Point of Network in Degrees

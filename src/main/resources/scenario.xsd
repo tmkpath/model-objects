@@ -184,7 +184,7 @@
 			<xs:element ref="sensor" minOccurs="0" maxOccurs="unbounded" />
 		  </xs:sequence>
 	  	<xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
-	  	<xs:attribute name="id" type="xs:long" use="required" default="0" />
+	  	<xs:attribute name="id" type="xs:long" use="required" />
 	  	<xs:attribute name="name" type="xs:string" use="optional" default="0" />
 	  	<xs:attribute name="description" type="xs:string" use="optional" default="0" />
 	  	<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
