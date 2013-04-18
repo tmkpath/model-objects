@@ -29,7 +29,6 @@ package edu.berkeley.path.model_objects.scenario;
 import java.util.List;
 
 import edu.berkeley.path.model_objects.jaxb.FundamentalDiagram;
-import edu.berkeley.path.model_objects.jaxb.PeMSDatum;
 
 /** 
  * Model Object Fundamental Diagram Profile class.
@@ -53,9 +52,9 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
 	 * 
 	 * @param FundamentalDiagram list as List<FundamentalDiagram>
 	 */
-	public void setFundamentalDiagram(List<FundamentalDiagram> FundamentalDiagram) {
+	public void setFundamentalDiagramList(List<edu.berkeley.path.model_objects.scenario.FundamentalDiagram> fdList) {
 		getFundamentalDiagram().clear();
-		getFundamentalDiagram().addAll(FundamentalDiagram);
+		getFundamentalDiagram().addAll(fdList);
 	}
 	
 	/**
@@ -117,9 +116,5 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
 	public void setDt(Double dt) {
 	  super.setDt(dt);
 	}
-	
-	
-	
-	
 
 }
