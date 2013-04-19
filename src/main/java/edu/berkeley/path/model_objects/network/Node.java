@@ -224,7 +224,10 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
   public void addMarkerName(String markerName) {    
     Marker marker = new Marker();
     marker.setName(markerName);
-    RoadwayMarkers markers = new RoadwayMarkers();
+    RoadwayMarkers markers = getRoadwayMarkers();
+    if(markers == null) {
+      markers = new RoadwayMarkers();
+    }
     markers.getMarker().add(marker);
     setRoadwayMarkers(markers);
   }
