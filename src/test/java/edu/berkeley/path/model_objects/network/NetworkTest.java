@@ -84,7 +84,7 @@ public class NetworkTest {
     assertTrue(n1 != null);
     assert(n1 != null);
 
-    assertEquals("one", n1.getFirstMarkerName());
+    assertEquals("one", n1.getMarkerNames().get(0));
     
     Link ln3 = nw.getLinkWithId(3);
     assertTrue(ln3 != null);
@@ -95,7 +95,7 @@ public class NetworkTest {
     Node n2 = nw.getNodeWithId(2);
     assertTrue(n2 != null);
     assert(n2 != null);
-    assertEquals("two", n2.getFirstMarkerName());
+    assertEquals("two", n2.getMarkerNames().get(0));
     
     assertEquals(n1, ln3.getBeginNode());
     assertEquals(n2, ln3.getEndNode());

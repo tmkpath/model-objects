@@ -180,19 +180,24 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 		return nOut;
 	}
 	
-	/**
-   * Get Nodes first node Name
+  /**
+   * Gets the value of the nodeName property.
    * 
-   * @return  The marker name of node
+   * @return  Name of Node
    */
-  public String getFirstMarkerName() {
-    if ( getRoadwayMarkers() != null && getRoadwayMarkers().getMarker() != null) {
-        return getRoadwayMarkers().getMarker().get(0).getName();
-    }
-    // otherwise return empty string
-    else {
-      return "";
-    }
+	@Override
+  public String getNodeName() {
+      return nodeName;
+  }
+
+  /**
+   * Sets the value of the nodeName property.
+   * 
+   * @param Name of Node
+   */
+	@Override
+  public void setNodeName(String value) {
+      this.nodeName = value;
   }
 
   /**

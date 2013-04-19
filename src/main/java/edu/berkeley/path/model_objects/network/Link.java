@@ -186,6 +186,26 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
     linkType.setId(id);
   }
     
+  /**
+   * Gets the value of the linkName property.
+   * 
+   * @return  Name of Link
+   */
+  @Override
+  public String getLinkName() {
+      return linkName;
+  }
+
+  /**
+   * Sets the value of the linkName property.
+   * 
+   * @param Link of Node
+   */
+  @Override
+  public void setLinkName(String value) {
+      this.linkName = value;
+  }
+  
   /** 
    * Get network that contains this link, only valid if link has been associated 
    * with a network by calling the populate function.
