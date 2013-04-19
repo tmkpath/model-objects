@@ -42,7 +42,7 @@
 	   <xs:attribute name="name" type="xs:string" use="required"/>
 	 </xs:complexType>
 	 </xs:element> 
-		
+
   <!-- network ................................................................... -->
 	  
 		  <xs:element name="network">
@@ -99,7 +99,9 @@
 
 				  <xs:element name="marker">
 				  	<xs:complexType>
+				  		<xs:attribute name="id" type="xs:long" use="required" />
 				  		<xs:attribute name="name" type="xs:string" use="required" />
+				  		<xs:attribute name="mod_stamp" type="xs:string" use="required" />
 				  		<xs:attribute name="postmile" type="xs:double" use="optional" />
 					</xs:complexType>
 			  	  </xs:element>
