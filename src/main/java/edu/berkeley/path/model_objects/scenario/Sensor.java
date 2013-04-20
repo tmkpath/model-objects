@@ -27,6 +27,7 @@
 package edu.berkeley.path.model_objects.scenario;
 
 import edu.berkeley.path.model_objects.jaxb.Link;
+import edu.berkeley.path.model_objects.jaxb.SensorType;
 import edu.berkeley.path.model_objects.shared.DisplayPosition;
 import edu.berkeley.path.model_objects.shared.Parameters;
 
@@ -47,23 +48,23 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	/** Resolved Link Object*/
 	/** @y.exclude */ protected Link link;
 
-	/** Sensor type. */
-	/** @y.exclude */ protected Sensor.Type type;
-		
-	/** Type of sensor.
-	 *
-	 * TMC = Traffic Message Channel.
-	 * This is a static way of reporting probe measurements
-	 * employed by INRIX, Navteq, etc.
-	 */
-	public static enum Type	{  
-	/** see {@link ObjectFactory#createSensor_LoopStation} 	*/	
-		Loop,
-		Magnetic,
-		Radar,
-		Camera,
-		TMC
-	};
+//	/** Sensor type. */
+//	/** @y.exclude */ protected Sensor.Type type;
+//
+//	/** Type of sensor.
+//	 *
+//	 * TMC = Traffic Message Channel.
+//	 * This is a static way of reporting probe measurements
+//	 * employed by INRIX, Navteq, etc.
+//	 */
+//	public static enum Type	{
+//	/** see {@link ObjectFactory#createSensor_LoopStation} 	*/
+//		Loop,
+//		Magnetic,
+//		Radar,
+//		Camera,
+//		TMC
+//	};
 				   	   	       
 	/////////////////////////////////////////////////////////////////////
 	// protected default constructor
@@ -79,9 +80,21 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	/////////////////////////////////////////////////////////////////////
 
 	/** Sensor type. */
-	public Sensor.Type getSensorType() {
-		return type;
-	}
+//	public Sensor.Type getSensorType() {
+//		return type;
+//	}
+
+  public long getSensorTypeId() {
+    return getSensorType().getId();
+  }
+
+  public void setSensorType(long typeId, String name, String desc) {
+    SensorType type = new SensorType();
+    type.setId(typeId);
+    type.setName(name);
+    type.setDescription(desc);
+    setSensorType(type);
+  }
 
 	/** Link where the sensor is located. */
 	//TODO: How are we resolving the link?
@@ -125,33 +138,33 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	/**
 	 * @return the linkReference
 	 */
-	public LinkReference getSensorLinkReference() {
-		return (LinkReference)super.getLinkReference();
-	}
+//	public LinkReference getSensorLinkReference() {
+//		return (LinkReference)super.getLinkReference();
+//	}
 
 
 	/**
 	 * @param linkReference the linkReference to set
 	 */
-	public void setLinkReference(LinkReference linkReference) {
-		super.setLinkReference(linkReference);
-	}
+//	public void setLinkReference(LinkReference linkReference) {
+//		super.setLinkReference(linkReference);
+//	}
 
 
 	/**
 	 * @return the parameters
 	 */
-	public Parameters getSensorParameters() {
-		return (Parameters)super.getParameters();
-	}
+//	public Parameters getSensorParameters() {
+//		return (Parameters)super.getParameters();
+//	}
 
 
 	/**
 	 * @param parameters the parameters to set
 	 */
-	public void setParameters(Parameters parameters) {
-		super.setParameters(parameters);
-	}
+//	public void setParameters(Parameters parameters) {
+//		super.setParameters(parameters);
+//	}
 
 
 	/**
@@ -204,16 +217,16 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	/**
 	 * @return the healthStatus
 	 */
-	public Double getHealthStatus() {
-		return super.getHealthStatus();
-	}
+//	public Double getHealthStatus() {
+//		return super.getHealthStatus();
+//	}
 
 	/**
 	 * @param healthStatus the healthStatus to set
 	 */
-	public void setHealthStatus(double healthStatus) {
-		super.setHealthStatus(healthStatus);
-	}
+//	public void setHealthStatus(double healthStatus) {
+//		super.setHealthStatus(healthStatus);
+//	}
 	
     /**
      * Sets the value of the dataFeedId property.
