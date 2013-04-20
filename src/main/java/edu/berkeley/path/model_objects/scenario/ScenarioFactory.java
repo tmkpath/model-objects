@@ -1,7 +1,5 @@
 package edu.berkeley.path.model_objects.scenario;
 
-import edu.berkeley.path.model_objects.scenario.Sensor.Type;
-
 public class ScenarioFactory {
 	
     /**
@@ -9,7 +7,7 @@ public class ScenarioFactory {
      * 
      * @return  Sensor Model Object
      */
-	public static Sensor createSensor(Type type) {
+	public static Sensor createSensor() {
 		return new Sensor();
 	}
 	
