@@ -184,7 +184,7 @@
 			<xs:element ref="sensor" minOccurs="0" maxOccurs="unbounded" />
 		  </xs:sequence>
 	  	<xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
-	  	<xs:attribute name="id" type="xs:long" use="required" default="0" />
+	  	<xs:attribute name="id" type="xs:long" use="required" />
 	  	<xs:attribute name="name" type="xs:string" use="optional" default="0" />
 	  	<xs:attribute name="description" type="xs:string" use="optional" default="0" />
 	  	<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
@@ -202,21 +202,17 @@
 			<xs:complexType>
 			  <xs:all>
 				<xs:element ref="display_position" minOccurs="0" />
-				<xs:element ref="link_reference" minOccurs="0" />
-				<xs:element ref="parameters" minOccurs="0" />
-				<xs:element ref="table" minOccurs="0" />
-			  </xs:all>
-			  
+                  <xs:element ref="link_reference" minOccurs="0" />
+                  <xs:element ref="parameters" minOccurs="0" />
+                  <xs:element ref="table" minOccurs="0" />
+                <!-- Application type ID -->
+                <xs:element ref="sensor_type" minOccurs="0" maxOccurs="1"/>
+              </xs:all>
+
 		  	<xs:attribute name="id" type="xs:long" use="required"/>
 			  <xs:attribute name="link_position" type="xs:double" use="optional" />
 			  <xs:attribute name="link_id" type="xs:long" use="optional" />
-			  <xs:attribute name="type" use="required">
-				<xs:simpleType>
-				  <xs:restriction base="xs:string">
-					<xs:pattern value="Loop|Magnetic|Radar|Camera|TMC"/>
-				  </xs:restriction>
-				</xs:simpleType>
-			  </xs:attribute>
+			  <xs:attribute name="java_class" type="xs:string" use="optional" />
 			  <xs:attribute name="sensor_id_original" type="xs:string" use="optional" />
 			  <xs:attribute name="data_feed_id" type="xs:long" use="optional" />
 			  <xs:attribute name="lane_number" type="xs:int" use="optional" />
@@ -224,7 +220,7 @@
 			  <xs:attribute name="modStamp" type="xs:string" use="optional" />
 			  <xs:attribute name="health_status" use="optional">
 		    <xs:simpleType >
-	          <xs:restriction base="xs:double">
+	          <xs:restriction base="xs:int">
 		        <xs:minInclusive value="0"/>
 		        <xs:maxInclusive value="1"/>
 	          </xs:restriction>
@@ -233,7 +229,16 @@
 			</xs:complexType>
 		</xs:element>
 
-  <!-- InitialDensitySet ..................................................... -->
+    <!-- Sensor Type -->
+    <xs:element name="sensor_type">
+        <xs:complexType>
+            <xs:attribute name="id" type="xs:long" use="required" />
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="description" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- InitialDensitySet ..................................................... -->
 
 	  <xs:element name="InitialDensitySet">
 		<xs:complexType>

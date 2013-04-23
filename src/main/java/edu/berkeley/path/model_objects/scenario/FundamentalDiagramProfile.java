@@ -24,105 +24,97 @@
  * POSSIBILITY OF SUCH DAMAGE.
  **/
 
-package edu.berkeley.path.model_objects.measurements;
+package edu.berkeley.path.model_objects.scenario;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.List;
 
-import edu.berkeley.path.model_objects.shared.DateTime;
+import edu.berkeley.path.model_objects.jaxb.FundamentalDiagram;
 
 /** 
- * Model Object PeMS Datum class.
+ * Model Object Fundamental Diagram Profile class.
  *  
  * @author Gunes Dervisoglu (gunesder@berkeley.edu)
  */
+public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.jaxb.FundamentalDiagramProfile{
+	
+	/**
+	 * Return list of FundamentalDiagram objects (i.e. the profile)
+	 * 
+	 * @return peMSDatum list as List<PeMSDatum>
+	 */
+	@Override
+	public List<FundamentalDiagram> getFundamentalDiagram() {
+	  return super.getFundamentalDiagram();
+	}
+	
+	/**
+	 * Set list of FundamentalDiagram objects (i.e. the profile)
+	 * 
+	 * @param FundamentalDiagram list as List<FundamentalDiagram>
+	 */
+	public void setFundamentalDiagramList(List<edu.berkeley.path.model_objects.scenario.FundamentalDiagram> fdList) {
+		getFundamentalDiagram().clear();
+		getFundamentalDiagram().addAll(fdList);
+	}
+	
+	/**
+	 * Return Link ID of the FD profile
+	 * 
+	 * @return linkId as long
+	 */
+	@Override
+	public long getLinkId() {
+	  return super.getLinkId();
+	}
+	
+	/**
+	 * Set Link ID of the FD profile
+	 * 
+	 * @param linkId as long
+	 */
+	@Override
+	public void setLinkId(long linkId) {
+	  super.setLinkId(linkId);
+	}
+	
+	/**
+	 * Return start time of the FD profile
+	 * 
+	 * @return startTime as double
+	 */
+	@Override
+	public double getStartTime() {
+	  return super.getStartTime();
+	}
+	
+	/**
+	 * Set start time of the FD profile
+	 * 
+	 * @param startTime as double
+	 */
+	@Override
+	public void setStartTime(Double startTime) {
+	  super.setStartTime(startTime);
+	}
+	
+	/**
+	 * Return dt of the FD profile
+	 * 
+	 * @return dt as double
+	 */
+	@Override
+	public Double getDt() {
+	  return super.getDt();
+	}
+	
+	/**
+	 * Set dt of the FD profile
+	 * 
+	 * @param dt as double
+	 */
+	@Override
+	public void setDt(Double dt) {
+	  super.setDt(dt);
+	}
 
-public class PeMSDatum extends edu.berkeley.path.model_objects.jaxb.PeMSDatum{
-	
-	/**
-	 * TODO: Getters and Setters for gFactor, densityError, flowError, funcLoopFact
-	 * TODO: Validation
-	 * TODO: Readers and Writers
-	 * TODO: Unit Tests
-	 */
-	
-	/**
-	 * Return timestamp of datum
-	 * 
-	 * @return timestamp of datum as DateTime
-	 */
-	@Override
-	public DateTime getTimestamp() {
-	  return (DateTime) super.getTimestamp();
-	}
-	
-	/**
-	 * Set timestamp of datum
-	 * 
-	 * @param timestamp of datum as DateTime
-	 */
-	//@Override
-	public void setTimestamp(DateTime timestamp){
-		super.setTimestamp(timestamp);
-	}
-	
-	/**
-	 * Return flow value
-	 * 
-	 * @return flow as Double
-	 */
-	@Override
-	public double getFlow() {
-	  return super.getFlow();
-	}
-	
-	/**
-	 * Set flow value
-	 * 
-	 * @param flow as Double
-	 */
-	@Override
-	public void setFlow(Double flow) {
-	  super.setFlow(flow);
-	}
-	
-	/**
-	 * Return density value
-	 * 
-	 * @return density as Double
-	 */
-	@Override
-	public double getDensity() {
-	  return super.getDensity();
-	}
-	
-	/**
-	 * Set density value
-	 * 
-	 * @param density as Double
-	 */
-	@Override
-	public void setDensity(Double density) {
-	  super.setDensity(density);
-	}
-	
-	/**
-	 * Return speed value
-	 * 
-	 * @return speed as Double
-	 */
-	@Override
-	public double getSpeed() {
-	  return super.getSpeed();
-	}
-	
-	/**
-	 * Set speed value
-	 * 
-	 * @param speed as Double
-	 */
-	@Override
-	public void setSpeed(Double speed) {
-	  super.setSpeed(speed);
-	}
-	
 }

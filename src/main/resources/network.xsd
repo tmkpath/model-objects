@@ -42,7 +42,7 @@
 	   <xs:attribute name="name" type="xs:string" use="required"/>
 	 </xs:complexType>
 	 </xs:element> 
-		
+
   <!-- network ................................................................... -->
 	  
 		  <xs:element name="network">
@@ -57,7 +57,8 @@
 			  <xs:attribute name="name" type="xs:string" use="required" />
 			  <xs:attribute name="id" type="xs:long" use="required" />
 			  <xs:attribute name="mod_stamp" type="xs:string" use="optional" />
-			  <xs:attribute name="locked" type="xs:boolean" use="optional" default="false" />
+			  <xs:attribute name="lockedForEdit" type="xs:boolean" use="optional" default="false" />
+			  <xs:attribute name="lockedForHistory" type="xs:boolean" use="optional" default="false" />
 			</xs:complexType>
 		  </xs:element>
 		  
@@ -82,6 +83,7 @@
 					<xs:element name="crudFlag" type="crudFlag" minOccurs="0" />
 				  </xs:all>
 				  <xs:attribute name="id" type="xs:long" use="required" />
+				  <xs:attribute name="node_name" type="xs:string" use="required" />
 				  <xs:attribute name="in_sync" type="xs:boolean" use="optional" default="true" />
 				  <xs:attribute name="mod_stamp" type="xs:string" use="optional" />
 				</xs:complexType>
@@ -97,7 +99,9 @@
 
 				  <xs:element name="marker">
 				  	<xs:complexType>
+				  		<xs:attribute name="id" type="xs:long" use="required" />
 				  		<xs:attribute name="name" type="xs:string" use="required" />
+				  		<xs:attribute name="mod_stamp" type="xs:string" use="required" />
 				  		<xs:attribute name="postmile" type="xs:double" use="optional" />
 					</xs:complexType>
 			  	  </xs:element>
@@ -156,6 +160,7 @@
 				  <xs:attribute name="lane_offset" type="xs:double" use="optional" default="0" />
 				  <xs:attribute name="length" type="xs:double" use="required" /> 							<!-- in length units -->
 				  <xs:attribute name="speed_limit" type="xs:double" use="required"/>
+				  <xs:attribute name="link_name" type="xs:string" use="required" />
 					<xs:attribute name="mod_stamp" type="xs:string" use="optional" />
 				  <xs:attribute name="id" type="xs:long" use="required" />
 				  <xs:attribute name="in_sync" type="xs:boolean" use="optional" default="true" />

@@ -23,5 +23,11 @@ project/plugins/project/
 .manager
 .scala_dependencies
 
+# idea
+.idea
+*.iml
+*.ipr
+*.iws
+
 tmp/
 bin/

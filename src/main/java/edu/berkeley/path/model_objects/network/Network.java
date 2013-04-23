@@ -29,8 +29,10 @@ package edu.berkeley.path.model_objects.network;
 import core.Monitor;
 import edu.berkeley.path.model_objects.jaxb.Position;
 import edu.berkeley.path.model_objects.shared.Point;
+import edu.berkeley.path.model_objects.MOException;
 
 import java.util.List;
+import java.util.ArrayList;
 
 /** Network class
 * @author Gabriel Gomes (gomes@path.berkeley.edu)
@@ -102,6 +104,48 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
   }
   
   /**
+   * Return whether network is locked for edit
+   * 
+   * @return true if locked for edit, false if not
+   */
+  @Override
+  public boolean isLockedForEdit() {
+    return super.isLockedForEdit();
+  }
+  
+  /**
+   * Set whether network is locked for edit or not
+   * 
+   * @param locked is true if locked, false if not locked
+   */
+  @Override
+  public void setLockedForEdit(Boolean locked) {
+    super.setLockedForEdit(locked);
+  }
+  
+  /**
+   * Return whether network is locked historically.  
+   * 
+   * @return true if locked for edit, false if not
+   */
+  @Override
+  public boolean isLockedForHistory() {
+    return super.isLockedForHistory();
+  }
+  
+  /**
+   * Set whether network is locked historically. This should be set
+   * when simulation is run on a network and output needs to reference 
+   * the network state for historical/reproducible purposes.
+   * 
+   * @param locked is true if locked, false if locked
+   */
+  @Override
+  public void setLockedForHistory(Boolean locked) {
+    super.setLockedForHistory(locked);
+  }
+  
+  /**
    * Get Center Position of network, which is an average of
    * 
    * @return Center Point of Network in Degrees
@@ -127,6 +171,21 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
     }
   }
 	
+	/**
+   * Sets Bounding box around network from given list of points
+   * 
+   * @params List of points in degrees which represent Bounding Box
+   */
+  @SuppressWarnings("unchecked")
+  public void setBoundingBox(List<Point> points) { 
+    // create new position class to house list of bounding box points
+    Position position = new Position();
+    position.getPoint().clear();
+    position.getPoint().addAll(points);
+  
+    setPosition(position);
+  }
+  
 	/** 
 	 * Returns whether network has a node(s) and link(s) after it has been populated
 	 * 
@@ -268,7 +327,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
     Boolean validNodes = true;
     // Check if network is empty  
     if(isempty) {
-      Monitor.out("Invalid Network. Network is empty.");
+      Monitor.err("Invalid Network. Network is empty.");
       return false;
     }
 
@@ -296,7 +355,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
    * 
    * @return  Bounding Box of network
    */
-  public void calculateBoundingBox() {
+  public void calculateBoundingBox() throws MOException {
     List<Node> nodes = getListOfNodes();
     // set all values to null
     Double minLat = null;
@@ -339,7 +398,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
       setPosition(boundingBox);
     }
     else {
-      Monitor.err("Could not calculate Bounding Box. No Nodes set in network.");
+      throw new MOException(null, "Could not calculate Bounding Box. No Nodes set in network.");
     }
     
   }
