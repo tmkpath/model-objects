@@ -199,7 +199,7 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
     }
 
 	/**
-	 * Set the split ratios profiles list. Attaches list of Split Ratio Profile Model Objects to scenario.
+	 * Set the split ratios profiles list. Attaches list of Split Ratio Profile Model Objects to set.
 	 * 
 	 * @param List<SplitRatioProfile>	List of extended Split Ratio Profiles to add
 	 */
