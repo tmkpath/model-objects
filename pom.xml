@@ -34,6 +34,17 @@
             </goals>
             <configuration>
               <generatePackage>edu.berkeley.path.model_objects.jaxb</generatePackage>
+                <!--<extension>true</extension>-->
+                <!--<args>-->
+                    <!--<arg>-Xpm</arg>-->
+                <!--</args>-->
+                <!--<plugins>-->
+                    <!--<plugin>-->
+                        <!--<groupId>edu.berkeley.path</groupId>-->
+                        <!--<artifactId>jaxb-path-xpm-plugin</artifactId>-->
+                        <!--<version>1.0-SNAPSHOT</version>-->
+                    <!--</plugin>-->
+                <!--</plugins>-->
             </configuration>
           </execution>
         </executions>

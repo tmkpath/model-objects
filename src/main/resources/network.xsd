@@ -177,7 +177,9 @@
 
 				  <xs:element name="road">
 				  	<xs:complexType>
+				  		<xs:attribute name="id" type="xs:long" use="required" />
 				  		<xs:attribute name="name" type="xs:string" use="required" />
+				  		<xs:attribute name="mod_stamp" type="xs:string" use="required" />
 					</xs:complexType>
 			  	  </xs:element>
 

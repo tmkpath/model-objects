@@ -26,9 +26,12 @@
 
 package edu.berkeley.path.model_objects.util;
 
+import java.sql.SQLException;
 import java.util.List;
+import java.util.ArrayList;
 import oracle.spatial.geometry.JGeometry;
 import oracle.spatial.util.WKT;
+import oracle.sql.STRUCT;
 
 import core.Monitor;
 import edu.berkeley.path.model_objects.shared.Point;
@@ -41,8 +44,9 @@ import edu.berkeley.path.model_objects.MOException;
  */
 public class Geometry {
 
-  public static enum GeomType { POINT, RECTANGLE, POLYGON, MULTIPOINT }
   protected JGeometry geom;
+  public static enum GeomType { POINT, POLYGON, RECTANGLE, MULTIPOINT }
+  public final static int defaultSRID = 8307; // default to SRID of 8307
   
   /**
    * Geometry Constructor, default is SRID 8307
@@ -51,12 +55,11 @@ public class Geometry {
    * @param   JGeometry Type
    */
   public Geometry(List<Point> points, GeomType geomType) throws MOException {
-    // default to SRID of 8307
-    this(points, geomType, 8307);
+    this(points, geomType, defaultSRID);
   }
 
   /**
-   * Geometry Constructor, currently just supports bounding box polygon
+   * Geometry Constructor, currently just supports rectangle, polygon and point and SRID of 8307
    * 
    * @param   List of points 
    * @param   JGeometry Type
@@ -65,44 +68,76 @@ public class Geometry {
   public Geometry(List<Point> points, GeomType geomType, int srid) throws MOException {
     // create array of coordinates which is the size of the list points times 2 (lats and longs)
     int coordLength = points.size() * 2;
-    Double[] coords = new Double[coordLength];
+    double[] coords; 
     int i = 0;
-    // unpack points into array of doubles, order based on SRID
-    if (srid == 8307) {
-      // For each point add longitude and latitude in that order
-      for (i=0; i < points.size(); i++) {
-        coords[i*2] = points.get(i).getLongitude();
-        coords[i*2 + 1] = points.get(i).getLatitude();
-      }
-    }
+    
     // Currently this class only supports SRID 8307 so output error message
-    else {
-      throw new MOException(null, "Error invalid SRID, the Geometry class only supports SRID 8307.");
+    if (srid != defaultSRID) { 
+      throw new MOException(null, "Error invalid SRID, the Geometry class only supports SRID " + defaultSRID);
     }
     switch (geomType) {
+      
       // Rectangles must have top left and bottom right lat and long coordinates
+      // SRID 8307 long then lat
       case RECTANGLE:
-        this.geom = new JGeometry(
-            points.get(1).getLatitude(),
-            points.get(1).getLongitude(),
-            points.get(0).getLatitude(),
-            points.get(0).getLongitude(),
-            srid);
+        
+        if (points.size() != 2) {
+          throw new MOException(null, "Error only two points should be passed in when trying to create a Rectangular JGeometry");
+        }
+        // create new list of points, essentially convert rectangle from (top y, left x), (bottom y, right x) 
+        // to polygon object with 5 points  
+        // (top y, left x) 
+        coords = new double[10];
+        coords[0] = points.get(0).getLongitude();
+        coords[1] = points.get(0).getLatitude();
+        // (top y, right x) 
+        coords[2] = points.get(0).getLongitude();
+        coords[3] = points.get(1).getLatitude();
+        // (bottom y, right x) 
+        coords[4] = points.get(1).getLongitude();
+        coords[5] = points.get(1).getLatitude();
+        // (bottom y, left x) 
+        coords[6] = points.get(1).getLongitude();
+        coords[7] = points.get(0).getLatitude();
+        // (top y, left x) - back to starting point
+        coords[8] = points.get(0).getLongitude();
+        coords[9] = points.get(0).getLatitude();
+        this.geom = JGeometry.createLinearPolygon(coords, 2, srid);
         break;
+        
       // Creates 2D multi-point JGeometry structure
-      case MULTIPOINT:
-        this.geom = JGeometry.createMultiPoint(coords, 2, srid);  
+      // Creates 2D polygon JGeometry structure
+      case POLYGON:
+        // check to ensure there are at least 3 coordinates passed in (longitude, latitude)
+        if (points.size() < 3) {
+          throw new MOException(null, "Error only three points should be passed in when trying to create Point JGeometry");
+        }
+        // unpack points into array of doubles, order based on SRID
+        // For each point add longitude and latitude in that order
+        coords = new double[coordLength];
+        for (i=0; i < points.size(); i++) {
+          coords[i*2] = (double)points.get(i).getLongitude();
+          coords[i*2 + 1] = (double)points.get(i).getLatitude();
+        }
+        this.geom = JGeometry.createLinearPolygon(coords, 2, srid);
+        break;
+        
       // Creates 2d single point JGeometry structure
       case POINT:
         // check to ensure there is only 2 coordinates passed in (longitude, latitude)
-        if (coords.length != 2) {
-          throw new MOException(null, "Error more than one point passed in when trying to create Point JGeometry");
+        if (points.size() != 1) {
+          throw new MOException(null, "Error only one point should be passed in when trying to create Point JGeometry");
         }
-        // get first coordinate point and use it as point and pass it in as array of double
-        double[] coord = new double[2];
-        coord[0] = coords[0];
-        coord[1] = coords[1];
-        this.geom = JGeometry.createPoint(coord, 2, srid);
+        // unpack points into array of doubles, order based on SRID
+        // For each point add longitude and latitude in that order
+        coords = new double[coordLength];
+        for (i=0; i < points.size(); i++) {
+          coords[i*2] = (double)points.get(i).getLongitude();
+          coords[i*2 + 1] = (double)points.get(i).getLatitude();
+        }
+        this.geom = JGeometry.createPoint(coords, 2, srid);
+        break;
+        
       default:
         break;
     }
@@ -117,7 +152,7 @@ public class Geometry {
     WKT wkt = new WKT();
     byte[] text;
     try {
-      // try to get WTK from geometry set in constructor
+      // try to get WKT from geometry set in constructor
       text = wkt.fromJGeometry(this.geom);
     }
     catch (Exception e) {
@@ -125,5 +160,63 @@ public class Geometry {
       return null;
     }
     return new String(text);
+  }
+  
+  /**
+   * Returns oracle STRUCT object of current geometry.  Used so that Oracle SDO geoms 
+   * can be passed into Stored Procedures
+   * 
+   * @param  Connection to Oracle database
+   * @return Oracle STRUCT object
+   */
+  public STRUCT getOracleStruct(java.sql.Connection conn) throws MOException {
+    STRUCT struct;
+    try {
+      struct = JGeometry.store(this.geom, conn);
+    } catch (SQLException e) {
+      throw new MOException(e, "Unable to process node SDO geometry on network " + e.getMessage());
+    }
+    return struct;
+  }
+  
+  /**
+   * Converts a two point rectangle (top left, bottom right) to a list of points which represent
+   * a closed polygon
+   * 
+   * @param  List<Point> representing rectangle
+   * @return List<Point> representing polygon
+   */
+  public static List<Point> convertRectToPoly(List<Point> rectangle) throws MOException {
+    if (rectangle.size() != 2) {
+      throw new MOException(null, "Error only two points should be passed in when trying to convert a Rectangle to a Polygon");
+    }
+    // create new list of points, essentially convert rectangle from (top y, left x), (bottom y, right x) 
+    // to polygon object with 5 points  
+    
+    ArrayList<Point> polygon = new ArrayList<Point>();
+    Point p1 = new Point();
+    Point p2 = new Point();
+    Point p3 = new Point();
+    Point p4 = new Point();
+    // (top y, left x) 
+    polygon.add(rectangle.get(0));
+    // (top y, right x) 
+    p1.setLongitude(rectangle.get(0).getLongitude());
+    p1.setLatitude(rectangle.get(1).getLatitude());
+    polygon.add(p1);
+    // (bottom y, right x) 
+    p2.setLongitude(rectangle.get(1).getLongitude());
+    p2.setLatitude(rectangle.get(1).getLatitude());
+    polygon.add(p2);
+    // (bottom y, left x) 
+    p3.setLongitude(rectangle.get(1).getLongitude());
+    p3.setLatitude(rectangle.get(0).getLatitude());
+    polygon.add(p3);
+    // (top y, left x) - back to starting point
+    p4.setLongitude(rectangle.get(0).getLongitude());
+    p4.setLatitude(rectangle.get(0).getLatitude());
+    polygon.add(p4);
+    
+    return polygon;
   }
 }

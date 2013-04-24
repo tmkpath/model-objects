@@ -126,11 +126,17 @@
 	    <xs:element name="timestamp" type="dateTime" minOccurs="0" maxOccurs="1" />
 
         <!-- Traffic data by vehicle type. -->
-        <xs:element ref="trafficDataByVehicleType" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="trafficDatum" minOccurs="1" maxOccurs="1"/>
 
         <!-- Quantity type is optional because it can be
              assigned at the <linkStateSet> level. -->
         <xs:element ref="quantity_type" minOccurs="0" maxOccurs="1"/>
+
+        <!-- Aggregation type ID -->
+        <xs:element ref="aggregation_type" minOccurs="0" maxOccurs="1"/>
+
+        <!-- Application type ID -->
+        <xs:element ref="application_type" minOccurs="0" maxOccurs="1"/>
       </xs:all>
 
       <!-- Link ID. -->
@@ -147,8 +153,8 @@
       <xs:attribute name="run_id" type="xs:long" use="optional"/>
 
       <!-- dt is the time interval, for which the state is
-           aggregated - just like network_id, this attribute
-	   is optional for the same reason. -->
+             aggregated - just like network_id, this attribute
+         is optional for the same reason. -->
       <xs:attribute name="dt" type="xs:double" use="optional"/>
       
       <!-- Optionally, we can stick fundamental diagram parameters
@@ -168,11 +174,17 @@
         <xs:element name="timestamp" type="dateTime" minOccurs="0" maxOccurs="1" />
 
         <!-- Traffic data by vehicle type. -->
-        <xs:element ref="trafficDataByVehicleType" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="trafficDatum" minOccurs="1" maxOccurs="1"/>
 
         <!-- Quantity type is optional because it can be
              assigned at the <linkStateSet> level. -->
         <xs:element ref="quantity_type" minOccurs="0" maxOccurs="1"/>
+
+        <!-- Aggregation type ID -->
+        <xs:element ref="aggregation_type" minOccurs="0" maxOccurs="1"/>
+
+        <!-- Application type ID -->
+        <xs:element ref="application_type" minOccurs="0" maxOccurs="1"/>
       </xs:all>
 
       <!-- Link ID. -->
@@ -215,17 +227,23 @@
 	     it can be assigned to the <linkStateSet> at once. -->
         <xs:element name="timestamp" type="dateTime" minOccurs="0" maxOccurs="1" />
 
-        <!-- Vehicle type order defines the order of density
+        <!-- Vehicle type defines the order of density
              and flow values in the corresponding elements.
              This can be assigned at the <linkStateSet> level. -->
-        <xs:element ref="VehicleTypeOrder" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="vehicleType" minOccurs="0" maxOccurs="1"/>
 
         <!-- Traffic data by vehicle type. -->
-        <xs:element ref="trafficDataByVehicleType" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="trafficDatum" minOccurs="1" maxOccurs="1"/>
 
         <!-- Quantity type is optional because it can be
              assigned at the <linkStateSet> level. -->
         <xs:element ref="quantity_type" minOccurs="0" maxOccurs="1"/>
+
+        <!-- Aggregation type ID -->
+        <xs:element ref="aggregation_type" minOccurs="0" maxOccurs="1"/>
+
+        <!-- Application type ID -->
+        <xs:element ref="application_type" minOccurs="0" maxOccurs="1"/>
       </xs:all>
 
       <!-- Link ID. -->
@@ -241,17 +259,13 @@
            assigned at the <linkStateSet> level. -->
       <xs:attribute name="run_id" type="xs:long" use="optional"/>
 
+      <!--TODO Review if this is a different MO -->
+      <xs:attribute name="value_type_id" type="xs:long" use="optional"/>
+
       <!-- dt is the time interval, for which the state is
            aggregated - just like network_id, this attribute
 	   is optional for the same reason. -->
       <xs:attribute name="dt" type="xs:double" use="optional"/>
-
-      <!-- Optionally, we can stick fundamental diagram parameters
-           into the link state: free flow speed, critical speed,
-           and capacity. Capacity values are total, not(!) per lane. -->
-      <xs:attribute name="ff_speed" type="xs:double" use="optional"/>
-      <xs:attribute name="crit_speed" type="xs:double" use="optional"/>
-      <xs:attribute name="capacity" type="xs:double" use="optional"/>
     </xs:complexType>
   </xs:element>
 
@@ -264,6 +278,24 @@
       <xs:attribute name="description" type="xs:string" use="required"/>
     </xs:complexType>
   </xs:element>
+
+  <!-- Application type -->
+  <xs:element name="application_type">
+    <xs:complexType>
+      <xs:attribute name="id" type="xs:long" use="required" />
+      <xs:attribute name="name" type="xs:string" use="required"/>
+      <xs:attribute name="description" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+    <!-- Application type -->
+    <xs:element name="aggregation_type">
+        <xs:complexType>
+            <xs:attribute name="id" type="xs:long" use="required" />
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="description" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
 
 
   <!-- Link Performance -->
@@ -322,16 +354,6 @@
 
       <!-- Level Of Service - defined in Highway Capacity Manual. -->
       <xs:attribute name="los" type="xs:double" use="optional"/>
-    </xs:complexType>
-  </xs:element>
-
-  <!-- Traffic data by vehicle type. -->
-  <xs:element name="trafficDataByVehicleType">
-    <xs:complexType>
-      <xs:sequence>
-	    <!-- Traffic data by destination network. -->
-        <xs:element ref="trafficDatum" minOccurs="1" maxOccurs="unbounded"/>
-      </xs:sequence>
     </xs:complexType>
   </xs:element>
 
