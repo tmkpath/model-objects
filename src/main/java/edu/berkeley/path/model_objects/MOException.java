@@ -29,6 +29,9 @@
 
 package edu.berkeley.path.model_objects;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 /**
  * Model Object Exception class, thrown when Model object error occurs
  * @author mnjuhn
@@ -42,19 +45,44 @@ public class MOException extends Exception {
     * @param causeStr A description of the exception.
     */
    public MOException( Throwable cause, String causeStr) {
-       super( MOException.makeMessage( causeStr), cause );
+       super( MOException.makeMessage( cause, causeStr), cause );
    }
 
    /**
     * This is here only to get around the rule that the super call must be the
     * first thing in a constructor in Java.
+    * @param cause A root exception
     * @param causeStr A description of the exception.
     */
-   private static String makeMessage(  String causeStr) {
+   private static String makeMessage(  Throwable cause, String causeStr) {
        StringBuilder sb = new StringBuilder();
 
        sb.append("CAUSE: ").append( causeStr ).append("\n");
 
+       // If in debug mode show stack traces
+       if (System.getProperty("debug")  == "true") {
+         sb.append("STACKTRACE: ").append( getStackTrace(cause) ).append("\n");
+       }
+
        return sb.toString();
    }
+   
+   /**
+    * This function returns a string representation of a stack trace
+    * 
+    * @param cause A root exception
+    * @return String representation of exceptions stacktrace
+    */
+   private static String getStackTrace (Throwable cause) {
+     // If exception cause is not null try and get is stack trace
+     if (cause != null) {
+       // need to use string writer class hold string representation of stack trace
+       StringWriter sw = new StringWriter();
+       cause.printStackTrace(new PrintWriter(sw));
+       return sw.toString();
+     } else {
+       return null;
+     }
+   }
+     
 }
