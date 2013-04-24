@@ -146,6 +146,26 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
   }
   
   /**
+   * Gets the value of the modStamp property.
+   * 
+   * @return String representation of mod-stamp
+   */
+  @Override
+  public String getModStamp() {
+      return super.getModStamp();
+  }
+
+  /**
+   * Sets the value of the modStamp property.
+   * 
+   * @param String value of database mod-stamp
+   */
+  @Override
+  public void setModStamp(String value) {
+      this.modStamp = value;
+  }
+  
+  /**
    * Get Center Position of network, which is an average of
    * 
    * @return Center Point of Network in Degrees
@@ -160,7 +180,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
    * @return Bounding Box of Network in Degrees
    */
 	@SuppressWarnings("unchecked")
-  public List<Point> getBoundingBox() {
+  public List<Point> getBoundingPolygon() {
     // if center position is not set, calculate it and set it
     if (getPosition() != null && getPosition().getPoint() != null) {
       return (List<Point>)(List<?>)getPosition().getPoint();
@@ -177,7 +197,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
    * @params List of points in degrees which represent Bounding Box
    */
   @SuppressWarnings("unchecked")
-  public void setBoundingBox(List<Point> points) { 
+  public void setBoundingPolygon(List<Point> points) { 
     // create new position class to house list of bounding box points
     Position position = new Position();
     position.getPoint().clear();
@@ -353,9 +373,9 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
    * Calculates bounding box by finding the min and max, lat and long
    * of all nodes
    * 
-   * @return  Bounding Box of network
+   * @return  List of points representing rectangular Bounding Box of network
    */
-  public void calculateBoundingBox() throws MOException {
+  public List<Point> calculateBoundingBox() throws MOException {
     List<Node> nodes = getListOfNodes();
     // set all values to null
     Double minLat = null;
@@ -381,9 +401,9 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
           maxLong = ((Point) node.getPoint()).getLongitude();
         }
       } 
-      // set network bounding box
-      Position boundingBox= new Position();
       
+      // Set list of points which are top left and bottom right of bounding box
+      ArrayList<Point> points = new ArrayList<Point>();
       Point max = new Point();
       max.setLatitude(maxLat);
       max.setLongitude(maxLong); 
@@ -392,10 +412,10 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
       min.setLatitude(minLat);
       min.setLatitude(minLong);
       
-      boundingBox.getPoint().add(max);
-      boundingBox.getPoint().add(min);
+      points.add(max);
+      points.add(min);
       
-      setPosition(boundingBox);
+      return points;
     }
     else {
       throw new MOException(null, "Could not calculate Bounding Box. No Nodes set in network.");
@@ -408,7 +428,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
    * 
    * @return Center Point of Network in Degrees
    */
-  public void calculateCenter() {
+  public void calculateCenter() throws MOException {
     List<Node> nodes = getListOfNodes();
     Double avgLat = 0.0d;
     Double avgLong = 0.0d;
@@ -422,7 +442,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
       center.setLongitude(avgLong/nodes.size());
     }
     else {
-      Monitor.err("Could not calculate Bounding Box. No Nodes set in network.");
+      throw new MOException(null, "Could not calculate Bounding Box. No Nodes set in network.");
     }
   }
 }
