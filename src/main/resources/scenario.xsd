@@ -518,6 +518,11 @@
 
 			  <xs:element name="fundamentalDiagram">
 				<xs:complexType>
+					<xs:all>
+						<xs:element name="crudFlag" type="crudFlag" minOccurs="0" />
+				  </xs:all>
+					<xs:attribute name="id" type="xs:long" use="required" />
+					<xs:attribute name="order" type="xs:int" use="required" />
 				  <xs:attribute name="capacity" type="xs:double" use="required" />							<!-- [veh/s/lane]   -->
 				  <xs:attribute name="free_flow_speed" type="xs:double" use="required" />					<!-- [m/s] -->
 				  <xs:attribute name="congestion_speed" type="xs:double" use="required" />					<!-- [m/s] -->

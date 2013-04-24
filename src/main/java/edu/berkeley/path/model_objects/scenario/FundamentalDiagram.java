@@ -212,5 +212,46 @@ public class FundamentalDiagram extends edu.berkeley.path.model_objects.jaxb.Fun
 	public void setStdDevCongestionSpeed(Double d) {
 	  super.setStdDevCongestionSpeed(d);
 	}	
+	
+	/**
+	 * Return FD id as long
+	 * 
+	 * @return FD id as long
+	 */
+	@Override
+	public long getId() {
+	  return super.getId();
+	}
+	
+	/**
+	 * Set FD id as long
+	 * 
+	 * @param FD id
+	 */
+	@Override
+	public void setId(long l) {
+	  super.setId(l);
+	}	
+	
+	/**
+	 * Return FD order as int
+	 * 
+	 * @return FD order
+	 */
+	@Override
+	public int getOrder() {
+	  return super.getOrder();
+	}
+	
+	/**
+	 * Set FD order as int
+	 * 
+	 * @param FD order
+	 */
+	@Override
+	public void setOrder(int i) {
+	  super.setOrder(i);
+	}	
+	
 
 }
