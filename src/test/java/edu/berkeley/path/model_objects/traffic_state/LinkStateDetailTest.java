@@ -39,6 +39,9 @@ public class LinkStateDetailTest {
   public static final int APP_ID = 2;
   public static final String APP_NAME = "app_name";
   public static final String APP_DESC = "app_desc";
+  public static final int QTY_ID = 3;
+  public static final String QTY_NAME = "qty_name";
+  public static final String QTY_DESC = "qty_desc";
 
   public static final double VEHICLE_COUNT = 1.0;
   public static final double SPEED = 2.0;
@@ -61,6 +64,7 @@ public class LinkStateDetailTest {
 
     ls.setAggregationType(AGG_ID, AGG_NAME, AGG_DESC);
 		ls.setApplicationType(APP_ID, APP_NAME, APP_DESC);
+    ls.setQuantityType(QTY_ID, QTY_NAME, QTY_DESC);
     ls.setVehicleType(VEH_ID, VEH_NAME, VEH_SIZE, VEH_IS_STD);
 
     TrafficDatum td = new TrafficDatum();
@@ -81,6 +85,10 @@ public class LinkStateDetailTest {
     assertEquals(APP_ID, ls.getApplicationTypeId());
     assertEquals(APP_NAME, ls.getApplicationType().getName());
     assertEquals(APP_DESC, ls.getApplicationType().getDescription());
+
+    assertEquals(QTY_ID, ls.getQuantityTypeId());
+    assertEquals(QTY_NAME, ls.getQuantityType().getName());
+    assertEquals(QTY_DESC, ls.getQuantityType().getDescription());
 
     assertEquals(VEH_ID, ls.getVehicleTypeId());
     assertEquals(VEH_NAME, ls.getVehicleType().getName());

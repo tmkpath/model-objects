@@ -29,9 +29,13 @@ package edu.berkeley.path.model_objects.traffic_state;
 import edu.berkeley.path.model_objects.jaxb.AggregationType;
 import edu.berkeley.path.model_objects.jaxb.ApplicationType;
 import edu.berkeley.path.model_objects.jaxb.DateTime;
+import edu.berkeley.path.model_objects.jaxb.QuantityType;
 import edu.berkeley.path.model_objects.scenario.VehicleType;
 
 public class LinkStateDetail extends edu.berkeley.path.model_objects.jaxb.LinkStateDetail {
+
+  /** @y.exclude */  private double density;
+
   public long getApplicationTypeId() {
     return getApplicationType().getId();
   }
@@ -56,6 +60,18 @@ public class LinkStateDetail extends edu.berkeley.path.model_objects.jaxb.LinkSt
     setAggregationType(type);
   }
 
+  public long getQuantityTypeId() {
+    return getQuantityType().getId();
+  }
+
+  public void setQuantityType(long id, String name, String desc) {
+    QuantityType type = new QuantityType();
+    type.setId(id);
+    type.setName(name);
+    type.setDescription(desc);
+    setQuantityType(type);
+  }
+
   public long getVehicleTypeId() {
     return getVehicleType().getId();
   }
@@ -76,6 +92,24 @@ public class LinkStateDetail extends edu.berkeley.path.model_objects.jaxb.LinkSt
   public boolean isValid() {
     //TODO generate actual implementation
     return true;
+  }
+
+  /**
+   * Return the density of the link. DENSITY = VEHICLE_COUNT / LINK_LENGTH
+   * Link length value should be in SI
+   * @return  density value in SI for link
+   */
+  public double getDensity() {
+    return density;
+  }
+
+  /**
+   * Sets the density of the link. DENSITY = VEHICLE_COUNT / LINK_LENGTH
+   * Link length value should be in SI
+   * @param density density value in SI for link
+   */
+  public void setDensity(double density) {
+    this.density = density;
   }
 
   @Override
@@ -106,16 +140,6 @@ public class LinkStateDetail extends edu.berkeley.path.model_objects.jaxb.LinkSt
   @Override
   public void setRunId(Long value) {
     super.setRunId(value);    //To change body of overridden methods use File | Settings | File Templates.
-  }
-
-  @Override
-  public Long getValueTypeId() {
-    return super.getValueTypeId();    //To change body of overridden methods use File | Settings | File Templates.
-  }
-
-  @Override
-  public void setValueTypeId(Long value) {
-    super.setValueTypeId(value);    //To change body of overridden methods use File | Settings | File Templates.
   }
 
   @Override

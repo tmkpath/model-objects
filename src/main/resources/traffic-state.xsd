@@ -259,9 +259,6 @@
            assigned at the <linkStateSet> level. -->
       <xs:attribute name="run_id" type="xs:long" use="optional"/>
 
-      <!--TODO Review if this is a different MO -->
-      <xs:attribute name="value_type_id" type="xs:long" use="optional"/>
-
       <!-- dt is the time interval, for which the state is
            aggregated - just like network_id, this attribute
 	   is optional for the same reason. -->
