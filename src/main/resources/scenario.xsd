@@ -107,6 +107,7 @@
 
 		  <xs:element name="vehicleType">
 			<xs:complexType>
+			  <xs:attribute name="id" type="xs:long" use="required" />
 			  <xs:attribute name="name" type="xs:string" use="required" />
 			  <xs:attribute name="size_factor" type="xs:double" use="optional" />			       <!-- default is 1, not used if part if VehicleTypeOrder -->
 			  <xs:attribute name="is_standard" type="xs:int" use="optional" />
