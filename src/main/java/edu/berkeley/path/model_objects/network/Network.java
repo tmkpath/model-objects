@@ -115,9 +115,9 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
   }
   
   /**
-   * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+   * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
    * 
-   * @para CRUD Flag enumeration
+   * @param CRUD Flag enumeration
    */
   @Override
   public void setCrudFlag(CrudFlag flag) {
