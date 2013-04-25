@@ -292,9 +292,9 @@
 			<xs:element ref="description" minOccurs="0" />
 			<xs:element ref="VehicleTypeOrder" minOccurs="0"  maxOccurs="1"/>
 			<xs:element ref="splitRatioProfile" minOccurs="0" maxOccurs="unbounded" />
-			<xs:element name="crudFlag" type="crudFlag" minOccurs="0" />
 		  </xs:sequence>
-	  	  <xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
+			<xs:attribute name="crudFlag" type="crudFlag" minOccurs="0" />
+	  	<xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
 		  <xs:attribute name="id" type="xs:long" use="required"/>
 		  <xs:attribute name="name" type="xs:string" use="optional" default="" />
 		  <xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
@@ -305,8 +305,8 @@
 			<xs:complexType>
 			  <xs:sequence>
 				<xs:element ref="splitratio" minOccurs="0" maxOccurs="unbounded" />
-				<xs:element name="crudFlag" type="crudFlag" minOccurs="0" />
 			  </xs:sequence>
+				<xs:attribute name="crudFlag" type="crudFlag" minOccurs="0" />
 			  <xs:attribute name="id" type="xs:long" use="required" />
 			  <xs:attribute name="node_id" type="xs:long" use="required" />
 			  <xs:attribute name="start_time" type="xs:double" use="optional" default="0" />		<!-- in time units -->
@@ -318,7 +318,8 @@
 
 			  <xs:element name="splitratio">
 				<xs:complexType mixed="true">	
-				  <xs:attribute name="id" type="xs:long" use="required" />
+					<xs:attribute name="crudFlag" type="crudFlag" minOccurs="0" />
+					<xs:attribute name="id" type="xs:long" use="required" />
 				  <xs:attribute name="link_in" type="xs:long" use="required" />
 				  <xs:attribute name="link_out" type="xs:long" use="required" />
 				  <xs:attribute name="veh_type_id" type="xs:long" use="required" />
@@ -525,9 +526,7 @@
 
 			  <xs:element name="fundamentalDiagram">
 				<xs:complexType>
-					<xs:all>
-						<xs:element name="crudFlag" type="crudFlag" minOccurs="0" />
-				  </xs:all>
+					<xs:attribute name="crudFlag" type="crudFlag" minOccurs="0" />
 					<xs:attribute name="id" type="xs:long" use="required" />
 					<xs:attribute name="order" type="xs:int" use="required" />
 				  <xs:attribute name="capacity" type="xs:double" use="required" />							<!-- [veh/s/lane]   -->
