@@ -3,6 +3,24 @@ package edu.berkeley.path.model_objects.scenario;
 
 public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio{
 	
+	
+    /**
+     * Gets the value of the id property.
+     * 
+     */
+    public long getId() {
+        return super.getId();
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     */
+    public void setId(long value) {
+        super.setId(value);
+    }
+    
+    
 	/**
 	 * @return the split ratio's link in
 	 */
@@ -55,7 +73,8 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio{
 	public String getContent() {
 		return super.getContent();
 	}
-	
+
+	  
 	/**
 	 * @param id the vehicle type id for this ratio
 	 */
