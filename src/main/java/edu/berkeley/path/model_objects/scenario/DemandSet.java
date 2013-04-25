@@ -37,9 +37,21 @@ import edu.berkeley.path.model_objects.jaxb.VehicleTypeOrder;
 
 public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 	
-	protected String modStamp;
+	 /**
+	  * Get Crud flag value
+	  * @return
+	  */
+	public String getCrud() {
+       return crud;
+   }
 	
-
+	/**
+	 * Set Crud flag value
+	 * @param value
+	 */
+   public void setCrud(String value) {
+       this.crud = value;
+   }
 
 	 /**
 	  * Get modstamp
@@ -74,8 +86,8 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 			return new Object_Parameter("id", id, 0.0F, null);
 		} else if (name.compareToIgnoreCase("description") == 0 ) {
 			return new Object_Parameter("description", 0, 0.0F, getDescription());
-		} else if (name.compareToIgnoreCase("project_id") == 0 ) {
-			return new Object_Parameter("project_id", projectId, 0.0F, null);
+		} else if (name.compareToIgnoreCase("projectId") == 0 ) {
+			return new Object_Parameter("projectId", projectId, 0.0F, null);
 		} else if (name.compareToIgnoreCase("name") == 0 ) {
 			return new Object_Parameter("name", 0, 0.0F, getName());
 		} 
@@ -90,16 +102,18 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 	 */
 	public Object_Parameter[] getAll() {
 		
-		Object_Parameter[] params = new Object_Parameter[4];
+		Object_Parameter[] params = new Object_Parameter[5];
 		
-		params[0] = new Object_Parameter("id", id, 0.0F, null);
-		params[1] = new Object_Parameter("description", 0, 0.0F, getDescription());
-		params[2] = new Object_Parameter("project_id", projectId, 0.0F, null);
+		params[0] = new Object_Parameter("id", getId(), 0.0F, null);
+		params[1] = new Object_Parameter("description", 0, 0.0F, description);
+		params[2] = new Object_Parameter("projectId", getProjectId(), 0.0F, null);
 		params[3] = new Object_Parameter("name", 0, 0.0F, getName());
+		params[4] = new Object_Parameter("crud", 0, 0.0F, crud);
 		
 		Object_Parameter.setPositions(params);
 		
 		return params;
+
 	}
 	   /**
      * Gets the value of the description property.
@@ -191,12 +205,8 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
      *     
      */
     @Override
-    public long getProjectId() {
-        if (projectId == null) {
-            return  0L;
-        } else {
+    public long getProjectId() {   
             return projectId;
-        }
     }
 
     /**
@@ -208,7 +218,7 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
      *     
      */
     @Override
-    public void setProjectId(Long value) {
+    public void setProjectId(long value) {
         this.projectId = value;
     }
 
