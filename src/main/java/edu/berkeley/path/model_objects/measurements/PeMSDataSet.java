@@ -28,8 +28,7 @@ package edu.berkeley.path.model_objects.measurements;
 
 import java.util.List;
 
-import edu.berkeley.path.model_objects.jaxb.PeMSDataProfile;
-import edu.berkeley.path.model_objects.jaxb.PeMSDatum;
+import edu.berkeley.path.model_objects.measurements.PeMSDataProfile;
 
 /** 
  * Model Object PeMS Data Set class.
@@ -45,21 +44,23 @@ public class PeMSDataSet extends edu.berkeley.path.model_objects.jaxb.PeMSDataSe
 	 */
 	
 	/**
-	 * Return list of PeMSDataProfile objects (i.e. the data set)
+	 * Return list of PeMSDatum objects (i.e. the profile)
 	 * 
-	 * @return peMSDataProfile list as List<PeMSDataProfile>
+	 * @return peMSDatum list as List<PeMSDatum>
 	 */
-	@Override
-	public List<PeMSDataProfile> getPeMSDataProfile() {
-	  return super.getPeMSDataProfile();
-	}
+	@SuppressWarnings("unchecked")
+	public List<PeMSDataProfile> getListOfProfiles() {
+	  List<edu.berkeley.path.model_objects.jaxb.PeMSDataProfile> profileList = super.getPeMSDataProfile();
+	  // return casted list of Nodes from JAXB base class
+      return (List<PeMSDataProfile>)(List<?>)profileList;
+    }
 	
 	/**
 	 * Set list of PeMSDataProfile objects (i.e. the data set)
 	 * 
 	 * @param PeMSDataProfile list as List<PeMSDataProfile>
 	 */
-	public void setPeMSDatum(List<PeMSDataProfile> peMSDataSet) {
+	public void setPeMSDataProfile(List<PeMSDataProfile> peMSDataSet) {
 	  getPeMSDataProfile().clear();
 	  getPeMSDataProfile().addAll(peMSDataSet);
 	}
