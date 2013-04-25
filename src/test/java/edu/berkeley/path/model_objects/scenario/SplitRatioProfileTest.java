@@ -16,6 +16,7 @@ public class SplitRatioProfileTest {
 	@Before
 	public void setUp(){
 		profile = new SplitRatioProfile();
+		profile.setId(10);
 		profile.setNodeId(1);
 		profile.setStartTime(3600);
 		profile.setDt(300);
@@ -44,6 +45,7 @@ public class SplitRatioProfileTest {
 
 	@Test
 	public void testGetters(){
+		assertEquals(10,profile.getId());
 		assertEquals(1,profile.getNodeId());
 		assertEquals(3600,profile.getStartTime(), 0.0);
 		assertEquals(300,profile.getDt().doubleValue(), 0.0);

@@ -133,6 +133,23 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 			splitratio = splits;
 	}
 	
+	
+	 /**
+     * Gets the value of the id property.
+     * 
+     */
+    public long getId() {
+        return super.getId();
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     */
+    public void setId(long value) {
+        super.setId(value);
+    }
+    
     /**
      * Gets the value of the nodeId property.
      * 
@@ -240,6 +257,7 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	 */
 	public SplitRatioProfile clone(){
 		SplitRatioProfile prof = new SplitRatioProfile();
+		prof.setId(this.getId());
 		prof.setNodeId(this.getNodeId());
 		prof.setStartTime(this.getStartTime());
 		prof.setDt(this.getDt());
