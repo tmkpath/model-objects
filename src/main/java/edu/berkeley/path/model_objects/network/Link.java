@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import core.Monitor;
 
 import edu.berkeley.path.model_objects.jaxb.Begin;
+import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.jaxb.End;
 import edu.berkeley.path.model_objects.jaxb.Road;
 import edu.berkeley.path.model_objects.jaxb.Roads;
@@ -296,6 +297,26 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
   public void setEndId(Long nodeId) {
     setEnd(new End());
     getEnd().setNodeId(nodeId);
+  } 
+  
+  /**
+   * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+   * 
+   * @return CRUD Flag enumeration
+   */
+  @Override
+  public CrudFlag getCrudFlag() {
+    return super.getCrudFlag();
+  }
+  
+  /**
+   * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+   * 
+   * @param CRUD Flag enumeration
+   */
+  @Override
+  public void setCrudFlag(CrudFlag flag) {
+    super.setCrudFlag(flag);
   }
   
   /**

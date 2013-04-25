@@ -33,6 +33,7 @@ import edu.berkeley.path.model_objects.shared.DateTime;
 
 public class LinkStateDebug extends edu.berkeley.path.model_objects.jaxb.LinkStateDebug {
 
+  /** @y.exclude */  private double density;
 
   public long getApplicationTypeId() {
 		return getApplicationType().getId();
@@ -79,7 +80,25 @@ public class LinkStateDebug extends edu.berkeley.path.model_objects.jaxb.LinkSta
 		return true;
 	}
 
-	@Override
+  /**
+   * Return the density of the link. DENSITY = VEHICLE_COUNT / LINK_LENGTH
+   * Link length value should be in SI
+   * @return  density value in SI for link
+   */
+  public double getDensity() {
+    return density;
+  }
+
+  /**
+   * Sets the density of the link. DENSITY = VEHICLE_COUNT / LINK_LENGTH
+   * Link length value should be in SI
+   * @param density density value in SI for link
+   */
+  public void setDensity(double density) {
+    this.density = density;
+  }
+
+  @Override
 	public DateTime getTimestamp() {
 		return  new DateTime(super.getTimestamp().getMilliseconds());
 	}

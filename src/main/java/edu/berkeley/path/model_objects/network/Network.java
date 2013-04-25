@@ -27,6 +27,7 @@
 package edu.berkeley.path.model_objects.network;
 
 import core.Monitor;
+import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.jaxb.Position;
 import edu.berkeley.path.model_objects.shared.Point;
 import edu.berkeley.path.model_objects.MOException;
@@ -101,6 +102,26 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
   @Override
   public void setDescription(String description) {
     super.setDescription(description);
+  }
+  
+  /**
+   * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+   * 
+   * @return CRUD Flag enumeration
+   */
+  @Override
+  public CrudFlag getCrudFlag() {
+    return super.getCrudFlag();
+  }
+  
+  /**
+   * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+   * 
+   * @param CRUD Flag enumeration
+   */
+  @Override
+  public void setCrudFlag(CrudFlag flag) {
+    super.setCrudFlag(flag);
   }
   
   /**
