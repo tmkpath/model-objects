@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.berkeley.path.model_objects.jaxb.CrudFlag;
+
 public class SplitRatioProfileTest {
 	
 	SplitRatioProfile profile;
@@ -21,6 +23,7 @@ public class SplitRatioProfileTest {
 		profile.setStartTime(3600);
 		profile.setDt(300);
 		profile.setDestinationNetworkId(3);
+		profile.setCrudFlag(CrudFlag.CREATE);
 		profile.setModStamp("1970-01-01 00:00:00");
 		
 		List<Splitratio> ratios = new ArrayList<Splitratio>();
@@ -47,6 +50,7 @@ public class SplitRatioProfileTest {
 	public void testGetters(){
 		assertEquals(10,profile.getId());
 		assertEquals(1,profile.getNodeId());
+		assertEquals(CrudFlag.CREATE,profile.getCrudFlag());
 		assertEquals(3600,profile.getStartTime(), 0.0);
 		assertEquals(300,profile.getDt().doubleValue(), 0.0);
 		assertEquals(3, profile.getDestinationNetworkId().longValue());
