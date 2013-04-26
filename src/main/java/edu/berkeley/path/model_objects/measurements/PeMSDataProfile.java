@@ -30,7 +30,8 @@ import java.util.List;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import edu.berkeley.path.model_objects.jaxb.PeMSDatum;
+import edu.berkeley.path.model_objects.measurements.PeMSDatum;
+
 
 /** 
  * Model Object PeMS Data Profile class.
@@ -50,10 +51,13 @@ public class PeMSDataProfile extends edu.berkeley.path.model_objects.jaxb.PeMSDa
 	 * 
 	 * @return peMSDatum list as List<PeMSDatum>
 	 */
-	@Override
-	public List<PeMSDatum> getPeMSDatum() {
-	  return super.getPeMSDatum();
-	}
+	@SuppressWarnings("unchecked")
+	public List<PeMSDatum> getListOfPeMSDatum() {
+	  List<edu.berkeley.path.model_objects.jaxb.PeMSDatum> datumList = super.getPeMSDatum();
+	  // return casted list of Nodes from JAXB base class
+      return (List<PeMSDatum>)(List<?>)datumList;
+    }
+	
 	
 	/**
 	 * Set list of PeMSDatum objects (i.e. the profile)
