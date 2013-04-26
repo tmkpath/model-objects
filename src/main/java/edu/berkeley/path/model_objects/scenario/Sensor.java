@@ -26,6 +26,7 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.jaxb.Link;
 import edu.berkeley.path.model_objects.jaxb.SensorType;
 import edu.berkeley.path.model_objects.shared.DisplayPosition;
@@ -82,6 +83,25 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 //	public Sensor.Type getSensorType() {
 //		return type;
 //	}
+  /**
+   * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+   *
+   * @return CRUD Flag enumeration
+   */
+  @Override
+  public CrudFlag getCrudFlag() {
+    return super.getCrudFlag();
+  }
+
+  /**
+   * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+   *
+   * @param flag CRUD Flag enumeration
+   */
+  @Override
+  public void setCrudFlag(CrudFlag flag) {
+    super.setCrudFlag(flag);
+  }
 
   public long getSensorTypeId() {
     return getSensorType().getId();
