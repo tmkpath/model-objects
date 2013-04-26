@@ -125,4 +125,24 @@ public class PeMSDatum extends edu.berkeley.path.model_objects.jaxb.PeMSDatum{
 	  super.setSpeed(speed);
 	}
 	
+	/**
+	 * Return vds id
+	 * 
+	 * @return vds id as lon
+	 */
+	@Override
+	public long getVdsId() {
+	  return super.getVdsId();
+	}
+	
+	/**
+	 * Set vds id
+	 * 
+	 * @param vds id as long
+	 */
+	@Override
+	public void setVdsId(long l) {
+	  super.setVdsId(l);
+	}
+	
 }
