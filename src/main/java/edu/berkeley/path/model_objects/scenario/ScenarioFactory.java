@@ -10,7 +10,16 @@ public class ScenarioFactory {
 	public static Sensor createSensor() {
 		return new Sensor();
 	}
-	
+
+  /**
+   * Create an instance of SensorSet Model Object
+   *
+   * @return  SensorSet Model Object
+   */
+  public static SensorSet createSensorSet() {
+    return new SensorSet();
+  }
+
 	   /**
      * Create an instance of DemandSet Model Object
      * 
