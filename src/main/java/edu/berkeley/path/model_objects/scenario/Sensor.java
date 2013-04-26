@@ -30,7 +30,6 @@ import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.jaxb.Link;
 import edu.berkeley.path.model_objects.jaxb.SensorType;
 import edu.berkeley.path.model_objects.shared.DisplayPosition;
-import edu.berkeley.path.model_objects.shared.Parameters;
 
 import java.math.BigInteger;
 
