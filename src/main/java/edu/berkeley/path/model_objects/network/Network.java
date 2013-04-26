@@ -358,12 +358,14 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
   }
   
   /**
-   * Network wide validation
+   * Network wide validation for insertion into DB
    * 
    * @return true if network is valid
    */
   public final Boolean isValid() {
-
+    // TODO: Validate Network for insertion to DB, return true for now
+    return true;
+    /*
     Boolean validLinks = true;
     Boolean validNodes = true;
     // Check if network is empty  
@@ -387,7 +389,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
     }
     else {
       return false;
-    }
+    }*/
   }
   
   /**

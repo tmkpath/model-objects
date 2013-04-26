@@ -13,8 +13,10 @@ public class SplitratioTest {
 	@Before
 	public void setUp() {
 		  ratio = new Splitratio();
+		  ratio.setId(0);
 		  ratio.setLinkIn(1);
 		  ratio.setLinkOut(2);
+		  ratio.setRatioOrder(4);
 		  ratio.setModStamp("1970-01-01 00:00:00");
 		  ratio.setContent("0.1");
 		  ratio.setVehTypeId(3);
@@ -28,9 +30,11 @@ public class SplitratioTest {
   
   @Test
   public void testGetters(){
+	  assertEquals(0,ratio.getId());
 	  assertEquals(1,ratio.getLinkIn());
 	  assertEquals(2,ratio.getLinkOut());
 	  assertEquals(3,ratio.getVehTypeId());
+	  assertEquals(4,ratio.getRatioOrder());
 	  assertEquals("0.1",ratio.getContent());
 	  assertEquals("1970-01-01 00:00:00",ratio.getModStamp());
   }
