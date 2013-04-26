@@ -10,6 +10,7 @@ import org.joda.time.Interval;
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.berkeley.path.model_objects.TestConfiguration;
 import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.network.Node;
 
@@ -28,9 +29,9 @@ public class SplitRatioSetTest {
 		set.setModStamp("1970-01-01 00:00:00");
 		
 		List<SplitRatioProfile> profiles = new ArrayList<SplitRatioProfile>();
-		profiles.add(TestConfiguration.createSplitRatioProfile(1,3600,300,1));
-		profiles.add(TestConfiguration.createSplitRatioProfile(2,3660,300,2));
-		profiles.add(TestConfiguration.createSplitRatioProfile(3,3720,300,3));
+		profiles.add(TestConfiguration.createSplitRatioProfile(1,3600,300,1, CrudFlag.UPDATE));
+		profiles.add(TestConfiguration.createSplitRatioProfile(2,3660,300,2, CrudFlag.UPDATE));
+		profiles.add(TestConfiguration.createSplitRatioProfile(3,3720,300,3, CrudFlag.UPDATE));
 		
 		set.setListOfSplitRatioProfiles(profiles);
 	}
@@ -156,7 +157,7 @@ public class SplitRatioSetTest {
 		List<SplitRatioProfile> profiles = set.getSplitRatioProfileAtNode(n);
 		assertEquals(1, profiles.size());
 
-		profiles.add(TestConfiguration.createSplitRatioProfile(1,3720,300,3));
+		profiles.add(TestConfiguration.createSplitRatioProfile(1,3720,300,3,CrudFlag.UPDATE));
 		profiles = set.getSplitRatioProfileAtNode(n);
 		assertEquals(2, profiles.size());
 
@@ -164,5 +165,6 @@ public class SplitRatioSetTest {
 		profiles = set.getSplitRatioProfileAtNode(n);
 		assertEquals(0, profiles.size());
 	}
+
 	
 }

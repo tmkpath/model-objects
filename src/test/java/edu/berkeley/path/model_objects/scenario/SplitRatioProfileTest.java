@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
-
 import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 
 public class SplitRatioProfileTest {
@@ -35,7 +34,7 @@ public class SplitRatioProfileTest {
 		profile.setListOfSplitRatios(ratios);
 	}
 	
-	public static Splitratio createSplitRatio(int link_in, int link_out, int veh_id, double ratio, int order) {
+	private Splitratio createSplitRatio(int link_in, int link_out, int veh_id, double ratio, int order) {
 		Splitratio r = new Splitratio();
 		r.setLinkIn(link_in);
 		r.setLinkOut(link_out);
