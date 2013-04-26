@@ -26,7 +26,7 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
-import edu.berkeley.path.model_objects.shared.DisplayPosition;
+
 import edu.berkeley.path.model_objects.shared.Point;
 import org.junit.Test;
 
@@ -45,12 +45,10 @@ public class SensorTest {
   public void testAssignments() {
     Sensor sensor = new Sensor();
     //display position
-    DisplayPosition dp = new DisplayPosition();
     Point p = new Point();
     p.setLongitude(LNG);
     p.setLatitude(LAT);
-    dp.getPoints().add(p);
-    sensor.setDisplayPosition(dp);
+    sensor.setDisplayPosition(p);
 
     //TODO sensor parameters?
 
@@ -58,10 +56,8 @@ public class SensorTest {
     sensor.setSensorType(TYPE_ID, TYPE_NAME, TYPE_DESC);
 
     assertNotNull(sensor.getSensorDisplayPosition());
-    assertNotNull(sensor.getSensorDisplayPosition().getPoints());
-    assertTrue(sensor.getSensorDisplayPosition().getPoints().size() > 0);
-    assertEquals(LNG, sensor.getSensorDisplayPosition().getPoints().get(0).getLng(), EPSILON);
-    assertEquals(LAT, sensor.getSensorDisplayPosition().getPoints().get(0).getLat(), EPSILON);
+    assertEquals(LNG, sensor.getSensorDisplayPosition().getLng(), EPSILON);
+    assertEquals(LAT, sensor.getSensorDisplayPosition().getLat(), EPSILON);
 
     assertEquals(TYPE_ID, sensor.getSensorTypeId());
   }

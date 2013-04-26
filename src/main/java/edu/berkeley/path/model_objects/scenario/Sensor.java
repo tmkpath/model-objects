@@ -27,9 +27,10 @@
 package edu.berkeley.path.model_objects.scenario;
 
 import edu.berkeley.path.model_objects.jaxb.CrudFlag;
+import edu.berkeley.path.model_objects.jaxb.DisplayPosition;
 import edu.berkeley.path.model_objects.jaxb.Link;
 import edu.berkeley.path.model_objects.jaxb.SensorType;
-import edu.berkeley.path.model_objects.shared.DisplayPosition;
+import edu.berkeley.path.model_objects.shared.Point;
 
 import java.math.BigInteger;
 
@@ -125,16 +126,27 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	/**
 	 * @return the displayPosition
 	 */
-	public DisplayPosition getSensorDisplayPosition() {
-		return (DisplayPosition)super.getDisplayPosition();
+	public Point getSensorDisplayPosition() {
+    Point result = null;
+
+    if(super.getDisplayPosition() != null
+            && super.getDisplayPosition().getPoint() != null
+            && super.getDisplayPosition().getPoint().size() > 0) {
+
+      result = (Point) super.getDisplayPosition().getPoint().get(0);
+    }
+
+    return result;
 	}
 
 
 	/**
-	 * @param displayPosition the displayPosition to set
+	 * @param point the point of the sensor (put into a JAXB displayPosition) to set
 	 */
-	public void setDisplayPosition(DisplayPosition displayPosition) {
-		super.setDisplayPosition(displayPosition);
+	public void setDisplayPosition(Point point) {
+    DisplayPosition dp = new DisplayPosition();
+    dp.getPoint().add(point);
+		super.setDisplayPosition(dp);
 	}
 
 
