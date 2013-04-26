@@ -57,10 +57,8 @@ public class SensorTest {
     //sensor type
     sensor.setSensorType(TYPE_ID, TYPE_NAME, TYPE_DESC);
 
-    // TODO : These tests are failing... Update sensor model object to have display position setter pass in 
-    // Point extended model object and getter return extended model point object
-    //assertEquals(LNG, sensor.getDisplayPosition().getPoint().get(0).getLng(), EPSILON);
-    //assertEquals(LAT, sensor.getDisplayPosition().getPoint().get(0).getLat(), EPSILON);
+    assertEquals(LNG, sensor.getSensorDisplayPosition().getPoints().get(0).getLng(), EPSILON);
+    assertEquals(LAT, sensor.getSensorDisplayPosition().getPoints().get(0).getLat(), EPSILON);
 
     assertEquals(TYPE_ID, sensor.getSensorTypeId());
   }
