@@ -24,7 +24,7 @@ public class SplitRatioProfileTest {
 		profile.setDt(300);
 		profile.setDestinationNetworkId(3);
 		profile.setCrudFlag(CrudFlag.CREATE);
-		profile.setModStamp("1970-01-01 00:00:00");
+		profile.setModStamp("01-APR-1982 23:12:00");
 		
 		List<Splitratio> ratios = new ArrayList<Splitratio>();
 		
@@ -54,7 +54,7 @@ public class SplitRatioProfileTest {
 		assertEquals(3600,profile.getStartTime(), 0.0);
 		assertEquals(300,profile.getDt().doubleValue(), 0.0);
 		assertEquals(3, profile.getDestinationNetworkId().longValue());
-		assertEquals("1970-01-01 00:00:00", profile.getModStamp());
+		assertEquals("01-APR-1982 23:12:00", profile.getModStamp());
 		assertEquals(4, profile.getListOfSplitratios().size());
 	}
 	

@@ -28,9 +28,9 @@ public class SplitRatioSetTest {
 		set.setModStamp("1970-01-01 00:00:00");
 		
 		List<SplitRatioProfile> profiles = new ArrayList<SplitRatioProfile>();
-		profiles.add(createSplitRatioProfile(1,3600,300,1));
-		profiles.add(createSplitRatioProfile(2,3660,300,2));
-		profiles.add(createSplitRatioProfile(3,3720,300,3));
+		profiles.add(TestConfiguration.createSplitRatioProfile(1,3600,300,1));
+		profiles.add(TestConfiguration.createSplitRatioProfile(2,3660,300,2));
+		profiles.add(TestConfiguration.createSplitRatioProfile(3,3720,300,3));
 		
 		set.setListOfSplitRatioProfiles(profiles);
 	}
@@ -156,7 +156,7 @@ public class SplitRatioSetTest {
 		List<SplitRatioProfile> profiles = set.getSplitRatioProfileAtNode(n);
 		assertEquals(1, profiles.size());
 
-		profiles.add(createSplitRatioProfile(1,3720,300,3));
+		profiles.add(TestConfiguration.createSplitRatioProfile(1,3720,300,3));
 		profiles = set.getSplitRatioProfileAtNode(n);
 		assertEquals(2, profiles.size());
 
@@ -165,21 +165,4 @@ public class SplitRatioSetTest {
 		assertEquals(0, profiles.size());
 	}
 	
-	private SplitRatioProfile createSplitRatioProfile(int nodeId, int start, int dt, int dest){
-		SplitRatioProfile profile = new SplitRatioProfile();
-		profile.setNodeId(nodeId);
-		profile.setStartTime(start);
-		profile.setDt(dt);
-		profile.setDestinationNetworkId(dest);
-		
-		List<Splitratio> ratios = new ArrayList<Splitratio>();
-		
-		ratios.add(SplitRatioProfileTest.createSplitRatio(1,2,3,0.5,0));
-		ratios.add(SplitRatioProfileTest.createSplitRatio(1,2,3,0.1,1));
-		ratios.add(SplitRatioProfileTest.createSplitRatio(1,2,3,1,2));
-		ratios.add(SplitRatioProfileTest.createSplitRatio(1,2,3,0.6,3));
-		profile.setListOfSplitRatios(ratios);
-		
-		return profile;
-	}
 }

@@ -138,27 +138,23 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
 
   
   /**
-   * Gets the value of the crudFlag property.
+   * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
    * 
-   * @return
-   *     possible object is
-   *     {@link CrudFlag }
-   *     
+   * @return CRUD Flag enumeration
    */
+  @Override
   public CrudFlag getCrudFlag() {
-      return super.getCrudFlag();
+    return super.getCrudFlag();
   }
 
   /**
-   * Sets the value of the crudFlag property.
+   * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
    * 
-   * @param value
-   *     allowed object is
-   *     {@link CrudFlag }
-   *     
+   * @param CRUD Flag enumeration
    */
-  public void setCrudFlag(CrudFlag value) {
-      super.setCrudFlag(value);
+  @Override
+  public void setCrudFlag(CrudFlag flag) {
+    super.setCrudFlag(flag);
   }
   
     /**
