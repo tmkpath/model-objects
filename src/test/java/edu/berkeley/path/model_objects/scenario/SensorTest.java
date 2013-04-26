@@ -57,6 +57,9 @@ public class SensorTest {
     //sensor type
     sensor.setSensorType(TYPE_ID, TYPE_NAME, TYPE_DESC);
 
+    assertNotNull(sensor.getSensorDisplayPosition());
+    assertNotNull(sensor.getSensorDisplayPosition().getPoints());
+    assertTrue(sensor.getSensorDisplayPosition().getPoints().size() > 0);
     assertEquals(LNG, sensor.getSensorDisplayPosition().getPoints().get(0).getLng(), EPSILON);
     assertEquals(LAT, sensor.getSensorDisplayPosition().getPoints().get(0).getLat(), EPSILON);
 
