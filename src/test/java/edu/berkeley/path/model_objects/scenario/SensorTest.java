@@ -26,7 +26,7 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
-import edu.berkeley.path.model_objects.shared.DisplayPosition;
+
 import edu.berkeley.path.model_objects.shared.Point;
 import org.junit.Test;
 
@@ -45,22 +45,19 @@ public class SensorTest {
   public void testAssignments() {
     Sensor sensor = new Sensor();
     //display position
-    DisplayPosition dp = new DisplayPosition();
     Point p = new Point();
     p.setLongitude(LNG);
     p.setLatitude(LAT);
-    dp.getPoints().add(p);
-    sensor.setDisplayPosition(dp);
+    sensor.setDisplayPosition(p);
 
     //TODO sensor parameters?
 
     //sensor type
     sensor.setSensorType(TYPE_ID, TYPE_NAME, TYPE_DESC);
 
-    // TODO : These tests are failing... Update sensor model object to have display position setter pass in 
-    // Point extended model object and getter return extended model point object
-    //assertEquals(LNG, sensor.getDisplayPosition().getPoint().get(0).getLng(), EPSILON);
-    //assertEquals(LAT, sensor.getDisplayPosition().getPoint().get(0).getLat(), EPSILON);
+    assertNotNull(sensor.getSensorDisplayPosition());
+    assertEquals(LNG, sensor.getSensorDisplayPosition().getLng(), EPSILON);
+    assertEquals(LAT, sensor.getSensorDisplayPosition().getLat(), EPSILON);
 
     assertEquals(TYPE_ID, sensor.getSensorTypeId());
   }
