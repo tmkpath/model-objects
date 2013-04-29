@@ -283,6 +283,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	/**
 	 * @param modstamp the modstamp to set
 	 */
+  @Override
 	public void setModStamp(String modstamp) {
 		super.setModStamp(modstamp);
 	}
@@ -290,6 +291,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	/**
 	 * @return the modStamp
 	 */
+  @Override
 	public String getModStamp() {
 		return super.getModStamp();
 	}

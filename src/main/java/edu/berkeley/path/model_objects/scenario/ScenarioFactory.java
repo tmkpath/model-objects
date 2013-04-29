@@ -20,6 +20,23 @@ public class ScenarioFactory {
     return new SensorSet();
   }
 
+  /**
+   * Create an instance of Density Model Object
+   * @return  Density Model Object
+   */
+  public static Density createDensity() {
+    return new Density();
+  }
+
+  /**
+   * Create an instance of InitialDensitySet Model Object
+   *
+   * @return  InitialDensitySet Model Object
+   */
+  public static InitialDensitySet createInitialDensitySet() {
+    return new InitialDensitySet();
+  }
+
 	   /**
      * Create an instance of DemandSet Model Object
      * 
