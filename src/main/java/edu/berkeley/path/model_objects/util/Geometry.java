@@ -45,7 +45,7 @@ import edu.berkeley.path.model_objects.MOException;
 public class Geometry {
 
   protected JGeometry geom;
-  public static enum GeomType { POINT, POLYGON, RECTANGLE, MULTIPOINT }
+  public static enum GeomType { POINT, POLYGON, RECTANGLE, LINESTRING }
   public final static int defaultSRID = 8307; // default to SRID of 8307
   
   /**
@@ -106,11 +106,25 @@ public class Geometry {
         break;
         
       // Creates 2D multi-point JGeometry structure
+      case LINESTRING:
+        // check to ensure there are at least 3 coordinates passed in (longitude, latitude)
+        if (points.size() < 2) {
+          throw new MOException(null, "Error at least 2 points should be passed in when trying to create Linear Line String JGeometry");
+        }
+        // unpack points into array of doubles, order based on SRID
+        // For each point add longitude and latitude in that order
+        coords = new double[coordLength];
+        for (i=0; i < points.size(); i++) {
+          coords[i*2] = (double)points.get(i).getLongitude();
+          coords[i*2 + 1] = (double)points.get(i).getLatitude();
+        }
+        this.geom = JGeometry.createLinearLineString(coords, 2, srid);
+        break;
       // Creates 2D polygon JGeometry structure
       case POLYGON:
         // check to ensure there are at least 3 coordinates passed in (longitude, latitude)
         if (points.size() < 3) {
-          throw new MOException(null, "Error only three points should be passed in when trying to create Point JGeometry");
+          throw new MOException(null, "Error at least three points should be passed in when trying to create Polygon JGeometry");
         }
         // unpack points into array of doubles, order based on SRID
         // For each point add longitude and latitude in that order

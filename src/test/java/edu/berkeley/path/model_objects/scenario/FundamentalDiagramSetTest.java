@@ -49,7 +49,7 @@ public class FundamentalDiagramSetTest {
 
 		
 		FundamentalDiagramProfile p = new FundamentalDiagramProfile();
-		p.setFundamentalDiagramList(list);
+		p.setListOfFDs(list);
 		p.setLinkId(linkId);
 		p.setStartTime(startTime);
 		p.setDt(dt);

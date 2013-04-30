@@ -28,7 +28,7 @@ package edu.berkeley.path.model_objects.scenario;
 
 import java.util.List;
 
-import edu.berkeley.path.model_objects.jaxb.FundamentalDiagram;
+import edu.berkeley.path.model_objects.scenario.FundamentalDiagram;
 
 /** 
  * Model Object Fundamental Diagram Profile class.
@@ -38,21 +38,24 @@ import edu.berkeley.path.model_objects.jaxb.FundamentalDiagram;
 public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.jaxb.FundamentalDiagramProfile{
 	
 	/**
-	 * Return list of FundamentalDiagram objects (i.e. the profile)
+	 * Return list of FD objects
 	 * 
-	 * @return peMSDatum list as List<PeMSDatum>
+	 * @return FD list as List<FundamentalDiagram>
 	 */
-	@Override
-	public List<FundamentalDiagram> getFundamentalDiagram() {
-	  return super.getFundamentalDiagram();
-	}
+	@SuppressWarnings("unchecked")
+	public List<FundamentalDiagram> getListOfFDs() {
+	  List<edu.berkeley.path.model_objects.jaxb.FundamentalDiagram> fdList = super.getFundamentalDiagram();
+	  // return casted list of Nodes from JAXB base class
+      return (List<FundamentalDiagram>)(List<?>)fdList;
+    }
+	
 	
 	/**
-	 * Set list of FundamentalDiagram objects (i.e. the profile)
+	 * Set list of FD objects
 	 * 
-	 * @param FundamentalDiagram list as List<FundamentalDiagram>
+	 * @return FD list as List<FundamentalDiagram>
 	 */
-	public void setFundamentalDiagramList(List<edu.berkeley.path.model_objects.scenario.FundamentalDiagram> fdList) {
+	public void setListOfFDs(List<FundamentalDiagram> fdList) {
 		getFundamentalDiagram().clear();
 		getFundamentalDiagram().addAll(fdList);
 	}
@@ -116,5 +119,25 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
 	public void setDt(Double dt) {
 	  super.setDt(dt);
 	}
+	
+	/**
+	 * Return FDProfile id as long
+	 * 
+	 * @return FD id as long
+	 */
+	@Override
+	public long getId() {
+	  return super.getId();
+	}
+	
+	/**
+	 * Set FDProfile id as long
+	 * 
+	 * @param FD id
+	 */
+	@Override
+	public void setId(long l) {
+	  super.setId(l);
+	}	
 
 }
