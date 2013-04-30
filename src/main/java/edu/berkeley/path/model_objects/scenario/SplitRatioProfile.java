@@ -179,7 +179,9 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
      */
     @Override
     public CrudFlag getCrudFlag() {
-      return super.getCrudFlag();
+    	if(super.getCrudFlag() == null)
+    		return CrudFlag.NONE;
+    	return super.getCrudFlag();
     }
 
     /**

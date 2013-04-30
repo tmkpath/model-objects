@@ -25,7 +25,6 @@ public class SplitRatioSetTest {
 		set.setProjectId(2);
 		set.setId(1);
 		set.setName("Test Set Name");
-		set.setCrudFlag(CrudFlag.CREATE);
 		set.setModStamp("1970-01-01 00:00:00");
 		
 		List<SplitRatioProfile> profiles = new ArrayList<SplitRatioProfile>();
@@ -41,7 +40,6 @@ public class SplitRatioSetTest {
 		assertEquals("test set", set.getDescription());
 		assertNotNull(set.getVehicleTypeOrder());
 		assertEquals(2, set.getProjectId());
-		assertEquals(CrudFlag.CREATE,set.getCrudFlag());
 		assertEquals(1,set.getId());
 		assertEquals("Test Set Name", set.getName());
 		assertEquals("1970-01-01 00:00:00", set.getModStamp());
