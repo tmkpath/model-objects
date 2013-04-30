@@ -27,6 +27,8 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import edu.berkeley.path.model_objects.jaxb.CrudFlag;
+
 /** 
  * Model Object Demand class.
  *  
@@ -41,14 +43,15 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	 */
 	public Object_Parameter[] getAll() {
 		
-		Object_Parameter[] params = new Object_Parameter[6];
+		Object_Parameter[] params = new Object_Parameter[7];
 		
 		params[0] = new Object_Parameter("id", id, 0.0F, null);
 		params[1] = new Object_Parameter("demandProfId", demandProfId, 0.0F, null);
-		params[2] = new Object_Parameter("demand", 0, Double.parseDouble(content), null);
+		params[2] = new Object_Parameter("demand", 0, Double.parseDouble(getContent()), null);
 		params[3] = new Object_Parameter("vehTypeId", vehTypeId, 0.0F, null);
 		params[4] = new Object_Parameter("demandOrder", demandOrder, 0.0F, null);
 		params[5] = new Object_Parameter("modStamp", 0, 0.0F, modStamp);
+		params[6] = new Object_Parameter("crud", getCrudFlag().ordinal(), 0.0F, null);
 		
 		Object_Parameter.setPositions(params);
 		
@@ -57,7 +60,28 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 		
 		
 	}
-	
+		
+	  /**
+	   * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+	   * 
+	   * @return CRUD Flag enumeration
+	   */
+	  @Override
+	  public CrudFlag getCrudFlag() {
+	    return super.getCrudFlag();
+	  }
+	  
+	  /**
+	   * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+	   * 
+	   * @param CRUD Flag enumeration
+	   */
+	  @Override
+	  public void setCrudFlag(CrudFlag flag) {
+	    super.setCrudFlag(flag);
+	  }
+	  
+	  
 	  /**
      * Gets the value of the id property.
      * 

@@ -30,6 +30,7 @@ package edu.berkeley.path.model_objects.scenario;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.scenario.Object_Parameter;
 import edu.berkeley.path.model_objects.shared.DateTime;
 
@@ -67,12 +68,32 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 		params[7] = new Object_Parameter("stdDevAdd", 0, stdDevAdd, null);
 		params[8] = new Object_Parameter("stdDevMult", 0, stdDevMult, null);
 		params[9] = new Object_Parameter("modStamp", 0, 0.0F, modStamp);
-		params[10] = new Object_Parameter("crud", 0, 0.0F, crud);
+		params[10] = new Object_Parameter("crud", getCrudFlag().ordinal(), 0.0F, null);
 		
 		Object_Parameter.setPositions(params);
 		
 		return params;
 	}
+	
+	  /**
+	   * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+	   * 
+	   * @return CRUD Flag enumeration
+	   */
+	  @Override
+	  public CrudFlag getCrudFlag() {
+	    return super.getCrudFlag();
+	  }
+	  
+	  /**
+	   * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+	   * 
+	   * @param CRUD Flag enumeration
+	   */
+	  @Override
+	  public void setCrudFlag(CrudFlag flag) {
+	    super.setCrudFlag(flag);
+	  }
 	
 	/**
 	 * Gets the list of Demands
@@ -167,22 +188,6 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 		return -1;
 
 	}
-
-	 /**
-	  * Get Crud flag value
-	  * @return
-	  */
-	public String getCrud() {
-      return crud;
-  }
-	
-	/**
-	 * Set Crud flag value
-	 * @param value
-	 */
-  public void setCrud(String value) {
-      this.crud = value;
-  }
   
     /**
      * Gets the value of the demandSetId property.

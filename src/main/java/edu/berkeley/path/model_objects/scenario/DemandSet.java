@@ -33,25 +33,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.berkeley.path.model_objects.scenario.DemandProfile;
+import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.jaxb.VehicleTypeOrder;
 
 public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
-	
-	 /**
-	  * Get Crud flag value
-	  * @return
-	  */
-	public String getCrud() {
-       return crud;
-   }
-	
-	/**
-	 * Set Crud flag value
-	 * @param value
-	 */
-   public void setCrud(String value) {
-       this.crud = value;
-   }
 
 	 /**
 	  * Get modstamp
@@ -108,13 +93,33 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 		params[1] = new Object_Parameter("description", 0, 0.0F, description);
 		params[2] = new Object_Parameter("projectId", getProjectId(), 0.0F, null);
 		params[3] = new Object_Parameter("name", 0, 0.0F, getName());
-		params[4] = new Object_Parameter("crud", 0, 0.0F, crud);
+		params[4] = new Object_Parameter("crud", getCrudFlag().ordinal(), 0.0F, null);
 		
 		Object_Parameter.setPositions(params);
 		
 		return params;
 
 	}
+	
+	  /**
+	   * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+	   * 
+	   * @return CRUD Flag enumeration
+	   */
+	  @Override
+	  public CrudFlag getCrudFlag() {
+	    return super.getCrudFlag();
+	  }
+	  
+	  /**
+	   * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+	   * 
+	   * @param CRUD Flag enumeration
+	   */
+	  @Override
+	  public void setCrudFlag(CrudFlag flag) {
+	    super.setCrudFlag(flag);
+	  }
 	   /**
      * Gets the value of the description property.
      * 
