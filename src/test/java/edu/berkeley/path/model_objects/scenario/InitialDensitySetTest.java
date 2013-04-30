@@ -39,6 +39,10 @@ public class InitialDensitySetTest {
   public static final int DEST_NETWORK_ID = 666;
   public static final double DENSITY = 1.0;
   private static final double EPSILON = 0.001;
+  public static final long VEH_TYPE = 1;
+  public static final String VEH_NAME = "General";
+  private static final double VEH_SIZE = 1.0;
+  private static final int VEH_STD = 1;
 
   @Test
   public void testAssignments() {
@@ -50,6 +54,7 @@ public class InitialDensitySetTest {
     density.setLinkId(LINK_ID);
     density.setDestinationNetworkId(DEST_NETWORK_ID);
     density.setDensity(DENSITY);
+    density.setVehicleType(VEH_TYPE, VEH_NAME, VEH_SIZE, VEH_STD);
     densityList.add(density);
 
 
@@ -62,5 +67,6 @@ public class InitialDensitySetTest {
     assertEquals(LINK_ID, densities.get(0).getLinkId());
     assertEquals(DEST_NETWORK_ID, densities.get(0).getDestinationNetworkId());
     assertEquals(DENSITY, densities.get(0).getDensity(), EPSILON);
+    assertEquals(VEH_TYPE, densities.get(0).getVehicleTypeId());
   }
 }

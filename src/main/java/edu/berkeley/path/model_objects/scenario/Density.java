@@ -35,6 +35,19 @@ public class Density extends edu.berkeley.path.model_objects.jaxb.Density {
     return true;
   }
 
+  public long getVehicleTypeId() {
+    return getVehicleType().getId();
+  }
+
+  public void setVehicleType(long id, String name, double size, int isStandard) {
+    VehicleType type = new VehicleType();
+    type.setId(id);
+    type.setName(name);
+    type.setSizeFactor(size);
+    type.setIsStandard(isStandard);
+    setVehicleType(type);
+  }
+
   /**
    * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
    *
@@ -69,6 +82,16 @@ public class Density extends edu.berkeley.path.model_objects.jaxb.Density {
   @Override
   public String getModStamp() {
     return super.getModStamp();
+  }
+
+  @Override
+  public long getId() {
+    return super.getId();    //To change body of overridden methods use File | Settings | File Templates.
+  }
+
+  @Override
+  public void setId(long value) {
+    super.setId(value);    //To change body of overridden methods use File | Settings | File Templates.
   }
 
   @Override

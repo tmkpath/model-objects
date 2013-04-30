@@ -49,9 +49,6 @@ public class InitialDensitySet extends edu.berkeley.path.model_objects.jaxb.Init
     getDensity().addAll(densities);
   }
 
-  public long getVehicleTypeId() {
-    return getVehicleType().getId();
-  }
 
   public void populate() {
     //TODO generate actual implementation
@@ -60,15 +57,6 @@ public class InitialDensitySet extends edu.berkeley.path.model_objects.jaxb.Init
   public boolean isValid() {
     //TODO generate actual implementation
     return true;
-  }
-
-  public void setVehicleType(long id, String name, double size, int isStandard) {
-    VehicleType type = new VehicleType();
-    type.setId(id);
-    type.setName(name);
-    type.setSizeFactor(size);
-    type.setIsStandard(isStandard);
-    setVehicleType(type);
   }
 
   /**
