@@ -420,7 +420,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
           maxLat = ((Point) node.getPoint()).getLatitude();
         }
         // if longitude is not set or is greater than current max, set a new maximum longitude 
-        if (maxLong== null || maxLong > ((Point) node.getPoint()).getLongitude() ){
+        if (maxLong== null || maxLong < ((Point) node.getPoint()).getLongitude() ){
           maxLong = ((Point) node.getPoint()).getLongitude();
         }
       } 
@@ -433,7 +433,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
       
       Point min = new Point();
       min.setLatitude(minLat);
-      min.setLatitude(minLong);
+      min.setLongitude(minLong);
       
       points.add(max);
       points.add(min);
