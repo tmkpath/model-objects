@@ -42,6 +42,7 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 	  * Get modstamp
 	  * @return
 	  */
+	@Override
 	public String getModStamp() {
         return modStamp;
     }
@@ -50,6 +51,7 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 	 * Set modstamp
 	 * @param value
 	 */
+	@Override
     public void setModStamp(String value) {
         this.modStamp = value;
     }
@@ -61,23 +63,17 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 	public Boolean isValid() { return true; }
 	
 	/**
-	 * Get value by name
-	 * @param name
-	 * @return Object_Parameter
+	 * Set value by name
+	 * @param Object_Parameter
+	 * @
 	 */
-	public Object_Parameter getByName(String name) {
+	public void setByName(Object_Parameter p) {
 		
-		if (name.compareToIgnoreCase("id") == 0 ) {
-			return new Object_Parameter("id", id, 0.0F, null);
-		} else if (name.compareToIgnoreCase("description") == 0 ) {
-			return new Object_Parameter("description", 0, 0.0F, getDescription());
-		} else if (name.compareToIgnoreCase("projectId") == 0 ) {
-			return new Object_Parameter("projectId", projectId, 0.0F, null);
-		} else if (name.compareToIgnoreCase("name") == 0 ) {
-			return new Object_Parameter("name", 0, 0.0F, getName());
-		} 
-		
-		return new Object_Parameter(null, 0, 0.0F, null);
+		if (p.name.compareToIgnoreCase("id") == 0 ) setId(p.intParam);
+		else if (p.name.compareToIgnoreCase("description") == 0 ) setDescription(p.strParam);
+		else if (p.name.compareToIgnoreCase("projectId") == 0 ) setProjectId(p.intParam);
+		else if (p.name.compareToIgnoreCase("name") == 0 ) setName(p.strParam);	
+		else if (p.name.compareToIgnoreCase("ModStamp") == 0 ) setModStamp(p.strParam);	
 	}
 	
 	/**
@@ -87,13 +83,14 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 	 */
 	public Object_Parameter[] getAll() {
 		
-		Object_Parameter[] params = new Object_Parameter[5];
+		Object_Parameter[] params = new Object_Parameter[6];
 		
 		params[0] = new Object_Parameter("id", getId(), 0.0F, null);
 		params[1] = new Object_Parameter("description", 0, 0.0F, description);
 		params[2] = new Object_Parameter("projectId", getProjectId(), 0.0F, null);
 		params[3] = new Object_Parameter("name", 0, 0.0F, getName());
-		params[4] = new Object_Parameter("crud", getCrudFlag().ordinal(), 0.0F, null);
+		params[4] = new Object_Parameter("ModStamp", 0, 0.0F, getModStamp());
+		params[5] = new Object_Parameter("crud", getCrudFlag().ordinal(), 0.0F, null);
 		
 		Object_Parameter.setPositions(params);
 		
@@ -274,4 +271,6 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
     public void setName(String value) {
         this.name = value;
     }
+    
+    
 }

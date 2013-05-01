@@ -50,6 +50,26 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	 public final Boolean isValid() { return true; }
 	 
 	/**
+	 * Set value by name
+	 * @param Object_Parameter
+	 * @
+	 */
+	public void setByName(Object_Parameter p) {
+		
+		if (p.name.compareToIgnoreCase("id") == 0 ) 				setId(p.intParam);
+		else if (p.name.compareToIgnoreCase("demandSetId") == 0 ) 	setDemandSetId(p.intParam);
+		else if (p.name.compareToIgnoreCase("knob") == 0 ) 			setKnob(p.fltParam);
+		else if (p.name.compareToIgnoreCase("startTime") == 0 ) 	setStartTime(p.fltParam);
+		else if (p.name.compareToIgnoreCase("SAMPLERATE") == 0 ) 	setDt(p.fltParam);
+		else if (p.name.compareToIgnoreCase("orgLinkId") == 0 ) 	setOrgLinkId(p.intParam);	
+		else if (p.name.compareToIgnoreCase("destinationNetworkId") == 0 ) 	setDestinationNetworkId(p.intParam);
+		else if (p.name.compareToIgnoreCase("stdDevAdd") == 0 ) 	setStdDevAdd(p.fltParam);
+		else if (p.name.compareToIgnoreCase("stdDevMult") == 0 ) 	setStdDevMult(p.fltParam);
+		else if (p.name.compareToIgnoreCase("modStamp") == 0 ) 		setModStamp(p.strParam);
+		
+	}
+	 
+	/**
 	 * Get an array of all parameters
 	 * 
 	 * @return
@@ -62,7 +82,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 		params[1] = new Object_Parameter("demandSetId", getDemandSetId(), 0.0F, null);
 		params[2] = new Object_Parameter("knob", 0, knob, null);
 		params[3] = new Object_Parameter("startTime", 0, startTime, null);
-		params[4] = new Object_Parameter("SAMPLE_RATE", 0, dt, null);
+		params[4] = new Object_Parameter("SAMPLERATE", 0, dt, null);
 		params[5] = new Object_Parameter("orgLinkId", getOrgLinkId(), 0.0F, null);
 		params[6] = new Object_Parameter("destinationNetworkId", destinationNetworkId, 0.0F, null);
 		params[7] = new Object_Parameter("stdDevAdd", 0, stdDevAdd, null);

@@ -35,7 +35,24 @@ import edu.berkeley.path.model_objects.jaxb.CrudFlag;
  * @author Alexey Goder (alexey@goder.com)
  */
 public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
+	
+	/**
+	 * Set value by name
+	 * @param Object_Parameter
+	 * @
+	 */
+	public void setByName(Object_Parameter p) {
 		
+		if (p.name.compareToIgnoreCase("id") == 0 ) 				setId(p.intParam);
+		else if (p.name.compareToIgnoreCase("demandProfId") == 0 ) 	setDemandProfId(p.intParam);
+		else if (p.name.compareToIgnoreCase("demand") == 0 ) 		setContent(String.valueOf(p.fltParam));
+		else if (p.name.compareToIgnoreCase("vehTypeId") == 0 ) 	setVehTypeId(p.intParam);	
+		else if (p.name.compareToIgnoreCase("demandOrder") == 0 ) 	setDemandOrder(p.intParam);
+		else if (p.name.compareToIgnoreCase("modStamp") == 0 ) 		setModStamp(p.strParam);
+		
+	}
+
+	
 	/**
 	 * Get an array of all parameters
 	 * 
@@ -122,6 +139,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	/**
 	 * @param modstamp the modstamp to set
 	 */
+	@Override
 	public void setModStamp(String modstamp) {
 		super.setModStamp(modstamp);
 	}
@@ -129,6 +147,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	/**
 	 * @return the modStamp
 	 */
+	@Override
 	public String getModStamp() {
 		return super.getModStamp();
 	}
@@ -136,6 +155,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	/**
 	 * @param content the content to set
 	 */
+	@Override
 	public void setContent(String content) {
 		super.setContent(content);
 	}
@@ -143,12 +163,14 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	/**
 	 * @return the content
 	 */
+	@Override
 	public String getContent() {
 		return super.getContent();
 	}
 	/**
 	 * @param id the vehicle type id for this ratio
 	 */
+	@Override
 	public void setVehTypeId(long id) {
 		super.setVehTypeId(id);
 	}
@@ -156,6 +178,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	/**
 	 * @return the vehicle type id for this ratio
 	 */
+	@Override
 	public long getVehTypeId() {
 		return super.getVehTypeId();
 	}
@@ -163,14 +186,16 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	/**
 	 * @param offset the order in the set of ratios
 	 */
-	public void setDemandOrder(int offset) {
+	@Override
+	public void setDemandOrder(long offset) {
 		super.setDemandOrder(offset);
 	}
 	
 	/**
 	 * @return the vehicle type id for this ratio
 	 */
-	public int getDemandOrder() {
+	@Override
+	public long getDemandOrder() {
 		return super.getDemandOrder();
 	}
 

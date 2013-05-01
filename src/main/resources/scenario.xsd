@@ -395,11 +395,11 @@
 	  <xs:element name="DemandSet">
 		<xs:complexType>
 		  <xs:sequence>
-			<xs:element ref="description" minOccurs="0" />
-			<xs:element ref="VehicleTypeOrder" minOccurs="0"  maxOccurs="1"/>
-			<xs:element ref="demandProfile" minOccurs="0" maxOccurs="unbounded" />
+			  <xs:element ref="description" minOccurs="0" />
+			  <xs:element ref="VehicleTypeOrder" minOccurs="0"  maxOccurs="1"/>
+			  <xs:element ref="demandProfile" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="crudFlag" type="crudFlag" minOccurs="0" />
 		  </xs:sequence>
-      <xs:attribute name="crud" type="xs:string" use="required" />
 	  	<xs:attribute name="project_id" type="xs:long" use="required" />
 		  <xs:attribute name="id" type="xs:long" use="required"/>
 		  <xs:attribute name="name" type="xs:string" use="optional" default="" />
@@ -411,8 +411,8 @@
 			<xs:complexType>
         <xs:sequence>
           <xs:element ref="demand" minOccurs="0" maxOccurs="unbounded" />
+          <xs:element name="crudFlag" type="crudFlag" minOccurs="0" />
         </xs:sequence>
-        <xs:attribute name="crud" type="xs:string" use="required" />
         <xs:attribute name="demand_set_id" type="xs:long" use="required"/>
 			  <xs:attribute name="knob" type="xs:double" use="optional"  default="1"/>
 			  <xs:attribute name="start_time" type="xs:double" use="optional" default="0" />		<!-- in time units -->
@@ -427,12 +427,15 @@
 		  </xs:element>
 
   <xs:element name="demand">
-    <xs:complexType mixed="true">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="crudFlag" type="crudFlag" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
       <xs:attribute name="id" type="xs:long" use="required"/>
+      <xs:attribute name="content" type="xs:string" use="required"/>
       <xs:attribute name="demand_prof_id" type="xs:long" use="required"/>
-      <xs:attribute name="crud" type="xs:string" use="required" />
       <xs:attribute name="veh_type_id" type="xs:long" use="required" />
-      <xs:attribute name="demand_order" type="xs:int" use="required" />
+      <xs:attribute name="demand_order" type="xs:long" use="required" />
       <xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
     </xs:complexType>
   </xs:element>
