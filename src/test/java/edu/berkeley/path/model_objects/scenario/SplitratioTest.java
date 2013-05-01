@@ -18,7 +18,7 @@ public class SplitratioTest {
 		  ratio.setLinkOut(2);
 		  ratio.setRatioOrder(4);
 		  ratio.setModStamp("1970-01-01 00:00:00");
-		  ratio.setContent("0.1");
+		  ratio.setRatio(0.1);
 		  ratio.setVehTypeId(3);
 	}
   
@@ -35,7 +35,7 @@ public class SplitratioTest {
 	  assertEquals(2,ratio.getLinkOut());
 	  assertEquals(3,ratio.getVehTypeId());
 	  assertEquals(4,ratio.getRatioOrder());
-	  assertEquals("0.1",ratio.getContent());
+	  assertEquals(0.1,ratio.getRatio(), 0.0);
 	  assertEquals("1970-01-01 00:00:00",ratio.getModStamp());
   }
 }
