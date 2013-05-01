@@ -32,7 +32,7 @@ import java.util.List;
 import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.shared.DateTime;
 
-public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.SplitRatioProfile {
+public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.SplitRatioProfile implements Comparable<SplitRatioProfile>{
 
 	/**
 	 * returns all the split ratios values in this SplitRatioProfile that have the same in and out link.
@@ -152,29 +152,46 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
         super.setId(value);
     }
     
-    
     /**
-     * Gets the value of the crudFlag property.
+     * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
      * 
-     * @return
-     *     possible object is
-     *     {@link CrudFlag }
-     *     
+     * @return CRUD Flag enumeration
      */
-    public CrudFlag getCrudFlag() {
-        return super.getCrudFlag();
+    @Override
+    public Long getNetworkId() {
+      return super.getNetworkId();
     }
 
     /**
-     * Sets the value of the crudFlag property.
+     * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
      * 
-     * @param value
-     *     allowed object is
-     *     {@link CrudFlag }
-     *     
+     * @param CRUD Flag enumeration
      */
-    public void setCrudFlag(CrudFlag value) {
-        super.setCrudFlag(value);
+    @Override
+    public void setNetworkId(Long id) {
+      super.setNetworkId(id);
+    }
+    
+    /**
+     * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+     * 
+     * @return CRUD Flag enumeration
+     */
+    @Override
+    public CrudFlag getCrudFlag() {
+    	if(super.getCrudFlag() == null)
+    		return CrudFlag.NONE;
+    	return super.getCrudFlag();
+    }
+
+    /**
+     * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+     * 
+     * @param CRUD Flag enumeration
+     */
+    @Override
+    public void setCrudFlag(CrudFlag flag) {
+      super.setCrudFlag(flag);
     }
     
     /**
@@ -280,7 +297,7 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	}
 	
 	/**
-	 * 
+	 * @return SplitRatioProfile. The deep copy of the this objecgt
 	 */
 	public SplitRatioProfile clone(){
 		SplitRatioProfile prof = new SplitRatioProfile();
@@ -293,4 +310,15 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 		prof.setListOfSplitRatios(this.getListOfSplitratios());
 		return prof;
 	}
+	
+	/**
+	 * Used to sort the profiles by id. Order is arbitrary -- used in testing
+	 * 
+	 * @return int  
+	 */
+	public int compareTo(SplitRatioProfile other){
+		return (int)(this.getId() - other.getId());
+	}
+	
+	
 }
