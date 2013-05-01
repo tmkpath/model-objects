@@ -212,6 +212,7 @@
 			<xs:complexType>
 			  <xs:all>
 				<xs:element ref="link_references" minOccurs="1" maxOccurs="1" />
+				<xs:element name="crudFlag" type="crudFlag" minOccurs="0" />
 			  </xs:all>
 			  <xs:attribute name="id" type="xs:long" use="required" />
 			  <xs:attribute name="name" type="xs:string" use="required" />
