@@ -27,34 +27,57 @@
 package edu.berkeley.path.model_objects.scenario;
 
 
+import edu.berkeley.path.model_objects.jaxb.CrudFlag;
+import edu.berkeley.path.model_objects.shared.Parameters;
 import edu.berkeley.path.model_objects.shared.Point;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class SensorTest {
 
-  public static final double LNG = 33.3;
-  public static final double LAT = 22.2;
-  public static final int TYPE_ID = 1;
-  public static final String TYPE_NAME = "Loop";
-  public static final String TYPE_DESC = "Loop Desc";
+  private static final double LNG = 33.3;
+  private static final double LAT = 22.2;
+  private static final double LINK_POSTION = 0.1;
+  private static final int TYPE_ID = 1;
+  private static final String ENTITY_ID = "2";
+  private static final String TYPE_NAME = "Loop";
+  private static final String TYPE_DESC = "Loop Desc";
   private static final double EPSILON = 0.005;
+  private static final String MOD_STAMP = "01-APR-2008 00:00:00";
+  private static Sensor sensor; 
+  
+	@Before
+	public void setUp() {
+		sensor = new Sensor();
+		sensor.setId(0);
+		sensor.setCrudFlag(CrudFlag.NONE);
+		
+		//sensor type
+	    sensor.setSensorType(TYPE_ID, TYPE_NAME, TYPE_DESC);
+		
+	    //display position
+	    Point p = new Point();
+	    p.setLongitude(LNG);
+	    p.setLatitude(LAT);
+	    sensor.setDisplayPosition(p);
+
+		sensor.setModStamp(MOD_STAMP);
+		sensor.setLinkPosition(LINK_POSTION);
+		sensor.setLinkReference(new LinkReference());
+		sensor.setParameters(new Parameters());
+		sensor.setSensorIdOriginal(ENTITY_ID);
+		sensor.setLaneNumber(3);
+		sensor.setHealthStatus(0);
+		sensor.setDataFeedId(2L);
+		sensor.setLinkId(3L);
+		sensor.setLinkOffset(10.0);
+	}
 
   @Test
-  public void testAssignments() {
-    Sensor sensor = new Sensor();
-    //display position
-    Point p = new Point();
-    p.setLongitude(LNG);
-    p.setLatitude(LAT);
-    sensor.setDisplayPosition(p);
-
-    //TODO sensor parameters?
-
-    //sensor type
-    sensor.setSensorType(TYPE_ID, TYPE_NAME, TYPE_DESC);
-
+  public void testGetters() {
     assertNotNull(sensor.getSensorDisplayPosition());
     assertEquals(LNG, sensor.getSensorDisplayPosition().getLng(), EPSILON);
     assertEquals(LAT, sensor.getSensorDisplayPosition().getLat(), EPSILON);

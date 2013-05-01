@@ -30,6 +30,7 @@ import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.jaxb.DisplayPosition;
 import edu.berkeley.path.model_objects.jaxb.Link;
 import edu.berkeley.path.model_objects.jaxb.SensorType;
+import edu.berkeley.path.model_objects.shared.Parameters;
 import edu.berkeley.path.model_objects.shared.Point;
 
 import java.math.BigInteger;
@@ -42,48 +43,10 @@ import java.math.BigInteger;
  */
 public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
    
-	//TODO: Deal with Table reference? We are waiting for feedback.
-	
+	//Resolved Link Object
+	protected Link link;
 
 
-	/** Resolved Link Object*/
-	/** @y.exclude */ protected Link link;
-
-//	/** Sensor type. */
-//	/** @y.exclude */ protected Sensor.Type type;
-//
-//	/** Type of sensor.
-//	 *
-//	 * TMC = Traffic Message Channel.
-//	 * This is a static way of reporting probe measurements
-//	 * employed by INRIX, Navteq, etc.
-//	 */
-//	public static enum Type	{
-//	/** see {@link ObjectFactory#createSensor_LoopStation} 	*/
-//		Loop,
-//		Magnetic,
-//		Radar,
-//		Camera,
-//		TMC
-//	};
-				   	   	       
-	/////////////////////////////////////////////////////////////////////
-	// protected default constructor
-	/////////////////////////////////////////////////////////////////////
-
-	/** @y.exclude */
-	public Sensor(){
-	}		  
-
-	
-	/////////////////////////////////////////////////////////////////////
-	// API
-	/////////////////////////////////////////////////////////////////////
-
-	/** Sensor type. */
-//	public Sensor.Type getSensorType() {
-//		return type;
-//	}
   /**
    * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
    *
@@ -104,6 +67,11 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
     super.setCrudFlag(flag);
   }
 
+  
+  public SensorType getSensorType() {
+		return super.getSensorType();
+  }
+	
   public long getSensorTypeId() {
     return getSensorType().getId();
   }
@@ -117,7 +85,6 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
   }
 
 	/** Link where the sensor is located. */
-	//TODO: How are we resolving the link?
 	public Link getSensorLink() {
 		return link;
 	}
@@ -127,16 +94,16 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @return the displayPosition
 	 */
 	public Point getSensorDisplayPosition() {
-    Point result = null;
-
-    if(super.getDisplayPosition() != null
-            && super.getDisplayPosition().getPoint() != null
-            && super.getDisplayPosition().getPoint().size() > 0) {
-
-      result = (Point) super.getDisplayPosition().getPoint().get(0);
-    }
-
-    return result;
+	    Point result = null;
+	
+	    if(super.getDisplayPosition() != null
+	            && super.getDisplayPosition().getPoint() != null
+	            && super.getDisplayPosition().getPoint().size() > 0) {
+	
+	      result = (Point) super.getDisplayPosition().getPoint().get(0);
+	    }
+	
+	    return result;
 	}
 
 
@@ -169,33 +136,33 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	/**
 	 * @return the linkReference
 	 */
-//	public LinkReference getSensorLinkReference() {
-//		return (LinkReference)super.getLinkReference();
-//	}
+	public LinkReference getSensorLinkReference() {
+		return (LinkReference)super.getLinkReference();
+	}
 
 
 	/**
 	 * @param linkReference the linkReference to set
 	 */
-//	public void setLinkReference(LinkReference linkReference) {
-//		super.setLinkReference(linkReference);
-//	}
+	public void setLinkReference(LinkReference linkReference) {
+		super.setLinkReference(linkReference);
+	}
 
 
 	/**
 	 * @return the parameters
 	 */
-//	public Parameters getSensorParameters() {
-//		return (Parameters)super.getParameters();
-//	}
+	public Parameters getSensorParameters() {
+		return (Parameters)super.getParameters();
+	}
 
 
 	/**
 	 * @param parameters the parameters to set
 	 */
-//	public void setParameters(Parameters parameters) {
-//		super.setParameters(parameters);
-//	}
+	public void setParameters(Parameters parameters) {
+		super.setParameters(parameters);
+	}
 
 
 	/**
@@ -248,16 +215,18 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	/**
 	 * @return the healthStatus
 	 */
-//	public Double getHealthStatus() {
-//		return super.getHealthStatus();
-//	}
+	@Override
+	public Integer getHealthStatus() {
+		return super.getHealthStatus();
+	}
 
 	/**
 	 * @param healthStatus the healthStatus to set
 	 */
-//	public void setHealthStatus(double healthStatus) {
-//		super.setHealthStatus(healthStatus);
-//	}
+	@Override
+	public void setHealthStatus(Integer healthStatus) {
+		super.setHealthStatus(healthStatus);
+	}
 	
     /**
      * Sets the value of the dataFeedId property.
@@ -319,7 +288,6 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 *
 	 * @return  True if all sensor validation is correct
 	 */
-	//TODO: Wait for writers to implement
 	public final Boolean isValid() {
 		boolean isValid = true;
 		  
