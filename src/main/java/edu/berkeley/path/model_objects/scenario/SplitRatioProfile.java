@@ -153,9 +153,9 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
     }
     
     /**
-     * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+     * Get Network ID associated with profile
      * 
-     * @return CRUD Flag enumeration
+     * @return network ID
      */
     @Override
     public Long getNetworkId() {
@@ -163,9 +163,9 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
     }
 
     /**
-     * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+     * Set Network ID associated with profile
      * 
-     * @param CRUD Flag enumeration
+     * @param id of network to associate profile with
      */
     @Override
     public void setNetworkId(Long id) {
