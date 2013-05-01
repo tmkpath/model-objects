@@ -1,7 +1,7 @@
 package edu.berkeley.path.model_objects.scenario;
 
 
-public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio{
+public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio implements Comparable<Splitratio>{
 	
 	
     /**
@@ -103,7 +103,22 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio{
 		return super.getRatioOrder();
 	}
 	
+	/*
+	 * Returns true if the linkInId, linkOutId, and vehTypeId all match
+	 * the corresponding fields of this object
+	 * 
+	 * @return boolean 
+	 */
 	public boolean equals(long linkInId, long linkOutId,long vehTypeId){
 		return linkInId == this.getLinkIn() && linkOutId == this.getLinkOut() && vehTypeId == this.getVehTypeId();
+	}
+	
+	/**
+	 * This method is used in testing to sort the ratios by id.
+	 * 
+	 * @return int
+	 */
+	public int compareTo(Splitratio other){
+		return (int)(this.getId() - other.getId());
 	}
 }
