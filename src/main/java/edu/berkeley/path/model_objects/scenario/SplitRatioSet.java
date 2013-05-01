@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.Interval;
 
-import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.network.Node;
 
 
@@ -136,30 +135,6 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
 	  return profiles.size() != 0 ? profiles : null;
   }
 
-  
-  /**
-   * Gets the value of the crudFlag property.
-   * 
-   * @return
-   *     possible object is
-   *     {@link CrudFlag }
-   *     
-   */
-  public CrudFlag getCrudFlag() {
-      return super.getCrudFlag();
-  }
-
-  /**
-   * Sets the value of the crudFlag property.
-   * 
-   * @param value
-   *     allowed object is
-   *     {@link CrudFlag }
-   *     
-   */
-  public void setCrudFlag(CrudFlag value) {
-      super.setCrudFlag(value);
-  }
   
     /**
      * Gets the value of the description property.
