@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import core.Monitor;
 
 import edu.berkeley.path.model_objects.jaxb.Begin;
+import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.jaxb.End;
 import edu.berkeley.path.model_objects.jaxb.Road;
 import edu.berkeley.path.model_objects.jaxb.Roads;
@@ -184,6 +185,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
     LinkType linkType = new LinkType();
     linkType.setName(name);
     linkType.setId(id);
+    setLinkType(linkType);
   }
     
   /**
@@ -266,7 +268,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * @param   long representation of the id of end node 
    */
   public long getBeginNodeId() {
-    return beginNode.getId();
+    return getBegin().getNodeId();
   }
 
   /** 
@@ -275,7 +277,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    *  @param  long representation of the id of begin node
    */
   public long getEndNodeId() {
-    return endNode.getId();
+    return getEnd().getNodeId();
   }
   
   /**
@@ -283,7 +285,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * 
    * @param   The node to set as begin node of link
    */
-  public void setBeginId(Long nodeId) {   
+  public void setBeginNodeId(Long nodeId) {   
     setBegin(new Begin());
     getBegin().setNodeId(nodeId);
   }
@@ -293,9 +295,29 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * 
    * @param  The node to set as end node of link
    */
-  public void setEndId(Long nodeId) {
+  public void setEndNodeId(Long nodeId) {
     setEnd(new End());
     getEnd().setNodeId(nodeId);
+  } 
+  
+  /**
+   * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+   * 
+   * @return CRUD Flag enumeration
+   */
+  @Override
+  public CrudFlag getCrudFlag() {
+    return super.getCrudFlag();
+  }
+  
+  /**
+   * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+   * 
+   * @param CRUD Flag enumeration
+   */
+  @Override
+  public void setCrudFlag(CrudFlag flag) {
+    super.setCrudFlag(flag);
   }
   
   /**

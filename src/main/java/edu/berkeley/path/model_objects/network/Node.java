@@ -27,6 +27,8 @@
 package edu.berkeley.path.model_objects.network;
 
 import java.util.List;
+
+import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.jaxb.Position;
 import edu.berkeley.path.model_objects.jaxb.Road;
 import edu.berkeley.path.model_objects.jaxb.Roads;
@@ -198,6 +200,26 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 	@Override
   public void setNodeName(String value) {
       this.nodeName = value;
+  }
+	
+  /**
+   * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+   * 
+   * @return CRUD Flag enumeration
+   */
+  @Override
+  public CrudFlag getCrudFlag() {
+    return super.getCrudFlag();
+  }
+  
+  /**
+   * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+   * 
+   * @param CRUD Flag enumeration
+   */
+  @Override
+  public void setCrudFlag(CrudFlag flag) {
+    super.setCrudFlag(flag);
   }
 
   /**

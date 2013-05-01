@@ -29,6 +29,7 @@ package edu.berkeley.path.model_objects.scenario;
 import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.Interval;
+
 import edu.berkeley.path.model_objects.network.Node;
 
 
@@ -135,7 +136,6 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
   }
 
   
-
     /**
      * Gets the value of the description property.
      * 
@@ -199,7 +199,7 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
     }
 
 	/**
-	 * Set the split ratios profiles list. Attaches list of Split Ratio Profile Model Objects to scenario.
+	 * Set the split ratios profiles list. Attaches list of Split Ratio Profile Model Objects to set.
 	 * 
 	 * @param List<SplitRatioProfile>	List of extended Split Ratio Profiles to add
 	 */

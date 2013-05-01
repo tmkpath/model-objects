@@ -28,9 +28,11 @@ package edu.berkeley.path.model_objects.scenario;
 
 import java.util.ArrayList;
 import java.util.List;
+//TODO CHECK with Matt on using jaxb crudflag
+import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.shared.DateTime;
 
-public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.SplitRatioProfile {
+public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.SplitRatioProfile implements Comparable<SplitRatioProfile>{
 
 	/**
 	 * returns all the split ratios values in this SplitRatioProfile that have the same in and out link.
@@ -133,6 +135,65 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 			splitratio = splits;
 	}
 	
+	
+	 /**
+     * Gets the value of the id property.
+     * 
+     */
+    public long getId() {
+        return super.getId();
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     */
+    public void setId(long value) {
+        super.setId(value);
+    }
+    
+    /**
+     * Get Network ID associated with profile
+     * 
+     * @return network ID
+     */
+    @Override
+    public Long getNetworkId() {
+      return super.getNetworkId();
+    }
+
+    /**
+     * Set Network ID associated with profile
+     * 
+     * @param id of network to associate profile with
+     */
+    @Override
+    public void setNetworkId(Long id) {
+      super.setNetworkId(id);
+    }
+    
+    /**
+     * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+     * 
+     * @return CRUD Flag enumeration
+     */
+    @Override
+    public CrudFlag getCrudFlag() {
+    	if(super.getCrudFlag() == null)
+    		return CrudFlag.NONE;
+    	return super.getCrudFlag();
+    }
+
+    /**
+     * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+     * 
+     * @param CRUD Flag enumeration
+     */
+    @Override
+    public void setCrudFlag(CrudFlag flag) {
+      super.setCrudFlag(flag);
+    }
+    
     /**
      * Gets the value of the nodeId property.
      * 
@@ -236,10 +297,11 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	}
 	
 	/**
-	 * 
+	 * @return SplitRatioProfile. The deep copy of the this objecgt
 	 */
 	public SplitRatioProfile clone(){
 		SplitRatioProfile prof = new SplitRatioProfile();
+		prof.setId(this.getId());
 		prof.setNodeId(this.getNodeId());
 		prof.setStartTime(this.getStartTime());
 		prof.setDt(this.getDt());
@@ -248,4 +310,15 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 		prof.setListOfSplitRatios(this.getListOfSplitratios());
 		return prof;
 	}
+	
+	/**
+	 * Used to sort the profiles by id. Order is arbitrary -- used in testing
+	 * 
+	 * @return int  
+	 */
+	public int compareTo(SplitRatioProfile other){
+		return (int)(this.getId() - other.getId());
+	}
+	
+	
 }
