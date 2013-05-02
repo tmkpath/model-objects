@@ -1,34 +1,45 @@
 package edu.berkeley.path.model_objects.shared;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Parameters extends edu.berkeley.path.model_objects.jaxb.Parameters{
-	/** @y.exclude */ protected ArrayList<Parameter> parameter = new ArrayList<Parameter>();
 
 	/**
-	 * Gets the value of the parameter property.
+	 * Gets the value of the parameters property.
      * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the model object.
-     * This is why there is not a <CODE>set</CODE> method for the parameter property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getParameters().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Parameter }
-     * 
-	 * @return the list of parameters
+	 * @return ArrayList<Parameter> the list of parameters
 	 */
+	@SuppressWarnings("unchecked")
 	public ArrayList<Parameter> getParameters() {
-		return parameter;
+		return (ArrayList<Parameter>)(ArrayList<?>) super.getParameter();
 	}	
+	
+	
+	/**
+	 * Set the parameters list. Attaches list of Parameter Model Objects to scenario.
+	 * 
+	 * @param List<Parameter>	List of extended Parameters to add
+	 */
+	public void setParameters(List<Parameter> parameters) {
+		 List<edu.berkeley.path.model_objects.jaxb.Parameter> pSet = (ArrayList<edu.berkeley.path.model_objects.jaxb.Parameter>)parameter;
+		 if ( pSet == null ) 
+			  pSet = new ArrayList<edu.berkeley.path.model_objects.jaxb.Parameter>();  
+		
+		pSet.clear();
+		pSet.addAll(parameters);
+		parameter = pSet;
+	}
+	
+	/**
+	 *  Add the parameter to the parameters list.
+	 *  
+	 * 
+	 * @param Parameter	Parameter to add
+	 */
+	public void setParameter(Parameter p) {
+		getParameters().add(p);
+	}
+	
 }

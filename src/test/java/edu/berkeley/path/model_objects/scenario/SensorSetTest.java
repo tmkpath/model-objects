@@ -26,6 +26,7 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -35,9 +36,41 @@ import static org.junit.Assert.*;
 
 public class SensorSetTest {
 
-  public static final int S1_ID = 10;
-  public static final int S2_ID = 20;
+  private static final int S1_ID = 10;
+  private static final int S2_ID = 20;
+  private static final String DESCRIPTION = "Sensor Set Description";
+  private static final String MOD_STAMP = "18-JAN-2008 02:51:00";
+  private static final String NAME = "Sensor Set Name";
+  private static final long PROJECT_ID = 1;
 
+  
+  private SensorSet sensorSet;
+  
+  @Before
+  public void setUp(){
+	  sensorSet = new SensorSet();
+	  sensorSet.setDescription(DESCRIPTION);
+	  sensorSet.setId(S1_ID);
+	  sensorSet.setModStamp(MOD_STAMP);
+	  sensorSet.setName(NAME);
+	  sensorSet.setProjectId(PROJECT_ID);
+  }
+  
+  @Test
+  public void testGetters(){
+	assertEquals(DESCRIPTION,sensorSet.getDescription());
+	assertEquals(S1_ID, sensorSet.getId());
+	assertEquals(MOD_STAMP, sensorSet.getModStamp());
+	assertEquals(NAME, sensorSet.getName());
+	assertEquals(PROJECT_ID, sensorSet.getProjectId());
+  }
+  
+  
+  @Test
+  public void testIsValid(){
+	  assertTrue(sensorSet.isValid());
+  }
+  
   @Test
   public void testSensorList() {
     List<Sensor> sensors = new ArrayList<Sensor>();
@@ -49,9 +82,9 @@ public class SensorSetTest {
     sensors.add(s2);
 
     SensorSet sensorSet = new SensorSet();
-    sensorSet.setListOfSensors(sensors);
+    sensorSet.setSensors(sensors);
 
-    List<Sensor> sensorList = sensorSet.getListOfSensors();
+    List<Sensor> sensorList = sensorSet.getSensors();
     assertEquals(2, sensorList.size());
     assertEquals(S1_ID, sensorList.get(0).getId());
     assertEquals(S2_ID, sensorList.get(1).getId());
