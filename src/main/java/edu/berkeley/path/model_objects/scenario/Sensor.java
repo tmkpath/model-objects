@@ -33,8 +33,6 @@ import edu.berkeley.path.model_objects.jaxb.SensorType;
 import edu.berkeley.path.model_objects.shared.Parameters;
 import edu.berkeley.path.model_objects.shared.Point;
 
-import java.math.BigInteger;
-
 /** Extended class for sensors. 
  *
  * @author Gabriel Gomes (gomes@path.berkeley.edu)
