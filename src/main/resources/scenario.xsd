@@ -409,31 +409,50 @@
 	  <xs:element name="DemandSet">
 		<xs:complexType>
 		  <xs:sequence>
-			<xs:element ref="description" minOccurs="0" />
-			<xs:element ref="VehicleTypeOrder" minOccurs="0"  maxOccurs="1"/>
-			<xs:element ref="demandProfile" minOccurs="0" maxOccurs="unbounded" />
+			  <xs:element ref="description" minOccurs="0" />
+			  <xs:element ref="VehicleTypeOrder" minOccurs="0"  maxOccurs="1"/>
+			  <xs:element ref="demandProfile" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="crudFlag" type="crudFlag" minOccurs="0" />
 		  </xs:sequence>
-	  	  <xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
+	  	<xs:attribute name="project_id" type="xs:long" use="required" />
 		  <xs:attribute name="id" type="xs:long" use="required"/>
 		  <xs:attribute name="name" type="xs:string" use="optional" default="" />
+      <xs:attribute name="mod_stamp" type="xs:string" use="required" />
 		</xs:complexType>
 	  </xs:element>
 			  
 		  <xs:element name="demandProfile">									<!-- content in [veh/time unit/vehicle type] -->
 			<xs:complexType>
+        <xs:sequence>
+          <xs:element ref="demand" minOccurs="0" maxOccurs="unbounded" />
+          <xs:element name="crudFlag" type="crudFlag" minOccurs="0" />
+        </xs:sequence>
         <xs:attribute name="demand_set_id" type="xs:long" use="required"/>
 			  <xs:attribute name="knob" type="xs:double" use="optional"  default="1"/>
 			  <xs:attribute name="start_time" type="xs:double" use="optional" default="0" />		<!-- in time units -->
 			  <xs:attribute name="dt" type="xs:double" use="optional" />							<!-- in time units -->
-			  <xs:attribute name="org_link_id" type="xs:string" use="required" />
+			  <xs:attribute name="org_link_id" type="xs:long" use="required" />
         <xs:attribute name="id" type="xs:long" use="required"/>
-			  <xs:attribute name="destination_network_id" type="xs:long" use="optional" />
+			  <xs:attribute name="destination_network_id" type="xs:long" use="required" />
 			  <xs:attribute name="std_dev_add" type="xs:double" use="optional"/>					<!-- [veh/time unit/vehicle type] -->
 			  <xs:attribute name="std_dev_mult" type="xs:double" use="optional"/>					<!-- [portion/vehicle type] -->
         <xs:attribute name="mod_stamp" type="xs:string" use="required" />
 			</xs:complexType>
 		  </xs:element>
 
+  <xs:element name="demand">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="crudFlag" type="crudFlag" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:long" use="required"/>
+      <xs:attribute name="content" type="xs:string" use="required"/>
+      <xs:attribute name="demand_prof_id" type="xs:long" use="required"/>
+      <xs:attribute name="veh_type_id" type="xs:long" use="required" />
+      <xs:attribute name="demand_order" type="xs:long" use="required" />
+      <xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+    </xs:complexType>
+  </xs:element>
   <!-- ControllerSet .......................................................... -->
 		  
 	  <xs:element name="ControllerSet">
