@@ -40,7 +40,13 @@ public class SensorTest {
 
   private static final double LNG = 33.3;
   private static final double LAT = 22.2;
-  private static final double LINK_POSTION = 0.1;
+  private static final double LINK_POSITION = 0.1;
+  private static final int LANE_NUMBER = 1;
+  private static final int HEALTH_STATUS = 0;
+  private static final long DATA_FEED = 2;
+  private static final long ID = 5;
+  private static final long LINK_ID = 4;
+  private static final double LINK_OFFSET = 10;
   private static final int TYPE_ID = 1;
   private static final String ENTITY_ID = "2";
   private static final String TYPE_NAME = "Loop";
@@ -52,7 +58,7 @@ public class SensorTest {
 	@Before
 	public void setUp() {
 		sensor = new Sensor();
-		sensor.setId(0);
+		sensor.setId(ID);
 		sensor.setCrudFlag(CrudFlag.NONE);
 		
 		//sensor type
@@ -65,23 +71,35 @@ public class SensorTest {
 	    sensor.setDisplayPosition(p);
 
 		sensor.setModStamp(MOD_STAMP);
-		sensor.setLinkPosition(LINK_POSTION);
+		sensor.setLinkPosition(LINK_POSITION);
 		sensor.setLinkReference(new LinkReference());
 		sensor.setParameters(new Parameters());
 		sensor.setSensorIdOriginal(ENTITY_ID);
-		sensor.setLaneNumber(3);
-		sensor.setHealthStatus(0);
-		sensor.setDataFeedId(2L);
-		sensor.setLinkId(3L);
-		sensor.setLinkOffset(10.0);
+		sensor.setLaneNumber(LANE_NUMBER);
+		sensor.setHealthStatus(HEALTH_STATUS);
+		sensor.setDataFeedId(DATA_FEED);
+		sensor.setLinkId(LINK_ID);
+		sensor.setLinkOffset(LINK_OFFSET);
 	}
-
-  @Test
-  public void testGetters() {
-    assertNotNull(sensor.getSensorDisplayPosition());
-    assertEquals(LNG, sensor.getSensorDisplayPosition().getLng(), EPSILON);
-    assertEquals(LAT, sensor.getSensorDisplayPosition().getLat(), EPSILON);
-
-    assertEquals(TYPE_ID, sensor.getSensorTypeId());
-  }
-}
+	
+	  @Test
+	  public void testGetters() {
+		    assertEquals(MOD_STAMP, sensor.getModStamp());
+		    assertEquals(LINK_POSITION, sensor.getLinkPosition(), EPSILON);
+		    assertNotNull(sensor.getLinkReference());
+		    assertNotNull(sensor.getParameters());
+		    assertEquals(ENTITY_ID, sensor.getSensorIdOriginal());
+		    assertEquals(LANE_NUMBER, sensor.getLaneNumber(), EPSILON);
+		    assertEquals(HEALTH_STATUS, (int)sensor.getHealthStatus());
+		    assertEquals(DATA_FEED, (long)sensor.getDataFeedId());
+		    assertEquals(LINK_ID, (long)sensor.getLinkId());
+		    assertEquals(LINK_OFFSET, sensor.getLinkOffset(), EPSILON);
+				
+			
+		    assertNotNull(sensor.getSensorDisplayPosition());
+		    assertEquals(LNG, sensor.getSensorDisplayPosition().getLng(), EPSILON);
+		    assertEquals(LAT, sensor.getSensorDisplayPosition().getLat(), EPSILON);
+	
+		    assertEquals(TYPE_ID, sensor.getSensorTypeId());
+	  }
+	}
