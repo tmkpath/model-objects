@@ -5,11 +5,10 @@ public class Parameter extends edu.berkeley.path.model_objects.jaxb.Parameter {
     /**
      * Gets the value of the name property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
+     * @return String name
      *     
      */
+	@Override
     public String getName() {
         return super.getName();
     }
@@ -17,11 +16,10 @@ public class Parameter extends edu.berkeley.path.model_objects.jaxb.Parameter {
     /**
      * Sets the value of the name property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
+     * @param String name
      *     
      */
+	@Override
     public void setName(String value) {
         super.setName(value);
     }
@@ -29,23 +27,21 @@ public class Parameter extends edu.berkeley.path.model_objects.jaxb.Parameter {
     /**
      * Gets the value of the value property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
+     * @return String associated with name
      *     
      */
+	@Override
     public String getValue() {
         return super.getValue();
     }
 
     /**
-     * Sets the value of the value property.
+     * Sets the value associated with name
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
      *     
      */
+	@Override
     public void setValue(String value) {
         super.setValue(value);
     }
