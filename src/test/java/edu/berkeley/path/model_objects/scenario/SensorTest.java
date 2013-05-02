@@ -72,8 +72,8 @@ public class SensorTest {
 
 		sensor.setModStamp(MOD_STAMP);
 		sensor.setLinkPosition(LINK_POSITION);
-		sensor.setLinkReference(new LinkReference());
-		sensor.setParameters(new Parameters());
+		sensor.setSensorLinkReference(new LinkReference());
+		sensor.setSensorParameters(new Parameters());
 		sensor.setSensorIdOriginal(ENTITY_ID);
 		sensor.setLaneNumber(LANE_NUMBER);
 		sensor.setHealthStatus(HEALTH_STATUS);
