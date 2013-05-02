@@ -6,6 +6,7 @@ public class VehicleType extends edu.berkeley.path.model_objects.jaxb.VehicleTyp
      * Gets the value of the id property.
      * 
      */
+	@Override
     public long getId() {
         return super.getId();
     }
@@ -14,6 +15,7 @@ public class VehicleType extends edu.berkeley.path.model_objects.jaxb.VehicleTyp
      * Sets the value of the id property.
      * 
      */
+	@Override
     public void setId(long value) {
         super.setId(value);
     }
@@ -21,11 +23,10 @@ public class VehicleType extends edu.berkeley.path.model_objects.jaxb.VehicleTyp
     /**
      * Gets the value of the name property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
+     * @return String
      *     
      */
+	@Override
     public String getName() {
         return super.getName();
     }
@@ -34,10 +35,9 @@ public class VehicleType extends edu.berkeley.path.model_objects.jaxb.VehicleTyp
      * Sets the value of the name property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
      *     
      */
+	@Override
     public void setName(String value) {
         super.setName(value);
     }
@@ -45,11 +45,10 @@ public class VehicleType extends edu.berkeley.path.model_objects.jaxb.VehicleTyp
     /**
      * Gets the value of the size_factor property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Double }
+     * @return Double
      *     
      */
+	@Override
     public Double getSizeFactor() {
         return super.getSizeFactor();
     }
@@ -57,11 +56,10 @@ public class VehicleType extends edu.berkeley.path.model_objects.jaxb.VehicleTyp
     /**
      * Sets the value of the size_factor property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Double }
+     * @param value Double
      *     
      */
+	@Override
     public void setSizeFactor(Double value) {
         super.setSizeFactor(value);
     }
@@ -69,11 +67,10 @@ public class VehicleType extends edu.berkeley.path.model_objects.jaxb.VehicleTyp
     /**
      * Gets the value of the is_standard property.
      * 
-     * @return
-     *     possible object is
-     *     {@link int }
+     * @return int
      *     
      */
+	@Override
     public Integer getIsStandard() {
         return super.getIsStandard();
     }
@@ -81,25 +78,29 @@ public class VehicleType extends edu.berkeley.path.model_objects.jaxb.VehicleTyp
     /**
      * Sets the value of the is_standard property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Double }
+     * @param value Double
      *     
      */
+	@Override
     public void setIsStandard(Integer value) {
         super.setIsStandard(value);
     }
 
     /**
+     * Set the mod stamp
 	 * @param modstamp the modstamp to set
 	 */
+	@Override
 	public void setModStamp(String modstamp) {
 		super.setModStamp(modstamp);
 	}
 	
 	/**
+	 * Get the mod stamp
+	 * 
 	 * @return the modStamp
 	 */
+	@Override
 	public String getModStamp() {
 		return super.getModStamp();
 	}
