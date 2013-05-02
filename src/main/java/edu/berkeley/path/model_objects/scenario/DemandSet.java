@@ -33,18 +33,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.berkeley.path.model_objects.scenario.DemandProfile;
+import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.jaxb.VehicleTypeOrder;
 
 public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
-	
-	protected String modStamp;
-	
-
 
 	 /**
 	  * Get modstamp
 	  * @return
 	  */
+	@Override
 	public String getModStamp() {
         return modStamp;
     }
@@ -53,6 +51,7 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 	 * Set modstamp
 	 * @param value
 	 */
+	@Override
     public void setModStamp(String value) {
         this.modStamp = value;
     }
@@ -64,23 +63,17 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 	public Boolean isValid() { return true; }
 	
 	/**
-	 * Get value by name
-	 * @param name
-	 * @return Object_Parameter
+	 * Set value by name
+	 * @param Object_Parameter
+	 * @
 	 */
-	public Object_Parameter getByName(String name) {
+	public void setByName(Object_Parameter p) {
 		
-		if (name.compareToIgnoreCase("id") == 0 ) {
-			return new Object_Parameter("id", id, 0.0F, null);
-		} else if (name.compareToIgnoreCase("description") == 0 ) {
-			return new Object_Parameter("description", 0, 0.0F, getDescription());
-		} else if (name.compareToIgnoreCase("project_id") == 0 ) {
-			return new Object_Parameter("project_id", projectId, 0.0F, null);
-		} else if (name.compareToIgnoreCase("name") == 0 ) {
-			return new Object_Parameter("name", 0, 0.0F, getName());
-		} 
-		
-		return new Object_Parameter(null, 0, 0.0F, null);
+		if (p.name.compareToIgnoreCase("id") == 0 ) setId(p.intParam);
+		else if (p.name.compareToIgnoreCase("description") == 0 ) setDescription(p.strParam);
+		else if (p.name.compareToIgnoreCase("projectId") == 0 ) setProjectId(p.intParam);
+		else if (p.name.compareToIgnoreCase("name") == 0 ) setName(p.strParam);	
+		else if (p.name.compareToIgnoreCase("ModStamp") == 0 ) setModStamp(p.strParam);	
 	}
 	
 	/**
@@ -90,17 +83,40 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 	 */
 	public Object_Parameter[] getAll() {
 		
-		Object_Parameter[] params = new Object_Parameter[4];
+		Object_Parameter[] params = new Object_Parameter[6];
 		
-		params[0] = new Object_Parameter("id", id, 0.0F, null);
-		params[1] = new Object_Parameter("description", 0, 0.0F, getDescription());
-		params[2] = new Object_Parameter("project_id", projectId, 0.0F, null);
+		params[0] = new Object_Parameter("id", getId(), 0.0F, null);
+		params[1] = new Object_Parameter("description", 0, 0.0F, description);
+		params[2] = new Object_Parameter("projectId", getProjectId(), 0.0F, null);
 		params[3] = new Object_Parameter("name", 0, 0.0F, getName());
+		params[4] = new Object_Parameter("ModStamp", 0, 0.0F, getModStamp());
+		params[5] = new Object_Parameter("crud", getCrudFlag().ordinal(), 0.0F, null);
 		
 		Object_Parameter.setPositions(params);
 		
 		return params;
+
 	}
+	
+	  /**
+	   * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+	   * 
+	   * @return CRUD Flag enumeration
+	   */
+	  @Override
+	  public CrudFlag getCrudFlag() {
+	    return super.getCrudFlag();
+	  }
+	  
+	  /**
+	   * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+	   * 
+	   * @param CRUD Flag enumeration
+	   */
+	  @Override
+	  public void setCrudFlag(CrudFlag flag) {
+	    super.setCrudFlag(flag);
+	  }
 	   /**
      * Gets the value of the description property.
      * 
@@ -191,12 +207,8 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
      *     
      */
     @Override
-    public long getProjectId() {
-        if (projectId == null) {
-            return  0L;
-        } else {
+    public long getProjectId() {   
             return projectId;
-        }
     }
 
     /**
@@ -208,7 +220,7 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
      *     
      */
     @Override
-    public void setProjectId(Long value) {
+    public void setProjectId(long value) {
         this.projectId = value;
     }
 
@@ -259,4 +271,6 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
     public void setName(String value) {
         this.name = value;
     }
+    
+    
 }

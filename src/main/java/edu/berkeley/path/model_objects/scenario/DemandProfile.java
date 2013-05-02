@@ -27,7 +27,12 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.scenario.Object_Parameter;
+import edu.berkeley.path.model_objects.shared.DateTime;
 
 
 /** 
@@ -44,31 +49,166 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	   */
 	 public final Boolean isValid() { return true; }
 	 
-		/**
-		 * Get an array of all parameters
-		 * 
-		 * @return
-		 */
-		public Object_Parameter[] getAll() {
-			
-			Object_Parameter[] params = new Object_Parameter[11];
-			
-			params[0] = new Object_Parameter("id", id, 0.0F, null);
-			params[1] = new Object_Parameter("demandSetId", demandSetId, 0.0F, null);
-			params[2] = new Object_Parameter("knob", 0, knob, null);
-			params[3] = new Object_Parameter("startTime", 0, startTime, null);
-			params[4] = new Object_Parameter("SAMPLE_RATE", 0, dt, null);
-			params[6] = new Object_Parameter("orgLinkId", 0, 0.0F, orgLinkId);
-			params[7] = new Object_Parameter("destinationNetworkId", destinationNetworkId, 0.0F, null);
-			params[8] = new Object_Parameter("stdDevAdd", 0, stdDevAdd, null);
-			params[9] = new Object_Parameter("stdDevMult", 0, stdDevMult, null);
-			params[10] = new Object_Parameter("modStamp", 0, 0.0F, modStamp);
-			
-			Object_Parameter.setPositions(params);
-			
-			return params;
-		}
+	/**
+	 * Set value by name
+	 * @param Object_Parameter
+	 * @
+	 */
+	public void setByName(Object_Parameter p) {
+		
+		if (p.name.compareToIgnoreCase("id") == 0 ) 				setId(p.intParam);
+		else if (p.name.compareToIgnoreCase("demandSetId") == 0 ) 	setDemandSetId(p.intParam);
+		else if (p.name.compareToIgnoreCase("knob") == 0 ) 			setKnob(p.fltParam);
+		else if (p.name.compareToIgnoreCase("startTime") == 0 ) 	setStartTime(p.fltParam);
+		else if (p.name.compareToIgnoreCase("SAMPLERATE") == 0 ) 	setDt(p.fltParam);
+		else if (p.name.compareToIgnoreCase("orgLinkId") == 0 ) 	setOrgLinkId(p.intParam);	
+		else if (p.name.compareToIgnoreCase("destinationNetworkId") == 0 ) 	setDestinationNetworkId(p.intParam);
+		else if (p.name.compareToIgnoreCase("stdDevAdd") == 0 ) 	setStdDevAdd(p.fltParam);
+		else if (p.name.compareToIgnoreCase("stdDevMult") == 0 ) 	setStdDevMult(p.fltParam);
+		else if (p.name.compareToIgnoreCase("modStamp") == 0 ) 		setModStamp(p.strParam);
+		
+	}
+	 
+	/**
+	 * Get an array of all parameters
+	 * 
+	 * @return
+	 */
+	public Object_Parameter[] getAll() {
+		
+		Object_Parameter[] params = new Object_Parameter[11];
+		
+		params[0] = new Object_Parameter("id", getId(), 0.0F, null);
+		params[1] = new Object_Parameter("demandSetId", getDemandSetId(), 0.0F, null);
+		params[2] = new Object_Parameter("knob", 0, knob, null);
+		params[3] = new Object_Parameter("startTime", 0, startTime, null);
+		params[4] = new Object_Parameter("SAMPLERATE", 0, dt, null);
+		params[5] = new Object_Parameter("orgLinkId", getOrgLinkId(), 0.0F, null);
+		params[6] = new Object_Parameter("destinationNetworkId", destinationNetworkId, 0.0F, null);
+		params[7] = new Object_Parameter("stdDevAdd", 0, stdDevAdd, null);
+		params[8] = new Object_Parameter("stdDevMult", 0, stdDevMult, null);
+		params[9] = new Object_Parameter("modStamp", 0, 0.0F, modStamp);
+		params[10] = new Object_Parameter("crud", getCrudFlag().ordinal(), 0.0F, null);
+		
+		Object_Parameter.setPositions(params);
+		
+		return params;
+	}
 	
+	  /**
+	   * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+	   * 
+	   * @return CRUD Flag enumeration
+	   */
+	  @Override
+	  public CrudFlag getCrudFlag() {
+	    return super.getCrudFlag();
+	  }
+	  
+	  /**
+	   * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+	   * 
+	   * @param CRUD Flag enumeration
+	   */
+	  @Override
+	  public void setCrudFlag(CrudFlag flag) {
+	    super.setCrudFlag(flag);
+	  }
+	
+	/**
+	 * Gets the list of Demands
+	 * 
+	 * @return List<Demand> List of split ratios
+	 */
+ 	@SuppressWarnings("unchecked")
+	public List<Demand> getListOfDemands() {
+		// return casted list of Demands JAXB base class
+		return (List<Demand>)(List<?>)super.getDemand();
+    }
+
+	/**
+	 * Set the Demand list. 
+	 * 
+	 * @param List<Demand>	List of extended Demands to add
+	 */
+	@SuppressWarnings("unchecked")
+	public void setListOfDemands(List<Demand> demands) {
+			List<edu.berkeley.path.model_objects.jaxb.Demand> list = getDemand();
+			if ( list == null ) {
+			  list = new ArrayList<edu.berkeley.path.model_objects.jaxb.Demand>();  
+			}
+			list.clear();
+			list.addAll((List<edu.berkeley.path.model_objects.jaxb.Demand>)(List<?>)demands);
+			demand = list;
+	}
+	
+	/**
+	 * returns all the Demand values in this DemandProfile that have the same vehicle type.
+	 * 
+	 * @param vehicle_type_id
+	 * @return Double[]
+	 */
+	public Double[] getDemand(long vehicle_type_id){
+		ArrayList<Double> values = new ArrayList<Double>();
+		List<Demand> list = getListOfDemands();
+		for (Demand s : list){
+			if(s.getVehTypeId()== vehicle_type_id)
+				values.add(Double.parseDouble(s.getContent()));
+		}
+		return values.toArray(new Double[0]);
+	}
+	
+	/**
+	 * returns the Demand value at the offset from the start time of this profile passed in
+	 * If the offset is between sample times we return the ratio closer to the beginning of the sample
+	 * 
+	 * @param vehicle_type_id
+	 * @param integer offset in seconds since start_time of profile
+	 * @return the Demand corresponding to the parameters passed in or -1 if not found
+	 */
+	public double getDemand(long vehicle_type_id, long offsetTime){
+		List<Demand> list = getListOfDemands();
+		int offset = (int)Math.floor(offsetTime / this.getDt());
+		for(Demand r : list)
+		{
+			if(r.getVehTypeId()== vehicle_type_id && r.getDemandOrder() == offset)
+				return Double.parseDouble(list.get(offset).getContent());				
+		}
+		return -1;
+	}	
+	
+	
+	/**
+	 * returns the Demand value at the time passed in 
+	 * If the time falls between sample times we return the ratio closer to the beginning of the sample
+	 *
+	 * @param vehicle_type_id
+	 * @param time String Format : 14:05:00
+	 * @return double
+	 */
+	public double getDemand(long vehicle_type_id, String time){
+		
+		DateTime dateTime = new DateTime();
+	    org.joda.time.DateTime joda = dateTime.setDateString("1970-01-01 00:00:00");
+	    long milliseconds1 = joda.getMillis();
+		
+		DateTime dateTime2= new DateTime();
+	    org.joda.time.DateTime joda2 = dateTime2.setDateString("1970-01-01 " + time);
+	    long milliseconds2 = joda2.getMillis();
+		
+		long daySeconds = ((milliseconds2  - milliseconds1) / 1000) + 1;
+		int offset = (int)Math.floor(daySeconds / this.getDt());
+		
+		List<Demand> list = getListOfDemands();
+		for(Demand r : list)
+		{
+			if(r.getVehTypeId()== vehicle_type_id && r.getDemandOrder() == offset)
+				return Double.parseDouble(list.get(offset).getContent());				
+		}
+		return -1;
+
+	}
+  
     /**
      * Gets the value of the demandSetId property.
      * 
@@ -182,20 +322,20 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
      *     
      */
 	@Override
-	public String getOrgLinkId() {
+	public long getOrgLinkId() {
         return orgLinkId;
     }
 
     /**
      * Sets the value of the orgLinkId property.
      * 
-     * @param value
+     * @param value 
      *     allowed object is
      *     {@link String }
      *     
      */
 	@Override
-	public void setOrgLinkId(String value) {
+	public void setOrgLinkId(long value) {
         this.orgLinkId = value;
     }
 
@@ -216,7 +356,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	public void setId(long value) {
         this.id = value;
     }
-
+ 
     /**
      * Gets the value of the destinationNetworkId property.
      * 
@@ -226,7 +366,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
      *     
      */
 	@Override
-	public Long getDestinationNetworkId() {
+	public long getDestinationNetworkId() {
         return destinationNetworkId;
     }
 
@@ -239,7 +379,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
      *     
      */
 	@Override
-	public void setDestinationNetworkId(Long value) {
+	public void setDestinationNetworkId(long value) {
         this.destinationNetworkId = value;
     }
 
