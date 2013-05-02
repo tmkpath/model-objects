@@ -33,7 +33,7 @@ public class TestConfiguration {
 		r.setLinkIn(link_in);
 		r.setLinkOut(link_out);
 		r.setVehTypeId(veh_id);
-		r.setContent(ratio + "");
+		r.setRatio(ratio);
 		r.setRatioOrder(order);	
 		r.setCrudFlag(flag);	
 		return r;
