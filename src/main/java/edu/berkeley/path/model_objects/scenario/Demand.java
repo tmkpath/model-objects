@@ -45,7 +45,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 		
 		if (p.name.compareToIgnoreCase("id") == 0 ) 				setId(p.intParam);
 		else if (p.name.compareToIgnoreCase("demandProfId") == 0 ) 	setDemandProfId(p.intParam);
-		else if (p.name.compareToIgnoreCase("demand") == 0 ) 		setContent(String.valueOf(p.fltParam));
+		else if (p.name.compareToIgnoreCase("flow") == 0 ) 		setContent(String.valueOf(p.fltParam));
 		else if (p.name.compareToIgnoreCase("vehTypeId") == 0 ) 	setVehTypeId(p.intParam);	
 		else if (p.name.compareToIgnoreCase("demandOrder") == 0 ) 	setDemandOrder(p.intParam);
 		else if (p.name.compareToIgnoreCase("modStamp") == 0 ) 		setModStamp(p.strParam);
@@ -64,7 +64,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 		
 		params[0] = new Object_Parameter("id", id, 0.0F, null);
 		params[1] = new Object_Parameter("demandProfId", demandProfId, 0.0F, null);
-		params[2] = new Object_Parameter("demand", 0, Double.parseDouble(getContent()), null);
+		params[2] = new Object_Parameter("flow", 0, Double.parseDouble(getContent()), null);
 		params[3] = new Object_Parameter("vehTypeId", vehTypeId, 0.0F, null);
 		params[4] = new Object_Parameter("demandOrder", demandOrder, 0.0F, null);
 		params[5] = new Object_Parameter("modStamp", 0, 0.0F, modStamp);
