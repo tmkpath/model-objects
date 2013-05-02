@@ -202,20 +202,24 @@
 	  <xs:element name="Routes">
 		<xs:complexType>
 		  <xs:sequence>
-			<xs:element ref="route" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element ref="route_links" minOccurs="0" maxOccurs="unbounded" />
 		  </xs:sequence>
-			<xs:attribute name="crudFlag" type="crudFlag" minOccurs="0" />
+			<xs:attribute name="id" type="xs:long" use="required" />
+            <xs:attribute name="project_id" type="xs:long" use="required" />
+			<xs:attribute name="name" type="xs:string" use="required" />
+            <xs:attribute name="mod_stamp" type="xs:string" use="required" />
 		</xs:complexType>
 	  </xs:element>
 
-		  <xs:element name="route">
+		  <xs:element name="route_links">
 			<xs:complexType>
 			  <xs:all>
 				<xs:element ref="link_references" minOccurs="1" maxOccurs="1" />
 				<xs:element name="crudFlag" type="crudFlag" minOccurs="0" />
 			  </xs:all>
 			  <xs:attribute name="id" type="xs:long" use="required" />
-			  <xs:attribute name="name" type="xs:string" use="required" />
+			  <xs:attribute name="link_order" type="xs:long" use="required" />
+			  <xs:attribute name="mod_stamp" type="xs:string" use="required" />
 			</xs:complexType>
 		  </xs:element>
 
