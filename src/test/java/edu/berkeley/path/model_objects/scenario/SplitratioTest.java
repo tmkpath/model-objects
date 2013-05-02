@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class SplitratioTest {
-
+	private static final String MOD_STAMP = "01-APR-1982 23:23:12";
 	Splitratio ratio;
 
 	@Before
@@ -17,7 +17,7 @@ public class SplitratioTest {
 		  ratio.setLinkIn(1);
 		  ratio.setLinkOut(2);
 		  ratio.setRatioOrder(4);
-		  ratio.setModStamp("1970-01-01 00:00:00");
+		  ratio.setModStamp(MOD_STAMP);
 		  ratio.setRatio(0.1);
 		  ratio.setVehTypeId(3);
 	}
@@ -36,6 +36,6 @@ public class SplitratioTest {
 	  assertEquals(3,ratio.getVehTypeId());
 	  assertEquals(4,ratio.getRatioOrder());
 	  assertEquals(0.1,ratio.getRatio(), 0.0);
-	  assertEquals("1970-01-01 00:00:00",ratio.getModStamp());
+	  assertEquals(MOD_STAMP,ratio.getModStamp());
   }
 }
