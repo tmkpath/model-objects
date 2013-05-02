@@ -5,20 +5,23 @@ import java.util.List;
 
 public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	
+	/**
+	 * Check to make sure all the Sensors are valid
+	 * 
+	 * @return boolean 
+	 */
 	protected boolean isValid() {
-		boolean isValid = true;
-		for(edu.berkeley.path.model_objects.jaxb.Sensor s : sensor){
-			Sensor extendedSensor = (Sensor)s;
-			isValid = extendedSensor.isValid();
-			if(isValid == false)
+		for(Sensor s : getSensors()){
+			if(!s.isValid())
 				return false;
 		}
-		return isValid;
+		return true;
 	}
 	
 	/**
 	 * @return the projectId
 	 */
+	@Override
 	public long getProjectId() {
 		return super.getProjectId();
 	}
@@ -26,20 +29,31 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	/**
 	 * @param projectId the projectId to set
 	 */
-	public void setProjectId(long projectId) {
+	 @Override
+	public void setProjectId(Long projectId) {
 		 super.setProjectId(projectId);
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(Long id) {
+	@Override
+	public void setId(long id) {
 		super.setId(id);	
+	}
+
+	/**
+	 * @return the id
+	 */
+	@Override
+	public long getId() {
+		return super.getId();
 	}
 
 	/**
 	 * @param name the name to set
 	 */
+	@Override
 	public void setName(String name) {
 		super.setName(name);
 	}
@@ -49,21 +63,16 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	/**
 	 * @param modstamp the modstamp to set
 	 */
+	@Override
 	public void setModStamp(String modstamp) {
 		super.setModStamp(modstamp);
 	}
 
 
 	/**
-	 * @return the id
-	 */
-	public long getId() {
-		return super.getId();
-	}
-
-	/**
 	 * @return the modStamp
 	 */
+	@Override
 	public String getModStamp() {
 		return super.getModStamp();
 	}
@@ -71,6 +80,7 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	/**
 	 * @return the name
 	 */
+	@Override
 	public String getName() {
 		return super.getName();
 	}
@@ -78,6 +88,7 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	/**
 	 * @return the description
 	 */
+	@Override
 	public String getDescription() {
 		return super.getDescription();
 	}
@@ -85,6 +96,7 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	/**
 	 * @param description the description to set
 	 */
+	@Override
 	public void setDescription(String desc) {
 		super.setDescription(desc);
 		
@@ -97,7 +109,7 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	 * @param List<Sensor>	List of extended Sensors to add
 	 */
 	@SuppressWarnings("unchecked")
-	public void setListOfSensors(List<Sensor> sensors) {
+	public void setSensors(List<Sensor> sensors) {
 
 			List<edu.berkeley.path.model_objects.jaxb.Sensor> sensorSet = getSensor();
 			if ( sensorSet == null ) {
@@ -114,7 +126,7 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	 * @return List of all sensors as Sensor Model Objects. 
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Sensor> getListOfSensors() {
+	public List<Sensor> getSensors() {
 		// return casted list of Sensors from JAXB base class
 		return (List<Sensor>)(List<?>)super.getSensor();
 	}
