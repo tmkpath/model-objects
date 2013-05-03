@@ -139,11 +139,10 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
     /**
      * Gets the value of the description property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
+     * @return String
      *     
      */
+	@Override
     public String getDescription() {
         return super.getDescription();
     }
@@ -151,11 +150,10 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
     /**
      * Sets the value of the description property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param String value
+     * 
      */
+	@Override
     public void setDescription(String value) {
         super.setDescription(value);
     }
@@ -163,21 +161,18 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
     /**
      * Gets the value of the vehicleTypeOrder property.
      * 
-     * @return
-     *     possible object is
-     *     {@link VehicleTypeOrder }
+     * @return VehicleTypeOrder
      *     
      */
-    public VehicleTypeOrder getSplitRatioSetVehicleTypeOrder() {
+	@Override
+    public VehicleTypeOrder getVehicleTypeOrder() {
         return (VehicleTypeOrder)super.getVehicleTypeOrder();
     }
 
     /**
      * Sets the value of the vehicleTypeOrder property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link VehicleTypeOrder }
+     * @param VehicleTypeOrder value
      *     
      */
     public void setVehicleTypeOrder(VehicleTypeOrder value) {
@@ -187,8 +182,8 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
     /**
      * Gets the value of the splitRatioProfile property.
      * 
-     * Objects of the following type(s) are allowed in the list
-     * {@link SplitRatioProfile }
+     * 
+     * @return List<SplitRatioProfile>
      * 
      * 
      */
@@ -217,11 +212,10 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
     /**
      * Gets the value of the projectId property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Long }
+     * @return String
      *     
      */
+	@Override
     public long getProjectId() {
         return super.getProjectId();
     }
@@ -229,19 +223,20 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
     /**
      * Sets the value of the projectId property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
+     * @param Long value
      *     
      */
-    public void setProjectId(long value) {
+	@Override
+    public void setProjectId(Long value) {
         super.setProjectId(value);
     }
 
     /**
      * Gets the value of the id property.
      * 
+     * @return long
      */
+	@Override
     public long getId() {
         return super.getId();
     }
@@ -249,7 +244,10 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
     /**
      * Sets the value of the id property.
      * 
+     * @param long
+     * 
      */
+	@Override
     public void setId(long value) {
         super.setId(value);
     }
@@ -257,11 +255,10 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
     /**
      * Gets the value of the name property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
+     * @return String
      *     
      */
+	@Override
     public String getName() {
         return super.getName();
     }
@@ -269,11 +266,10 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
     /**
      * Sets the value of the name property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
+     * @param String value
      *     
      */
+	@Override
     public void setName(String value) {
         super.setName(value);
     }
@@ -281,15 +277,71 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
 	/**
 	 * @param modstamp the modstamp to set
 	 */
-	public void setModStamp(String modstamp) {
+	@Override
+    public void setModStamp(String modstamp) {
 		super.setModStamp(modstamp);
 	}
 	
 	/**
 	 * @return the modStamp
 	 */
+	@Override
 	public String getModStamp() {
 		return super.getModStamp();
 	}
+	
+    /**
+     * Gets the value of the lockedForEdit property.
+     * 
+     * @return boolean
+     *     
+     */
+    @Override
+    public boolean isLockedForEdit() {
+       return super.isLockedForEdit();
+    }
+
+    /**
+     * Sets the value of the lockedForEdit property.
+     * 
+     * @param Boolean value
+     *     
+     */
+    @Override
+    public void setLockedForEdit(Boolean value) {
+    	super.setLockedForEdit(value);
+    }
+
+    /**
+     * Gets the value of the lockedForHistory property.
+     * 
+     * @return boolean
+     *     
+     */
+    @Override
+    public boolean isLockedForHistory() {
+       return super.isLockedForHistory();
+    }
+
+    /**
+     * Sets the value of the lockedForHistory property.
+     * 
+     * @param Boolean value
+     *     
+     */
+    @Override
+    public void setLockedForHistory(Boolean value) {
+    	super.setLockedForHistory(value);
+    }
+    
+	/**
+	 * Ensures all required fields are set
+	 * 
+	 * @return boolean
+	 */
+	public boolean isValid(){
+		return true;
+	}
+
 
 }

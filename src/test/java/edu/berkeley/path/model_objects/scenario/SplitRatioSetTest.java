@@ -15,17 +15,25 @@ import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.network.Node;
 
 public class SplitRatioSetTest {
-	SplitRatioSet set;
+	private static final long ID = 1;
+	private static final long PROJECT_ID = 10;  
+	private static final String DESCRIPTION = "Test Set";
+	private static final String NAME = "Test Set Name";
+	private static final String MOD_STAMP = "01-APR-1982 23:23:12";
+	
+	private SplitRatioSet set;
 	
 	@Before
 	public void setUp(){
 		set = new SplitRatioSet();
-		set.setDescription("test set");
+		set.setDescription(DESCRIPTION);
 		set.setVehicleTypeOrder(new VehicleTypeOrder());
-		set.setProjectId(2);
-		set.setId(1);
-		set.setName("Test Set Name");
-		set.setModStamp("1970-01-01 00:00:00");
+		set.setProjectId(PROJECT_ID);
+		set.setId(ID);
+		set.setName(NAME);
+		set.setModStamp(MOD_STAMP);
+		set.setLockedForEdit(true);
+		set.setLockedForHistory(true);
 		
 		List<SplitRatioProfile> profiles = new ArrayList<SplitRatioProfile>();
 		profiles.add(TestConfiguration.createSplitRatioProfile(1,3600,300,1, CrudFlag.UPDATE));
@@ -37,12 +45,14 @@ public class SplitRatioSetTest {
 	
 	@Test
 	public void testGetters(){
-		assertEquals("test set", set.getDescription());
+		assertEquals(DESCRIPTION, set.getDescription());
 		assertNotNull(set.getVehicleTypeOrder());
-		assertEquals(2, set.getProjectId());
-		assertEquals(1,set.getId());
-		assertEquals("Test Set Name", set.getName());
-		assertEquals("1970-01-01 00:00:00", set.getModStamp());
+		assertEquals(PROJECT_ID, set.getProjectId());
+		assertEquals(ID,set.getId());
+		assertEquals(NAME, set.getName());
+		assertEquals(MOD_STAMP, set.getModStamp());
+		assertEquals(true, set.isLockedForEdit());
+		assertEquals(true, set.isLockedForHistory());
 		assertEquals(3, set.getListOfSplitRatioProfiles().size());
 	}
 	
@@ -151,9 +161,9 @@ public class SplitRatioSetTest {
 	public void testGetSplitRatioProfileAtNode()
 	{
 		Node n = new Node();
-		n.setId(1);
+		n.setId(ID);
 		List<SplitRatioProfile> profiles = set.getSplitRatioProfileAtNode(n);
-		assertEquals(1, profiles.size());
+		assertEquals(ID, profiles.size());
 
 		profiles.add(TestConfiguration.createSplitRatioProfile(1,3720,300,3,CrudFlag.UPDATE));
 		profiles = set.getSplitRatioProfileAtNode(n);

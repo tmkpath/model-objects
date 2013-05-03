@@ -141,4 +141,14 @@ public class ScenarioFactory {
   public Scenario createScenario() {
     return new Scenario();
   }
+
+  /**
+   * Create an instance of SplitRatioSet  Model Object
+   *
+   * @return  SplitRatioSet  Model Object
+   */
+  public SplitRatioSet createSplitRatioSet() {
+
+	return new SplitRatioSet();
+  }
 }
