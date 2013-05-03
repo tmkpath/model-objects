@@ -140,4 +140,13 @@ public class Route extends edu.berkeley.path.model_objects.jaxb.Route {
         getRouteLinks().clear();
         getRouteLinks().addAll((List<edu.berkeley.path.model_objects.jaxb.RouteLinks>)(List<?>)links);
     }
+
+
+    /**
+     * TODO: Route Validation, return true for now
+     */
+    public boolean isValid() {
+        return true;
+    }
+
 }
