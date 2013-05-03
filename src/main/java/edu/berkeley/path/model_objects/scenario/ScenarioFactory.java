@@ -122,4 +122,14 @@ public class ScenarioFactory {
     public SplitRatioProfile createSplitRatioProfile() {
         return new SplitRatioProfile();
     }
+    
+    /**
+     * Create an instance of SplitRatioProfile Model Object
+     * 
+     * @return SplitRatioProfile Model Object
+     * 
+     */
+    public Demand createDemand() {
+        return new Demand();
+    }
 }
