@@ -34,14 +34,14 @@ import java.util.List;
 import java.util.ArrayList;
 
 /** Route class
-* @author Matthew Juhn (mnjuhn@berkeley.edu)
-*/
-public class RouteLinks extends edu.berkeley.path.model_objects.jaxb.RouteLinks {
+ * @author Matthew Juhn (mnjuhn@berkeley.edu)
+ */
+public class Route extends edu.berkeley.path.model_objects.jaxb.Route {
 
     /**
-     * Return id of route link
+     * Return id of route
      *
-     * @return id of route link as long
+     * @return id of route as long
      */
     @Override
     public long getId() {
@@ -49,9 +49,9 @@ public class RouteLinks extends edu.berkeley.path.model_objects.jaxb.RouteLinks 
     }
 
     /**
-     * Set id of route link
+     * Set id of route
      *
-     * @param id of route link
+     * @param id of route
      */
     @Override
     public void setId(long id) {
@@ -59,23 +59,43 @@ public class RouteLinks extends edu.berkeley.path.model_objects.jaxb.RouteLinks 
     }
 
     /**
-     * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+     * Return name of route
      *
-     * @return CRUD Flag enumeration
+     * @return name of route as string
      */
     @Override
-    public CrudFlag getCrudFlag() {
-        return super.getCrudFlag();
+    public String getName() {
+        return super.getName();
     }
 
     /**
-     * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+     * Set name of route
      *
-     * @param CRUD Flag enumeration
+     * @param name of route as string
      */
     @Override
-    public void setCrudFlag(CrudFlag flag) {
-        super.setCrudFlag(flag);
+    public void setName(String name) {
+        super.setName(name);
+    }
+
+    /**
+     * Return id of route
+     *
+     * @return id of route as long
+     */
+    @Override
+    public long getProjectId() {
+        return super.getProjectId();
+    }
+
+    /**
+     * Set id of route
+     *
+     * @param id of route
+     */
+    @Override
+    public void setProjectId(long id) {
+        super.setProjectId(id);
     }
 
     /**
@@ -99,56 +119,25 @@ public class RouteLinks extends edu.berkeley.path.model_objects.jaxb.RouteLinks 
     }
 
     /**
-     * Return order of route link
+     * Get the list of links in this route.
      *
-     * @return order of route link as long
+     * @return List of all links in route.
      */
-    @Override
-    public long getLinkOrder() {
-        return super.getLinkOrder();
+    @SuppressWarnings("unchecked")
+    public List<RouteLinks> getListOfRouteLinks() {
+        // return casted list of Nodes from JAXB base class
+        return (List<RouteLinks>)(List<?>)getRouteLinks();
     }
 
     /**
-     * Set order of route link
+     * Set the Route links. Attaches list of RouteLink Model Objects to Route.
      *
-     * @param order of route link
+     * @param List<RouteLinks> List of extended Route Links to add
      */
-    @Override
-    public void setLinkOrder(long order) {
-        super.setLinkOrder(order);
-    }
-
-    /**
-     * Return id of link reference
-     *
-     * @return id of link reference as Long
-     */
-    public Long getLinkReferenceId() {
-        Long id = null;
-        if (getLinkReferences() != null) {
-            List<LinkReference> linkRef = getLinkReferences().getLinkReference();
-            if (linkRef.size() > 0) {
-                id = linkRef.get(0).getId();
-            }
-        }
-        return id;
-    }
-
-    /**
-     * Set id of link
-     *
-     * @param id of link reference
-     */
-    public void setLinkReferenceId(Long id) {
-        // define Link reference
-        LinkReference linkRef = new LinkReference();
-        linkRef.setId(id);
-        LinkReferences linkRefs = new LinkReferences();
-
-        // Set link reference defined above
-        linkRefs.getLinkReference().add(linkRef);
-
-        // add link reference object
-        setLinkReferences(linkRefs);
+    @SuppressWarnings("unchecked")
+    public void setListOfRouteLinks(List<RouteLinks> links) {
+        // clear all routeLinks and add new list of them
+        getRouteLinks().clear();
+        getRouteLinks().addAll((List<edu.berkeley.path.model_objects.jaxb.RouteLinks>)(List<?>)links);
     }
 }

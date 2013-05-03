@@ -50,6 +50,24 @@ public class NetworkFactory {
     }
 
     /**
+     * Create an instance of Route Model Object
+     *
+     * @return  Route Model Object
+     */
+    public Route createRoute() {
+        return new Route();
+    }
+
+    /**
+     * Create an instance of RouteLinks Model Object
+     *
+     * @return  Route Model Object
+     */
+    public RouteLinks createRouteLinks() {
+        return new RouteLinks();
+    }
+
+    /**
      * Create an instance of Link Model Object
      * 
      * @return  Link Model Object
@@ -75,5 +93,7 @@ public class NetworkFactory {
     public Point createPoint() {
         return new Point();
     }
+
+
 
 }
