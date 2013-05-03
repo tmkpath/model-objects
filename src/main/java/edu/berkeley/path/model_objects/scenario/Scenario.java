@@ -33,6 +33,7 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
    * @param networks  list of Network MO
    */
   public void setListOfNetworks(List<Network> networks) {
+    super.getNetworkSet().getNetwork().clear();
     super.getNetworkSet().getNetwork().addAll(networks);
   }
 
