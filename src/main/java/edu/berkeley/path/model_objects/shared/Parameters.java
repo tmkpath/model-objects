@@ -42,4 +42,27 @@ public class Parameters extends edu.berkeley.path.model_objects.jaxb.Parameters{
 		getParameters().add(p);
 	}
 	
+    /**
+     * Gets the value of the modStamp property.
+     * 
+     * @return String
+     *     
+     */
+	@Override
+    public String getModStamp() {
+        return super.getModStamp();
+    }
+
+    /**
+     * Sets the value of the modStamp property.
+     * Format: DD-MON-YYYY HH:MM:SS
+     * 
+     * @param String value
+     *     
+     */
+	@Override
+    public void setModStamp(String value) {
+        super.setModStamp(value);
+    }
+	
 }
