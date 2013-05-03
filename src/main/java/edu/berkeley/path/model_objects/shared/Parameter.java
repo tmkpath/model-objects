@@ -60,7 +60,7 @@ public class Parameter extends edu.berkeley.path.model_objects.jaxb.Parameter {
 
     /**
      * Sets the value of the modStamp property.
-     * Format: DD-MON-YYYY HH:MM:SS
+     * Format: DD-MON-YYYY HH24:MI:SS.FF6
      * 
      * @param String value
      *     
