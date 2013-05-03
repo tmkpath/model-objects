@@ -19,6 +19,12 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
    * @return  a List of Network model objects
    */
   public List<Network> getListOfNetworks() {
+    // Check for null NetworkSet
+    NetworkSet networkSet = super.getNetworkSet();
+    if(networkSet == null) {
+      super.setNetworkSet(new NetworkSet());
+    }
+
     return (List<Network>) (List<?>) super.getNetworkSet().getNetwork();
   }
 
