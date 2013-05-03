@@ -179,7 +179,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * 
 	 * @param linkReference the linkReference to set
 	 */
-	public void setLinkReference(LinkReference linkReference) {
+	public void setSensorLinkReference(LinkReference linkReference) {
 		super.setLinkReference(linkReference);
 	}
 
@@ -196,7 +196,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	/**
 	 * @param Parameters the parameters to set
 	 */
-	public void setParameters(Parameters parameters) {
+	public void setSensorParameters(Parameters parameters) {
 		super.setParameters(parameters);
 	}
 
