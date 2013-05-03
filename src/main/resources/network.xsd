@@ -199,13 +199,13 @@
   
 	 <!-- Routes ...................................................  -->
 
-	  <xs:element name="Routes">
+	  <xs:element name="Route">
 		<xs:complexType>
 		  <xs:sequence>
 			<xs:element ref="route_links" minOccurs="0" maxOccurs="unbounded" />
 		  </xs:sequence>
 			<xs:attribute name="id" type="xs:long" use="required" />
-      <xs:attribute name="project_id" type="xs:long" use="required" />
+            <xs:attribute name="project_id" type="xs:long" use="required" />
 			<xs:attribute name="name" type="xs:string" use="required" />
       <xs:attribute name="mod_stamp" type="xs:string" use="required" />
 		</xs:complexType>
