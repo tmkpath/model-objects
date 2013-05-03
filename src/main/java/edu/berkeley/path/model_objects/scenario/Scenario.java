@@ -1,6 +1,11 @@
 package edu.berkeley.path.model_objects.scenario;
 
+
+
 import edu.berkeley.path.model_objects.jaxb.*;
+import edu.berkeley.path.model_objects.network.Network;
+
+import java.util.List;
 
 public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
   // Store internal set ID for scenario components
@@ -8,6 +13,28 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
   /** @y.exclude */  private long demandSetId;
   /** @y.exclude */  private long fdSetId;
   /** @y.exclude */  private long sensorSetId;
+
+  /**
+   * Get the list of networks for this scenario
+   * @return  a List of Network model objects
+   */
+  public List<Network> getListOfNetworks() {
+    // Check for null NetworkSet
+    NetworkSet networkSet = super.getNetworkSet();
+    if(networkSet == null) {
+      super.setNetworkSet(new NetworkSet());
+    }
+
+    return (List<Network>) (List<?>) super.getNetworkSet().getNetwork();
+  }
+
+  /**
+   * Set the list of networks for this scenario
+   * @param networks  list of Network MO
+   */
+  public void setListOfNetworks(List<Network> networks) {
+    super.getNetworkSet().getNetwork().addAll(networks);
+  }
 
   @Override
   public String getDescription() {
@@ -28,17 +55,6 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
   @Override
   public void setSettings(Settings value) {
     super.setSettings(value);
-  }
-
-  //TODO Needs NetworkSE MO
-  @Override
-  public NetworkSet getNetworkSet() {
-    return super.getNetworkSet();
-  }
-
-  @Override
-  public void setNetworkSet(NetworkSet value) {
-    super.setNetworkSet(value);
   }
 
   //TODO Needs VehicleTypeSetMO
@@ -154,28 +170,6 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
 
   public void setFundamentalDiagramSet(FundamentalDiagramSet value) {
     super.setFundamentalDiagramSet(value);
-  }
-
-  //TODO Needs NetworkConnection MO???
-  @Override
-  public NetworkConnections getNetworkConnections() {
-    return super.getNetworkConnections();
-  }
-
-  @Override
-  public void setNetworkConnections(NetworkConnections value) {
-    super.setNetworkConnections(value);
-  }
-
-  //TODO Needs DestinationNetwork MO???
-  @Override
-  public DestinationNetworks getDestinationNetworks() {
-    return super.getDestinationNetworks();
-  }
-
-  @Override
-  public void setDestinationNetworks(DestinationNetworks value) {
-    super.setDestinationNetworks(value);
   }
 
   //TODO Needs Route MO
