@@ -84,6 +84,7 @@ public class SensorTest {
 	
 	  @Test
 	  public void testGetters() {
+		    assertEquals(CrudFlag.NONE, sensor.getCrudFlag());
 		    assertEquals(MOD_STAMP, sensor.getModStamp());
 		    assertEquals(LINK_POSITION, sensor.getLinkPosition(), EPSILON);
 		    assertNotNull(sensor.getLinkReference());

@@ -28,7 +28,7 @@ package edu.berkeley.path.model_objects.scenario;
 
 import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.jaxb.DisplayPosition;
-import edu.berkeley.path.model_objects.jaxb.Link;
+import edu.berkeley.path.model_objects.jaxb.LinkReference;
 import edu.berkeley.path.model_objects.jaxb.SensorType;
 import edu.berkeley.path.model_objects.shared.Parameters;
 import edu.berkeley.path.model_objects.shared.Point;
@@ -40,9 +40,6 @@ import edu.berkeley.path.model_objects.shared.Point;
  * 
  */
 public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
-   
-	//Resolved Link Object
-	protected Link link;
 
 
   /**
@@ -64,6 +61,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
   public void setCrudFlag(CrudFlag flag) {
     super.setCrudFlag(flag);
   }
+ 
 
   /**
    * Get SensorType for this object
@@ -99,16 +97,6 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
     type.setDescription(desc);
     setSensorType(type);
   }
-
-	/**
-	 * This method returns the link the Sensor is attached too
-	 * 
-	 *  @return Link Reference to the link where the sensor is located. 
-	 *  
-	 */
-	public Link getSensorLink() {
-		return link;
-	}
 	
 
 	/**
@@ -139,7 +127,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 		super.setDisplayPosition(dp);
 	}
 
-
+    
 	/**
 	 * This is the percentage of the length of the link from the begin node 
 	 * where this sensor resides.
@@ -174,6 +162,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	}
 
 
+    
 	/**
 	 * Sets the link object for this sensor
 	 * 
@@ -296,8 +285,42 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
     public void setDataFeedId(Long feedId) {
         super.setDataFeedId(feedId);
     }
+	
+
+	  /**
+	   * Gets the value of the dataFeedId property.
+	   * 
+	   * @return Long
+	   *     
+	   */
+	@Override
+	  public Long getDataFeedId() {
+	      return dataFeedId;
+	  }
 
 
+	    /**
+	     * Gets the value of the javaClass property.
+	     * 
+	     * @return String
+	     *     
+	     */
+	  	@Override
+	    public String getJavaClass() {
+	        return super.getJavaClass();
+	    }
+
+	    /**
+	     * Sets the value of the javaClass property.
+	     * 
+	     * @param Sting value
+	     *     
+	     */
+	    @Override
+	    public void setJavaClass(String value) {
+	     super.setJavaClass(value);
+	    }
+	    
 	/**
 	 * Set the mod stamp
 	 * 
