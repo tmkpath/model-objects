@@ -180,12 +180,12 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
 
   //TODO Needs Route MO
   @Override
-  public Routes getRoutes() {
-    return (Routes)super.getRoutes();
+  public Route getRoute() {
+    return super.getRoute();
   }
 
-  public void setRoute(Routes value) {
-    super.setRoutes(value);
+  public void setRoute(Route value) {
+    super.setRoute(value);
   }
 
   @Override
