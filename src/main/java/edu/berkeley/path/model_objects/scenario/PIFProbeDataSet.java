@@ -1,5 +1,6 @@
 package edu.berkeley.path.model_objects.scenario;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.berkeley.path.model_objects.scenario.PIFProbeData;
@@ -8,15 +9,7 @@ public class PIFProbeDataSet extends edu.berkeley.path.model_objects.jaxb.PIFPro
     /**
      * Gets the value of the pifProbeData property.
      * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link PIFProbeData }
+     * @return List<PIFProbeData>
      * 
      * 
      */
@@ -41,7 +34,62 @@ public class PIFProbeDataSet extends edu.berkeley.path.model_objects.jaxb.PIFPro
      */
     @SuppressWarnings("unchecked")
 	public void setPIFProbeData(List<PIFProbeData> list){
+    	if(this.pifProbeData == null)
+    		this.pifProbeData = new ArrayList<edu.berkeley.path.model_objects.jaxb.PIFProbeData>();
     	this.pifProbeData = (List<edu.berkeley.path.model_objects.jaxb.PIFProbeData>)(List<?>)list;
+    }
+
+    /**
+     * Gets the value of the lockedForEdit property.
+     * 
+     * @return boolean
+     *     
+     */
+    @Override
+    public boolean isLockedForEdit() {
+       return super.isLockedForEdit();
+    }
+
+    /**
+     * Sets the value of the lockedForEdit property.
+     * 
+     * @param Boolean value
+     *     
+     */
+    @Override
+    public void setLockedForEdit(Boolean value) {
+    	super.setLockedForEdit(value);
+    }
+
+    /**
+     * Gets the value of the lockedForHistory property.
+     * 
+     * @return boolean
+     *     
+     */
+    @Override
+    public boolean isLockedForHistory() {
+       return super.isLockedForHistory();
+    }
+
+    /**
+     * Sets the value of the lockedForHistory property.
+     * 
+     * @param Boolean value
+     *     
+     */
+    @Override
+    public void setLockedForHistory(Boolean value) {
+    	super.setLockedForHistory(value);
+    }
+    
+    /**
+     * Used to ensure all probes are correctly instantiated
+     * 
+     * @return boolean
+     */
+    public boolean isValid(){
+    	return true;
     }
 
 }

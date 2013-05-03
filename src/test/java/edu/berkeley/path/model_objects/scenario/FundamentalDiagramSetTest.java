@@ -10,6 +10,7 @@ import org.junit.Test;
 
 
 public class FundamentalDiagramSetTest {
+	private static final String MOD_STAMP = "01-APR-1982 23:23:12";
 	FundamentalDiagramSet set;
 	
 	@Before
@@ -19,7 +20,9 @@ public class FundamentalDiagramSetTest {
 		set.setProjectId(2L);
 		set.setId(1);
 		set.setName("Test Set Name");
-		set.setModStamp("1970-01-01 00:00:00");
+		set.setModStamp(MOD_STAMP);
+		set.setLockedForEdit(true);
+		set.setLockedForHistory(true);
 		
 		List<FundamentalDiagramProfile> profiles = new ArrayList<FundamentalDiagramProfile>();
 		profiles.add(createFundamentalDiagramProfile(1,3600,300));
@@ -37,8 +40,10 @@ public class FundamentalDiagramSetTest {
 		assertEquals(2, set.getProjectId());
 		assertEquals(1,set.getId());
 		assertEquals("Test Set Name", set.getName());
-		assertEquals("1970-01-01 00:00:00", set.getModStamp());
+		assertEquals(MOD_STAMP, set.getModStamp());
 		assertEquals(4, set.getListOfFundamentalDiagramProfiles().size());
+		assertEquals(true, set.isLockedForEdit());
+		assertEquals(true, set.isLockedForHistory());
 	}
 	
 	private FundamentalDiagramProfile createFundamentalDiagramProfile(int linkId, double dt, double startTime) {

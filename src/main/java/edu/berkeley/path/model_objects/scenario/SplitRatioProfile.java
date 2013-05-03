@@ -28,7 +28,6 @@ package edu.berkeley.path.model_objects.scenario;
 
 import java.util.ArrayList;
 import java.util.List;
-//TODO CHECK with Matt on using jaxb crudflag
 import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.shared.DateTime;
 
@@ -140,6 +139,7 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
      * Gets the value of the id property.
      * 
      */
+	@Override
     public long getId() {
         return super.getId();
     }
@@ -148,6 +148,7 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
      * Sets the value of the id property.
      * 
      */
+	@Override
     public void setId(long value) {
         super.setId(value);
     }
@@ -197,7 +198,10 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
     /**
      * Gets the value of the nodeId property.
      * 
+     * @return long
+     * 
      */
+    @Override
     public long getNodeId() {
         return super.getNodeId();
     }
@@ -205,7 +209,10 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
     /**
      * Sets the value of the nodeId property.
      * 
+     * @param long
+     * 
      */
+    @Override
     public void setNodeId(long value) {
         super.setNodeId(value);
     }
@@ -213,11 +220,10 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
     /**
      * Gets the value of the startTime property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Double }
-     *     
+     * @return double
+     * 
      */
+    @Override
     public double getStartTime() {
         return super.getStartTime();
     }
@@ -225,23 +231,21 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
     /**
      * Sets the value of the startTime property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Double }
+     * @param Double value
      *     
      */
-    public void setStartTime(double value) {
+    @Override
+    public void setStartTime(Double value) {
         super.setStartTime(value);
     }
 
     /**
      * Gets the value of the dt property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Double }
+     * @return Double
      *     
      */
+    @Override
     public Double getDt() {
         return super.getDt();
     }
@@ -249,23 +253,21 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
     /**
      * Sets the value of the dt property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Double }
+     * @param Double value
      *     
      */
-    public void setDt(double value) {
+    @Override
+    public void setDt(Double value) {
         super.setDt(value);
     }
 
     /**
      * Gets the value of the destinationNetworkId property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Long }
+     * @return Long
      *     
      */
+    @Override
     public Long getDestinationNetworkId() {
         return super.getDestinationNetworkId();
     }
@@ -273,18 +275,18 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
     /**
      * Sets the value of the destinationNetworkId property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
+     * @param Long value
      *     
      */
-    public void setDestinationNetworkId(long value) {
+    @Override
+    public void setDestinationNetworkId(Long value) {
     	 super.setDestinationNetworkId(value);
     }
     
 	/**
 	 * @param modstamp the modstamp to set
 	 */
+    @Override
 	public void setModStamp(String modstamp) {
 		super.setModStamp(modstamp);
 	}
@@ -292,6 +294,7 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	/**
 	 * @return the modStamp
 	 */
+    @Override
 	public String getModStamp() {
 		return super.getModStamp();
 	}
@@ -299,6 +302,7 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	/**
 	 * @return SplitRatioProfile. The deep copy of the this objecgt
 	 */
+    @Override
 	public SplitRatioProfile clone(){
 		SplitRatioProfile prof = new SplitRatioProfile();
 		prof.setId(this.getId());

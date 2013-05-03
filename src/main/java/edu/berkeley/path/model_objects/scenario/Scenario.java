@@ -179,7 +179,6 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
     return super.getRoute();
   }
 
-  @Override
   public void setRoute(Route value) {
     super.setRoute(value);
   }

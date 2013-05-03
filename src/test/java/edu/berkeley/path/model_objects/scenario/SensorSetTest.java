@@ -54,6 +54,9 @@ public class SensorSetTest {
 	  sensorSet.setModStamp(MOD_STAMP);
 	  sensorSet.setName(NAME);
 	  sensorSet.setProjectId(PROJECT_ID);
+	  sensorSet.setLockedForEdit(true);
+	  sensorSet.setLockedForHistory(true);
+
   }
   
   @Test
@@ -63,6 +66,8 @@ public class SensorSetTest {
 	assertEquals(MOD_STAMP, sensorSet.getModStamp());
 	assertEquals(NAME, sensorSet.getName());
 	assertEquals(PROJECT_ID, sensorSet.getProjectId());
+	assertEquals(true, sensorSet.isLockedForEdit());
+	assertEquals(true, sensorSet.isLockedForHistory());
   }
   
   

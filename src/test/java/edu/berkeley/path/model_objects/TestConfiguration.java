@@ -9,7 +9,7 @@ import edu.berkeley.path.model_objects.scenario.Splitratio;
 
 public class TestConfiguration {
 	
-	public static SplitRatioProfile createSplitRatioProfile(int nodeId, int start, int dt, int dest, CrudFlag flag ){
+	public static SplitRatioProfile createSplitRatioProfile(int nodeId, double start, double dt, long dest, CrudFlag flag ){
 		SplitRatioProfile profile = new SplitRatioProfile();
 		profile.setNodeId(nodeId);
 		profile.setStartTime(start);

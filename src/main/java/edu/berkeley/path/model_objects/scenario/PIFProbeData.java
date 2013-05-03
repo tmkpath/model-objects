@@ -7,11 +7,10 @@ public class PIFProbeData extends edu.berkeley.path.model_objects.jaxb.PIFProbeD
     /**
      * Gets the value of the timestamp property.
      * 
-     * @return
-     *     possible object is
-     *     {@link DateTime }
+     * @return DateTime
      *     
      */
+	@Override
     public DateTime getTimestamp() {
         return (DateTime) super.getTimestamp();
     }
@@ -19,12 +18,10 @@ public class PIFProbeData extends edu.berkeley.path.model_objects.jaxb.PIFProbeD
     /**
      * Sets the value of the timestamp property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link DateTime }
+     * @param DateTImevalue
      *     
      */
-    public void setTimestamp(DateTime value) {
+    public void setPIFTimestamp(DateTime value) {
         super.setTimestamp(value);
     }
 
@@ -32,6 +29,7 @@ public class PIFProbeData extends edu.berkeley.path.model_objects.jaxb.PIFProbeD
      * Gets the value of the networkId property.
      * 
      */
+    @Override
     public long getNetworkId() {
         return super.getNetworkId();
     }
@@ -40,6 +38,7 @@ public class PIFProbeData extends edu.berkeley.path.model_objects.jaxb.PIFProbeD
      * Sets the value of the networkId property.
      * 
      */
+    @Override
     public void setNetworkId(long value) {
         super.setNetworkId(value);
     }
@@ -48,6 +47,7 @@ public class PIFProbeData extends edu.berkeley.path.model_objects.jaxb.PIFProbeD
      * Gets the value of the linkId property.
      * 
      */
+    @Override
     public long getLinkId() {
         return super.getLinkId();
     }
@@ -56,6 +56,7 @@ public class PIFProbeData extends edu.berkeley.path.model_objects.jaxb.PIFProbeD
      * Sets the value of the linkId property.
      * 
      */
+    @Override
     public void setLinkId(long value) {
         super.setLinkId(value);
     }
@@ -64,6 +65,7 @@ public class PIFProbeData extends edu.berkeley.path.model_objects.jaxb.PIFProbeD
      * Gets the value of the runId property.
      * 
      */
+    @Override
     public long getRunId() {
         return super.getRunId();
     }
@@ -72,6 +74,7 @@ public class PIFProbeData extends edu.berkeley.path.model_objects.jaxb.PIFProbeD
      * Sets the value of the runId property.
      * 
      */
+    @Override
     public void setRunId(long value) {
         super.setRunId(value);
     }
@@ -80,6 +83,7 @@ public class PIFProbeData extends edu.berkeley.path.model_objects.jaxb.PIFProbeD
      * Gets the value of the offset property.
      * 
      */
+    @Override
     public double getOffset() {
         return super.getOffset();
     }
@@ -88,6 +92,7 @@ public class PIFProbeData extends edu.berkeley.path.model_objects.jaxb.PIFProbeD
      * Sets the value of the offset property.
      * 
      */
+    @Override
     public void setOffset(double value) {
         super.setOffset(value);
     }
@@ -96,6 +101,7 @@ public class PIFProbeData extends edu.berkeley.path.model_objects.jaxb.PIFProbeD
      * Gets the value of the speed property.
      * 
      */
+    @Override
     public double getSpeed() {
         return super.getSpeed();
     }
@@ -104,6 +110,7 @@ public class PIFProbeData extends edu.berkeley.path.model_objects.jaxb.PIFProbeD
      * Sets the value of the speed property.
      * 
      */
+    @Override
     public void setSpeed(double value) {
         super.setSpeed(value);
     }
@@ -116,6 +123,7 @@ public class PIFProbeData extends edu.berkeley.path.model_objects.jaxb.PIFProbeD
      *     {@link Double }
      *     
      */
+    @Override
     public double getProbability() {
         return super.getProbability();
     }
@@ -128,8 +136,29 @@ public class PIFProbeData extends edu.berkeley.path.model_objects.jaxb.PIFProbeD
      *     {@link Double }
      *     
      */
+    @Override
     public void setProbability(Double value) {
         super.setProbability(value);
     }
+    
+	/**
+	 * Set the mod stamp
+	 * 
+	 * @param modstamp the modstamp to set
+	 */
+	@Override
+	public void setModStamp(String modstamp) {
+		super.setModStamp(modstamp);
+	}
+	
+	/**
+	 * Get the mod stamp
+	 * 
+	 * @return the modStamp
+	 */
+	@Override
+	public String getModStamp() {
+		return super.getModStamp();
+	}
 
 }

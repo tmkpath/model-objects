@@ -85,11 +85,49 @@ public class ScenarioFactory {
         return new DemandProfile();
     }
     
+    /**
+     * Create an instance of FundamentalDiagramSet Model Object
+     * 
+     * @return  FundamentalDiagramSet Model Object 
+     */
+    public FundamentalDiagramSet createFundamentalDiagramSet() {
+        return new FundamentalDiagramSet();
+    }
     
     /**
-     * Create an instance of Demand Model Object
+     * Create an instance of FundamentalDiagramType Model Object
      * 
-     * @return  Demand Model Object 
+     * @return  FundamentalDiagramType Model Object 
+     */
+    public FundamentalDiagramType createFundamentalDiagramType() {
+        return new FundamentalDiagramType();
+    }
+    
+    /**
+     * Create an instance of Splitratio Model Object
+     * 
+     * @return Splitratio Model Object
+     * 
+     */
+    public Splitratio createSplitratio() {
+        return new Splitratio();
+    }
+    
+    /**
+     * Create an instance of SplitRatioProfile Model Object
+     * 
+     * @return SplitRatioProfile Model Object
+     * 
+     */
+    public SplitRatioProfile createSplitRatioProfile() {
+        return new SplitRatioProfile();
+    }
+    
+    /**
+     * Create an instance of SplitRatioProfile Model Object
+     * 
+     * @return SplitRatioProfile Model Object
+     * 
      */
     public Demand createDemand() {
         return new Demand();
@@ -102,5 +140,33 @@ public class ScenarioFactory {
    */
   public Scenario createScenario() {
     return new Scenario();
+  }
+
+  /**
+   * Create an instance of SplitRatioSet  Model Object
+   *
+   * @return  SplitRatioSet  Model Object
+   */
+  public SplitRatioSet createSplitRatioSet() {
+
+	return new SplitRatioSet();
+  }
+  
+  /**
+   * Create an instance of PIFProbeData  Model Object
+   *
+   * @return  PIFProbeData  Model Object
+   */
+  public PIFProbeData createPIFProbeData() {
+	return new PIFProbeData();
+  }
+
+  /**
+   * Create an instance of PIFProbeDataSet  Model Object
+   *
+   * @return  PIFProbeDataSet  Model Object
+   */
+  public PIFProbeDataSet createPIFProbeDataSet() {
+	  return new PIFProbeDataSet();
   }
 }
