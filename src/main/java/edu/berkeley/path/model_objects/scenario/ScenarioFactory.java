@@ -132,4 +132,13 @@ public class ScenarioFactory {
     public Demand createDemand() {
         return new Demand();
     }
+
+  /**
+   * Create an instance of Scenario Model Object
+   *
+   * @return  Scenario Model Object
+   */
+  public Scenario createScenario() {
+    return new Scenario();
+  }
 }

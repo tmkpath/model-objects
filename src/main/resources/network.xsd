@@ -53,7 +53,7 @@
 				<xs:element ref="LinkList" minOccurs="0" />
 				<xs:element ref="position" minOccurs="0" />
 				</xs:all>
-			  <xs:attribute name="crudFlag" type="crudFlag" minOccurs="0" />
+			  <xs:attribute name="crudFlag" type="crudFlag" />
 			  <xs:attribute name="name" type="xs:string" use="required" />
 			  <xs:attribute name="id" type="xs:long" use="required" />
 			  <xs:attribute name="mod_stamp" type="xs:string" use="optional" />
@@ -81,7 +81,7 @@
 					<xs:element ref="position" minOccurs="0" />
 					<xs:element ref="node_type" minOccurs="0" />
 				  </xs:all>
-					<xs:attribute name="crudFlag" type="crudFlag" minOccurs="0" />
+					<xs:attribute name="crudFlag" type="crudFlag" />
 				  <xs:attribute name="id" type="xs:long" use="required" />
 				  <xs:attribute name="node_name" type="xs:string" use="required" />
 				  <xs:attribute name="in_sync" type="xs:boolean" use="optional" default="true" />
@@ -155,7 +155,7 @@
 					<xs:element ref="shape" minOccurs="0" />
 					<xs:element ref="link_type" minOccurs="0" />
 				  </xs:all>
-					<xs:attribute name="crudFlag" type="crudFlag" minOccurs="0" />
+					<xs:attribute name="crudFlag" type="crudFlag" />
 				  <xs:attribute name="lanes" type="xs:double" use="required" />
 				  <xs:attribute name="lane_offset" type="xs:double" use="optional" default="0" />
 				  <xs:attribute name="length" type="xs:double" use="required" /> 							<!-- in length units -->
@@ -199,23 +199,27 @@
   
 	 <!-- Routes ...................................................  -->
 
-	  <xs:element name="Routes">
+	  <xs:element name="Route">
 		<xs:complexType>
 		  <xs:sequence>
-			<xs:element ref="route" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element ref="route_links" minOccurs="0" maxOccurs="unbounded" />
 		  </xs:sequence>
-			<xs:attribute name="crudFlag" type="crudFlag" minOccurs="0" />
+			<xs:attribute name="id" type="xs:long" use="required" />
+            <xs:attribute name="project_id" type="xs:long" use="required" />
+			<xs:attribute name="name" type="xs:string" use="required" />
+      <xs:attribute name="mod_stamp" type="xs:string" use="required" />
 		</xs:complexType>
 	  </xs:element>
 
-		  <xs:element name="route">
+		  <xs:element name="route_links">
 			<xs:complexType>
 			  <xs:all>
 				<xs:element ref="link_references" minOccurs="1" maxOccurs="1" />
-				<xs:element name="crudFlag" type="crudFlag" minOccurs="0" />
 			  </xs:all>
+			  <xs:attribute name="crudFlag" type="crudFlag" />
 			  <xs:attribute name="id" type="xs:long" use="required" />
-			  <xs:attribute name="name" type="xs:string" use="required" />
+			  <xs:attribute name="link_order" type="xs:long" use="required" />
+			  <xs:attribute name="mod_stamp" type="xs:string" use="required" />
 			</xs:complexType>
 		  </xs:element>
 

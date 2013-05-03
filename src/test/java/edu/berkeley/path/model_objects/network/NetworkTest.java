@@ -27,7 +27,8 @@
 package edu.berkeley.path.model_objects.network;
 
 import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import java.util.*;
 
 public class NetworkTest {
