@@ -151,4 +151,22 @@ public class ScenarioFactory {
 
 	return new SplitRatioSet();
   }
+  
+  /**
+   * Create an instance of PIFProbeData  Model Object
+   *
+   * @return  PIFProbeData  Model Object
+   */
+  public PIFProbeData createPIFProbeData() {
+	return new PIFProbeData();
+  }
+
+  /**
+   * Create an instance of PIFProbeDataSet  Model Object
+   *
+   * @return  PIFProbeDataSet  Model Object
+   */
+  public PIFProbeDataSet createPIFProbeDataSet() {
+	  return new PIFProbeDataSet();
+  }
 }
