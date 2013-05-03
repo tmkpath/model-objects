@@ -85,14 +85,41 @@ public class ScenarioFactory {
         return new DemandProfile();
     }
     
+    /**
+     * Create an instance of FundamentalDiagramSet Model Object
+     * 
+     * @return  FundamentalDiagramSet Model Object 
+     */
+    public FundamentalDiagramSet createFundamentalDiagramSet() {
+        return new FundamentalDiagramSet();
+    }
     
     /**
-     * Create an instance of Demand Model Object
+     * Create an instance of FundamentalDiagramType Model Object
      * 
-     * @return  Demand Model Object 
+     * @return  FundamentalDiagramType Model Object 
      */
-    public Demand createDemand() {
-        return new Demand();
+    public FundamentalDiagramType createFundamentalDiagramType() {
+        return new FundamentalDiagramType();
     }
-
+    
+    /**
+     * Create an instance of Splitratio Model Object
+     * 
+     * @return Splitratio Model Object
+     * 
+     */
+    public Splitratio createSplitratio() {
+        return new Splitratio();
+    }
+    
+    /**
+     * Create an instance of SplitRatioProfile Model Object
+     * 
+     * @return SplitRatioProfile Model Object
+     * 
+     */
+    public SplitRatioProfile createSplitRatioProfile() {
+        return new SplitRatioProfile();
+    }
 }

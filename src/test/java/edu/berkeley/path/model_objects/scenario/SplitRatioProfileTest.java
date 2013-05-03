@@ -11,19 +11,25 @@ import org.junit.Test;
 import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 
 public class SplitRatioProfileTest {
+	private static final long ID = 1;
+	private static final long NODE_ID = 10;  
+	private static final long DEST_NETWORK_ID = 99999;
+	private static final double DT = 300;
+	private static final double START_TIME = 3600;
+	private static final String MOD_STAMP = "01-APR-1982 23:23:12";
 	
-	SplitRatioProfile profile;
+	private SplitRatioProfile profile;
 	
 	@Before
 	public void setUp(){
 		profile = new SplitRatioProfile();
-		profile.setId(10);
-		profile.setNodeId(1);
-		profile.setStartTime(3600);
-		profile.setDt(300);
-		profile.setDestinationNetworkId(3);
+		profile.setId(ID);
+		profile.setNodeId(NODE_ID);
+		profile.setStartTime(START_TIME);
+		profile.setDt(DT);
+		profile.setDestinationNetworkId(DEST_NETWORK_ID);
 		profile.setCrudFlag(CrudFlag.CREATE);
-		profile.setModStamp("01-APR-1982 23:12:00");
+		profile.setModStamp(MOD_STAMP);
 		
 		List<Splitratio> ratios = new ArrayList<Splitratio>();
 		
@@ -47,13 +53,13 @@ public class SplitRatioProfileTest {
 
 	@Test
 	public void testGetters(){
-		assertEquals(10,profile.getId());
-		assertEquals(1,profile.getNodeId());
+		assertEquals(ID,profile.getId());
+		assertEquals(NODE_ID,profile.getNodeId());
 		assertEquals(CrudFlag.CREATE,profile.getCrudFlag());
-		assertEquals(3600,profile.getStartTime(), 0.0);
-		assertEquals(300,profile.getDt().doubleValue(), 0.0);
-		assertEquals(3, profile.getDestinationNetworkId().longValue());
-		assertEquals("01-APR-1982 23:12:00", profile.getModStamp());
+		assertEquals(START_TIME,profile.getStartTime(), 0.0);
+		assertEquals(DT,profile.getDt().doubleValue(), 0.0);
+		assertEquals(DEST_NETWORK_ID, profile.getDestinationNetworkId().longValue());
+		assertEquals(MOD_STAMP, profile.getModStamp());
 		assertEquals(4, profile.getListOfSplitratios().size());
 	}
 	
@@ -61,7 +67,7 @@ public class SplitRatioProfileTest {
 	public void testClone(){
 		SplitRatioProfile copy = profile.clone();
 		assertTrue(copy != profile);
-		assertEquals(copy.getNodeId(), 1);
+		assertEquals(copy.getNodeId(), NODE_ID);
 	}
 	
 	@Test
