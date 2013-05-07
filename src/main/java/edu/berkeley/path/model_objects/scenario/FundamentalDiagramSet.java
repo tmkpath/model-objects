@@ -21,6 +21,11 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
 	        		return fdp;
 	        return null;
 	 }
+
+    //TODO: Add validation logic
+    public boolean isValid() {
+        return true;
+    }
 	 
 	  /**
      * Gets the value of the description property.

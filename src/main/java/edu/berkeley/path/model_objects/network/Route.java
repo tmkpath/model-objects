@@ -26,7 +26,6 @@
 
 package edu.berkeley.path.model_objects.network;
 
-import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.jaxb.LinkReference;
 import edu.berkeley.path.model_objects.jaxb.LinkReferences;
 

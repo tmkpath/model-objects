@@ -26,7 +26,9 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
-/** 
+import edu.berkeley.path.model_objects.jaxb.CrudFlag;
+
+/**
  * Model Object Fundamental Diagram class.
  *  
  * @author Gunes Dervisoglu (gunesder@berkeley.edu)
@@ -251,7 +253,49 @@ public class FundamentalDiagram extends edu.berkeley.path.model_objects.jaxb.Fun
 	@Override
 	public void setOrder(int i) {
 	  super.setOrder(i);
-	}	
-	
+	}
 
+    /**
+     * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+     *
+     * @return CRUD Flag enumeration
+     */
+    @Override
+    public CrudFlag getCrudFlag() {
+        // Check if CRUDFlag is null, if so return NONE enumeration
+        if (super.getCrudFlag() == null) {
+            return CrudFlag.NONE;
+        }
+        return super.getCrudFlag();
+    }
+
+    /**
+     * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+     *
+     * @param flag CRUD Flag enumeration
+     */
+    @Override
+    public void setCrudFlag(CrudFlag flag) {
+        super.setCrudFlag(flag);
+    }
+
+    /**
+     * Set the mod stamp
+     *
+     * @param modstamp the modstamp to set
+     */
+    @Override
+    public void setModStamp(String modstamp) {
+        super.setModStamp(modstamp);
+    }
+
+    /**
+     * Get the mod stamp
+     *
+     * @return the modStamp
+     */
+    @Override
+    public String getModStamp() {
+        return super.getModStamp();
+    }
 }
