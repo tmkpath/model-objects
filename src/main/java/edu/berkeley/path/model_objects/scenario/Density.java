@@ -55,7 +55,11 @@ public class Density extends edu.berkeley.path.model_objects.jaxb.Density {
    */
   @Override
   public CrudFlag getCrudFlag() {
-    return super.getCrudFlag();
+      // Check if CRUDFlag is null, if so return NONE enumeration
+      if (super.getCrudFlag() == null) {
+          return CrudFlag.NONE;
+      }
+      return super.getCrudFlag();
   }
 
   /**
