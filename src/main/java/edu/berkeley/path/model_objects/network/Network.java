@@ -182,7 +182,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
    */
 	@SuppressWarnings("unchecked")
   public List<Point> getBoundingPolygon() {
-    // if center position is not set, calculate it and set it
+    // try and get bounding polygon not set, return null and error message
     if (getPosition() != null && getPosition().getPoint() != null) {
       return (List<Point>)(List<?>)getPosition().getPoint();
     }
@@ -198,13 +198,20 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
    * @params List of points in degrees which represent Bounding Box
    */
   @SuppressWarnings("unchecked")
-  public void setBoundingPolygon(List<Point> points) { 
-    // create new position class to house list of bounding box points
-    Position position = new Position();
-    position.getPoint().clear();
-    position.getPoint().addAll(points);
-  
-    setPosition(position);
+  public void setBoundingPolygon(List<Point> points) {
+    // If we have at least 1 point in list set bounding polygon
+		if (points != null && points.size() > 0) {
+			// create new position class to house list of bounding box points
+			Position position = new Position();
+			position.getPoint().clear();
+			position.getPoint().addAll(points);
+
+			setPosition(position);
+		}
+		// Otherwise output error message
+		else {
+		  Monitor.err("Error could not set network bounding polygon, no points found.");
+		}
   }
   
 	/** 
