@@ -29,44 +29,44 @@ package edu.berkeley.path.model_objects.shared;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /** 
  * Model Object Position class
  * 
  * @author Gunes Dervisoglu (gunesder@berkeley.edu)
+ * @author mnjuhn
  */
 public class Position extends edu.berkeley.path.model_objects.jaxb.Position{
 	
 	/**
 	 * TODO: Validation
-	 * TODO: Readers and Writers
 	 * TODO: Unit Tests
 	 */
-	
+
 	/**
-     * Gets the value of the point property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the point property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getPoints().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Point }
-     * 
-     * 
-     */
-	
-	public List<edu.berkeley.path.model_objects.jaxb.Point> getPoint() {
-		return super.getPoint();
+	 * Return list of points in position
+	 *
+	 * @return list of points
+	 */
+	public List<Point> getPoints() {
+		// Return list of model object Points in position object
+		// Note the setPosition method must have been used since it passes in
+		// a list of model object extended points
+		return (List<Point>) (List<?>) super.getPoint();
 	}
+
+	/**
+	 * Sets position to have list of points
+	 *
+	 * @param points list of points
+	 */
+	public void setPoints(List<Point> points) {
+		// clear all position points currently set and add list
+		if (super.getPoint() != null ) {
+			super.getPoint().clear();
+		}
+		super.getPoint().addAll(points);
+	}
+
 
 }

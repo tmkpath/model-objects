@@ -30,8 +30,6 @@ import java.util.List;
 
 import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.jaxb.Position;
-import edu.berkeley.path.model_objects.jaxb.Road;
-import edu.berkeley.path.model_objects.jaxb.Roads;
 import edu.berkeley.path.model_objects.jaxb.RoadwayMarkers;
 import edu.berkeley.path.model_objects.jaxb.Marker;
 import edu.berkeley.path.model_objects.jaxb.NodeType;
@@ -278,10 +276,14 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 	 */
 	@SuppressWarnings("unchecked")
 	public Point getPoint() {
-		List<Point> points =  (List<Point>)(List<?>)this.position.getPoint();
 		Point point = null;
-		if (!points.isEmpty()) {
+		// try and get first point, if not set return error message and null value
+		if (getPosition() != null && getPosition().getPoint() != null) {
+			List<Point> points =  (List<Point>)(List<?>) getPosition().getPoint();
 			point = points.get(0);
+		}
+		else {
+			Monitor.err("Node point not set.");
 		}
 		return point;
 	}
