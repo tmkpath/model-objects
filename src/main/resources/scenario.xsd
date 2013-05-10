@@ -2,7 +2,6 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0.2">
   <xs:include schemaLocation="network.xsd"/>
 
-
   <xs:element name="targetElements">										<!-- used by event, controller -->
     <xs:complexType>
       <xs:sequence>
@@ -73,12 +72,6 @@
       <xs:attribute name="lockedForHistory" type="xs:boolean" use="optional" default="false" />
     </xs:complexType>
   </xs:element>
-
-	  
-	  
- 
-	  
-  
 
   <!-- settings .................................................................. -->
   
@@ -228,7 +221,6 @@
 			  <xs:attribute name="lane_number" type="xs:int" use="optional" />
 			  <xs:attribute name="link_offset" type="xs:double" use="optional" />
 			  <xs:attribute name="modStamp" type="xs:string" use="optional" />
-        <xs:attribute name="crudFlag" type="crudFlag" use="optional"/>
 			  <xs:attribute name="health_status" use="optional">
 		    <xs:simpleType >
 	          <xs:restriction base="xs:int">
@@ -332,7 +324,6 @@
 			  <xs:attribute name="network_id" type="xs:long" use="optional" />
 			  <xs:attribute name="destination_network_id" type="xs:long" use="optional" />
 			  <xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
-        <xs:attribute name="crudFlag" type="crudFlag" use="optional"/>
 			</xs:complexType>
 		  </xs:element>		  
 
@@ -347,7 +338,6 @@
 				  <xs:attribute name="vehicleType_id" type="xs:long" use="required" />
 				  <xs:attribute name="ratio_order" type="xs:int" use="required" />
 					<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
-          <xs:attribute name="crudFlag" type="crudFlag" use="optional"/>
 				</xs:complexType>
 			  </xs:element>  
   
@@ -434,7 +424,6 @@
 		  <xs:attribute name="id" type="xs:long" use="required"/>
 		  <xs:attribute name="name" type="xs:string" use="optional" default="" />
       <xs:attribute name="mod_stamp" type="xs:string" use="required" />
-      <xs:attribute name="crudFlag" type="crudFlag" use="optional"/>
 		</xs:complexType>
 	  </xs:element>
 			  
@@ -454,7 +443,6 @@
 			  <xs:attribute name="std_dev_add" type="xs:double" use="optional"/>					<!-- [veh/time unit/vehicle type] -->
 			  <xs:attribute name="std_dev_mult" type="xs:double" use="optional"/>					<!-- [portion/vehicle type] -->
         <xs:attribute name="mod_stamp" type="xs:string" use="required" />
-        <xs:attribute name="crudFlag" type="crudFlag" use="optional"/>
 			</xs:complexType>
 		  </xs:element>
 
@@ -469,7 +457,6 @@
       <xs:attribute name="vehicleType_id" type="xs:long" use="required" />
       <xs:attribute name="demand_order" type="xs:long" use="required" />
       <xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
-      <xs:attribute name="crudFlag" type="crudFlag" use="optional"/>
     </xs:complexType>
   </xs:element>
   <!-- ControllerSet .......................................................... -->
@@ -557,7 +544,7 @@
 		  <xs:attribute name="name" type="xs:string" use="optional" default="" />
 		  <xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
 		  <xs:attribute name="lockedForEdit" type="xs:boolean" use="optional" default="false" />
-	        <xs:attribute name="lockedForHistory" type="xs:boolean" use="optional" default="false" />
+	    <xs:attribute name="lockedForHistory" type="xs:boolean" use="optional" default="false" />
 		</xs:complexType>
 	  </xs:element>
 	  
@@ -571,7 +558,6 @@
 			  <xs:attribute name="start_time" type="xs:double" use="optional" default="0" />		<!-- in time units -->
 			  <xs:attribute name="dt" type="xs:double" use="optional" /> <!-- in time units -->
         <xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
-        <xs:attribute name="crudFlag" type="crudFlag" use="optional"/>
       </xs:complexType>
 		  </xs:element>
 
@@ -592,7 +578,6 @@
 				  <xs:attribute name="std_dev_free_flow_speed" type="xs:double" use="optional"/>			<!-- [m/s]   -->
 				  <xs:attribute name="std_dev_congestion_speed" type="xs:double" use="optional"/>			<!-- [m/s]   -->
           <xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
-          <xs:attribute name="crudFlag" type="crudFlag" use="optional"/>
         </xs:complexType>
 			  </xs:element>  
 
