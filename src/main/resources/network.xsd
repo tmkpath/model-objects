@@ -52,7 +52,7 @@
 				<xs:element ref="NodeList" minOccurs="0" />
 				<xs:element ref="LinkList" minOccurs="0" />
 				<xs:element ref="position" minOccurs="0" />
-				<xs:attribute name="crudFlag" type="crudFlag" />
+				<xs:element ref="crudFlag" type="crudFlag" />
 				</xs:all>
 			  <xs:attribute name="name" type="xs:string" use="required" />
 			  <xs:attribute name="id" type="xs:long" use="required" />
@@ -80,7 +80,7 @@
 					<xs:element ref="inputs" />
 					<xs:element ref="position" minOccurs="0" />
 					<xs:element ref="node_type" minOccurs="0" />
-					<xs:attribute name="crudFlag" type="crudFlag" />
+					<xs:element ref="crudFlag" type="crudFlag" />
 				  </xs:all>
 				  <xs:attribute name="id" type="xs:long" use="required" />
 				  <xs:attribute name="node_name" type="xs:string" use="required" />
@@ -154,7 +154,7 @@
 					<xs:element ref="position" minOccurs="0" />
 					<xs:element ref="shape" minOccurs="0" />
 					<xs:element ref="link_type" minOccurs="0" />
-					<xs:attribute name="crudFlag" type="crudFlag" />
+					<xs:element ref="crudFlag" type="crudFlag" />
 				  </xs:all>
 				  <xs:attribute name="lanes" type="xs:double" use="required" />
 				  <xs:attribute name="lane_offset" type="xs:double" use="optional" default="0" />
@@ -205,7 +205,7 @@
 			<xs:element ref="route_links" minOccurs="0" maxOccurs="unbounded" />
 		  </xs:sequence>
 			<xs:attribute name="id" type="xs:long" use="required" />
-            <xs:attribute name="id_project" type="xs:long" use="required" />
+      <xs:attribute name="project_id" type="xs:long" use="required" />
 			<xs:attribute name="name" type="xs:string" use="required" />
       <xs:attribute name="mod_stamp" type="xs:string" use="required" />
 		</xs:complexType>
@@ -215,7 +215,7 @@
 			<xs:complexType>
 			  <xs:all>
 				<xs:element ref="link_references" minOccurs="1" maxOccurs="1" />
-				<xs:attribute name="crudFlag" type="crudFlag" />
+				<xs:element ref="crudFlag" type="crudFlag" />
 			  </xs:all>
 			  
 			  <xs:attribute name="id" type="xs:long" use="required" />

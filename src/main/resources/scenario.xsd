@@ -65,7 +65,7 @@
         <xs:element ref="DestinationNetworks" minOccurs="0" maxOccurs="1" />
         <xs:element ref="Route" minOccurs="0" />
       </xs:all>
-      <xs:attribute name="id_project" type="xs:long" use="optional" default="0" />
+      <xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
       <xs:attribute name="id" type="xs:long" use="required"/>
       <xs:attribute name="name" type="xs:string" use="optional" />
       <xs:attribute name="schemaVersion" type="xs:string" use="required" />
@@ -106,7 +106,7 @@
 		  <xs:sequence>
 			<xs:element ref="vehicleType" minOccurs="1" maxOccurs="unbounded" />
 		  </xs:sequence>
-	  	  <xs:attribute name="id_project" type="xs:long" use="optional" default="0" />
+	  	  <xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
 		  <xs:attribute name="id" type="xs:long" use="required"/>
 		</xs:complexType>
 	  </xs:element>
@@ -141,7 +141,7 @@
 			<xs:element ref="description" minOccurs="0" />
 			<xs:element ref="signal" minOccurs="0" maxOccurs="unbounded" />
 		  </xs:sequence>
-		  <xs:attribute name="id_project" type="xs:long" use="optional" default="0" />
+		  <xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
 		  <xs:attribute name="id" type="xs:long" use="required"/>
 		  <xs:attribute name="name" type="xs:string" use="optional" default="" />
 		</xs:complexType>
@@ -190,7 +190,7 @@
 		  <xs:sequence>
 			<xs:element ref="sensor" minOccurs="0" maxOccurs="unbounded" />
 		  </xs:sequence>
-	  	<xs:attribute name="id_project" type="xs:long" use="optional" default="0" />
+	  	<xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
 	  	<xs:attribute name="id" type="xs:long" use="required" />
 	  	<xs:attribute name="name" type="xs:string" use="optional" default="0" />
 	  	<xs:attribute name="description" type="xs:string" use="optional" default="0" />
@@ -215,7 +215,7 @@
                   <xs:element ref="table" minOccurs="0" />
                 <!-- Application type ID -->
                 <xs:element ref="sensor_type" minOccurs="0" maxOccurs="1"/>
-                 <xs:attribute name="crudFlag" type="crudFlag"  />
+                 <xs:element ref="crudFlag" type="crudFlag"  />
               </xs:all>
        
 		  	<xs:attribute name="id" type="xs:long" use="required"/>
@@ -223,7 +223,7 @@
 			  <xs:attribute name="link_id" type="xs:long" use="optional" />
 			  <xs:attribute name="java_class" type="xs:string" use="optional" />
 			  <xs:attribute name="sensor_id_original" type="xs:string" use="optional" />
-			  <xs:attribute name="id_data_feed" type="xs:long" use="optional" />
+			  <xs:attribute name="data_feed_id" type="xs:long" use="optional" />
 			  <xs:attribute name="lane_number" type="xs:int" use="optional" />
 			  <xs:attribute name="link_offset" type="xs:double" use="optional" />
 			  <xs:attribute name="modStamp" type="xs:string" use="optional" />
@@ -255,7 +255,7 @@
 			<xs:element ref="description" minOccurs="0" />
 			<xs:element ref="density" minOccurs="0" maxOccurs="unbounded" />
           </xs:sequence>
-	  	  <xs:attribute name="id_project" type="xs:long" use="optional" default="0" />
+	  	  <xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
 		  <xs:attribute name="id" type="xs:long" use="required"/>
 		  <xs:attribute name="name" type="xs:string" use="optional" default="" />
 		  <xs:attribute name="tstamp" type="xs:double" use="optional" default="0.0"/>		<!-- time, to which this initial condition corresponds, in time units after midnight. default=midnight -->
@@ -267,7 +267,7 @@
 			<xs:complexType>
               <xs:all>
                 <xs:element ref="vehicleType" minOccurs="1" maxOccurs="1"/>
-                <xs:attribute name="crudFlag" type="crudFlag" use="optional" />
+                <xs:element ref="crudFlag" type="crudFlag" use="optional" />
               </xs:all>
               <xs:attribute name="id" type="xs:long" use="required"/>
 			  <xs:attribute name="link_id" type="xs:long" use="required" />
@@ -287,7 +287,7 @@
 			<xs:element ref="VehicleTypeOrder" minOccurs="0"  maxOccurs="1"/>
 			<xs:element ref="weavingfactors" minOccurs="0" maxOccurs="unbounded" />
 		  </xs:sequence>
-	  	  <xs:attribute name="id_project" type="xs:long" use="optional" default="0" />
+	  	  <xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
 		  <xs:attribute name="id" type="xs:long" use="required"/>
 		  <xs:attribute name="name" type="xs:string" use="optional" default="" />
 		</xs:complexType>
@@ -309,7 +309,7 @@
 			<xs:element ref="VehicleTypeOrder" minOccurs="0"  maxOccurs="1"/>
 			<xs:element ref="splitRatioProfile" minOccurs="0" maxOccurs="unbounded" />
 		  </xs:sequence>
-	  	<xs:attribute name="id_project" type="xs:long" use="optional" default="0" />
+	  	<xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
 		  <xs:attribute name="id" type="xs:long" use="required"/>
 		  <xs:attribute name="name" type="xs:string" use="optional" default="" />
 		  <xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
@@ -322,7 +322,7 @@
 			<xs:complexType>
 			  <xs:sequence>
 				<xs:element ref="splitratio" minOccurs="0" maxOccurs="unbounded" />
-				<xs:attribute name="crudFlag" type="crudFlag" use="optional" />
+				<xs:element ref="crudFlag" type="crudFlag" use="optional" />
 			  </xs:sequence>
 			  <xs:attribute name="id" type="xs:long" use="required" />
 			  <xs:attribute name="node_id" type="xs:long" use="required" />
@@ -337,7 +337,7 @@
 			  <xs:element name="splitratio">
 				<xs:complexType mixed="true">	
 					<xs:all>
-						<xs:attribute name="crudFlag" type="crudFlag" use="optional" />
+						<xs:element ref="crudFlag" type="crudFlag" use="optional" />
 					</xs:all>
 					<xs:attribute name="id" type="xs:long" use="required" />
 				  <xs:attribute name="link_in" type="xs:long" use="required" />
@@ -356,7 +356,7 @@
 			<xs:element ref="description" minOccurs="0" />
 			<xs:element ref="downstreamBoundaryCapacityProfile" minOccurs="0" maxOccurs="unbounded" />
 		  </xs:sequence>
-	  	  <xs:attribute name="id_project" type="xs:long" use="optional" default="0" />
+	  	  <xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
 		  <xs:attribute name="id" type="xs:long" use="required"/>
 		  <xs:attribute name="name" type="xs:string" use="optional" default="" />
 		</xs:complexType>
@@ -378,7 +378,7 @@
 			<xs:element ref="description" minOccurs="0" />
 			<xs:element ref="event" minOccurs="0" maxOccurs="unbounded" />
 		  </xs:sequence>
-	  	  <xs:attribute name="id_project" type="xs:long" use="optional" default="0" />
+	  	  <xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
 		  <xs:attribute name="id" type="xs:long" use="required"/>
 		  <xs:attribute name="name" type="xs:string" use="optional" default="" />
 		</xs:complexType>
@@ -424,9 +424,9 @@
 			  <xs:element ref="description" minOccurs="0" />
 			  <xs:element ref="VehicleTypeOrder" minOccurs="0"  maxOccurs="1"/>
 			  <xs:element ref="demandProfile" minOccurs="0" maxOccurs="unbounded" />
-			  <xs:attribute name="crudFlag" type="crudFlag" use="optional" />
+			  <xs:element ref="crudFlag" type="crudFlag" use="optional" />
 		  </xs:sequence>
-	  	<xs:attribute name="id_project" type="xs:long" use="required" />
+	  	<xs:attribute name="project_id" type="xs:long" use="required" />
 		  <xs:attribute name="id" type="xs:long" use="required"/>
 		  <xs:attribute name="name" type="xs:string" use="optional" default="" />
       <xs:attribute name="mod_stamp" type="xs:string" use="required" />
@@ -437,7 +437,7 @@
 			<xs:complexType>
         <xs:sequence>
           <xs:element ref="demand" minOccurs="0" maxOccurs="unbounded" />
-	        <xs:attribute name="crudFlag" type="crudFlag" use="optional" />
+	        <xs:element ref="crudFlag" type="crudFlag" use="optional" />
         </xs:sequence>
         <xs:attribute name="DemandSet_id" type="xs:long" use="required"/>
 			  <xs:attribute name="knob" type="xs:double" use="optional"  default="1"/>
@@ -455,7 +455,7 @@
   <xs:element name="demand">
     <xs:complexType>
     	<xs:all>
-	      <xs:attribute name="crudFlag" type="crudFlag" use="optional" />
+	      <xs:element ref="crudFlag" type="crudFlag" use="optional" />
       </xs:all>
       <xs:attribute name="id" type="xs:long" use="required"/>
       <xs:attribute name="content" type="xs:string" use="required"/>
@@ -473,7 +473,7 @@
 			<xs:element ref="description" minOccurs="0" />
 			<xs:element ref="controller" minOccurs="0" maxOccurs="unbounded" />
 		  </xs:sequence>
-	  	  <xs:attribute name="id_project" type="xs:long" use="optional" default="0" />
+	  	  <xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
 		  <xs:attribute name="id" type="xs:long" use="required"/>
 		  <xs:attribute name="name" type="xs:string" use="optional" default="" />
 		</xs:complexType>
@@ -545,7 +545,7 @@
 			<xs:element ref="fundamentalDiagramProfile" minOccurs="0" maxOccurs="unbounded" />
 	  	<xs:element ref="fundamentalDiagramType" minOccurs="0" maxOccurs="1" />
 		  </xs:sequence>
-	  	<xs:attribute name="id_project" type="xs:long" use="optional" default="0" />
+	  	<xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
 		  <xs:attribute name="id" type="xs:long" use="required" />
 		  <xs:attribute name="name" type="xs:string" use="optional" default="" />
 		  <xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
@@ -569,7 +569,7 @@
 			  <xs:element name="fundamentalDiagram">
 				<xs:complexType>
 					<xs:all>
-					  <xs:attribute name="crudFlag" type="crudFlag" />
+					  <xs:element ref="crudFlag" type="crudFlag" />
 					</xs:all>
 					<xs:attribute name="id" type="xs:long" use="required" />
 					<xs:attribute name="order" type="xs:int" use="required" />
@@ -603,7 +603,7 @@
 			<xs:element ref="description" minOccurs="0" />
 			<xs:element ref="networkpair" minOccurs="0" maxOccurs="unbounded" />
 		  </xs:sequence>
-	  	  <xs:attribute name="id_project" type="xs:long" use="optional" default="0" />
+	  	  <xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
 		  <xs:attribute name="id" type="xs:long" use="optional" default="0" />
 		  <xs:attribute name="name" type="xs:string" use="optional" default="" />
 		</xs:complexType>
