@@ -97,20 +97,20 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 		return params;
 
 	}
-	
+
 	  /**
 	   * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
-	   * 
+	   *
 	   * @return CRUD Flag enumeration
 	   */
 	  @Override
 	  public CrudFlag getCrudFlag() {
 	    return super.getCrudFlag();
 	  }
-	  
+
 	  /**
 	   * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
-	   * 
+	   *
 	   * @param CRUD Flag enumeration
 	   */
 	  @Override

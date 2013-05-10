@@ -105,26 +105,6 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
   }
   
   /**
-   * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
-   * 
-   * @return CRUD Flag enumeration
-   */
-  @Override
-  public CrudFlag getCrudFlag() {
-    return super.getCrudFlag();
-  }
-  
-  /**
-   * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
-   * 
-   * @param CRUD Flag enumeration
-   */
-  @Override
-  public void setCrudFlag(CrudFlag flag) {
-    super.setCrudFlag(flag);
-  }
-  
-  /**
    * Return whether network is locked for edit
    * 
    * @return true if locked for edit, false if not

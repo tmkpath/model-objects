@@ -33,6 +33,7 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
    * @param networks  list of Network MO
    */
   public void setListOfNetworks(List<Network> networks) {
+    super.getNetworkSet().getNetwork().clear();
     super.getNetworkSet().getNetwork().addAll(networks);
   }
 
@@ -252,5 +253,25 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
 
   public void setSensorSetId(long sensorSetId) {
     this.sensorSetId = sensorSetId;
+  }
+
+  @Override
+  public boolean isLockedForEdit() {
+    return super.isLockedForEdit();
+  }
+
+  @Override
+  public void setLockedForEdit(Boolean value) {
+    super.setLockedForEdit(value);
+  }
+
+  @Override
+  public boolean isLockedForHistory() {
+    return super.isLockedForHistory();
+  }
+
+  @Override
+  public void setLockedForHistory(Boolean value) {
+    super.setLockedForHistory(value);
   }
 }

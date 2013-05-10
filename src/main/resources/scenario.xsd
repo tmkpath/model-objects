@@ -69,6 +69,8 @@
       <xs:attribute name="id" type="xs:long" use="required"/>
       <xs:attribute name="name" type="xs:string" use="optional" />
       <xs:attribute name="schemaVersion" type="xs:string" use="required" />
+      <xs:attribute name="lockedForEdit" type="xs:boolean" use="optional" default="false" />
+      <xs:attribute name="lockedForHistory" type="xs:boolean" use="optional" default="false" />
     </xs:complexType>
   </xs:element>
 
@@ -209,15 +211,14 @@
 		  <xs:element name="sensor">
 			<xs:complexType>
 			  <xs:all>
-				<xs:element ref="display_position" minOccurs="0" />
-                  <xs:element ref="link_reference" minOccurs="0" />
-                  <xs:element ref="parameters" minOccurs="0" />
-                  <xs:element ref="table" minOccurs="0" />
-                <!-- Application type ID -->
-                <xs:element ref="sensor_type" minOccurs="0" maxOccurs="1"/>
-                 <xs:element ref="crudFlag" type="crudFlag"  />
-              </xs:all>
-       
+					<xs:element ref="display_position" minOccurs="0" />
+          <xs:element ref="link_reference" minOccurs="0" />
+          <xs:element ref="parameters" minOccurs="0" />
+          <xs:element ref="table" minOccurs="0" />
+          <!-- Application type ID -->
+          <xs:element ref="sensor_type" minOccurs="0" maxOccurs="1"/>
+          <xs:element ref="crudFlag" type="crudFlag"  />
+        </xs:all>
 		  	<xs:attribute name="id" type="xs:long" use="required"/>
 			  <xs:attribute name="link_position" type="xs:double" use="optional" />
 			  <xs:attribute name="link_id" type="xs:long" use="optional" />
@@ -227,6 +228,7 @@
 			  <xs:attribute name="lane_number" type="xs:int" use="optional" />
 			  <xs:attribute name="link_offset" type="xs:double" use="optional" />
 			  <xs:attribute name="modStamp" type="xs:string" use="optional" />
+        <xs:attribute name="crudFlag" type="crudFlag" use="optional"/>
 			  <xs:attribute name="health_status" use="optional">
 		    <xs:simpleType >
 	          <xs:restriction base="xs:int">
@@ -265,18 +267,17 @@
 	  
 		  <xs:element name="density">									<!-- content in veh/distance unit -->
 			<xs:complexType>
-              <xs:all>
-                <xs:element ref="vehicleType" minOccurs="1" maxOccurs="1"/>
-                <xs:element ref="crudFlag" type="crudFlag" use="optional" />
-              </xs:all>
-              <xs:attribute name="id" type="xs:long" use="required"/>
+         <xs:all>
+            <xs:element ref="vehicleType" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="crudFlag" type="crudFlag" use="optional" />
+         </xs:all>
+         <xs:attribute name="id" type="xs:long" use="required"/>
 			  <xs:attribute name="link_id" type="xs:long" use="required" />
 			  <xs:attribute name="destination_network_id" type="xs:long" use="required" />
-              <xs:attribute name="density" type="xs:double" use="required" />
-              
-              <xs:attribute name="modStamp" type="xs:string" use="optional" />
-            </xs:complexType>
-		  </xs:element>
+        <xs:attribute name="density" type="xs:double" use="required" />
+        <xs:attribute name="modStamp" type="xs:string" use="optional" />
+      </xs:complexType>
+    </xs:element>
 
   <!-- WeavingFactorSet ..................................................... -->
 	
@@ -321,8 +322,8 @@
 		  <xs:element name="splitRatioProfile">
 			<xs:complexType>
 			  <xs:sequence>
-				<xs:element ref="splitratio" minOccurs="0" maxOccurs="unbounded" />
-				<xs:element ref="crudFlag" type="crudFlag" use="optional" />
+  				<xs:element ref="splitratio" minOccurs="0" maxOccurs="unbounded" />
+	  			<xs:element ref="crudFlag" type="crudFlag" use="optional" />
 			  </xs:sequence>
 			  <xs:attribute name="id" type="xs:long" use="required" />
 			  <xs:attribute name="node_id" type="xs:long" use="required" />
@@ -331,6 +332,7 @@
 			  <xs:attribute name="network_id" type="xs:long" use="optional" />
 			  <xs:attribute name="destination_network_id" type="xs:long" use="optional" />
 			  <xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+        <xs:attribute name="crudFlag" type="crudFlag" use="optional"/>
 			</xs:complexType>
 		  </xs:element>		  
 
@@ -344,7 +346,8 @@
 				  <xs:attribute name="link_out" type="xs:long" use="required" />
 				  <xs:attribute name="vehicleType_id" type="xs:long" use="required" />
 				  <xs:attribute name="ratio_order" type="xs:int" use="required" />
-					<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />	  
+					<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+          <xs:attribute name="crudFlag" type="crudFlag" use="optional"/>
 				</xs:complexType>
 			  </xs:element>  
   
@@ -426,10 +429,12 @@
 			  <xs:element ref="demandProfile" minOccurs="0" maxOccurs="unbounded" />
 			  <xs:element ref="crudFlag" type="crudFlag" use="optional" />
 		  </xs:sequence>
+
 	  	<xs:attribute name="project_id" type="xs:long" use="required" />
 		  <xs:attribute name="id" type="xs:long" use="required"/>
 		  <xs:attribute name="name" type="xs:string" use="optional" default="" />
       <xs:attribute name="mod_stamp" type="xs:string" use="required" />
+      <xs:attribute name="crudFlag" type="crudFlag" use="optional"/>
 		</xs:complexType>
 	  </xs:element>
 			  
@@ -449,6 +454,7 @@
 			  <xs:attribute name="std_dev_add" type="xs:double" use="optional"/>					<!-- [veh/time unit/vehicle type] -->
 			  <xs:attribute name="std_dev_mult" type="xs:double" use="optional"/>					<!-- [portion/vehicle type] -->
         <xs:attribute name="mod_stamp" type="xs:string" use="required" />
+        <xs:attribute name="crudFlag" type="crudFlag" use="optional"/>
 			</xs:complexType>
 		  </xs:element>
 
@@ -463,6 +469,7 @@
       <xs:attribute name="vehicleType_id" type="xs:long" use="required" />
       <xs:attribute name="demand_order" type="xs:long" use="required" />
       <xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+      <xs:attribute name="crudFlag" type="crudFlag" use="optional"/>
     </xs:complexType>
   </xs:element>
   <!-- ControllerSet .......................................................... -->
@@ -550,20 +557,22 @@
 		  <xs:attribute name="name" type="xs:string" use="optional" default="" />
 		  <xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
 		  <xs:attribute name="lockedForEdit" type="xs:boolean" use="optional" default="false" />
-			<xs:attribute name="lockedForHistory" type="xs:boolean" use="optional" default="false" />
+	        <xs:attribute name="lockedForHistory" type="xs:boolean" use="optional" default="false" />
 		</xs:complexType>
 	  </xs:element>
 	  
 		  <xs:element name="fundamentalDiagramProfile">
 			<xs:complexType>
 			  <xs:sequence>
-				<xs:element ref="fundamentalDiagram" minOccurs="0" maxOccurs="unbounded" />
+				  <xs:element ref="fundamentalDiagram" minOccurs="0" maxOccurs="unbounded" />
 			  </xs:sequence>
 			  <xs:attribute name="id" type="xs:long" use="required" />
 			  <xs:attribute name="link_id" type="xs:long" use="required" />
 			  <xs:attribute name="start_time" type="xs:double" use="optional" default="0" />		<!-- in time units -->
-			  <xs:attribute name="dt" type="xs:double" use="optional" />							<!-- in time units -->
-			</xs:complexType>
+			  <xs:attribute name="dt" type="xs:double" use="optional" /> <!-- in time units -->
+        <xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+        <xs:attribute name="crudFlag" type="crudFlag" use="optional"/>
+      </xs:complexType>
 		  </xs:element>
 
 			  <xs:element name="fundamentalDiagram">
@@ -582,7 +591,9 @@
 				  <xs:attribute name="std_dev_capacity" type="xs:double" use="optional"/>					<!-- [veh/s/lane]   -->
 				  <xs:attribute name="std_dev_free_flow_speed" type="xs:double" use="optional"/>			<!-- [m/s]   -->
 				  <xs:attribute name="std_dev_congestion_speed" type="xs:double" use="optional"/>			<!-- [m/s]   -->
-				</xs:complexType>
+          <xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+          <xs:attribute name="crudFlag" type="crudFlag" use="optional"/>
+        </xs:complexType>
 			  </xs:element>  
 
 			  <xs:element name="fundamentalDiagramType">

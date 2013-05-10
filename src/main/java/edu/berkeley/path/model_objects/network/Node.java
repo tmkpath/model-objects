@@ -209,7 +209,11 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
    */
   @Override
   public CrudFlag getCrudFlag() {
-    return super.getCrudFlag();
+		// Check if CRUDFlag is null, if so return NONE enumeration
+		if (super.getCrudFlag() == null) {
+			return CrudFlag.NONE;
+		}
+		return super.getCrudFlag();
   }
   
   /**
@@ -219,7 +223,7 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
    */
   @Override
   public void setCrudFlag(CrudFlag flag) {
-    super.setCrudFlag(flag);
+      super.setCrudFlag(flag);
   }
 
   /**
