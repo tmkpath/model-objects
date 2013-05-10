@@ -27,16 +27,20 @@
 package edu.berkeley.path.model_objects.network;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import core.Monitor;
 
-import edu.berkeley.path.model_objects.jaxb.Begin;
 import edu.berkeley.path.model_objects.jaxb.CrudFlag;
-import edu.berkeley.path.model_objects.jaxb.End;
 import edu.berkeley.path.model_objects.jaxb.Road;
 import edu.berkeley.path.model_objects.jaxb.Roads;
+import edu.berkeley.path.model_objects.jaxb.Position;
+import edu.berkeley.path.model_objects.jaxb.End;
+import edu.berkeley.path.model_objects.jaxb.Begin;
 import edu.berkeley.path.model_objects.jaxb.LinkType;
 import edu.berkeley.path.model_objects.shared.Point;
+
+
 
 /** 
  * Model Object Link class.
@@ -49,8 +53,6 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	/** @y.exclude */  protected Network myNetwork;
 	/** @y.exclude */  protected Node beginNode;
 	/** @y.exclude */  protected Node endNode;
-	/** @y.exclude */  protected String roadName;
-	/** @y.exclude */  protected java.util.List<Point> points;
 	
 	/** @y.exclude */  protected Boolean isSource;
 	/** @y.exclude */  protected Boolean isSink;
@@ -389,11 +391,38 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * @return  list of points
    */
   public java.util.List<Point> getPoints() {
-    if (this.points == null) {
-      this.points = new ArrayList<Point>();
-    }
-    return this.points;
+		// try and get points, if not set return new empty list of points
+		if (getPosition() != null && getPosition().getPoint() != null) {
+			return (List<Point>)(List<?>)getPosition().getPoint();
+		}
+		else {
+			Position position = new Position();
+			return (List<Point>)(List<?>)position.getPoint();
+		}
   }
+
+	/**
+	 * Point to add to link Geom
+	 *
+	 * @param   point Point to add to link geom
+	 */
+	public void addPoint(Point point) {
+		// If we have at least 1 point in list set points linestring
+		if (point != null) {
+
+			// if position does not exist create new position class to house list of bounding box points
+			if (getPosition() == null) {
+				Position position = new Position();
+				setPosition(position);
+			}
+			// add the point
+			getPosition().getPoint().add(point);
+		}
+		// Otherwise output error message
+		else {
+			Monitor.err("Error could not add null point, to link geom.");
+		}
+	}
 
   /**
    * Sets a list of Points to represent link Geometry
@@ -401,7 +430,19 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * @param   List of points
    */
   public void setPoints(java.util.List<Point> points) {
-    this.points = points;
+		// If we have at least 1 point in list set points linestring
+		if (points != null && points.size() > 0) {
+			// create new position class to house list of bounding box points
+			Position position = new Position();
+			position.getPoint().clear();
+			position.getPoint().addAll(points);
+
+			setPosition(position);
+		}
+		// Otherwise output error message
+		else {
+			Monitor.err("Error could not set link geometry points, no points found.");
+		}
   }
 	
 	/**
@@ -430,7 +471,8 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	 * @return  True if all link validation is correct
 	 */
 	public final Boolean isValid() {
-		
+		return true;
+		/*  TODO: Figure out validation
 	  Boolean isValid = true;
 	  
 		if(!isSource && beginNode==null) {
@@ -453,7 +495,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 			Monitor.out("Non-positive number of lanes in link id=" + getId() + ".");	
 		}
 		
-		return isValid;
+		return isValid;*/
 	}
 
 	

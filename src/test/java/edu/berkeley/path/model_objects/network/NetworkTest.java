@@ -26,6 +26,8 @@
 
 package edu.berkeley.path.model_objects.network;
 
+import edu.berkeley.path.model_objects.shared.*;
+
 import org.junit.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -68,6 +70,16 @@ public class NetworkTest {
     
     ln.setBeginNode(nd1);
     ln.setEndNode(nd2);
+
+		Point p1 = new Point();
+		p1.setLatitude(1.0);
+		p1.setLongitude(1.0);
+
+		Point p2 = new Point();
+		p1.setLatitude(2.0);
+		p1.setLongitude(2.0);
+		ln.addPoint(p1);
+		ln.addPoint(p2);
     
     nw.getListOfLinks().add(ln);
   }
@@ -91,6 +103,7 @@ public class NetworkTest {
     assertTrue(ln3 != null);
     assert(ln3 != null);
     assertEquals("three", ln3.getFirstRoadName() );
+		assertEquals(2, ln3.getPoints().size());
 
     // note that lookups by string ID work too:
     Node n2 = nw.getNodeWithId(2);
