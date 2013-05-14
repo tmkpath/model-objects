@@ -30,9 +30,9 @@ package edu.berkeley.path.model_objects.scenario;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.scenario.Object_Parameter;
 import edu.berkeley.path.model_objects.shared.DateTime;
+import edu.berkeley.path.model_objects.shared.CrudFlag;
 
 
 /** 
@@ -61,7 +61,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 		else if (p.name.compareToIgnoreCase("knob") == 0 ) 			setKnob(p.fltParam);
 		else if (p.name.compareToIgnoreCase("startTime") == 0 ) 	setStartTime(p.fltParam);
 		else if (p.name.compareToIgnoreCase("SAMPLERATE") == 0 ) 	setDt(p.fltParam);
-		else if (p.name.compareToIgnoreCase("orgLinkId") == 0 ) 	setOrgLinkId(p.intParam);	
+		else if (p.name.compareToIgnoreCase("orgLinkId") == 0 ) 	setLinkIdOrg(p.intParam);
 		else if (p.name.compareToIgnoreCase("destinationNetworkId") == 0 ) 	setDestinationNetworkId(p.intParam);
 		else if (p.name.compareToIgnoreCase("stdDevAdd") == 0 ) 	setStdDevAdd(p.fltParam);
 		else if (p.name.compareToIgnoreCase("stdDevMult") == 0 ) 	setStdDevMult(p.fltParam);
@@ -83,41 +83,85 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 		params[2] = new Object_Parameter("knob", 0, knob, null);
 		params[3] = new Object_Parameter("startTime", 0, startTime, null);
 		params[4] = new Object_Parameter("SAMPLERATE", 0, dt, null);
-		params[5] = new Object_Parameter("orgLinkId", getOrgLinkId(), 0.0F, null);
+		params[5] = new Object_Parameter("orgLinkId", getLinkIdOrg(), 0.0F, null);
 		params[6] = new Object_Parameter("destinationNetworkId", destinationNetworkId, 0.0F, null);
 		params[7] = new Object_Parameter("stdDevAdd", 0, stdDevAdd, null);
 		params[8] = new Object_Parameter("stdDevMult", 0, stdDevMult, null);
 		params[9] = new Object_Parameter("modStamp", 0, 0.0F, modStamp);
-		params[10] = new Object_Parameter("crud", getCrudFlag().ordinal(), 0.0F, null);
+		params[10] = new Object_Parameter("crud", getCrudFlagEnum().ordinal(), 0.0F, null);
 		
 		Object_Parameter.setPositions(params);
 		
 		return params;
 	}
-	
-	  /**
-	   * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
-	   * 
-	   * @return CRUD Flag enumeration
-	   */
-	  @Override
-	  public CrudFlag getCrudFlag() {
-          // Check if CRUDFlag is null, if so return NONE enumeration
-          if (super.getCrudFlag() == null) {
-              return CrudFlag.NONE;
-          }
-          return super.getCrudFlag();
-	  }
-	  
-	  /**
-	   * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
-	   * 
-	   * @param CRUD Flag enumeration
-	   */
-	  @Override
-	  public void setCrudFlag(CrudFlag flag) {
-	    super.setCrudFlag(flag);
-	  }
+
+	/**
+	 * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+	 *
+	 * @return CRUD Flag enumeration
+	 */
+	public CrudFlag getCrudFlagEnum() {
+
+		CrudFlag flag = null;
+		// Check if CRUDFlag is null, if so return NONE enumeration
+		if (super.getCrudFlag() == null) {
+			setCrudFlagEnum(CrudFlag.NONE);
+			flag = CrudFlag.NONE;
+		}
+		else {
+			switch (CrudFlag.valueOf(super.getCrudFlag())) {
+				case CREATE:
+					flag = CrudFlag.CREATE;
+					break;
+				case RETRIEVE:
+					flag = CrudFlag.RETRIEVE;
+					break;
+				case UPDATE:
+					flag = CrudFlag.UPDATE;
+					break;
+				case DELETE:
+					flag = CrudFlag.DELETE;
+					break;
+				default:
+					flag = CrudFlag.NONE;
+					break;
+
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+	 *
+	 * @param CRUD Flag enumeration
+	 */
+	public void setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag flag) {
+		// Check if CRUDFlag is null, if so return NONE enumeration
+		if (flag == null) {
+			super.setCrudFlag("NONE");
+		}
+		else {
+			switch (flag) {
+				case CREATE:
+					super.setCrudFlag("CREATE");
+					break;
+				case RETRIEVE:
+					super.setCrudFlag("RETRIEVE");
+					break;
+				case UPDATE:
+					super.setCrudFlag("UPDATE");
+					break;
+				case DELETE:
+					super.setCrudFlag("DELETE");
+					break;
+				default:
+					super.setCrudFlag("NONE");
+					break;
+
+			}
+		}
+	}
 	
 	/**
 	 * Gets the list of Demands
@@ -156,7 +200,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 		ArrayList<Double> values = new ArrayList<Double>();
 		List<Demand> list = getListOfDemands();
 		for (Demand s : list){
-			if(s.getVehTypeId()== vehicle_type_id)
+			if(s.getVehicleTypeId()== vehicle_type_id)
 				values.add(Double.parseDouble(s.getContent()));
 		}
 		return values.toArray(new Double[0]);
@@ -175,7 +219,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 		int offset = (int)Math.floor(offsetTime / this.getDt());
 		for(Demand r : list)
 		{
-			if(r.getVehTypeId()== vehicle_type_id && r.getDemandOrder() == offset)
+			if(r.getVehicleTypeId()== vehicle_type_id && r.getDemandOrder() == offset)
 				return Double.parseDouble(list.get(offset).getContent());				
 		}
 		return -1;
@@ -206,7 +250,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 		List<Demand> list = getListOfDemands();
 		for(Demand r : list)
 		{
-			if(r.getVehTypeId()== vehicle_type_id && r.getDemandOrder() == offset)
+			if(r.getVehicleTypeId()== vehicle_type_id && r.getDemandOrder() == offset)
 				return Double.parseDouble(list.get(offset).getContent());				
 		}
 		return -1;
@@ -326,8 +370,8 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
      *     
      */
 	@Override
-	public long getOrgLinkId() {
-        return orgLinkId;
+	public long getLinkIdOrg() {
+        return super.getLinkIdOrg();
     }
 
     /**
@@ -339,8 +383,8 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
      *     
      */
 	@Override
-	public void setOrgLinkId(long value) {
-        this.orgLinkId = value;
+	public void setLinkIdOrg(long value) {
+        super.setLinkIdOrg(value);
     }
 
     /**

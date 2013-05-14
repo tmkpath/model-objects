@@ -3,7 +3,7 @@ package edu.berkeley.path.model_objects;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.berkeley.path.model_objects.jaxb.CrudFlag;
+import edu.berkeley.path.model_objects.shared.CrudFlag;
 import edu.berkeley.path.model_objects.scenario.SplitRatioProfile;
 import edu.berkeley.path.model_objects.scenario.Splitratio;
 
@@ -15,7 +15,7 @@ public class TestConfiguration {
 		profile.setStartTime(start);
 		profile.setDt(dt);
 		profile.setDestinationNetworkId(dest);
-		profile.setCrudFlag(flag);
+		profile.setCrudFlagEnum(flag);
 		
 		List<Splitratio> ratios = new ArrayList<Splitratio>();
 		
@@ -32,10 +32,10 @@ public class TestConfiguration {
 		Splitratio r = new Splitratio();
 		r.setLinkIn(link_in);
 		r.setLinkOut(link_out);
-		r.setVehTypeId(veh_id);
+		r.setVehicleTypeId(veh_id);
 		r.setRatio(ratio);
 		r.setRatioOrder(order);	
-		r.setCrudFlag(flag);	
+		r.setCrudFlagEnum(flag);
 		return r;
 		
 	}

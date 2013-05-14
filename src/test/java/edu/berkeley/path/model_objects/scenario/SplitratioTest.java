@@ -26,7 +26,7 @@ public class SplitratioTest {
 		  ratio.setRatioOrder(RATIO_ORDER);
 		  ratio.setModStamp(MOD_STAMP);
 		  ratio.setRatio(RATIO);
-		  ratio.setVehTypeId(VEHICLE_TYPE_ID);
+		  ratio.setVehicleTypeId(VEHICLE_TYPE_ID);
 	}
   
   @Test
@@ -40,7 +40,7 @@ public class SplitratioTest {
 	  assertEquals(ID, ratio.getId());
 	  assertEquals(LINK_IN_ID, ratio.getLinkIn());
 	  assertEquals(LINK_OUT_ID, ratio.getLinkOut());
-	  assertEquals(VEHICLE_TYPE_ID, ratio.getVehTypeId());
+	  assertEquals(VEHICLE_TYPE_ID, ratio.getVehicleTypeId());
 	  assertEquals(RATIO_ORDER, ratio.getRatioOrder());
 	  assertEquals(RATIO, ratio.getRatio(), 0.0);
 	  assertEquals(MOD_STAMP,ratio.getModStamp());

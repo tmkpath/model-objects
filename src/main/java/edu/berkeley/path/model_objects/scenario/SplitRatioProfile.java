@@ -28,8 +28,8 @@ package edu.berkeley.path.model_objects.scenario;
 
 import java.util.ArrayList;
 import java.util.List;
-import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.shared.DateTime;
+import edu.berkeley.path.model_objects.shared.CrudFlag;
 
 public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.SplitRatioProfile implements Comparable<SplitRatioProfile>{
 
@@ -172,30 +172,75 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
     public void setNetworkId(Long id) {
       super.setNetworkId(id);
     }
-    
-    /**
-     * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
-     * 
-     * @return CRUD Flag enumeration
-     */
-    @Override
-    public CrudFlag getCrudFlag() {
-        // Check if CRUDFlag is null, if so return NONE enumeration
-        if (super.getCrudFlag() == null) {
-            return CrudFlag.NONE;
-        }
-        return super.getCrudFlag();
-    }
 
-    /**
-     * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
-     * 
-     * @param CRUD Flag enumeration
-     */
-    @Override
-    public void setCrudFlag(CrudFlag flag) {
-      super.setCrudFlag(flag);
-    }
+
+	/**
+	 * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+	 *
+	 * @return CRUD Flag enumeration
+	 */
+	public CrudFlag getCrudFlagEnum() {
+
+		CrudFlag flag = null;
+		// Check if CRUDFlag is null, if so return NONE enumeration
+		if (super.getCrudFlag() == null) {
+			setCrudFlagEnum(CrudFlag.NONE);
+			flag = CrudFlag.NONE;
+		}
+		else {
+			switch (CrudFlag.valueOf(super.getCrudFlag())) {
+				case CREATE:
+					flag = CrudFlag.CREATE;
+					break;
+				case RETRIEVE:
+					flag = CrudFlag.RETRIEVE;
+					break;
+				case UPDATE:
+					flag = CrudFlag.UPDATE;
+					break;
+				case DELETE:
+					flag = CrudFlag.DELETE;
+					break;
+				default:
+					flag = CrudFlag.NONE;
+					break;
+
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+	 *
+	 * @param CRUD Flag enumeration
+	 */
+	public void setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag flag) {
+		// Check if CRUDFlag is null, if so return NONE enumeration
+		if (flag == null) {
+			super.setCrudFlag("NONE");
+		}
+		else {
+			switch (flag) {
+				case CREATE:
+					super.setCrudFlag("CREATE");
+					break;
+				case RETRIEVE:
+					super.setCrudFlag("RETRIEVE");
+					break;
+				case UPDATE:
+					super.setCrudFlag("UPDATE");
+					break;
+				case DELETE:
+					super.setCrudFlag("DELETE");
+					break;
+				default:
+					super.setCrudFlag("NONE");
+					break;
+
+			}
+		}
+	}
     
     /**
      * Gets the value of the nodeId property.

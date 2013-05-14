@@ -28,12 +28,12 @@ package edu.berkeley.path.model_objects.network;
 
 import java.util.List;
 
-import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.jaxb.Position;
 import edu.berkeley.path.model_objects.jaxb.RoadwayMarkers;
 import edu.berkeley.path.model_objects.jaxb.Marker;
 import edu.berkeley.path.model_objects.jaxb.NodeType;
 import edu.berkeley.path.model_objects.shared.Point;
+import edu.berkeley.path.model_objects.shared.CrudFlag;
 
 import core.Monitor;
 
@@ -199,30 +199,74 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
   public void setNodeName(String value) {
       this.nodeName = value;
   }
-	
-  /**
-   * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
-   * 
-   * @return CRUD Flag enumeration
-   */
-  @Override
-  public CrudFlag getCrudFlag() {
+
+	/**
+	 * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+	 *
+	 * @return CRUD Flag enumeration
+	 */
+	public CrudFlag getCrudFlagEnum() {
+
+		CrudFlag flag = null;
 		// Check if CRUDFlag is null, if so return NONE enumeration
 		if (super.getCrudFlag() == null) {
-			return CrudFlag.NONE;
+			setCrudFlagEnum(CrudFlag.NONE);
+			flag = CrudFlag.NONE;
 		}
-		return super.getCrudFlag();
-  }
-  
-  /**
-   * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
-   * 
-   * @param CRUD Flag enumeration
-   */
-  @Override
-  public void setCrudFlag(CrudFlag flag) {
-      super.setCrudFlag(flag);
-  }
+		else {
+			switch (CrudFlag.valueOf(super.getCrudFlag())) {
+				case CREATE:
+					flag = CrudFlag.CREATE;
+					break;
+				case RETRIEVE:
+					flag = CrudFlag.RETRIEVE;
+					break;
+				case UPDATE:
+					flag = CrudFlag.UPDATE;
+					break;
+				case DELETE:
+					flag = CrudFlag.DELETE;
+					break;
+				default:
+					flag = CrudFlag.NONE;
+					break;
+
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+	 *
+	 * @param CRUD Flag enumeration
+	 */
+	public void setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag flag) {
+		// Check if CRUDFlag is null, if so return NONE enumeration
+		if (flag == null) {
+			super.setCrudFlag("NONE");
+		}
+		else {
+			switch (flag) {
+				case CREATE:
+					super.setCrudFlag("CREATE");
+					break;
+				case RETRIEVE:
+					super.setCrudFlag("RETRIEVE");
+					break;
+				case UPDATE:
+					super.setCrudFlag("UPDATE");
+					break;
+				case DELETE:
+					super.setCrudFlag("DELETE");
+					break;
+				default:
+					super.setCrudFlag("NONE");
+					break;
+
+			}
+		}
+	}
 
   /**
    * Get all Marker Names on Node

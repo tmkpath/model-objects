@@ -27,7 +27,6 @@
 package edu.berkeley.path.model_objects.network;
 
 import core.Monitor;
-import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 import edu.berkeley.path.model_objects.jaxb.Position;
 import edu.berkeley.path.model_objects.shared.Point;
 import edu.berkeley.path.model_objects.MOException;

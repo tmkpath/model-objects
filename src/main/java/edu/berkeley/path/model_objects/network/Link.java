@@ -31,7 +31,7 @@ import java.util.List;
 
 import core.Monitor;
 
-import edu.berkeley.path.model_objects.jaxb.CrudFlag;
+import edu.berkeley.path.model_objects.shared.CrudFlag;
 import edu.berkeley.path.model_objects.jaxb.Road;
 import edu.berkeley.path.model_objects.jaxb.Roads;
 import edu.berkeley.path.model_objects.jaxb.Position;
@@ -307,13 +307,35 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * 
    * @return CRUD Flag enumeration
    */
-  @Override
-  public CrudFlag getCrudFlag() {
-      // Check if CRUDFlag is null, if so return NONE enumeration
-      if (super.getCrudFlag() == null) {
-          return CrudFlag.NONE;
-      }
-      return super.getCrudFlag();
+  public CrudFlag getCrudFlagEnum() {
+
+		CrudFlag flag = null;
+		// Check if CRUDFlag is null, if so return NONE enumeration
+		if (super.getCrudFlag() == null) {
+			setCrudFlagEnum(CrudFlag.NONE);
+			flag = CrudFlag.NONE;
+		}
+		else {
+			switch (CrudFlag.valueOf(super.getCrudFlag())) {
+				case CREATE:
+					flag = CrudFlag.CREATE;
+					break;
+				case RETRIEVE:
+					flag = CrudFlag.RETRIEVE;
+					break;
+				case UPDATE:
+					flag = CrudFlag.UPDATE;
+					break;
+				case DELETE:
+					flag = CrudFlag.DELETE;
+					break;
+				default:
+					flag = CrudFlag.NONE;
+					break;
+
+			}
+		}
+		return flag;
   }
   
   /**
@@ -321,9 +343,31 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * 
    * @param CRUD Flag enumeration
    */
-  @Override
-  public void setCrudFlag(CrudFlag flag) {
-    super.setCrudFlag(flag);
+  public void setCrudFlagEnum(CrudFlag flag) {
+		// Check if CRUDFlag is null, if so return NONE enumeration
+		if (flag == null) {
+			super.setCrudFlag("NONE");
+		}
+		else {
+			switch (flag) {
+				case CREATE:
+					super.setCrudFlag("CREATE");
+					break;
+				case RETRIEVE:
+					super.setCrudFlag("RETRIEVE");
+					break;
+				case UPDATE:
+					super.setCrudFlag("UPDATE");
+					break;
+				case DELETE:
+					super.setCrudFlag("DELETE");
+					break;
+				default:
+					super.setCrudFlag("NONE");
+					break;
+
+			}
+		}
   }
   
   /**
