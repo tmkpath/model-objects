@@ -27,7 +27,7 @@
 package edu.berkeley.path.model_objects.scenario;
 
 
-import edu.berkeley.path.model_objects.jaxb.CrudFlag;
+import edu.berkeley.path.model_objects.shared.CrudFlag;
 import edu.berkeley.path.model_objects.shared.Parameters;
 import edu.berkeley.path.model_objects.shared.Point;
 
@@ -59,7 +59,7 @@ public class SensorTest {
 	public void setUp() {
 		sensor = new Sensor();
 		sensor.setId(ID);
-		sensor.setCrudFlag(CrudFlag.NONE);
+		sensor.setCrudFlagEnum(CrudFlag.NONE);
 		
 		//sensor type
 	    sensor.setSensorType(TYPE_ID, TYPE_NAME, TYPE_DESC);
@@ -84,7 +84,7 @@ public class SensorTest {
 	
 	  @Test
 	  public void testGetters() {
-		    assertEquals(CrudFlag.NONE, sensor.getCrudFlag());
+		    assertEquals(CrudFlag.NONE, sensor.getCrudFlagEnum());
 		    assertEquals(MOD_STAMP, sensor.getModStamp());
 		    assertEquals(LINK_POSITION, sensor.getLinkPosition(), EPSILON);
 		    assertNotNull(sensor.getLinkReference());

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
-import edu.berkeley.path.model_objects.jaxb.CrudFlag;
+import edu.berkeley.path.model_objects.shared.CrudFlag;
 
 public class SplitRatioProfileTest {
 	private static final long ID = 1;
@@ -28,7 +28,7 @@ public class SplitRatioProfileTest {
 		profile.setStartTime(START_TIME);
 		profile.setDt(DT);
 		profile.setDestinationNetworkId(DEST_NETWORK_ID);
-		profile.setCrudFlag(CrudFlag.CREATE);
+		profile.setCrudFlagEnum(CrudFlag.CREATE);
 		profile.setModStamp(MOD_STAMP);
 		
 		List<Splitratio> ratios = new ArrayList<Splitratio>();
@@ -44,7 +44,7 @@ public class SplitRatioProfileTest {
 		Splitratio r = new Splitratio();
 		r.setLinkIn(link_in);
 		r.setLinkOut(link_out);
-		r.setVehTypeId(veh_id);
+		r.setVehicleTypeId(veh_id);
 		r.setRatio(ratio);
 		r.setRatioOrder(order);	
 		return r;
@@ -55,7 +55,7 @@ public class SplitRatioProfileTest {
 	public void testGetters(){
 		assertEquals(ID,profile.getId());
 		assertEquals(NODE_ID,profile.getNodeId());
-		assertEquals(CrudFlag.CREATE,profile.getCrudFlag());
+		assertEquals(CrudFlag.CREATE,profile.getCrudFlagEnum());
 		assertEquals(START_TIME,profile.getStartTime(), 0.0);
 		assertEquals(DT,profile.getDt().doubleValue(), 0.0);
 		assertEquals(DEST_NETWORK_ID, profile.getDestinationNetworkId().longValue());

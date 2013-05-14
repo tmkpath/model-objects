@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.berkeley.path.model_objects.TestConfiguration;
-import edu.berkeley.path.model_objects.jaxb.CrudFlag;
+import edu.berkeley.path.model_objects.shared.CrudFlag;
 import edu.berkeley.path.model_objects.network.Node;
 
 public class SplitRatioSetTest {

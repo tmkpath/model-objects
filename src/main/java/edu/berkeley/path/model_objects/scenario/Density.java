@@ -26,6 +26,8 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import edu.berkeley.path.model_objects.shared.CrudFlag;
+
 public class Density extends edu.berkeley.path.model_objects.jaxb.Density {
 
   public boolean isValid() {
@@ -51,30 +53,30 @@ public class Density extends edu.berkeley.path.model_objects.jaxb.Density {
 	 *
 	 * @return CRUD Flag enumeration
 	 */
-	public edu.berkeley.path.model_objects.shared.CrudFlag getCrudFlagEnum() {
+	public CrudFlag getCrudFlagEnum() {
 
-		edu.berkeley.path.model_objects.shared.CrudFlag flag = null;
+		CrudFlag flag = null;
 		// Check if CRUDFlag is null, if so return NONE enumeration
 		if (super.getCrudFlag() == null) {
-			setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag.NONE);
-			flag = edu.berkeley.path.model_objects.shared.CrudFlag.NONE;
+			setCrudFlagEnum(CrudFlag.NONE);
+			flag = CrudFlag.NONE;
 		}
 		else {
-			switch (super.getCrudFlag()) {
-				case "CREATE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.CREATE;
+			switch (CrudFlag.valueOf(super.getCrudFlag())) {
+				case CREATE:
+					flag = CrudFlag.CREATE;
 					break;
-				case "RETRIEVE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.RETRIEVE;
+				case RETRIEVE:
+					flag = CrudFlag.RETRIEVE;
 					break;
-				case "UPDATE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.UPDATE;
+				case UPDATE:
+					flag = CrudFlag.UPDATE;
 					break;
-				case "DELETE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.DELETE;
+				case DELETE:
+					flag = CrudFlag.DELETE;
 					break;
 				default:
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.NONE;
+					flag = CrudFlag.NONE;
 					break;
 
 			}

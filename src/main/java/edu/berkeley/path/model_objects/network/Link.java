@@ -316,17 +316,17 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 			flag = CrudFlag.NONE;
 		}
 		else {
-			switch (super.getCrudFlag()) {
-				case "CREATE":
+			switch (CrudFlag.valueOf(super.getCrudFlag())) {
+				case CREATE:
 					flag = CrudFlag.CREATE;
 					break;
-				case "RETRIEVE":
+				case RETRIEVE:
 					flag = CrudFlag.RETRIEVE;
 					break;
-				case "UPDATE":
+				case UPDATE:
 					flag = CrudFlag.UPDATE;
 					break;
-				case "DELETE":
+				case DELETE:
 					flag = CrudFlag.DELETE;
 					break;
 				default:

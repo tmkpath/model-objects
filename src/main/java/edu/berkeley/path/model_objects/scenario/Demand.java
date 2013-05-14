@@ -27,6 +27,7 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import edu.berkeley.path.model_objects.shared.CrudFlag;
 
 /** 
  * Model Object Demand class.
@@ -43,9 +44,9 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	public void setByName(Object_Parameter p) {
 		
 		if (p.name.compareToIgnoreCase("id") == 0 ) 				setId(p.intParam);
-		else if (p.name.compareToIgnoreCase("demandProfId") == 0 ) 	setDemandProfId(p.intParam);
+		else if (p.name.compareToIgnoreCase("demandProfId") == 0 ) 	setDemandProfileId(p.intParam);
 		else if (p.name.compareToIgnoreCase("flow") == 0 ) 		setContent(String.valueOf(p.fltParam));
-		else if (p.name.compareToIgnoreCase("vehTypeId") == 0 ) 	setVehTypeId(p.intParam);	
+		else if (p.name.compareToIgnoreCase("vehTypeId") == 0 ) 	setVehicleTypeId(p.intParam);
 		else if (p.name.compareToIgnoreCase("demandOrder") == 0 ) 	setDemandOrder(p.intParam);
 		else if (p.name.compareToIgnoreCase("modStamp") == 0 ) 		setModStamp(p.strParam);
 		
@@ -62,12 +63,12 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 		Object_Parameter[] params = new Object_Parameter[7];
 		
 		params[0] = new Object_Parameter("id", id, 0.0F, null);
-		params[1] = new Object_Parameter("demandProfId", demandProfId, 0.0F, null);
+		params[1] = new Object_Parameter("demandProfId", demandProfileId, 0.0F, null);
 		params[2] = new Object_Parameter("flow", 0, Double.parseDouble(getContent()), null);
-		params[3] = new Object_Parameter("vehTypeId", vehTypeId, 0.0F, null);
+		params[3] = new Object_Parameter("vehTypeId", vehicleTypeId, 0.0F, null);
 		params[4] = new Object_Parameter("demandOrder", demandOrder, 0.0F, null);
 		params[5] = new Object_Parameter("modStamp", 0, 0.0F, modStamp);
-		params[6] = new Object_Parameter("crud", getCrudFlag().ordinal(), 0.0F, null);
+		params[6] = new Object_Parameter("crud", getCrudFlagEnum().ordinal(), 0.0F, null);
 		
 		Object_Parameter.setPositions(params);
 		
@@ -82,30 +83,30 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	 *
 	 * @return CRUD Flag enumeration
 	 */
-	public edu.berkeley.path.model_objects.shared.CrudFlag getCrudFlagEnum() {
+	public CrudFlag getCrudFlagEnum() {
 
-		edu.berkeley.path.model_objects.shared.CrudFlag flag = null;
+		CrudFlag flag = null;
 		// Check if CRUDFlag is null, if so return NONE enumeration
 		if (super.getCrudFlag() == null) {
-			setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag.NONE);
-			flag = edu.berkeley.path.model_objects.shared.CrudFlag.NONE;
+			setCrudFlagEnum(CrudFlag.NONE);
+			flag = CrudFlag.NONE;
 		}
 		else {
-			switch (super.getCrudFlag()) {
-				case "CREATE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.CREATE;
+			switch (CrudFlag.valueOf(super.getCrudFlag())) {
+				case CREATE:
+					flag = CrudFlag.CREATE;
 					break;
-				case "RETRIEVE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.RETRIEVE;
+				case RETRIEVE:
+					flag = CrudFlag.RETRIEVE;
 					break;
-				case "UPDATE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.UPDATE;
+				case UPDATE:
+					flag = CrudFlag.UPDATE;
 					break;
-				case "DELETE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.DELETE;
+				case DELETE:
+					flag = CrudFlag.DELETE;
 					break;
 				default:
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.NONE;
+					flag = CrudFlag.NONE;
 					break;
 
 			}
@@ -169,8 +170,8 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
      * 
      */
 	@Override
-	public long getDemandProfId() {
-        return demandProfId;
+	public long getDemandProfileId() {
+        return super.getDemandProfileId();
     }
 
     /**
@@ -178,8 +179,8 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
      * 
      */
 	@Override
-	public void setDemandProfId(long value) {
-        this.demandProfId = value;
+	public void setDemandProfileId(long value) {
+        super.setDemandProfileId(value);
     }
 	
 	
@@ -218,16 +219,16 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	 * @param id the vehicle type id for this ratio
 	 */
 	@Override
-	public void setVehTypeId(long id) {
-		super.setVehTypeId(id);
+	public void setVehicleTypeId(long id) {
+		super.setVehicleTypeId(id);
 	}
 	
 	/**
 	 * @return the vehicle type id for this ratio
 	 */
 	@Override
-	public long getVehTypeId() {
-		return super.getVehTypeId();
+	public long getVehicleTypeId() {
+		return super.getVehicleTypeId();
 	}
 	
 	/**

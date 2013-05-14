@@ -34,6 +34,7 @@ import java.util.List;
 
 import edu.berkeley.path.model_objects.scenario.DemandProfile;
 import edu.berkeley.path.model_objects.jaxb.VehicleTypeOrder;
+import edu.berkeley.path.model_objects.shared.CrudFlag;
 
 public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 
@@ -89,7 +90,7 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 		params[2] = new Object_Parameter("projectId", getProjectId(), 0.0F, null);
 		params[3] = new Object_Parameter("name", 0, 0.0F, getName());
 		params[4] = new Object_Parameter("ModStamp", 0, 0.0F, getModStamp());
-		params[5] = new Object_Parameter("crud", getCrudFlag().ordinal(), 0.0F, null);
+		params[5] = new Object_Parameter("crud", getCrudFlagEnum().ordinal(), 0.0F, null);
 		
 		Object_Parameter.setPositions(params);
 		
@@ -102,30 +103,30 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 	 *
 	 * @return CRUD Flag enumeration
 	 */
-	public edu.berkeley.path.model_objects.shared.CrudFlag getCrudFlagEnum() {
+	public CrudFlag getCrudFlagEnum() {
 
-		edu.berkeley.path.model_objects.shared.CrudFlag flag = null;
+		CrudFlag flag = null;
 		// Check if CRUDFlag is null, if so return NONE enumeration
 		if (super.getCrudFlag() == null) {
-			setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag.NONE);
-			flag = edu.berkeley.path.model_objects.shared.CrudFlag.NONE;
+			setCrudFlagEnum(CrudFlag.NONE);
+			flag = CrudFlag.NONE;
 		}
 		else {
-			switch (super.getCrudFlag()) {
-				case "CREATE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.CREATE;
+			switch (CrudFlag.valueOf(super.getCrudFlag())) {
+				case CREATE:
+					flag = CrudFlag.CREATE;
 					break;
-				case "RETRIEVE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.RETRIEVE;
+				case RETRIEVE:
+					flag = CrudFlag.RETRIEVE;
 					break;
-				case "UPDATE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.UPDATE;
+				case UPDATE:
+					flag = CrudFlag.UPDATE;
 					break;
-				case "DELETE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.DELETE;
+				case DELETE:
+					flag = CrudFlag.DELETE;
 					break;
 				default:
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.NONE;
+					flag = CrudFlag.NONE;
 					break;
 
 			}

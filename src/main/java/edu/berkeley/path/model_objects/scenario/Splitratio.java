@@ -1,5 +1,32 @@
+/**
+ * Copyright (c) 2012, Regents of the University of California
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice,
+ *   this list of conditions and the following disclaimer.
+ *   Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ **/
+
 package edu.berkeley.path.model_objects.scenario;
 
+import edu.berkeley.path.model_objects.shared.CrudFlag;
 
 public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio implements Comparable<Splitratio>{
 	
@@ -89,16 +116,16 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
 	 * @param id the vehicle type id for this ratio
 	 */
 	@Override
-	public void setVehTypeId(long id) {
-		super.setVehTypeId(id);
+	public void setVehicleTypeId(long id) {
+		super.setVehicleTypeId(id);
 	}
 	
 	/**
 	 * @return the vehicle type id for this ratio
 	 */
 	@Override
-	public long getVehTypeId() {
-		return super.getVehTypeId();
+	public long getVehicleTypeId() {
+		return super.getVehicleTypeId();
 	}
 	
 	/**
@@ -124,7 +151,7 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
 	 * @return boolean 
 	 */
 	public boolean equals(long linkInId, long linkOutId,long vehTypeId){
-		return linkInId == this.getLinkIn() && linkOutId == this.getLinkOut() && vehTypeId == this.getVehTypeId();
+		return linkInId == this.getLinkIn() && linkOutId == this.getLinkOut() && vehTypeId == this.getVehicleTypeId();
 	}
 	
 	/**
@@ -134,10 +161,10 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
 	public boolean isValid(){
 		return true;
 	}
-	
+
 	/**
 	 * This method is used in testing to sort the ratios by id.
-	 * 
+	 *
 	 * @return int
 	 */
 	public int compareTo(Splitratio other){
@@ -149,30 +176,30 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
 	 *
 	 * @return CRUD Flag enumeration
 	 */
-	public edu.berkeley.path.model_objects.shared.CrudFlag getCrudFlagEnum() {
+	public CrudFlag getCrudFlagEnum() {
 
-		edu.berkeley.path.model_objects.shared.CrudFlag flag = null;
+		CrudFlag flag = null;
 		// Check if CRUDFlag is null, if so return NONE enumeration
 		if (super.getCrudFlag() == null) {
-			setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag.NONE);
-			flag = edu.berkeley.path.model_objects.shared.CrudFlag.NONE;
+			setCrudFlagEnum(CrudFlag.NONE);
+			flag = CrudFlag.NONE;
 		}
 		else {
-			switch (super.getCrudFlag()) {
-				case "CREATE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.CREATE;
+			switch (CrudFlag.valueOf(super.getCrudFlag())) {
+				case CREATE:
+					flag = CrudFlag.CREATE;
 					break;
-				case "RETRIEVE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.RETRIEVE;
+				case RETRIEVE:
+					flag = CrudFlag.RETRIEVE;
 					break;
-				case "UPDATE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.UPDATE;
+				case UPDATE:
+					flag = CrudFlag.UPDATE;
 					break;
-				case "DELETE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.DELETE;
+				case DELETE:
+					flag = CrudFlag.DELETE;
 					break;
 				default:
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.NONE;
+					flag = CrudFlag.NONE;
 					break;
 
 			}

@@ -32,6 +32,7 @@ import java.util.List;
 
 import edu.berkeley.path.model_objects.scenario.Object_Parameter;
 import edu.berkeley.path.model_objects.shared.DateTime;
+import edu.berkeley.path.model_objects.shared.CrudFlag;
 
 
 /** 
@@ -60,7 +61,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 		else if (p.name.compareToIgnoreCase("knob") == 0 ) 			setKnob(p.fltParam);
 		else if (p.name.compareToIgnoreCase("startTime") == 0 ) 	setStartTime(p.fltParam);
 		else if (p.name.compareToIgnoreCase("SAMPLERATE") == 0 ) 	setDt(p.fltParam);
-		else if (p.name.compareToIgnoreCase("orgLinkId") == 0 ) 	setOrgLinkId(p.intParam);	
+		else if (p.name.compareToIgnoreCase("orgLinkId") == 0 ) 	setLinkIdOrg(p.intParam);
 		else if (p.name.compareToIgnoreCase("destinationNetworkId") == 0 ) 	setDestinationNetworkId(p.intParam);
 		else if (p.name.compareToIgnoreCase("stdDevAdd") == 0 ) 	setStdDevAdd(p.fltParam);
 		else if (p.name.compareToIgnoreCase("stdDevMult") == 0 ) 	setStdDevMult(p.fltParam);
@@ -82,7 +83,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 		params[2] = new Object_Parameter("knob", 0, knob, null);
 		params[3] = new Object_Parameter("startTime", 0, startTime, null);
 		params[4] = new Object_Parameter("SAMPLERATE", 0, dt, null);
-		params[5] = new Object_Parameter("orgLinkId", getOrgLinkId(), 0.0F, null);
+		params[5] = new Object_Parameter("orgLinkId", getLinkIdOrg(), 0.0F, null);
 		params[6] = new Object_Parameter("destinationNetworkId", destinationNetworkId, 0.0F, null);
 		params[7] = new Object_Parameter("stdDevAdd", 0, stdDevAdd, null);
 		params[8] = new Object_Parameter("stdDevMult", 0, stdDevMult, null);
@@ -99,30 +100,30 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	 *
 	 * @return CRUD Flag enumeration
 	 */
-	public edu.berkeley.path.model_objects.shared.CrudFlag getCrudFlagEnum() {
+	public CrudFlag getCrudFlagEnum() {
 
-		edu.berkeley.path.model_objects.shared.CrudFlag flag = null;
+		CrudFlag flag = null;
 		// Check if CRUDFlag is null, if so return NONE enumeration
 		if (super.getCrudFlag() == null) {
-			setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag.NONE);
-			flag = edu.berkeley.path.model_objects.shared.CrudFlag.NONE;
+			setCrudFlagEnum(CrudFlag.NONE);
+			flag = CrudFlag.NONE;
 		}
 		else {
-			switch (super.getCrudFlag()) {
-				case "CREATE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.CREATE;
+			switch (CrudFlag.valueOf(super.getCrudFlag())) {
+				case CREATE:
+					flag = CrudFlag.CREATE;
 					break;
-				case "RETRIEVE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.RETRIEVE;
+				case RETRIEVE:
+					flag = CrudFlag.RETRIEVE;
 					break;
-				case "UPDATE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.UPDATE;
+				case UPDATE:
+					flag = CrudFlag.UPDATE;
 					break;
-				case "DELETE":
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.DELETE;
+				case DELETE:
+					flag = CrudFlag.DELETE;
 					break;
 				default:
-					flag = edu.berkeley.path.model_objects.shared.CrudFlag.NONE;
+					flag = CrudFlag.NONE;
 					break;
 
 			}
@@ -199,7 +200,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 		ArrayList<Double> values = new ArrayList<Double>();
 		List<Demand> list = getListOfDemands();
 		for (Demand s : list){
-			if(s.getVehTypeId()== vehicle_type_id)
+			if(s.getVehicleTypeId()== vehicle_type_id)
 				values.add(Double.parseDouble(s.getContent()));
 		}
 		return values.toArray(new Double[0]);
@@ -218,7 +219,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 		int offset = (int)Math.floor(offsetTime / this.getDt());
 		for(Demand r : list)
 		{
-			if(r.getVehTypeId()== vehicle_type_id && r.getDemandOrder() == offset)
+			if(r.getVehicleTypeId()== vehicle_type_id && r.getDemandOrder() == offset)
 				return Double.parseDouble(list.get(offset).getContent());				
 		}
 		return -1;
@@ -249,7 +250,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 		List<Demand> list = getListOfDemands();
 		for(Demand r : list)
 		{
-			if(r.getVehTypeId()== vehicle_type_id && r.getDemandOrder() == offset)
+			if(r.getVehicleTypeId()== vehicle_type_id && r.getDemandOrder() == offset)
 				return Double.parseDouble(list.get(offset).getContent());				
 		}
 		return -1;
@@ -369,8 +370,8 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
      *     
      */
 	@Override
-	public long getOrgLinkId() {
-        return orgLinkId;
+	public long getLinkIdOrg() {
+        return super.getLinkIdOrg();
     }
 
     /**
@@ -382,8 +383,8 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
      *     
      */
 	@Override
-	public void setOrgLinkId(long value) {
-        this.orgLinkId = value;
+	public void setLinkIdOrg(long value) {
+        super.setLinkIdOrg(value);
     }
 
     /**
