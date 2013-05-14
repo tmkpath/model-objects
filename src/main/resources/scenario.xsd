@@ -548,6 +548,7 @@
 			  <xs:sequence>
 				  <xs:element ref="fundamentalDiagram" minOccurs="0" maxOccurs="unbounded" />
 			  </xs:sequence>
+        <xs:attribute name="crudFlag" type="xs:string" />
 			  <xs:attribute name="id" type="xs:long" use="required" />
 			  <xs:attribute name="link_id" type="xs:long" use="required" />
 			  <xs:attribute name="start_time" type="xs:double" use="optional" default="0" />		<!-- in time units -->

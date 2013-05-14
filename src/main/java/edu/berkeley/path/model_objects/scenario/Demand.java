@@ -27,7 +27,6 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
-import edu.berkeley.path.model_objects.jaxb.CrudFlag;
 
 /** 
  * Model Object Demand class.
@@ -77,30 +76,74 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 		
 		
 	}
-		
-	  /**
-	   * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
-	   * 
-	   * @return CRUD Flag enumeration
-	   */
-	  @Override
-	  public CrudFlag getCrudFlag() {
-          // Check if CRUDFlag is null, if so return NONE enumeration
-          if (super.getCrudFlag() == null) {
-              return CrudFlag.NONE;
-          }
-          return super.getCrudFlag();
-	  }
-	  
-	  /**
-	   * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
-	   * 
-	   * @param CRUD Flag enumeration
-	   */
-	  @Override
-	  public void setCrudFlag(CrudFlag flag) {
-	    super.setCrudFlag(flag);
-	  }
+
+	/**
+	 * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+	 *
+	 * @return CRUD Flag enumeration
+	 */
+	public edu.berkeley.path.model_objects.shared.CrudFlag getCrudFlagEnum() {
+
+		edu.berkeley.path.model_objects.shared.CrudFlag flag = null;
+		// Check if CRUDFlag is null, if so return NONE enumeration
+		if (super.getCrudFlag() == null) {
+			setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag.NONE);
+			flag = edu.berkeley.path.model_objects.shared.CrudFlag.NONE;
+		}
+		else {
+			switch (super.getCrudFlag()) {
+				case "CREATE":
+					flag = edu.berkeley.path.model_objects.shared.CrudFlag.CREATE;
+					break;
+				case "RETRIEVE":
+					flag = edu.berkeley.path.model_objects.shared.CrudFlag.RETRIEVE;
+					break;
+				case "UPDATE":
+					flag = edu.berkeley.path.model_objects.shared.CrudFlag.UPDATE;
+					break;
+				case "DELETE":
+					flag = edu.berkeley.path.model_objects.shared.CrudFlag.DELETE;
+					break;
+				default:
+					flag = edu.berkeley.path.model_objects.shared.CrudFlag.NONE;
+					break;
+
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+	 *
+	 * @param CRUD Flag enumeration
+	 */
+	public void setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag flag) {
+		// Check if CRUDFlag is null, if so return NONE enumeration
+		if (flag == null) {
+			super.setCrudFlag("NONE");
+		}
+		else {
+			switch (flag) {
+				case CREATE:
+					super.setCrudFlag("CREATE");
+					break;
+				case RETRIEVE:
+					super.setCrudFlag("RETRIEVE");
+					break;
+				case UPDATE:
+					super.setCrudFlag("UPDATE");
+					break;
+				case DELETE:
+					super.setCrudFlag("DELETE");
+					break;
+				default:
+					super.setCrudFlag("NONE");
+					break;
+
+			}
+		}
+	}
 	  
 	  
 	  /**

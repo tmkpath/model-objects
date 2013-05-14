@@ -53,7 +53,6 @@
 				<xs:element ref="LinkList" minOccurs="0" />
 				<xs:element ref="position" minOccurs="0" />
 				</xs:all>
-				<xs:attribute name="crudFlag" type="xs:string" />
 			  <xs:attribute name="name" type="xs:string" use="required" />
 			  <xs:attribute name="id" type="xs:long" use="required" />
 			  <xs:attribute name="mod_stamp" type="xs:string" use="optional" />

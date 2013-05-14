@@ -91,16 +91,6 @@
     <xs:complexType name="dateTime">
       <xs:attribute name="milliseconds" type="xs:long" use="required" />
     </xs:complexType>
-    
-    <!-- CRUD flag to tag all updated model objects -->
-    <xs:simpleType name="crudFlag">
-  		<xs:restriction base="xs:string">
-    		<xs:enumeration value="CREATE"/>
-    		<xs:enumeration value="RETRIEVE"/>
-    		<xs:enumeration value="UPDATE"/>
-    		<xs:enumeration value="DELETE"/>
-    		<xs:enumeration value="NONE"/>
-  		</xs:restriction>
-		</xs:simpleType>
+
 </xs:schema>
 
