@@ -30,7 +30,7 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
-public class ScenarioFactory {
+public class ScenarioFactory extends edu.berkeley.path.model_objects.jaxb.ObjectFactory {
 
     /**
      * Create an instance of Sensor Model Object

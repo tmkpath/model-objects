@@ -35,7 +35,7 @@ import edu.berkeley.path.model_objects.shared.*;
  * layer to return application specific extended model object classes
  *  
  */
-public class NetworkFactory {
+public class NetworkFactory extends edu.berkeley.path.model_objects.jaxb.ObjectFactory {
   
     public NetworkFactory() {
     }
@@ -45,6 +45,7 @@ public class NetworkFactory {
      * 
      * @return  Network Model Object 
      */
+		@Override
     public Network createNetwork() {
         return new Network();
     }
@@ -54,6 +55,7 @@ public class NetworkFactory {
      *
      * @return  Route Model Object
      */
+		@Override
     public Route createRoute() {
         return new Route();
     }
@@ -63,6 +65,7 @@ public class NetworkFactory {
      *
      * @return  Route Model Object
      */
+		@Override
     public RouteLinks createRouteLinks() {
         return new RouteLinks();
     }
@@ -72,7 +75,8 @@ public class NetworkFactory {
      * 
      * @return  Link Model Object
      */
-    public Link createLink(String linkType) {
+		@Override
+    public Link createLink() {
         return new Link();
     }
 
@@ -81,7 +85,8 @@ public class NetworkFactory {
      * 
      * @return  Node Model Object
      */
-    public Node createNode(String nodeType) {
+		@Override
+    public Node createNode() {
         return new Node();
     }
     
@@ -90,10 +95,9 @@ public class NetworkFactory {
      * 
      * @return  Node Model Object
      */
+		@Override
     public Point createPoint() {
         return new Point();
     }
-
-
 
 }
