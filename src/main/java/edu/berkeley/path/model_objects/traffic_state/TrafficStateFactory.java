@@ -7,7 +7,7 @@ package edu.berkeley.path.model_objects.traffic_state;
  * layer to return application specific extended model object classes
  *
  */
-public class TrafficStateFactory {
+public class TrafficStateFactory extends edu.berkeley.path.model_objects.jaxb.ObjectFactory {
 
 	/**
 	 * Create an instance of LinkState Model Object

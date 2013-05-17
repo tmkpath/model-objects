@@ -25,16 +25,14 @@
  **/
 package edu.berkeley.path.model_objects.util;
 
+import edu.berkeley.path.model_objects.jaxb.ObjectFactory;
 import java.io.StringReader;
 import java.io.StringWriter;
 
 import core.Exceptions;
 import core.Monitor;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.*;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 import javax.xml.stream.XMLStreamException;
@@ -66,9 +64,9 @@ public class Serializer {
    * 
    * @param xml String representation of JAXB XML
    * @param jaxbClass JAXB model object class to create from XML
-   * @return  JAXB or JAXB extended object created from XML
+   * @return  JAXB or JAXB extended object created from XML, depending on object factory passed in
    */
-  public static <T> T xmlToObject(String xml, Class<T>  jaxbClass) {
+  public static <T> T xmlToObject(String xml, Class<T>  jaxbClass, ObjectFactory factory) {
     StringBuffer xmlStr = new StringBuffer(xml);
     // Generic Object to be created as jaxbClass
     Object o = null;
@@ -77,11 +75,21 @@ public class Serializer {
       // is expected to be created
       JAXBContext context = JAXBContext.newInstance(jaxbClass);
       Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
+			// If Factory is passed in can create extended objects from serialization
+			if (factory != null) {
+				// This is ugly but necessary since JAXB changed the property name across versions
+				try {
+					jaxbUnmarshaller.setProperty("com.sun.xml.bind.ObjectFactory", factory);
+				}
+				catch (PropertyException exc) {
+					jaxbUnmarshaller.setProperty("com.sun.xml.internal.bind.ObjectFactory", factory);
+				}
+			}
       o = jaxbUnmarshaller.unmarshal( new StreamSource( new StringReader(xmlStr.toString()) ), jaxbClass ).getValue();
-    } 
+    }
     catch (JAXBException exc) {
-      Monitor.out("Error unmarshalling object " + jaxbClass.getName() + " from XML");
-      Monitor.out(Exceptions.getStackTrace(exc));
+      Monitor.err("Error unmarshalling object " + jaxbClass.getName() + " from XML");
+      Monitor.err(Exceptions.getStackTrace(exc));
     }
     // Cast from generic object to specified JAXB Class
     return jaxbClass.cast(o);
@@ -111,7 +119,7 @@ public class Serializer {
       xml = result.toString();
     } 
     catch (JAXBException exc) {
-      Monitor.out("Error marshalling object " + jaxbObject.getClass().getName() + " to XML");
+      Monitor.err("Error marshalling object " + jaxbObject.getClass().getName() + " to XML");
     }
     return xml;
   }
@@ -142,13 +150,13 @@ public class Serializer {
       o = jaxbUnmarshaller.unmarshal(xmlsr, jaxbClass ).getValue();
     } 
     catch (JAXBException exc) {
-      Monitor.out("Error unmarshalling object " + jaxbClass.getName() + " from JSON");
+      Monitor.err("Error unmarshalling object " + jaxbClass.getName() + " from JSON");
     }
     catch (JSONException exc) {
-      Monitor.out("Error Reading in JSON for " + jaxbClass.getName() );
+      Monitor.err("Error Reading in JSON for " + jaxbClass.getName() );
     }
     catch (XMLStreamException exc) {
-      Monitor.out("Error Binding JSON to JAXB XML Stream " + jaxbClass.getName() );
+      Monitor.err("Error Binding JSON to JAXB XML Stream " + jaxbClass.getName() );
     }
     // Cast from generic object to specified JAXB Class
     return jaxbClass.cast( o );
@@ -180,7 +188,7 @@ public class Serializer {
       json = result.toString();
     } 
     catch (JAXBException exc) {
-      Monitor.out("Error marshalling object " + jaxbObject.getClass().getName() + "to JSON ");
+      Monitor.err("Error marshalling object " + jaxbObject.getClass().getName() + "to JSON ");
     }
     return json;
   }

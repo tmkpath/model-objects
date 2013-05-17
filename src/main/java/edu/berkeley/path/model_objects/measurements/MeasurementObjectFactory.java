@@ -32,7 +32,7 @@ package edu.berkeley.path.model_objects.measurements;
  * @author Gunes Dervisoglu (gunesder@berkeley.edu)
  *
  */
-public class MeasurementObjectFactory {
+public class MeasurementObjectFactory extends edu.berkeley.path.model_objects.jaxb.ObjectFactory {
 	
 	public MeasurementObjectFactory(){
 	}
