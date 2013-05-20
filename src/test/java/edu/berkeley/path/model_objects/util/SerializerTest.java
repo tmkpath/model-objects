@@ -67,7 +67,7 @@ public class SerializerTest {
   }
 
   @Test
-  public void testMarshaller() {
+  public void testMarshaller() throws Exception {
     // Convert node object to XML
     String nodeXML = Serializer.objectToXml(node);
     
@@ -84,7 +84,7 @@ public class SerializerTest {
   }
   
   @Test
-  public void testUnMarshaller() {
+  public void testUnMarshaller() throws Exception {
     String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
         "<node id=\"2\"/>\n";
     // unmarshal XML into Node object
@@ -93,13 +93,13 @@ public class SerializerTest {
 
     String json = "{\"node\":{\"@id\":\"3\"}}";
     // unmarshal JSON into Node object
-    node = Serializer.jsonToObject(json, node.getClass());
+    node = Serializer.jsonToObject(json, node.getClass(), null);
     assertEquals(3, node.getId());
     
   }
   
   @Test
-  public void testMarshallerExtenedApp () {
+  public void testMarshallerExtenedApp() throws Exception {
     // Convert nodeExt object to XML
     String nodeExtXML = Serializer.objectToXml(nodeExt);
     String expectedXML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
@@ -115,7 +115,7 @@ public class SerializerTest {
   }
   
   @Test
-  public void testUnMarshallerExtenedApp () {
+  public void testUnMarshallerExtenedApp() throws Exception {
     String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
         "<node id=\"2\"/>\n";
     // unmarshal XML into Node object
@@ -124,12 +124,12 @@ public class SerializerTest {
     
     String json = "{\"node\":{\"@id\":\"3\"}}";
     // unmarshal JSON into Node object
-    nodeExt = Serializer.jsonToObject(json, nodeExt.getClass());
+    nodeExt = Serializer.jsonToObject(json, nodeExt.getClass(), null);
     assertEquals(3, nodeExt.getId());
   }
 
 	@Test
-	public void testUnMarshallerNetworkExt () {
+	public void testUnMarshallerNetworkExt () throws Exception {
 		String beforeXML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
 				"   <network>\n" +
 				"      <description/>\n" +

@@ -29,6 +29,7 @@ import edu.berkeley.path.model_objects.jaxb.ObjectFactory;
 import java.io.StringReader;
 import java.io.StringWriter;
 
+import edu.berkeley.path.model_objects.MOException;
 import core.Exceptions;
 import core.Monitor;
 
@@ -64,12 +65,14 @@ public class Serializer {
    * 
    * @param xml String representation of JAXB XML
    * @param jaxbClass JAXB model object class to create from XML
+	 * @param factory Optional Model Object Factory of extended Model Objects to instantiate
+	 *
    * @return  JAXB or JAXB extended object created from XML, depending on object factory passed in
    */
-  public static <T> T xmlToObject(String xml, Class<T>  jaxbClass, ObjectFactory factory) {
+  public static <T> T xmlToObject(String xml, Class<T> jaxbClass, ObjectFactory factory) throws MOException {
     StringBuffer xmlStr = new StringBuffer(xml);
     // Generic Object to be created as jaxbClass
-    Object o = null;
+    Object obj = null;
     try {
       // Create JAXB context object which tell the unmarshaller which JAXB class to create
       // is expected to be created
@@ -85,14 +88,14 @@ public class Serializer {
 					jaxbUnmarshaller.setProperty("com.sun.xml.internal.bind.ObjectFactory", factory);
 				}
 			}
-      o = jaxbUnmarshaller.unmarshal( new StreamSource( new StringReader(xmlStr.toString()) ), jaxbClass ).getValue();
+      obj = jaxbUnmarshaller.unmarshal( new StreamSource( new StringReader(xmlStr.toString()) ), jaxbClass ).getValue();
     }
     catch (JAXBException exc) {
       Monitor.err("Error unmarshalling object " + jaxbClass.getName() + " from XML");
-      Monitor.err(Exceptions.getStackTrace(exc));
+      throw new MOException(exc, "Unable to convert XML to Model Object.");
     }
     // Cast from generic object to specified JAXB Class
-    return jaxbClass.cast(o);
+    return jaxbClass.cast(obj);
   }
  
   /**
@@ -105,7 +108,7 @@ public class Serializer {
    * @param jaxbObject JAXB model object or extended class to serialize
    * @return  XML generated from JAXB model object
    */
-  public static <T> String objectToXml(Object  jaxbObject) {
+  public static <T> String objectToXml(Object jaxbObject) throws MOException {
     String xml = null;
     StringWriter result = new StringWriter();
     try {
@@ -120,6 +123,7 @@ public class Serializer {
     } 
     catch (JAXBException exc) {
       Monitor.err("Error marshalling object " + jaxbObject.getClass().getName() + " to XML");
+			throw new MOException(exc, "Unable to convert Model Object to XML.");
     }
     return xml;
   }
@@ -134,32 +138,50 @@ public class Serializer {
    * 
    * @param json String representation of JAXB JSON
    * @param jaxbClass JAXB model object class to create from JSON
+	 * @param factory Optional Model Object Factory of extended Model Objects to instantiate
+	 *
    * @return  JAXB or JAXB extended object created from JSON
    */
-  public static <T> T jsonToObject(String json, Class<T>  jaxbClass) {    
+  public static <T> T jsonToObject(String json, Class<T> jaxbClass, ObjectFactory factory) throws MOException {
     // Generic object to created as a JAXB class
-    Object o = null;
+    Object obj = null;
     try {
       JSONObject jsonStr = new JSONObject(json);
       // Create JAXB context object which tell the unmarshaller which JAXB class to create
       // is expected to be created
       JAXBContext context = JAXBContext.newInstance(jaxbClass);
-      org.codehaus.jettison.mapped.Configuration config = new org.codehaus.jettison.mapped.Configuration();
-      XMLStreamReader xmlsr = new MappedXMLStreamReader(jsonStr, new MappedNamespaceConvention(config));
-      Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
-      o = jaxbUnmarshaller.unmarshal(xmlsr, jaxbClass ).getValue();
+
+			org.codehaus.jettison.mapped.Configuration config = new org.codehaus.jettison.mapped.Configuration();
+			XMLStreamReader xmlsr = new MappedXMLStreamReader(jsonStr, new MappedNamespaceConvention(config));
+			Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
+
+			// If Factory is passed in can create extended objects from serialization
+			if (factory != null) {
+				// This is ugly but necessary since JAXB changed the property name across versions
+				try {
+					jaxbUnmarshaller.setProperty("com.sun.xml.bind.ObjectFactory", factory);
+				}
+				catch (PropertyException exc) {
+					jaxbUnmarshaller.setProperty("com.sun.xml.internal.bind.ObjectFactory", factory);
+				}
+			}
+
+      obj = jaxbUnmarshaller.unmarshal(xmlsr, jaxbClass ).getValue();
     } 
     catch (JAXBException exc) {
       Monitor.err("Error unmarshalling object " + jaxbClass.getName() + " from JSON");
+			throw new MOException(exc, "Unable to convert JSON to Model Object.");
     }
     catch (JSONException exc) {
       Monitor.err("Error Reading in JSON for " + jaxbClass.getName() );
+			throw new MOException(exc, "Unable to convert JSON to Model Object.");
     }
     catch (XMLStreamException exc) {
       Monitor.err("Error Binding JSON to JAXB XML Stream " + jaxbClass.getName() );
+			throw new MOException(exc, "Unable to convert JSON to Model Object.");
     }
     // Cast from generic object to specified JAXB Class
-    return jaxbClass.cast( o );
+    return jaxbClass.cast( obj );
   }
   
   /**
@@ -172,7 +194,7 @@ public class Serializer {
    * @param jaxbObject JAXB model object or extended class to serialize
    * @return  JSON generated from JAXB model object
    */
-  public static <T> String objectToJSON(Object  jaxbObject) {
+  public static <T> String objectToJSON(Object jaxbObject) throws MOException {
     String json = null;
     StringWriter result = new StringWriter();
     try {
@@ -189,6 +211,7 @@ public class Serializer {
     } 
     catch (JAXBException exc) {
       Monitor.err("Error marshalling object " + jaxbObject.getClass().getName() + "to JSON ");
+			throw new MOException(exc, "Unable to convert Model Object to JSON.");
     }
     return json;
   }

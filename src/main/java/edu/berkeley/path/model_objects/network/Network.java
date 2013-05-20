@@ -414,12 +414,14 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
       // Set list of points which are top left and bottom right of bounding box
       ArrayList<Point> points = new ArrayList<Point>();
       Point max = new Point();
+			// TODO : Figure out why oracles is valid geometry returns false when creating a polygon
+			// on a bounding box with maxLat, maxLong and minLat, minLong points.
       max.setLatitude(maxLat);
-      max.setLongitude(maxLong); 
+      max.setLongitude(minLong);
       
       Point min = new Point();
       min.setLatitude(minLat);
-      min.setLongitude(minLong);
+      min.setLongitude(maxLong);
       
       points.add(max);
       points.add(min);
