@@ -76,21 +76,29 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
   }
   
   /**
-   * Return type name of node
+   * Return type name of node, if not set returns null
    * 
    * @return type name of node as string
    */
   public String getTypeName() {
-    return getNodeType().getName();
+		if (getNodeType() != null) {
+			return getNodeType().getName();
+		} else {
+			return null;
+		}
   }
   
   /**
-   * Return node type id
+   * Return node type id, if not set returns 0
    * 
    * @return id of type of node as long
    */
   public long getTypeId() {
-    return getNodeType().getId();
+		if (getNodeType() != null) {
+			return getNodeType().getId();
+		} else {
+			return 0;
+		}
   }
   
   /**

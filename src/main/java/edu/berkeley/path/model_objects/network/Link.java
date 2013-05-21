@@ -160,21 +160,29 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
   }
   
   /**
-   * Return type name of link
+   * Return type name of link, if not set returns null
    * 
    * @return type name of link as string
    */
   public String getTypeName() {
-    return getLinkType().getName();
+		if (getLinkType() != null) {
+			return getLinkType().getName();
+		} else {
+			return null;
+		}
   }
   
   /**
-   * Return link type id
+   * Return link type id, if not set returns 0
    * 
    * @return id of type of link as long
    */
   public long getTypeId() {
-    return getLinkType().getId();
+		if (getLinkType() != null) {
+    	return getLinkType().getId();
+		} else {
+			return 0;
+		}
   }
   
   /**
