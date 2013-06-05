@@ -102,7 +102,7 @@ public class Geometry {
         // (top y, left x) - back to starting point
         coords[8] = points.get(0).getLongitude();
         coords[9] = points.get(0).getLatitude();
-        this.geom = JGeometry.createLinearPolygon(coords, 2, srid);
+        this.geom = JGeometryExt.createLinearPolygon(coords, 2, srid);
         break;
         
       // Creates 2D multi-point JGeometry structure
@@ -118,7 +118,7 @@ public class Geometry {
           coords[i*2] = (double)points.get(i).getLongitude();
           coords[i*2 + 1] = (double)points.get(i).getLatitude();
         }
-        this.geom = JGeometry.createLinearLineString(coords, 2, srid);
+        this.geom = JGeometryExt.createLinearLineString(coords, 2, srid);
         break;
       // Creates 2D polygon JGeometry structure
       case POLYGON:
@@ -133,7 +133,7 @@ public class Geometry {
           coords[i*2] = (double)points.get(i).getLongitude();
           coords[i*2 + 1] = (double)points.get(i).getLatitude();
         }
-        this.geom = JGeometry.createLinearPolygon(coords, 2, srid);
+        this.geom = JGeometryExt.createLinearPolygon(coords, 2, srid);
         break;
         
       // Creates 2d single point JGeometry structure
@@ -149,7 +149,7 @@ public class Geometry {
           coords[i*2] = (double)points.get(i).getLongitude();
           coords[i*2 + 1] = (double)points.get(i).getLatitude();
         }
-        this.geom = JGeometry.createPoint(coords, 2, srid);
+        this.geom = JGeometryExt.createPoint(coords, 2, srid);
         break;
         
       default:
@@ -186,7 +186,8 @@ public class Geometry {
   public STRUCT getOracleStruct(java.sql.Connection conn) throws MOException {
     STRUCT struct;
     try {
-      struct = JGeometry.store(this.geom, conn);
+      JGeometryExt.clearDBDescriptors();
+      struct = JGeometryExt.store(this.geom, conn);
     } catch (SQLException e) {
       throw new MOException(e, "Unable to process node SDO geometry on network " + e.getMessage());
     }
