@@ -92,8 +92,17 @@ public class Serializer {
     }
     catch (JAXBException exc) {
       Monitor.err("Error unmarshalling object " + jaxbClass.getName() + " from XML");
-      throw new MOException(exc, "Unable to convert XML to Model Object.");
+      throw new MOException(exc, "Unable to convert XML to " + jaxbClass.getName() + " Model Object. "
+          + exc.getMessage());
     }
+    // catch all other exceptions since JAXB unmarshaller can throw unchecked exceptions, for
+    // example
+    catch (Exception exc) {
+      Monitor.err("Error unmarshalling object " + jaxbClass.getName() + " from XML");
+      throw new MOException(exc, "Unable to convert XML to " + jaxbClass.getName() + " Model Object. "
+          + exc.getMessage());
+    }
+
     // Cast from generic object to specified JAXB Class
     return jaxbClass.cast(obj);
   }
@@ -123,7 +132,8 @@ public class Serializer {
     } 
     catch (JAXBException exc) {
       Monitor.err("Error marshalling object " + jaxbObject.getClass().getName() + " to XML");
-			throw new MOException(exc, "Unable to convert Model Object to XML.");
+			throw new MOException(exc, "Unable to convert XML to " + jaxbObject.getClass().getName() + " Model Object. "
+          + exc.getMessage());
     }
     return xml;
   }
@@ -131,7 +141,7 @@ public class Serializer {
   /**
    * Method to convert/unmarshall JSON to JAXB model object.
    * 
-   * * Note: JSON must represent what is in the base JAXB base layer (ie. what
+   * Note: JSON must represent what is in the base JAXB base layer (ie. what
    * is defined in the XSD schema ).  Additional attributes such as those
    * added in the extended classes will cause an error and a null object will 
    * returned.
@@ -170,15 +180,25 @@ public class Serializer {
     } 
     catch (JAXBException exc) {
       Monitor.err("Error unmarshalling object " + jaxbClass.getName() + " from JSON");
-			throw new MOException(exc, "Unable to convert JSON to Model Object.");
+			throw new MOException(exc, "Unable to convert JSON to " + jaxbClass.getName() + " Model Object. "
+          + exc.getMessage());
     }
     catch (JSONException exc) {
       Monitor.err("Error Reading in JSON for " + jaxbClass.getName() );
-			throw new MOException(exc, "Unable to convert JSON to Model Object.");
+			throw new MOException(exc, "Unable to convert JSON to " + jaxbClass.getName() + " Model Object. "
+          + exc.getMessage());
     }
     catch (XMLStreamException exc) {
       Monitor.err("Error Binding JSON to JAXB XML Stream " + jaxbClass.getName() );
-			throw new MOException(exc, "Unable to convert JSON to Model Object.");
+			throw new MOException(exc, "Unable to convert JSON to " + jaxbClass.getName() + " Model Object."
+          + exc.getMessage());
+    }
+    // catch all other exceptions since JAXB unmarshaller can throw unchecked exceptions, for
+    // example
+    catch (Exception exc) {
+      Monitor.err("Error unmarshalling object " + jaxbClass.getName() + " from SJON");
+      throw new MOException(exc, "Unable to convert JSON to " + jaxbClass.getName() + " Model Object. "
+          + exc.getMessage());
     }
     // Cast from generic object to specified JAXB Class
     return jaxbClass.cast( obj );
@@ -211,7 +231,8 @@ public class Serializer {
     } 
     catch (JAXBException exc) {
       Monitor.err("Error marshalling object " + jaxbObject.getClass().getName() + "to JSON ");
-			throw new MOException(exc, "Unable to convert Model Object to JSON.");
+			throw new MOException(exc, "Unable to convert JSON to " + jaxbObject.getClass().getName() + " Model Object."
+          + exc.getMessage());
     }
     return json;
   }
