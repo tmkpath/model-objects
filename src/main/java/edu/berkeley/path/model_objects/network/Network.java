@@ -321,6 +321,30 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
     linkList.getLink().addAll((List<edu.berkeley.path.model_objects.jaxb.Link>)(List<?>)links);
     setLinkList(linkList);
 	}
+
+  /**
+   * Based on the begin and end nodes of links, this sets the input and output links of all
+   * nodes in the network.  This method assumes all links begin and end node are correctly set.
+   *
+   * NOTE: This method should be called before populate when reading from the database (since input and output links
+   * are not stored in the DB) or when unmarshalling from XML or JSON which doesnot define input/output links.
+   *
+   * @return void
+   */
+  @SuppressWarnings("unchecked")
+  public void setInputOutputLinks() {
+
+    // cycle through lise of links and for each node add input/output links
+    for (Link link : getListOfLinks()) {
+      // get begin and end nodes based on id
+      Node beginNode = getNodeWithId(link.getBeginNodeId());
+      Node endNode = getNodeWithId(link.getEndNodeId());
+
+      // add link as output link to begin node and input link to end node
+      beginNode.addOutputLink(link.getId());
+      endNode.addInputLink(link.getId());
+    }
+  }
 	
 	/**
    * Populates all network dependencies by moving along it's node list
