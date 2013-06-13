@@ -55,16 +55,19 @@ public class MOException extends Exception {
     * @param causeStr A description of the exception.
     */
    private static String makeMessage(  Throwable cause, String causeStr) {
+
+     // If in debug mode show cause and stack traces
+     if (System.getProperty("debug")  == "true") {
        StringBuilder sb = new StringBuilder();
 
        sb.append("CAUSE: ").append( causeStr ).append("\n");
-
-       // If in debug mode show stack traces
-       if (System.getProperty("debug")  == "true") {
-         sb.append("STACKTRACE: ").append( getStackTrace(cause) ).append("\n");
-       }
-
+       sb.append("STACKTRACE: ").append( getStackTrace(cause) ).append("\n");
        return sb.toString();
+     }
+     // otherwise just output causeStr
+     else {
+       return causeStr;
+     }
    }
    
    /**

@@ -32,6 +32,10 @@ import edu.berkeley.path.model_objects.jaxb.Position;
 import edu.berkeley.path.model_objects.jaxb.RoadwayMarkers;
 import edu.berkeley.path.model_objects.jaxb.Marker;
 import edu.berkeley.path.model_objects.jaxb.NodeType;
+import edu.berkeley.path.model_objects.jaxb.Outputs;
+import edu.berkeley.path.model_objects.jaxb.Output;
+import edu.berkeley.path.model_objects.jaxb.Inputs;
+import edu.berkeley.path.model_objects.jaxb.Input;
 import edu.berkeley.path.model_objects.shared.Point;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
 
@@ -113,7 +117,51 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
     nodeType.setId(id);
     setNodeType(nodeType);
   }
-  
+
+  /**
+   * Add link id as an output link to node
+   *
+   * @param  linkId id of output link
+   * @return void
+   */
+  public void addOutputLink(long id) {
+
+    // create new container class holding output links
+    Output outLink = new Output();
+    outLink.setLinkId(id);
+
+    // If no output link has been added so far
+    if (getOutputs() == null ) {
+      Outputs outputs = new Outputs();
+      setOutputs(outputs);
+    }
+
+    // add output linkId container class to list of outputs links
+    getOutputs().getOutput().add(outLink);
+  }
+
+  /**
+   * Add link id as an input link to node
+   *
+   * @param  linkId id of input link
+   * @return void
+   */
+  public void addInputLink(long id) {
+
+    // create new container class holding input links
+    Input inLink = new Input();
+    inLink.setLinkId(id);
+
+    // If no input link has been added so far
+    if (getInputs() == null ) {
+      Inputs inputs = new Inputs();
+      setInputs(inputs);
+    }
+
+    // add input linkId container class to list of inputs links
+    getInputs().getInput().add(inLink);
+  }
+
 	/** 
    * Get network that contains this node, only valid if node has been associated 
    * with a network by calling the populate function.
@@ -125,7 +173,7 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 	}
 	    
   /** 
-   * Get Array of links exiting this node 
+   * Get Array of links exiting this node, after network has been populated
    * 
    * @return Array of links 
    */ 
@@ -134,7 +182,7 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 	}
 
   /** 
-   * Get Array of links entering this node 
+   * Get Array of links entering this node, after network has been populated
    * 
    * @return  Array of links 
    */ 
@@ -143,7 +191,8 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 	}
 
   /** 
-   * Get Index of link with given id in the list of input links of this node
+   * Get Index of link with given id in the list of input links of this node,
+   * after network has been populated.
    * 
    * @return  Index of link in input links array
    */ 
@@ -157,7 +206,8 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 	}
 	
   /** 
-   * Get Index of link with given id in the list of output links of this node
+   * Get Index of link with given id in the list of output links of this node,
+   * after network has been populated.
    * 
    * @return  Index of link in output links array
    */ 
@@ -171,7 +221,7 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 	}
 	
   /** 
-   * Get Number of links entering this node 
+   * Get Number of links entering this node, after network has been populated
    * 
    * @return  Number of links entering node
    */ 
@@ -180,7 +230,7 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 	}
 
   /** 
-   * Get Number of links exiting this node 
+   * Get Number of links exiting this node, after network has been populated
    * 
    * @return Number of links exiting node
    */ 
@@ -360,6 +410,7 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
     this.myNetwork = myNetwork;
     
     nOut = 0;
+
     if(getOutputs()!=null){
       nOut = getOutputs().getOutput().size();
       outputLink = new Link[nOut];
