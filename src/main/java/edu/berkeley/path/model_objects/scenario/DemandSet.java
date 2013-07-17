@@ -33,7 +33,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.berkeley.path.model_objects.scenario.DemandProfile;
-import edu.berkeley.path.model_objects.jaxb.VehicleTypeOrder;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
 
 public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
@@ -189,32 +188,6 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
     @Override
     public void setDescription(String value) {
         this.description = value;
-    }
-
-    /**
-     * Gets the value of the vehicleTypeOrder property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link VehicleTypeOrder }
-     *     
-     */
-    @Override
-    public VehicleTypeOrder getVehicleTypeOrder() {
-        return vehicleTypeOrder;
-    }
-
-    /**
-     * Sets the value of the vehicleTypeOrder property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link VehicleTypeOrder }
-     *     
-     */
-    @Override
-    public void setVehicleTypeOrder(VehicleTypeOrder value) {
-        this.vehicleTypeOrder = value;
     }
 
 	/**

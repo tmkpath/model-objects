@@ -159,27 +159,6 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
     }
 
     /**
-     * Gets the value of the vehicleTypeOrder property.
-     * 
-     * @return VehicleTypeOrder
-     *     
-     */
-	@Override
-    public VehicleTypeOrder getVehicleTypeOrder() {
-        return (VehicleTypeOrder)super.getVehicleTypeOrder();
-    }
-
-    /**
-     * Sets the value of the vehicleTypeOrder property.
-     * 
-     * @param VehicleTypeOrder value
-     *     
-     */
-    public void setVehicleTypeOrder(VehicleTypeOrder value) {
-        super.setVehicleTypeOrder(value);
-    }
-
-    /**
      * Gets the value of the splitRatioProfile property.
      * 
      * 
@@ -227,7 +206,7 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
      *     
      */
 	@Override
-    public void setProjectId(Long value) {
+    public void setProjectId(long value) {
         super.setProjectId(value);
     }
 

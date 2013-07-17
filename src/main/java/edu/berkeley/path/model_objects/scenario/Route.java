@@ -24,13 +24,9 @@
  * POSSIBILITY OF SUCH DAMAGE.
  **/
 
-package edu.berkeley.path.model_objects.network;
-
-import edu.berkeley.path.model_objects.jaxb.LinkReference;
-import edu.berkeley.path.model_objects.jaxb.LinkReferences;
+package edu.berkeley.path.model_objects.scenario;
 
 import java.util.List;
-import java.util.ArrayList;
 
 /** Route class
  * @author Matthew Juhn (mnjuhn@berkeley.edu)
@@ -78,26 +74,6 @@ public class Route extends edu.berkeley.path.model_objects.jaxb.Route {
     }
 
     /**
-     * Return id of route
-     *
-     * @return id of route as long
-     */
-    @Override
-    public long getProjectId() {
-        return super.getProjectId();
-    }
-
-    /**
-     * Set id of route
-     *
-     * @param id of route
-     */
-    @Override
-    public void setProjectId(long id) {
-        super.setProjectId(id);
-    }
-
-    /**
      * Gets the value of the modStamp property.
      *
      * @return String representation of mod-stamp
@@ -123,21 +99,21 @@ public class Route extends edu.berkeley.path.model_objects.jaxb.Route {
      * @return List of all links in route.
      */
     @SuppressWarnings("unchecked")
-    public List<RouteLinks> getListOfRouteLinks() {
+    public List<RouteLink> getListOfRouteLinks() {
         // return casted list of Nodes from JAXB base class
-        return (List<RouteLinks>)(List<?>)getRouteLinks();
+        return (List<RouteLink>)(List<?>)getRouteLink();
     }
 
     /**
      * Set the Route links. Attaches list of RouteLink Model Objects to Route.
      *
-     * @param List<RouteLinks> List of extended Route Links to add
+     * @param List<RouteLink> List of extended Route Links to add
      */
     @SuppressWarnings("unchecked")
-    public void setListOfRouteLinks(List<RouteLinks> links) {
+    public void setListOfRouteLinks(List<RouteLink> links) {
         // clear all routeLinks and add new list of them
-        getRouteLinks().clear();
-        getRouteLinks().addAll((List<edu.berkeley.path.model_objects.jaxb.RouteLinks>)(List<?>)links);
+        getRouteLink().clear();
+        getRouteLink().addAll((List<edu.berkeley.path.model_objects.jaxb.RouteLink>)(List<?>)links);
     }
 
 

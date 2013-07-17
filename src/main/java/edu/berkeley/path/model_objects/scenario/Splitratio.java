@@ -98,17 +98,17 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
 	}
 	
 	/**
-	 * @param ratio the ratio of this object
+	 * @param split ratio(s) content String as comma separated values
 	 */
-	public void setRatio(double ratio) {
-		super.setContent(ratio + "");
+	public void setContent(String content) {
+		super.setContent(content);
 	}
 	
 	/**
-	 * @return the ratio as a double
+	 * @return the split ratio(s) content String as a comma separated values
 	 */
-	public double getRatio() {
-		return Double.parseDouble(super.getContent());
+	public String getContent() {
+		return super.getContent();
 	}
 
 	  

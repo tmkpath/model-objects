@@ -43,11 +43,9 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	 */
 	public void setByName(Object_Parameter p) {
 		
-		if (p.name.compareToIgnoreCase("id") == 0 ) 				setId(p.intParam);
-		else if (p.name.compareToIgnoreCase("demandProfId") == 0 ) 	setDemandProfileId(p.intParam);
-		else if (p.name.compareToIgnoreCase("flow") == 0 ) 		setContent(String.valueOf(p.fltParam));
+
+		if (p.name.compareToIgnoreCase("flow") == 0 ) 		setContent(String.valueOf(p.fltParam));
 		else if (p.name.compareToIgnoreCase("vehTypeId") == 0 ) 	setVehicleTypeId(p.intParam);
-		else if (p.name.compareToIgnoreCase("demandOrder") == 0 ) 	setDemandOrder(p.intParam);
 		else if (p.name.compareToIgnoreCase("modStamp") == 0 ) 		setModStamp(p.strParam);
 		
 	}
@@ -61,14 +59,11 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	public Object_Parameter[] getAll() {
 		
 		Object_Parameter[] params = new Object_Parameter[7];
-		
-		params[0] = new Object_Parameter("id", id, 0.0F, null);
-		params[1] = new Object_Parameter("demandProfId", demandProfileId, 0.0F, null);
-		params[2] = new Object_Parameter("flow", 0, Double.parseDouble(getContent()), null);
-		params[3] = new Object_Parameter("vehTypeId", vehicleTypeId, 0.0F, null);
-		params[4] = new Object_Parameter("demandOrder", demandOrder, 0.0F, null);
-		params[5] = new Object_Parameter("modStamp", 0, 0.0F, modStamp);
-		params[6] = new Object_Parameter("crud", getCrudFlagEnum().ordinal(), 0.0F, null);
+
+		params[0] = new Object_Parameter("flow", 0, Double.parseDouble(getContent()), null);
+		params[1] = new Object_Parameter("vehTypeId", vehicleTypeId, 0.0F, null);
+		params[2] = new Object_Parameter("modStamp", 0, 0.0F, modStamp);
+		params[3] = new Object_Parameter("crud", getCrudFlagEnum().ordinal(), 0.0F, null);
 		
 		Object_Parameter.setPositions(params);
 		
@@ -145,44 +140,6 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 			}
 		}
 	}
-	  
-	  
-	  /**
-     * Gets the value of the id property.
-     * 
-     */
-	@Override
-	public long getId() {
-        return id;
-    }
-
-    /**
-     * Sets the value of the id property.
-     * 
-     */
-	@Override
-	public void setId(long value) {
-        this.id = value;
-    }	
-	
-	  /**
-     * Gets the value of the DemandProfId property.
-     * 
-     */
-	@Override
-	public long getDemandProfileId() {
-        return super.getDemandProfileId();
-    }
-
-    /**
-     * Sets the value of the DemandProfId property.
-     * 
-     */
-	@Override
-	public void setDemandProfileId(long value) {
-        super.setDemandProfileId(value);
-    }
-	
 	
 	/**
 	 * @param modstamp the modstamp to set
@@ -230,21 +187,4 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	public long getVehicleTypeId() {
 		return super.getVehicleTypeId();
 	}
-	
-	/**
-	 * @param offset the order in the set of ratios
-	 */
-	@Override
-	public void setDemandOrder(long offset) {
-		super.setDemandOrder(offset);
-	}
-	
-	/**
-	 * @return the vehicle type id for this ratio
-	 */
-	@Override
-	public long getDemandOrder() {
-		return super.getDemandOrder();
-	}
-
 }

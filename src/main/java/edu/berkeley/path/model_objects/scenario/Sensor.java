@@ -199,28 +199,6 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 		super.setLinkPosition(linkPosition);
 	}
 
-	
-	/**
-	 * Get the Link object this sensor is attached too
-	 * 
-	 * @return LinkReference The link object this sensor is attached too
-	 */
-	@Override
-	public LinkReference getLinkReference() {
-		return (LinkReference)super.getLinkReference();
-	}
-
-
-    
-	/**
-	 * Sets the link object for this sensor
-	 * 
-	 * @param linkReference the linkReference to set
-	 */
-	public void setSensorLinkReference(LinkReference linkReference) {
-		super.setLinkReference(linkReference);
-	}
-
 
 	/**
 	 * @return Parameters the parameters associated with this sensor
@@ -305,13 +283,13 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	}
 
 	/**
-	 * Get the health status(0 or 1) for this sensor
+	 * Get the health status for this sensor
 	 * 
-	 * @return int the healthStatus
+	 * @return double the healthStatus
 	 */
 	@Override
-	public Integer getHealthStatus() {
-		return super.getHealthStatus().intValue();
+	public Double getHealthStatus() {
+		return super.getHealthStatus();
 	}
 
 	/**
@@ -320,7 +298,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @param healthStatus the healthStatus to set
 	 */
 	@Override
-	public void setHealthStatus(Integer healthStatus) {
+	public void setHealthStatus(Double healthStatus) {
 		super.setHealthStatus(healthStatus);
 	}
 	
@@ -389,6 +367,16 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	public String getModStamp() {
 		return super.getModStamp();
 	}
+
+  /**
+   * Get the Link id this sensor is attached too
+   *
+   * @return The link id this sensor is attached too
+   */
+  @Override
+  public Long getLinkId() {
+    return super.getLinkId();
+  }
 	
 	/**
 	 * Sets the value of the link id property.
@@ -416,8 +404,8 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 * @return  True if all sensor validation is correct
 	 */
 	public final Boolean isValid() {
+    // TODO: add Validation
 		boolean isValid = true;
-		  
 		
 		return isValid;
 	}

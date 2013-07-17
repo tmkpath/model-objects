@@ -51,26 +51,6 @@ public class NetworkFactory extends edu.berkeley.path.model_objects.jaxb.ObjectF
     }
 
     /**
-     * Create an instance of Route Model Object
-     *
-     * @return  Route Model Object
-     */
-		@Override
-    public Route createRoute() {
-        return new Route();
-    }
-
-    /**
-     * Create an instance of RouteLinks Model Object
-     *
-     * @return  Route Model Object
-     */
-		@Override
-    public RouteLinks createRouteLinks() {
-        return new RouteLinks();
-    }
-
-    /**
      * Create an instance of Link Model Object
      * 
      * @return  Link Model Object

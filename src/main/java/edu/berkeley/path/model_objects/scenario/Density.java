@@ -35,17 +35,20 @@ public class Density extends edu.berkeley.path.model_objects.jaxb.Density {
     return true;
   }
 
-  public long getVehicleTypeId() {
-    return getVehicleType().getId();
+  /**
+   * @param id the vehicle type id for this density
+   */
+  @Override
+  public void setVehicleTypeId(long id) {
+    super.setVehicleTypeId(id);
   }
 
-  public void setVehicleType(long id, String name, double size, int isStandard) {
-    VehicleType type = new VehicleType();
-    type.setId(id);
-    type.setName(name);
-    type.setSizeFactor(size);
-    type.setIsStandard(isStandard);
-    setVehicleType(type);
+  /**
+   * @return the vehicle type id for this density
+   */
+  @Override
+  public long getVehicleTypeId() {
+    return super.getVehicleTypeId();
   }
 
 	/**
@@ -153,22 +156,22 @@ public class Density extends edu.berkeley.path.model_objects.jaxb.Density {
   }
 
   @Override
-  public long getDestinationNetworkId() {
+  public Long getDestinationNetworkId() {
     return super.getDestinationNetworkId();
   }
 
   @Override
-  public void setDestinationNetworkId(long value) {
+  public void setDestinationNetworkId(Long value) {
     super.setDestinationNetworkId(value);
   }
 
   @Override
-  public double getDensity() {
-    return super.getDensity();
+  public String getContent() {
+    return super.getContent();
   }
 
   @Override
-  public void setDensity(double value) {
-    super.setDensity(value);
+  public void setContent(String value) {
+    super.setContent(value);
   }
 }
