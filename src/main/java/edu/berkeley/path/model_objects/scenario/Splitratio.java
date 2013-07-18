@@ -26,28 +26,13 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import edu.berkeley.path.model_objects.MOException;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
 
-public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio implements Comparable<Splitratio>{
-	
-	
-    /**
-     * Gets the value of the id property.
-     * 
-     */
-	@Override
-    public long getId() {
-        return super.getId();
-    }
+public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio {
 
-    /**
-     * Sets the value of the id property.
-     * 
-     */
-	@Override
-	public void setId(long value) {
-        super.setId(value);
-    }
+  // array of ratios derived from comma separated content string
+  /** @y.exclude */ private Double[] ratios;
     
 	/**
 	 * @return the split ratio's link in
@@ -98,18 +83,44 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
 	}
 	
 	/**
-	 * @param split ratio(s) content String as comma separated values
+	 * @param split ratio(s) content String as comma separated double string values
+   *  otherwise throws exception
+   * @throws MOException
+   *
 	 */
-	public void setContent(String content) {
-		super.setContent(content);
+	public void setRatios(String content) throws MOException {
+
+    // Create array representation of split rations indexed by dt
+    try {
+      String[] contentArray = content.split(",");
+      ratios = new Double[contentArray.length];
+      // For each value separated by a comma, add it to ratios array
+      for (int i = 0; i < contentArray.length; i++) {
+        ratios[i] = Double.valueOf(contentArray[i]);
+      }
+    }
+    catch (Exception ex) {
+      throw new MOException(ex,
+          "Invalid split ratio content string. Should be a comma separated string of double values.");
+    }
+
+    // set ratio content string
+    super.setContent(content);
 	}
 	
 	/**
 	 * @return the split ratio(s) content String as a comma separated values
 	 */
-	public String getContent() {
+	public String getRatiosContent() {
 		return super.getContent();
 	}
+
+  /**
+   * @return the split ratio(s) as a array of doubles indexed by dt
+   */
+  public Double[] getRatiosArray() {
+    return ratios;
+  }
 
 	  
 	/**
@@ -127,22 +138,7 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
 	public long getVehicleTypeId() {
 		return super.getVehicleTypeId();
 	}
-	
-	/**
-	 * @param offset the order in the set of ratios
-	 */
-	@Override
-	public void setRatioOrder(int offset) {
-		super.setRatioOrder(offset);
-	}
-	
-	/**
-	 * @return the vehicle type id for this ratio
-	 */
-	@Override
-	public int getRatioOrder() {
-		return super.getRatioOrder();
-	}
+
 	
 	/**
 	 * Returns true if the linkInId, linkOutId, and vehTypeId all match
@@ -160,15 +156,6 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
 	 */
 	public boolean isValid(){
 		return true;
-	}
-
-	/**
-	 * This method is used in testing to sort the ratios by id.
-	 *
-	 * @return int
-	 */
-	public int compareTo(Splitratio other){
-		return (int)(this.getId() - other.getId());
 	}
 
 	/**

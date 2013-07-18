@@ -27,6 +27,7 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import edu.berkeley.path.model_objects.MOException;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
 
 /** 
@@ -35,14 +36,16 @@ import edu.berkeley.path.model_objects.shared.CrudFlag;
  * @author Alexey Goder (alexey@goder.com)
  */
 public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
-	
+
+  // array of demands derived from comma separated content string
+  /** @y.exclude */ private Double[] demands;
+
 	/**
 	 * Set value by name
 	 * @param Object_Parameter
 	 * @
 	 */
 	public void setByName(Object_Parameter p) {
-		
 
 		if (p.name.compareToIgnoreCase("flow") == 0 ) 		setContent(String.valueOf(p.fltParam));
 		else if (p.name.compareToIgnoreCase("vehTypeId") == 0 ) 	setVehicleTypeId(p.intParam);
@@ -68,9 +71,6 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 		Object_Parameter.setPositions(params);
 		
 		return params;
-		
-		
-		
 	}
 
 	/**
@@ -156,22 +156,46 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	public String getModStamp() {
 		return super.getModStamp();
 	}
-	
-	/**
-	 * @param content the content to set
-	 */
-	@Override
-	public void setContent(String content) {
-		super.setContent(content);
-	}
-	
-	/**
-	 * @return the content
-	 */
-	@Override
-	public String getContent() {
-		return super.getContent();
-	}
+
+  /**
+   * @param demand(s) content String as comma separated double string values
+   *  otherwise throws exception
+   * @throws MOException
+   *
+   */
+  public void setDemands(String content) throws MOException {
+
+    // Create array representation of demands indexed by dt
+    try {
+      String[] contentArray = content.split(",");
+      demands = new Double[contentArray.length];
+      // For each value separated by a comma, add it to ratios array
+      for (int i = 0; i < contentArray.length; i++) {
+        demands[i] = Double.valueOf(contentArray[i]);
+      }
+    }
+    catch (Exception ex) {
+      throw new MOException(ex,
+          "Invalid demand content string. Should be a comma separated string of double values.");
+    }
+
+    // set ratio content string
+    super.setContent(content);
+  }
+
+  /**
+   * @return the demand(s) content String as a comma separated values
+   */
+  public String getDemandsContent() {
+    return super.getContent();
+  }
+
+  /**
+   * @return the demand(s) as a array of doubles indexed by dt
+   */
+  public Double[] getDemandsArray() {
+    return demands;
+  }
 	/**
 	 * @param id the vehicle type id for this ratio
 	 */

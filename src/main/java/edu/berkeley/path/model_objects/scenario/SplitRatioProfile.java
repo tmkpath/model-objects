@@ -41,14 +41,14 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	 * @param vehicle_type_id
 	 * @return Double[]
 	 */
-	public Double[] getSplitRatio(long link_in_id, long link_out_id, long vehicle_type_id){
-		ArrayList<Double> values = new ArrayList<Double>();
+	public Double[] getSplitRatio(long link_in_id, long link_out_id, long vehicle_type_id) {
 		List<Splitratio> ratios = getListOfSplitratios();
 		for (Splitratio s : ratios){
 			if(s.equals(link_in_id, link_out_id, vehicle_type_id))
-				values.add(Double.parseDouble(s.getContent()));
+				return s.getRatiosArray();
 		}
-		return values.toArray(new Double[0]);
+    // otherwise none were found so return empty array
+    return new Double[0];
 	}
 	
 	/**
@@ -78,8 +78,14 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 		List<Splitratio> ratios = getListOfSplitratios();
 		for(Splitratio r : ratios)
 		{
-			if(r.equals(link_in_id, link_out_id, vehicle_type_id) && r.getRatioOrder() == offset)
-				return Double.parseDouble(ratios.get(offset).getContent());				
+			if(r.equals(link_in_id, link_out_id, vehicle_type_id)) {
+        // get all ratios values for link in, link out and vehicle type id - indexed by dt
+        Double[] ratiosByDT = r.getRatiosArray();
+        // check if ratio exists for offset
+        if (ratiosByDT.length > offset) {
+				  return ratiosByDT[offset];
+        }
+      }
 		}
 		return -1;
 
@@ -93,7 +99,7 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	 * @param link_in_id
 	 * @param link_out_id
 	 * @param vehicle_type_id
-	 * @param integer offset in seconds since start_time of profile
+	 * @param long offset in seconds since start_time of profile
 	 * @return the split ratio corresponding to the parameters passed in or -1 if not found
 	 */
 	public double getSplitRatio(long link_in_id, long link_out_id, long vehicle_type_id, long offsetTime){
@@ -101,8 +107,14 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 		int offset = (int)Math.floor(offsetTime / this.getDt());
 		for(Splitratio r : ratios)
 		{
-			if(r.equals(link_in_id, link_out_id, vehicle_type_id) && r.getRatioOrder() == offset)
-				return Double.parseDouble(ratios.get(offset).getContent());				
+      if(r.equals(link_in_id, link_out_id, vehicle_type_id)) {
+        // get all ratios values for link in, link out and vehicle type id - indexed by dt
+        Double[] ratiosByDT = r.getRatiosArray();
+        // check if ratio exists for offset
+        if (ratiosByDT.length > offset) {
+          return ratiosByDT[offset];
+        }
+      }
 		}
 		return -1;
 	}
