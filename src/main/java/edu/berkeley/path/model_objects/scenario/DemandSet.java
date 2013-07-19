@@ -34,6 +34,7 @@ import java.util.List;
 
 import edu.berkeley.path.model_objects.scenario.DemandProfile;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
+import edu.berkeley.path.model_objects.network.Link;
 
 public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 
@@ -292,6 +293,37 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
     public void setName(String value) {
         this.name = value;
     }
-    
+
+  /**
+   * Gets the value of the demandProfile property.
+   *
+   *
+   * @return List<DemandProfile>
+   *
+   *
+   */
+  @SuppressWarnings("unchecked")
+  public List<DemandProfile> getListOfDemandProfiles() {
+    // return casted list of Nodes from JAXB base class
+    return (List<DemandProfile>)(List<?>)super.getDemandProfile();
+  }
+
+
+  /**
+   * Get the profile at the specified link.
+   * Creates a list of DemandProfiles associated with the node passed in.
+   * If there are no profiles associated with this link null is returned.
+   *
+   * @param Link get demand profiles associated with the node
+   * @return List<DemandProfile> or null if empty
+   */
+  public List<DemandProfile> getDemandAtLink(Link link) {
+    List<DemandProfile> profiles = new ArrayList<DemandProfile>();
+    for(DemandProfile p : getListOfDemandProfiles())
+      if(p.getLinkIdOrg() == link.getId())
+        profiles.add(p);
+
+    return profiles.size() != 0 ? profiles : null;
+  }
     
 }

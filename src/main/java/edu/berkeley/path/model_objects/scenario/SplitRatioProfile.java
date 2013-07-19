@@ -44,8 +44,11 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	public Double[] getSplitRatio(long link_in_id, long link_out_id, long vehicle_type_id) {
 		List<Splitratio> ratios = getListOfSplitratios();
 		for (Splitratio s : ratios){
-			if(s.equals(link_in_id, link_out_id, vehicle_type_id))
-				return s.getRatiosArray();
+			if(s.equals(link_in_id, link_out_id, vehicle_type_id)) {
+        // Copy ratios arraylist to primative array of doubles
+        Double[] ratioValues = new Double[s.getRatiosArray().size()];
+				return s.getRatiosArray().toArray(ratioValues);
+      }
 		}
     // otherwise none were found so return empty array
     return new Double[0];
@@ -62,7 +65,7 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	 * @param time String Format : 14:05:00
 	 * @return double
 	 */
-	public double getSplitRatio(long link_in_id, long link_out_id, long vehicle_type_id, String time){
+	public Double getSplitRatio(long link_in_id, long link_out_id, long vehicle_type_id, String time){
 		
 		DateTime dateTime = new DateTime();
 	    org.joda.time.DateTime joda = dateTime.setDateString("1970-01-01 00:00:00");
@@ -80,14 +83,14 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 		{
 			if(r.equals(link_in_id, link_out_id, vehicle_type_id)) {
         // get all ratios values for link in, link out and vehicle type id - indexed by dt
-        Double[] ratiosByDT = r.getRatiosArray();
+        ArrayList<Double> ratiosByDT = r.getRatiosArray();
         // check if ratio exists for offset
-        if (ratiosByDT.length > offset) {
-				  return ratiosByDT[offset];
+        if (ratiosByDT.size() > offset) {
+				  return ratiosByDT.get(offset);
         }
       }
 		}
-		return -1;
+		return -1D;
 
 	}
 	
@@ -102,21 +105,21 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	 * @param long offset in seconds since start_time of profile
 	 * @return the split ratio corresponding to the parameters passed in or -1 if not found
 	 */
-	public double getSplitRatio(long link_in_id, long link_out_id, long vehicle_type_id, long offsetTime){
+	public Double getSplitRatio(long link_in_id, long link_out_id, long vehicle_type_id, long offsetTime){
 		List<Splitratio> ratios = getListOfSplitratios();
 		int offset = (int)Math.floor(offsetTime / this.getDt());
 		for(Splitratio r : ratios)
 		{
       if(r.equals(link_in_id, link_out_id, vehicle_type_id)) {
         // get all ratios values for link in, link out and vehicle type id - indexed by dt
-        Double[] ratiosByDT = r.getRatiosArray();
+        ArrayList<Double> ratiosByDT = r.getRatiosArray();
         // check if ratio exists for offset
-        if (ratiosByDT.length > offset) {
-          return ratiosByDT[offset];
+        if (ratiosByDT.size() > offset) {
+          return ratiosByDT.get(offset);
         }
       }
 		}
-		return -1;
+		return -1D;
 	}
 
 	/**

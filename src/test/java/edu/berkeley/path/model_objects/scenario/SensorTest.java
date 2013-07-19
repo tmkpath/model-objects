@@ -42,7 +42,7 @@ public class SensorTest {
   private static final double LAT = 22.2;
   private static final double LINK_POSITION = 0.1;
   private static final int LANE_NUMBER = 1;
-  private static final int HEALTH_STATUS = 0;
+  private static final double HEALTH_STATUS = 0.0D;
   private static final long DATA_FEED = 2;
   private static final long ID = 5;
   private static final long LINK_ID = 4;
@@ -72,7 +72,7 @@ public class SensorTest {
 
 		sensor.setModStamp(MOD_STAMP);
 		sensor.setLinkPosition(LINK_POSITION);
-		sensor.setSensorLinkReference(new LinkReference());
+		sensor.setLinkId(1L);
 		sensor.setSensorParameters(new Parameters());
 		sensor.setSensorIdOriginal(ENTITY_ID);
 		sensor.setLaneNumber(LANE_NUMBER);
@@ -87,11 +87,11 @@ public class SensorTest {
 		    assertEquals(CrudFlag.NONE, sensor.getCrudFlagEnum());
 		    assertEquals(MOD_STAMP, sensor.getModStamp());
 		    assertEquals(LINK_POSITION, sensor.getLinkPosition(), EPSILON);
-		    assertNotNull(sensor.getLinkReference());
+		    assertEquals(LINK_ID, (long)sensor.getLinkId());
 		    assertNotNull(sensor.getParameters());
 		    assertEquals(ENTITY_ID, sensor.getSensorIdOriginal());
 		    assertEquals(LANE_NUMBER, sensor.getLaneNumber(), EPSILON);
-		    assertEquals(HEALTH_STATUS, (int)sensor.getHealthStatus());
+		    assertEquals(HEALTH_STATUS, (double)sensor.getHealthStatus(), EPSILON);
 		    assertEquals(DATA_FEED, (long)sensor.getDataFeedId());
 		    assertEquals(LINK_ID, (long)sensor.getLinkId());
 		    assertEquals(LINK_OFFSET, sensor.getLinkOffset(), EPSILON);

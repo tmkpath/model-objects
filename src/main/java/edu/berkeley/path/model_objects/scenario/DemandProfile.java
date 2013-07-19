@@ -197,8 +197,11 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	public Double[] getDemand(long vehicle_type_id){
 		List<Demand> list = getListOfDemands();
 		for (Demand d : list){
-			if(d.getVehicleTypeId() == vehicle_type_id)
-        return d.getDemandsArray();
+			if(d.getVehicleTypeId() == vehicle_type_id) {
+        // Copy demands arraylist to primative array of doubles
+        Double[] demandValues = new Double[d.getDemandsArray().size()];
+        return d.getDemandsArray().toArray(demandValues);
+      }
 		}
 
     // otherwise none were found so return empty array
@@ -213,21 +216,21 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	 * @param long offset in seconds since start_time of profile
 	 * @return the Demand corresponding to the parameters passed in or -1 if not found
 	 */
-	public double getDemand(long vehicle_type_id, long offsetTime){
+	public Double getDemand(long vehicle_type_id, long offsetTime){
 		List<Demand> list = getListOfDemands();
 		int offset = (int)Math.floor(offsetTime / this.getDt());
 		for(Demand d : list)
 		{
 			if(d.getVehicleTypeId()== vehicle_type_id) {
         // get all demand values for vehicle type id - indexed by dt
-        Double[] demandsByDT = d.getDemandsArray();
-        // check if demand exists for offset
-        if (demandsByDT.length > offset) {
-          return demandsByDT[offset];
+        ArrayList<Double> demandsByDT = d.getDemandsArray();
+        // check if demands exists for offset
+        if (demandsByDT.size() > offset) {
+          return demandsByDT.get(offset);
         }
       }
 		}
-		return -1;
+		return -1D;
 	}	
 	
 	
@@ -239,7 +242,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	 * @param time String Format : 14:05:00
 	 * @return double
 	 */
-	public double getDemand(long vehicle_type_id, String time){
+	public Double getDemand(long vehicle_type_id, String time){
 		
 		DateTime dateTime = new DateTime();
 	    org.joda.time.DateTime joda = dateTime.setDateString("1970-01-01 00:00:00");
@@ -257,14 +260,14 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 		{
       if(d.getVehicleTypeId() == vehicle_type_id) {
         // get all demand values for vehicle type id - indexed by dt
-        Double[] demandsByDT = d.getDemandsArray();
-        // check if demand exists for offset
-        if (demandsByDT.length > offset) {
-          return demandsByDT[offset];
+        ArrayList<Double> demandsByDT = d.getDemandsArray();
+        // check if demands exists for offset
+        if (demandsByDT.size() > offset) {
+          return demandsByDT.get(offset);
         }
       }
 		}
-		return -1;
+		return -1D;
 
 	}
 

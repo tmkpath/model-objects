@@ -28,11 +28,12 @@ package edu.berkeley.path.model_objects.scenario;
 
 import edu.berkeley.path.model_objects.MOException;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
+import java.util.ArrayList;
 
 public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio {
 
   // array of ratios derived from comma separated content string
-  /** @y.exclude */ private Double[] ratios;
+  /** @y.exclude */ private ArrayList<Double> ratios;
     
 	/**
 	 * @return the split ratio's link in
@@ -81,10 +82,72 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
 	public String getModStamp() {
 		return super.getModStamp();
 	}
+
+  /**
+   * Function to update a split ratio at a given dt offset
+   *
+   * @param ratio New ratio value
+   * @param offset dt offset of ratio value to be updated
+   *
+   * @throws MOException
+   */
+  public void updateRatio(Double ratio, int offset) throws MOException {
+
+    String content = null;
+    try {
+      // update ratio array at offset
+      ratios.set(offset, ratio);
+      // Create array representation of split rations indexed by dt
+      String[] contentArray = getContent().split(",");
+      // Update ratio at offset
+      contentArray[offset] = String.valueOf(ratio);
+      // Convert content array back to comma separated string
+      content = org.apache.commons.lang.StringUtils.join(contentArray, ",");
+      // set new split ratio content string and recreated split ratio array
+      setContent(content);
+    }
+    catch( Exception ex ) {
+      throw new MOException(ex,
+          "Error updating split ratio value " + ratio + " at dt offset " + offset);
+    }
+  }
+
+
+  /**
+   * Function to add split ratio to end of list
+   *
+   * @param ratio new ratio value
+   * @return dt offset of ratio added
+   *
+   * @throws MOException
+   */
+  public int addRatio(Double ratio) throws MOException {
+    String content = getContent();
+    // if no content value is set, create
+    if (content == null) {
+      ratios = new ArrayList<Double>();
+    }
+    try {
+      // update ratio array at offset
+      ratios.add(ratio);
+      // add ratio to end of content string
+      content = content + "," + ratio;
+      // set new split ratio content string and recreated split ratio array
+      setContent(content);
+    }
+    catch( Exception ex ) {
+      throw new MOException(ex,
+          "Error adding new split ratio value " + ratio );
+    }
+    // return ratio list length - 1 which is the dt offset
+    return ratios.size() - 1;
+
+  }
+
 	
 	/**
 	 * @param split ratio(s) content String as comma separated double string values
-   *  otherwise throws exception
+   *  otherwise throws exception.
    * @throws MOException
    *
 	 */
@@ -93,10 +156,10 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
     // Create array representation of split rations indexed by dt
     try {
       String[] contentArray = content.split(",");
-      ratios = new Double[contentArray.length];
+      ratios = new ArrayList<Double>();
       // For each value separated by a comma, add it to ratios array
       for (int i = 0; i < contentArray.length; i++) {
-        ratios[i] = Double.valueOf(contentArray[i]);
+        ratios.add(Double.valueOf(contentArray[i].trim()));
       }
     }
     catch (Exception ex) {
@@ -118,7 +181,7 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
   /**
    * @return the split ratio(s) as a array of doubles indexed by dt
    */
-  public Double[] getRatiosArray() {
+  public ArrayList<Double> getRatiosArray() {
     return ratios;
   }
 

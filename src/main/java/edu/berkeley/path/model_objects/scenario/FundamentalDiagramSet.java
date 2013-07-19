@@ -29,7 +29,6 @@ package edu.berkeley.path.model_objects.scenario;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.berkeley.path.model_objects.scenario.FundamentalDiagramType;
 import edu.berkeley.path.model_objects.scenario.FundamentalDiagramProfile;
 
 public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.FundamentalDiagramSet{

@@ -30,6 +30,8 @@ package edu.berkeley.path.model_objects.scenario;
 import edu.berkeley.path.model_objects.MOException;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
 
+import java.util.ArrayList;
+
 /** 
  * Model Object Demand class.
  *  
@@ -38,7 +40,7 @@ import edu.berkeley.path.model_objects.shared.CrudFlag;
 public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 
   // array of demands derived from comma separated content string
-  /** @y.exclude */ private Double[] demands;
+  /** @y.exclude */ private ArrayList<Double> demands;
 
 	/**
 	 * Set value by name
@@ -158,6 +160,67 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	}
 
   /**
+   * Function to update a  demand at a given dt offset
+   *
+   * @param demand New demand value
+   * @param offset dt offset of demand value to be updated
+   *
+   * @throws MOException
+   */
+  public void updateDemand(Double demand, int offset) throws MOException {
+
+    String content = null;
+    try {
+      // update demand array at offset
+      demands.set(offset, demand);
+      // Create array representation of demands indexed by dt
+      String[] contentArray = getContent().split(",");
+      // Update demand at offset
+      contentArray[offset] = String.valueOf(demand);
+      // Convert content array back to comma separated string
+      content = org.apache.commons.lang.StringUtils.join(contentArray, ",");
+      // set new demand content string and recreated demand array
+      setContent(content);
+    }
+    catch( Exception ex ) {
+      throw new MOException(ex,
+          "Error updating  demand value " + demand + " at dt offset " + offset);
+    }
+  }
+
+
+  /**
+   * Function to add demand to end of list
+   *
+   * @param demand new demand value
+   * @return dt offset of demand added
+   *
+   * @throws MOException
+   */
+  public int addDemand(Double demand) throws MOException {
+    String content = getContent();
+    // if no content value is set, create
+    if (content == null) {
+      demands = new ArrayList<Double>();
+    }
+    try {
+      // update demand array at offset
+      demands.add(demand);
+      // add demand to end of content string
+      content = content + "," + demand;
+      // set new demand content string and recreated demand array
+      setContent(content);
+    }
+    catch( Exception ex ) {
+      throw new MOException(ex,
+          "Error adding new demand value " + demand );
+    }
+    // return demand list length - 1 which is the dt offset
+    return demands.size() - 1;
+
+  }
+
+  /**
    * @param demand(s) content String as comma separated double string values
    *  otherwise throws exception
    * @throws MOException
@@ -168,10 +231,10 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
     // Create array representation of demands indexed by dt
     try {
       String[] contentArray = content.split(",");
-      demands = new Double[contentArray.length];
-      // For each value separated by a comma, add it to ratios array
+      demands = new ArrayList<Double>();
+      // For each value separated by a comma, add it to demands array
       for (int i = 0; i < contentArray.length; i++) {
-        demands[i] = Double.valueOf(contentArray[i]);
+        demands.add(Double.valueOf(contentArray[i].trim()));
       }
     }
     catch (Exception ex) {
@@ -179,7 +242,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
           "Invalid demand content string. Should be a comma separated string of double values.");
     }
 
-    // set ratio content string
+    // set demand content string
     super.setContent(content);
   }
 
@@ -193,11 +256,11 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
   /**
    * @return the demand(s) as a array of doubles indexed by dt
    */
-  public Double[] getDemandsArray() {
+  public ArrayList<Double> getDemandsArray() {
     return demands;
   }
 	/**
-	 * @param id the vehicle type id for this ratio
+	 * @param id the vehicle type id for this demand
 	 */
 	@Override
 	public void setVehicleTypeId(long id) {
@@ -205,7 +268,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	}
 	
 	/**
-	 * @return the vehicle type id for this ratio
+	 * @return the vehicle type id for this demand
 	 */
 	@Override
 	public long getVehicleTypeId() {

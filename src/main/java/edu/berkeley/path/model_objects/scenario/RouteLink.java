@@ -158,6 +158,16 @@ public class RouteLink extends edu.berkeley.path.model_objects.jaxb.RouteLink {
     }
 
   /**
+   * Set order of link in route
+   *
+   * @param linkOrder as long
+   */
+  @Override
+  public void setLinkOrder(int linkOrder) {
+    super.setLinkOrder(linkOrder);
+  }
+
+  /**
    * Return Link ID of the of route link
    *
    * @return linkId as long
