@@ -27,8 +27,12 @@
 package edu.berkeley.path.model_objects.scenario;
 
 import edu.berkeley.path.model_objects.shared.CrudFlag;
+import core.Monitor;
 
 public class Density extends edu.berkeley.path.model_objects.jaxb.Density {
+
+  // density value from content string
+  /** @y.exclude */ private Double density;
 
   public boolean isValid() {
     //TODO generate actual implementation
@@ -170,8 +174,22 @@ public class Density extends edu.berkeley.path.model_objects.jaxb.Density {
     return super.getContent();
   }
 
-  @Override
   public void setContent(String value) {
     super.setContent(value);
+    try {
+      this.density = Double.valueOf(value);
+    } catch (Exception ex) {
+      Monitor.err("Error setting density, invalid content string.");
+    }
   }
+
+  /*
+   * Get the density value from content string
+   *
+   * @return Density
+   */
+  public Double getDensity() {
+    return this.density;
+  }
+
 }

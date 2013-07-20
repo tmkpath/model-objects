@@ -34,7 +34,23 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
 
   // array of ratios derived from comma separated content string
   /** @y.exclude */ private ArrayList<Double> ratios;
-    
+
+  /**
+   * Gets the value of the id property.
+   *
+   */
+  //public long getId() {
+    //return super.getId();
+  //}
+
+  /**
+   * Sets the value of the id property.
+   *
+   */
+  //public void setId(long value) {
+    //super.setId(value);
+  //}
+
 	/**
 	 * @return the split ratio's link in
 	 */
