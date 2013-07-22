@@ -169,11 +169,22 @@ public class Density extends edu.berkeley.path.model_objects.jaxb.Density {
     super.setDestinationNetworkId(value);
   }
 
+  /*
+   * Get the density value as a Content String
+   *
+   * @return String of density value
+   */
   @Override
   public String getContent() {
     return super.getContent();
   }
 
+  /*
+   * Set the density value from Content String
+   *
+   * @param value String value of content string
+   */
+  @Override
   public void setContent(String value) {
     super.setContent(value);
     try {
@@ -184,12 +195,28 @@ public class Density extends edu.berkeley.path.model_objects.jaxb.Density {
   }
 
   /*
-   * Get the density value from content string
+   * Get the density value as a Double
    *
    * @return Density
    */
   public Double getDensity() {
     return this.density;
+  }
+
+  /*
+   * Set the density value and content string
+   *
+   * @param value Density as a Double
+   */
+  public void setDensity(Double value) {
+    this.density = value;
+
+    try {
+      super.setContent(value.toString());
+    } catch (Exception ex) {
+      Monitor.err("Error setting density, invalid content string.");
+    }
+
   }
 
 }
