@@ -26,8 +26,6 @@
 
 package edu.berkeley.path.model_objects.measurements;
 
-import javax.xml.datatype.XMLGregorianCalendar;
-
 import edu.berkeley.path.model_objects.shared.DateTime;
 
 /** 
@@ -35,13 +33,7 @@ import edu.berkeley.path.model_objects.shared.DateTime;
  *  
  * @author Gunes Dervisoglu (gunesder@berkeley.edu)
  */
-
-public class PeMSDatum extends edu.berkeley.path.model_objects.jaxb.PeMSDatum{
-	
-	/**
-	 * TODO: Getters and Setters for gFactor, densityError, flowError, funcLoopFact
-	 * TODO: Unit Tests
-	 */
+public class PeMSAggregateDatum extends edu.berkeley.path.model_objects.jaxb.PeMSAggregateDatum{
 	
 	/**
 	 * Return timestamp of datum
@@ -124,6 +116,26 @@ public class PeMSDatum extends edu.berkeley.path.model_objects.jaxb.PeMSDatum{
 	}
 	
 	/**
+	 * Return health value
+	 * 
+	 * @return health as Double
+	 */
+	@Override
+	public Double getHealth() {
+	  return super.getHealth();
+	}
+	
+	/**
+	 * Set health value
+	 * 
+	 * @param health as Double
+	 */
+	@Override
+	public void setHealth(Double health) {
+	  super.setSpeed(health);
+	}
+	
+	/**
 	 * Return vds id
 	 * 
 	 * @return vds id as long
@@ -143,4 +155,24 @@ public class PeMSDatum extends edu.berkeley.path.model_objects.jaxb.PeMSDatum{
 	  super.setVdsId(l);
 	}
 	
+	/**
+	 * Return run id
+	 * 
+	 * @return run id as lon
+	 */
+	@Override
+	public long getRunId() {
+	  return super.getRunId();
+	}
+	
+	/**
+	 * Set vds id
+	 * 
+	 * @param vds id as long
+	 */
+	@Override
+	public void setRunId(long r) {
+	  super.setRunId(r);
+	}
+
 }

@@ -59,6 +59,37 @@
     </xs:complexType>
   </xs:element>
   
+  <xs:element name="PeMSAggregateDataSet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="PeMSAggregateDataProfile" minOccurs="1" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="PeMSAggregateDataProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="PeMSAggregateDatum" minOccurs="1" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="vds_id" type="xs:long" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="PeMSAggregateDatum">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="timestamp" type="dateTime" minOccurs="1" maxOccurs="1" />
+      </xs:sequence>
+      <xs:attribute name="flow" type="xs:double" use="optional" default="0.0"/>
+      <xs:attribute name="density" type="xs:double" use="optional" default="0.0"/>
+      <xs:attribute name="speed" type="xs:double" use="optional" default="27.0"/>
+      <xs:attribute name="health" type="xs:double" use="optional"/>
+      <xs:attribute name="run_id" type="xs:long" use="required"/>
+      <xs:attribute name="vds_id" type="xs:long" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  
   <xs:element name="PeMSStation">
     <xs:complexType>
       <xs:sequence>
