@@ -87,6 +87,7 @@
       <xs:attribute name="health" type="xs:double" use="optional"/>
       <xs:attribute name="run_id" type="xs:long" use="required"/>
       <xs:attribute name="vds_id" type="xs:long" use="required"/>
+      <xs:attribute name="agg_period" type="xs:int" use="optional"/>
     </xs:complexType>
   </xs:element>
   

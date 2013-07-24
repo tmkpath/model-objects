@@ -26,6 +26,8 @@
 
 package edu.berkeley.path.model_objects.measurements;
 
+import java.math.BigInteger;
+
 import edu.berkeley.path.model_objects.shared.DateTime;
 
 /** 
@@ -158,7 +160,7 @@ public class PeMSAggregateDatum extends edu.berkeley.path.model_objects.jaxb.PeM
 	/**
 	 * Return run id
 	 * 
-	 * @return run id as lon
+	 * @return run id as long
 	 */
 	@Override
 	public long getRunId() {
@@ -173,6 +175,26 @@ public class PeMSAggregateDatum extends edu.berkeley.path.model_objects.jaxb.PeM
 	@Override
 	public void setRunId(long r) {
 	  super.setRunId(r);
+	}
+	
+	/**
+	 * Return aggregation period in minutes
+	 * 
+	 * @return aggregation period as BigInteger
+	 */
+	@Override
+	public Integer getAggPeriod() {
+	  return super.getAggPeriod();
+	}
+	
+	/**
+	 * Set aggregation period in minutes
+	 * 
+	 * @param aggregation period as BigInteger
+	 */
+	@Override
+	public void setAggPeriod(Integer a) {
+	  super.setAggPeriod(a);
 	}
 
 }
