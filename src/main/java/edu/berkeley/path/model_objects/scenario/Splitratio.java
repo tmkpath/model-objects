@@ -129,7 +129,7 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
    * Sets the value of the ratio property.
    *
    */
-  private void setRatio(int offset, Double value) throws MOException {
+  public void setRatio(int offset, Double value) throws MOException {
 
     // Ratio -- if no ratioArray list has been created, create one
     if (ratioArray == null) {
@@ -154,8 +154,10 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
   /**
    * Gets the value of the id property.
    *
+   * @param offset representing dt order
+   * @return Id of ratio at offset
    */
-  private Long getId(int offset) throws MOException {
+  public Long getId(int offset) throws MOException {
 
     Long id = null;
 
@@ -178,7 +180,7 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
    * Sets the value of the id property.
    *
    */
-  private void setId(int offset, Long value) throws MOException {
+  public void setId(int offset, Long value) throws MOException {
 
     // idArray -- if no idArray list has been created, create one
     if (idArray == null) {
@@ -202,8 +204,11 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
   /**
    * Gets the value of the modstamp property.
    *
+   * @param offset representing dt order
+   * @return ModStamp of ratio at offset
+   *
    */
-  private String getModStamp(int offset) throws MOException {
+  public String getModStamp(int offset) throws MOException {
 
     String modStamp = null;
 
@@ -225,7 +230,7 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
    * Sets the value of the modStamp property.
    *
    */
-  private void setModStamp(int offset, String value) throws MOException {
+  public void setModStamp(int offset, String value) throws MOException {
 
     // ModStamp -- if no modStampArray list has been created, add one
     if (modStampArray == null) {
@@ -249,8 +254,10 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
   /**
    * Gets the value of the CrudFlag property.
    *
+   * @param offset representing dt order
+   * @return CrudFlag of ratio at offset
    */
-  private CrudFlag getCrudFlag(int offset) throws MOException {
+  public CrudFlag getCrudFlag(int offset) throws MOException {
 
     CrudFlag crudFlag = null;
 
@@ -273,7 +280,7 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
    * Sets the value of the modStamp property.
    *
    */
-  private void setCrudFlag(int offset, CrudFlag value) throws MOException {
+  public void setCrudFlag(int offset, CrudFlag value) throws MOException {
 
     // CrudFlag -- if no crudFlagArray list has been created, add one
     if (crudFlagArray == null) {

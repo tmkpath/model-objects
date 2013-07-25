@@ -41,9 +41,11 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
 	 * @return FundamentalDiagramProfile associated with linkId
 	 */
 	 public FundamentalDiagramProfile getFundamentalDiagramProfile(int linkId) {
-	        for(FundamentalDiagramProfile fdp : this.getListOfFundamentalDiagramProfiles())
-	        	if(fdp.getLinkId() == linkId)
+	        for(FundamentalDiagramProfile fdp : this.getListOfFundamentalDiagramProfiles()) {
+	        	if(fdp.getLinkId() == linkId) {
 	        		return fdp;
+            }
+          }
 	        return null;
 	 }
 

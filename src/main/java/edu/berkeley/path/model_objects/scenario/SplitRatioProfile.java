@@ -33,7 +33,7 @@ import edu.berkeley.path.model_objects.shared.DateTime;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
 import edu.berkeley.path.model_objects.MOException;
 
-public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.SplitRatioProfile implements Comparable<SplitRatioProfile>{
+public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.SplitRatioProfile {
 
 	/**
 	 * returns all the split ratios values in this SplitRatioProfile that have the same in and out link.
@@ -398,15 +398,5 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 		prof.setListOfSplitRatios(this.getListOfSplitratios());
 		return prof;
 	}
-	
-	/**
-	 * Used to sort the profiles by id. Order is arbitrary -- used in testing
-	 * 
-	 * @return int  
-	 */
-	public int compareTo(SplitRatioProfile other){
-		return (int)(this.getId() - other.getId());
-	}
-	
 	
 }
