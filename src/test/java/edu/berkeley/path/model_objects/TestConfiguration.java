@@ -19,19 +19,18 @@ public class TestConfiguration {
 		
 		List<Splitratio> ratios = new ArrayList<Splitratio>();
 		
-		ratios.add(createSplitRatio(1,2,3,"0.5,0.1,1.0,0.6",CrudFlag.UPDATE));
+		ratios.add(createSplitRatio(1,2,3,"0.5,0.1,1.0,0.6"));
 		profile.setListOfSplitRatios(ratios);
 		
 		return profile;
 	}
 	
-	public static Splitratio createSplitRatio(int link_in, int link_out, int veh_id, String ratio, CrudFlag crud ) throws MOException {
+	public static Splitratio createSplitRatio(int link_in, int link_out, int veh_id, String ratios ) throws MOException {
     Splitratio r = new Splitratio();
     r.setLinkIn(link_in);
     r.setLinkOut(link_out);
     r.setVehicleTypeId(veh_id);
-    r.setRatios(ratio);
-    r.setCrudFlagEnum(crud);
+    r.setContent(ratios);
     return r;
   }
 

@@ -51,7 +51,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 
 		if (p.name.compareToIgnoreCase("flow") == 0 ) 		setContent(String.valueOf(p.fltParam));
 		else if (p.name.compareToIgnoreCase("vehTypeId") == 0 ) 	setVehicleTypeId(p.intParam);
-		else if (p.name.compareToIgnoreCase("modStamp") == 0 ) 		setModStamp(p.strParam);
+		//else if (p.name.compareToIgnoreCase("modStamp") == 0 ) 		setModStamp(p.strParam);
 		
 	}
 
@@ -67,7 +67,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 
 		params[0] = new Object_Parameter("flow", 0, Double.parseDouble(getContent()), null);
 		params[1] = new Object_Parameter("vehTypeId", vehicleTypeId, 0.0F, null);
-		params[2] = new Object_Parameter("modStamp", 0, 0.0F, modStamp);
+		//params[2] = new Object_Parameter("modStamp", 0, 0.0F, modStamp);
 		params[3] = new Object_Parameter("crud", getCrudFlagEnum().ordinal(), 0.0F, null);
 		
 		Object_Parameter.setPositions(params);
@@ -84,7 +84,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 
 		CrudFlag flag = null;
 		// Check if CRUDFlag is null, if so return NONE enumeration
-		if (super.getCrudFlag() == null) {
+		/*if (super.getCrudFlag() == null) {
 			setCrudFlagEnum(CrudFlag.NONE);
 			flag = CrudFlag.NONE;
 		}
@@ -107,7 +107,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 					break;
 
 			}
-		}
+		}           */
 		return flag;
 	}
 
@@ -118,7 +118,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	 */
 	public void setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag flag) {
 		// Check if CRUDFlag is null, if so return NONE enumeration
-		if (flag == null) {
+		/*if (flag == null) {
 			super.setCrudFlag("NONE");
 		}
 		else {
@@ -140,23 +140,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 					break;
 
 			}
-		}
-	}
-	
-	/**
-	 * @param modstamp the modstamp to set
-	 */
-	@Override
-	public void setModStamp(String modstamp) {
-		super.setModStamp(modstamp);
-	}
-	
-	/**
-	 * @return the modStamp
-	 */
-	@Override
-	public String getModStamp() {
-		return super.getModStamp();
+		}  */
 	}
 
   /**

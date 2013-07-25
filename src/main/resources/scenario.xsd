@@ -305,11 +305,12 @@
 
 			<xs:element name="splitratio">
 				<xs:complexType mixed="true">	     <!-- text in normalized units -->
-					<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 					<xs:attribute name="link_in" type="xs:long" use="required" />
 					<xs:attribute name="link_out" type="xs:long" use="required" />
 					<xs:attribute name="vehicle_type_id" type="xs:long" use="required" />
-					<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+          <xs:attribute name="ids" type="xs:string" use="optional"/>
+          <xs:attribute name="crudFlags" type="xs:string" use="optional"/>
+					<xs:attribute name="mod_stamps" type="xs:string" use="optional" />
 				</xs:complexType>
 			</xs:element>  
   
@@ -423,9 +424,10 @@
 
 			<xs:element name="demand">
 				<xs:complexType mixed="true">		<!-- content in [veh/time unit] -->
-					<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 					<xs:attribute name="vehicle_type_id" type="xs:long" use="required" />
-					<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+          <xs:attribute name="ids" type="xs:string" use="optional"/>
+          <xs:attribute name="crudFlags" type="xs:string" use="optional"/>
+          <xs:attribute name="mod_stamps" type="xs:string" use="optional" />
 				</xs:complexType>
 			</xs:element>
   

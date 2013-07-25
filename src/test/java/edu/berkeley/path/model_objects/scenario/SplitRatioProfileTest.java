@@ -35,7 +35,7 @@ public class SplitRatioProfileTest {
 		
 		List<Splitratio> ratios = new ArrayList<Splitratio>();
 		
-		ratios.add(TestConfiguration.createSplitRatio(1, 2, 3, "0.5,0.1,1,0.6", CrudFlag.CREATE));
+		ratios.add(TestConfiguration.createSplitRatio(1, 2, 3, "0.5,0.1,1,0.6"));
 		profile.setListOfSplitRatios(ratios);
 	}
 
