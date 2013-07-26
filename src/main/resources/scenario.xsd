@@ -559,6 +559,8 @@
 				<!-- in time units -->
 				<xs:attribute name="dt" type="xs:double" use="optional" /> 
 				<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+				<xs:attribute name="cal_alg_type" type="xs:int" use="optional" />
+				<xs:attribute name="agg_run_id" type="xs:long" use="optional" />
 			</xs:complexType>
 		</xs:element>
 

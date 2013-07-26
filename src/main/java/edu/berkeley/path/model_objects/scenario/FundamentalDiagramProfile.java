@@ -138,6 +138,46 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
 	public void setId(long l) {
 	  super.setId(l);
 	}
+	
+	/**
+	 * Return Calibration Algorithm Type id as Integer
+	 * 
+	 * @return Calibration Algorithm Type id as Integer
+	 */
+	@Override
+	public Integer getCalAlgType() {
+	  return super.getCalAlgType();
+	}
+	
+	/**
+	 * Set Calibration Algorithm Type id as Integer
+	 * 
+	 * @param Calibration Algorithm Type id
+	 */
+	@Override
+	public void setCalAlgType(Integer i) {
+	  super.setCalAlgType(i);
+	}
+	
+	/**
+	 * Return Aggregation Run id as Long
+	 * 
+	 * @return Aggregation Run id as Long
+	 */
+	@Override
+	public Long getAggRunId() {
+	  return super.getAggRunId();
+	}
+	
+	/**
+	 * Set Aggregation Run id as Long
+	 * 
+	 * @param Aggregation Run id as Long
+	 */
+	@Override
+	public void setAggRunId(Long l) {
+	  super.setAggRunId(l);
+	}
 
 	/**
 	 * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
