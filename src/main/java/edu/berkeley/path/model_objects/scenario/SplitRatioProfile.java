@@ -28,10 +28,12 @@ package edu.berkeley.path.model_objects.scenario;
 
 import java.util.ArrayList;
 import java.util.List;
+import core.Monitor;
 import edu.berkeley.path.model_objects.shared.DateTime;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
+import edu.berkeley.path.model_objects.MOException;
 
-public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.SplitRatioProfile implements Comparable<SplitRatioProfile>{
+public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.SplitRatioProfile {
 
 	/**
 	 * returns all the split ratios values in this SplitRatioProfile that have the same in and out link.
@@ -41,14 +43,25 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	 * @param vehicle_type_id
 	 * @return Double[]
 	 */
-	public Double[] getSplitRatio(long link_in_id, long link_out_id, long vehicle_type_id){
-		ArrayList<Double> values = new ArrayList<Double>();
+	public Double[] getSplitRatio(long link_in_id, long link_out_id, long vehicle_type_id) {
 		List<Splitratio> ratios = getListOfSplitratios();
 		for (Splitratio s : ratios){
-			if(s.equals(link_in_id, link_out_id, vehicle_type_id))
-				values.add(Double.parseDouble(s.getContent()));
+			if(s.equals(link_in_id, link_out_id, vehicle_type_id)) {
+        try {
+          // Copy ratios arraylist to primative array of doubles
+          Double[] ratioValues = new Double[s.getRatioSize()];
+          for (int i = 0; i < s.getRatioSize(); i++) {
+            ratioValues[i] = s.getRatio(i);
+          }
+          return ratioValues;
+        } catch(MOException exc) {
+            Monitor.err("Error, cannot find ratio for link-in " + link_in_id + " and link-out "
+                + link_out_id + " and vehicle type id " + vehicle_type_id + ". " + exc.getMessage());
+          }
+      }
 		}
-		return values.toArray(new Double[0]);
+    // otherwise none were found so return empty array
+    return new Double[0];
 	}
 	
 	/**
@@ -62,7 +75,7 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	 * @param time String Format : 14:05:00
 	 * @return double
 	 */
-	public double getSplitRatio(long link_in_id, long link_out_id, long vehicle_type_id, String time){
+	public Double getSplitRatio(long link_in_id, long link_out_id, long vehicle_type_id, String time){
 		
 		DateTime dateTime = new DateTime();
 	    org.joda.time.DateTime joda = dateTime.setDateString("1970-01-01 00:00:00");
@@ -78,10 +91,22 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 		List<Splitratio> ratios = getListOfSplitratios();
 		for(Splitratio r : ratios)
 		{
-			if(r.equals(link_in_id, link_out_id, vehicle_type_id) && r.getRatioOrder() == offset)
-				return Double.parseDouble(ratios.get(offset).getContent());				
+			if(r.equals(link_in_id, link_out_id, vehicle_type_id)) {
+        try {
+          // get all ratios values for link in, link out and vehicle type id - indexed by dt
+          // check if ratio exists for offset
+
+          if (r.getRatioSize() > offset) {
+            return r.getRatio(offset);
+          }
+        } catch(MOException exc) {
+          Monitor.err("Error, cannot find ratio for link-in " + link_in_id + " and link-out "
+              + link_out_id + " and vehicle type id " + vehicle_type_id + " and time "
+              + time + ". " + exc.getMessage());
+        }
+      }
 		}
-		return -1;
+		return -1D;
 
 	}
 	
@@ -93,18 +118,30 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	 * @param link_in_id
 	 * @param link_out_id
 	 * @param vehicle_type_id
-	 * @param integer offset in seconds since start_time of profile
+	 * @param long offset in seconds since start_time of profile
 	 * @return the split ratio corresponding to the parameters passed in or -1 if not found
 	 */
-	public double getSplitRatio(long link_in_id, long link_out_id, long vehicle_type_id, long offsetTime){
+	public Double getSplitRatio(long link_in_id, long link_out_id, long vehicle_type_id, long offsetTime) {
 		List<Splitratio> ratios = getListOfSplitratios();
 		int offset = (int)Math.floor(offsetTime / this.getDt());
 		for(Splitratio r : ratios)
 		{
-			if(r.equals(link_in_id, link_out_id, vehicle_type_id) && r.getRatioOrder() == offset)
-				return Double.parseDouble(ratios.get(offset).getContent());				
+      if(r.equals(link_in_id, link_out_id, vehicle_type_id)) {
+        try {
+          // get all ratios values for link in, link out and vehicle type id - indexed by dt
+          // check if ratio exists for offset
+
+          if (r.getRatioSize() > offset) {
+            return r.getRatio(offset);
+          }
+        } catch(MOException exc) {
+          Monitor.err("Error, cannot find ratio for link-in " + link_in_id + " and link-out "
+              + link_out_id + " and vehicle type id " + vehicle_type_id + " at offset "
+              + offset + ". " + exc.getMessage());
+        }
+      }
 		}
-		return -1;
+		return -1D;
 	}
 
 	/**
@@ -361,15 +398,5 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 		prof.setListOfSplitRatios(this.getListOfSplitratios());
 		return prof;
 	}
-	
-	/**
-	 * Used to sort the profiles by id. Order is arbitrary -- used in testing
-	 * 
-	 * @return int  
-	 */
-	public int compareTo(SplitRatioProfile other){
-		return (int)(this.getId() - other.getId());
-	}
-	
 	
 }

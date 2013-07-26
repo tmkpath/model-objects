@@ -37,6 +37,7 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
   /** @y.exclude */  private long demandSetId;
   /** @y.exclude */  private long fdSetId;
   /** @y.exclude */  private long sensorSetId;
+  /** @y.exclude */  private long routeSetId;
 
   /**
    * Get the list of networks for this scenario
@@ -197,16 +198,6 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
     super.setFundamentalDiagramSet(value);
   }
 
-  //TODO Needs Route MO
-  @Override
-  public Route getRoute() {
-    return super.getRoute();
-  }
-
-  public void setRoute(Route value) {
-    super.setRoute(value);
-  }
-
   @Override
   public long getProjectId() {
     return super.getProjectId();
@@ -277,6 +268,14 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
 
   public void setSensorSetId(long sensorSetId) {
     this.sensorSetId = sensorSetId;
+  }
+
+  public long getRouteSetId() {
+    return routeSetId;
+  }
+
+  public void setRouteSetId(long routeSetId) {
+    this.routeSetId = routeSetId;
   }
 
   @Override

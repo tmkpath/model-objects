@@ -29,22 +29,23 @@ package edu.berkeley.path.model_objects.scenario;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.berkeley.path.model_objects.scenario.FundamentalDiagramType;
 import edu.berkeley.path.model_objects.scenario.FundamentalDiagramProfile;
 
 public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.FundamentalDiagramSet{
 	
 	
 	/**
-	 * get the FundamentalDiagramProfile who link if matches the parameter
+	 * Returns the FundamentalDiagramProfile associated with the given linkId
 	 *  
 	 * @param linkId the link id associated with the profile
 	 * @return FundamentalDiagramProfile associated with linkId
 	 */
 	 public FundamentalDiagramProfile getFundamentalDiagramProfile(int linkId) {
-	        for(FundamentalDiagramProfile fdp : this.getListOfFundamentalDiagramProfiles())
-	        	if(fdp.getLinkId() == linkId)
+	        for(FundamentalDiagramProfile fdp : this.getListOfFundamentalDiagramProfiles()) {
+	        	if(fdp.getLinkId() == linkId) {
 	        		return fdp;
+            }
+          }
 	        return null;
 	 }
 
@@ -59,7 +60,7 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
      * @return String
      *     
      */
-	@Override
+    @Override
     public String getDescription() {
         return super.getDescription();
     }
@@ -70,7 +71,7 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
      * @param String value
      *     
      */
-	@Override
+    @Override
     public void setDescription(String value) {
         super.setDescription(value);
     }
@@ -82,7 +83,7 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
      * 
      */
     @SuppressWarnings("unchecked")
-	public List<FundamentalDiagramProfile> getListOfFundamentalDiagramProfiles() {
+    public List<FundamentalDiagramProfile> getListOfFundamentalDiagramProfiles() {
         return (List<FundamentalDiagramProfile>)(List<?>)super.getFundamentalDiagramProfile();
     }
 
@@ -122,7 +123,7 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
      * @return long
      *     
      */
-	@Override
+    @Override
     public long getProjectId() {
         return super.getProjectId();
     }
@@ -133,8 +134,8 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
      * @param Long value
      *     
      */
-	@Override
-    public void setProjectId(Long value) {
+    @Override
+    public void setProjectId(long value) {
         super.setProjectId(value);
     }
 
@@ -142,7 +143,7 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
      * Gets the value of the id property.
      * 
      */
-	@Override
+    @Override
     public long getId() {
         return super.getId();
     }
@@ -151,7 +152,7 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
      * Sets the value of the id property.
      * 
      */
-	@Override
+    @Override
     public void setId(long value) {
         super.setId(value);
     }
@@ -162,7 +163,7 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
      * @return String
      *     
      */
-	@Override
+    @Override
     public String getName() {
         return super.getName();
     }
@@ -173,30 +174,9 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
      * @param String value
      *     
      */
-	@Override
+    @Override
     public void setName(String value) {
         super.setName(value);
-    }
-    
-    /**
-     * Gets the value of the fundamentalDiagramType property.
-     * 
-     * @return FundamentalDiagramType
-     *     
-     */
-	@Override
-    public FundamentalDiagramType getFundamentalDiagramType() {
-        return (FundamentalDiagramType)super.getFundamentalDiagramType();
-    }
-
-    /**
-     * Sets the value of the fundamentalDiagramType property.
-     * 
-     * @param FundamentalDiagramType value
-     *     
-     */
-    public void setFundamentalDiagramType(FundamentalDiagramType value) {
-        super.setFundamentalDiagramType(value);
     }
     
     /**

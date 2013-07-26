@@ -75,7 +75,7 @@ public class VehicleType extends edu.berkeley.path.model_objects.jaxb.VehicleTyp
      *     
      */
 	@Override
-    public Double getSizeFactor() {
+    public double getSizeFactor() {
         return super.getSizeFactor();
     }
 

@@ -330,19 +330,26 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
    * are not stored in the DB) or when unmarshalling from XML or JSON which doesnot define input/output links.
    *
    * @return void
+   * @throws MOException
    */
   @SuppressWarnings("unchecked")
-  public void setInputOutputLinks() {
+  public void setInputOutputLinks() throws MOException {
 
     // cycle through lise of links and for each node add input/output links
     for (Link link : getListOfLinks()) {
-      // get begin and end nodes based on id
-      Node beginNode = getNodeWithId(link.getBeginNodeId());
-      Node endNode = getNodeWithId(link.getEndNodeId());
 
-      // add link as output link to begin node and input link to end node
-      beginNode.addOutputLink(link.getId());
-      endNode.addInputLink(link.getId());
+        // get begin and end nodes based on id
+        Node beginNode = getNodeWithId(link.getBeginNodeId());
+        Node endNode = getNodeWithId(link.getEndNodeId());
+        if (beginNode == null) {
+          throw new MOException(null, "Invalid begin node id value for Link id " + link.getId());
+        }
+        if (endNode == null) {
+          throw new MOException(null, "Invalid end node id value for Link id \" + link.getId()");
+        }
+        // add link as output link to begin node and input link to end node
+        beginNode.addOutputLink(link.getId());
+        endNode.addInputLink(link.getId());
     }
   }
 	
