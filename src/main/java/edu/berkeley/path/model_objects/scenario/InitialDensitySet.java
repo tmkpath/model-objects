@@ -91,7 +91,7 @@ public class InitialDensitySet extends edu.berkeley.path.model_objects.jaxb.Init
   }
 
   @Override
-  public void setProjectId(Long value) {
+  public void setProjectId(long value) {
     super.setProjectId(value);    //To change body of overridden methods use File | Settings | File Templates.
   }
 

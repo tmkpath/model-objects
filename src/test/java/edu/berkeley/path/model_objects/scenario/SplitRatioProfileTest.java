@@ -6,9 +6,11 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 import java.util.ArrayList;
 
+import edu.berkeley.path.model_objects.TestConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
+import edu.berkeley.path.model_objects.MOException;
 
 public class SplitRatioProfileTest {
 	private static final long ID = 1;
@@ -21,7 +23,7 @@ public class SplitRatioProfileTest {
 	private SplitRatioProfile profile;
 	
 	@Before
-	public void setUp(){
+	public void setUp() throws MOException {
 		profile = new SplitRatioProfile();
 		profile.setId(ID);
 		profile.setNodeId(NODE_ID);
@@ -33,22 +35,8 @@ public class SplitRatioProfileTest {
 		
 		List<Splitratio> ratios = new ArrayList<Splitratio>();
 		
-		ratios.add(createSplitRatio(1,2,3,0.5,0));
-		ratios.add(createSplitRatio(1,2,3,0.1,1));
-		ratios.add(createSplitRatio(1,2,3,1,2));
-		ratios.add(createSplitRatio(1,2,3,0.6,3));
+		ratios.add(TestConfiguration.createSplitRatio(1, 2, 3, "0.5,0.1,1,0.6"));
 		profile.setListOfSplitRatios(ratios);
-	}
-	
-	private Splitratio createSplitRatio(int link_in, int link_out, int veh_id, double ratio, int order) {
-		Splitratio r = new Splitratio();
-		r.setLinkIn(link_in);
-		r.setLinkOut(link_out);
-		r.setVehicleTypeId(veh_id);
-		r.setRatio(ratio);
-		r.setRatioOrder(order);	
-		return r;
-		
 	}
 
 	@Test
@@ -60,7 +48,7 @@ public class SplitRatioProfileTest {
 		assertEquals(DT,profile.getDt().doubleValue(), 0.0);
 		assertEquals(DEST_NETWORK_ID, profile.getDestinationNetworkId().longValue());
 		assertEquals(MOD_STAMP, profile.getModStamp());
-		assertEquals(4, profile.getListOfSplitratios().size());
+		assertEquals(1, profile.getListOfSplitratios().size());
 	}
 	
 	@Test

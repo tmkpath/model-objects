@@ -169,4 +169,24 @@ public class ScenarioFactory extends edu.berkeley.path.model_objects.jaxb.Object
   public PIFProbeDataSet createPIFProbeDataSet() {
 	  return new PIFProbeDataSet();
   }
+
+  /**
+   * Create an instance of Route Model Object
+   *
+   * @return  Route Model Object
+   */
+  @Override
+  public Route createRoute() {
+    return new Route();
+  }
+
+  /**
+   * Create an instance of RouteLink Model Object
+   *
+   * @return  Route Model Object
+   */
+  @Override
+  public RouteLink createRouteLink() {
+    return new RouteLink();
+  }
 }

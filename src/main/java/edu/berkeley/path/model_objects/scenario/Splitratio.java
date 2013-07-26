@@ -26,29 +26,19 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import edu.berkeley.path.model_objects.MOException;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
+import java.util.ArrayList;
 
-public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio implements Comparable<Splitratio>{
-	
-	
-    /**
-     * Gets the value of the id property.
-     * 
-     */
-	@Override
-    public long getId() {
-        return super.getId();
-    }
+public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio {
 
-    /**
-     * Sets the value of the id property.
-     * 
-     */
-	@Override
-	public void setId(long value) {
-        super.setId(value);
-    }
-    
+  // Array of ratioArray, idArray, modStampArray and crudFlagArray derived from comma separated content strings
+  /** @y.exclude */ private ArrayList<Double> ratioArray;
+  /** @y.exclude */ private ArrayList<Long> idArray;
+  /** @y.exclude */ private ArrayList<String> modStampArray;
+  /** @y.exclude */ private ArrayList<CrudFlag> crudFlagArray;
+  /** @y.exclude */ private int ratioSize;
+
 	/**
 	 * @return the split ratio's link in
 	 */
@@ -80,69 +70,369 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
 	public void setLinkOut(long linkOut) {
 		super.setLinkOut(linkOut);
 	}
-	
+
+  /**
+   * @param id the vehicle type id for this ratio
+   */
+  @Override
+  public void setVehicleTypeId(long id) {
+    super.setVehicleTypeId(id);
+  }
+
+  /**
+   * @return the vehicle type id for this ratio
+   */
+  @Override
+  public long getVehicleTypeId() {
+    return super.getVehicleTypeId();
+  }
+
+  /**
+   * Gets the length of the number of ratios for a particular link in,
+   * link out and vehicle-type.  Essentially the number of dt's
+   *
+   * @return current number of ratios defined
+   */
+  public int getRatioSize() throws MOException {
+    if (ratioArray == null) {
+      setRatioArray();
+    }
+
+    return ratioArray.size();
+  }
+
+  /**
+   * Gets the value of the ratio property.
+   *
+   * @param offset dt to get ratio from
+   * @return ratio value
+   *
+   */
+  public Double getRatio(int offset) throws MOException {
+
+    Double ratio = null;
+    // Ratio -- if no ratioArray list has been created, create one
+    if (ratioArray == null) {
+      setRatioArray();
+    }
+    try {
+      // get ratio value at offset
+      ratio = ratioArray.get(offset);
+    } catch(Exception ex) {
+      throw new MOException(ex,
+          "Error getting split ratio value at offset " + offset + ".");
+    }
+    return ratio;
+  }
+
+  /**
+   * Sets the value of the ratio property.
+   *
+   */
+  public void setRatio(int offset, Double value) throws MOException {
+
+    // Ratio -- if no ratioArray list has been created, create one
+    if (ratioArray == null) {
+      setRatioArray();
+    }
+
+    try {
+      // add ratio to array at offset
+      ratioArray.add(offset, value);
+      // Create content string based on ratioArray list, by removing "[", "]" characters and
+      // spaces between commas.
+      String ratioContent = ratioArray.toString().replaceAll("(\\[|\\]|\\s)","");
+      super.setContent(ratioContent);
+    }
+    catch(Exception ex) {
+      throw new MOException(ex,
+          "Error adding new split ratio value " + value + " at offset " + offset +
+              ". Must add ratio's in order.");
+    }
+  }
+
+  /**
+   * Gets the value of the id property.
+   *
+   * @param offset representing dt order
+   * @return Id of ratio at offset
+   */
+  public Long getId(int offset) throws MOException {
+
+    Long id = null;
+
+    // Id -- if no idArray list has been created, create one
+    if (idArray == null) {
+      setIdArray();
+    }
+    try {
+      // get id value at offset
+      id = idArray.get(offset);
+    } catch(Exception ex) {
+      throw new MOException(ex,
+          "Error getting split ratio id at offset " + offset + ".");
+    }
+    return id;
+
+  }
+
+  /**
+   * Sets the value of the id property.
+   *
+   */
+  public void setId(int offset, Long value) throws MOException {
+
+    // idArray -- if no idArray list has been created, create one
+    if (idArray == null) {
+      setIdArray();
+    }
+    try {
+      // add ratio to array at offset
+      idArray.add(offset, value);
+      // Create content string based on ratioArray list, by removing "[", "]" characters and
+      // spaces between commas.
+      String idContent = idArray.toString().replaceAll("(\\[|\\]|\\s)","");
+      super.setIds(idContent);
+    }
+    catch(Exception ex) {
+      throw new MOException(ex,
+          "Error adding new split ratio id " + value + " at offset " + offset +
+              ". Must add ratio's in order.");
+    }
+  }
+
+  /**
+   * Gets the value of the modstamp property.
+   *
+   * @param offset representing dt order
+   * @return ModStamp of ratio at offset
+   *
+   */
+  public String getModStamp(int offset) throws MOException {
+
+    String modStamp = null;
+
+    // modStamp -- if no modStampArray list has been created, create one
+    if (modStampArray == null) {
+      setModStampArray();
+    }
+    try {
+      // get modStamp value at offset
+      modStamp = modStampArray.get(offset);
+    } catch(Exception ex) {
+      throw new MOException(ex,
+          "Error getting split ratio modStamp at offset " + offset + ".");
+    }
+    return modStamp;
+  }
+
+  /**
+   * Sets the value of the modStamp property.
+   *
+   */
+  public void setModStamp(int offset, String value) throws MOException {
+
+    // ModStamp -- if no modStampArray list has been created, add one
+    if (modStampArray == null) {
+      setModStampArray();
+    }
+    try {
+      // add ratio to array at offset
+      modStampArray.add(offset, value);
+      // Create content string based on ratioArray list, by removing "[", "]" characters and
+      // spaces between commas.
+      String modStampContent = modStampArray.toString().replaceAll("(\\[|\\]|,\\s,)","");
+      super.setModStamps(modStampContent);
+    }
+    catch(Exception ex) {
+      throw new MOException(ex,
+          "Error adding new split ratio modStamp " + value + " at offset " + offset +
+              ". Must add ratio's in order.");
+    }
+  }
+
+  /**
+   * Gets the value of the CrudFlag property.
+   *
+   * @param offset representing dt order
+   * @return CrudFlag of ratio at offset
+   */
+  public CrudFlag getCrudFlag(int offset) throws MOException {
+
+    CrudFlag crudFlag = null;
+
+    // CrudFlag -- if no crudFlagArray list has been created, add one
+    if (crudFlagArray == null) {
+      setCrudFlagArray();
+    }
+    try {
+      // get crudFlag value at offset
+      crudFlag = crudFlagArray.get(offset);
+    } catch(Exception ex) {
+      throw new MOException(ex,
+          "Error getting crudFlag modStamp at offset " + offset + ".");
+    }
+    return crudFlag;
+
+  }
+
+  /**
+   * Sets the value of the modStamp property.
+   *
+   */
+  public void setCrudFlag(int offset, CrudFlag value) throws MOException {
+
+    // CrudFlag -- if no crudFlagArray list has been created, add one
+    if (crudFlagArray == null) {
+      setCrudFlagArray();
+    }
+    try {
+      // add CrudFlag to array at offset
+      crudFlagArray.add(offset, value);
+      // Create content string based on crudFlagArray list, by removing "[", "]" characters and
+      // spaces between commas.
+      String crudFlagContent = crudFlagArray.toString().replaceAll("(\\[|\\]|\\s)","");
+      setCrudFlags(crudFlagContent);
+    }
+    catch(Exception ex) {
+      throw new MOException(ex,
+          "Error adding new split ratio CRUDFlag " + value.toString() + " at offset " + offset +
+              ". Must add ratio's in order.");
+    }
+  }
+
+
+  /**
+   * Function to add split ratio to end of list by offset (dt) or update existing split
+   * ratio. If a new split ratio for a dt is added it must be done in order.
+   *
+   * @param offset dt offset to add ratio
+   * @param ratio new offset value
+   * @param id of split ratio in database, can be null
+   * @param modStamp of split ration in database, can be null
+   * @param flag of database action (CRUD) on splitratio, can be null
+   *
+   * @throws MOException
+   */
+  public void setRatio(int offset, Double ratio, Long id, String modStamp, CrudFlag flag) throws MOException {
+
+    setRatio(offset, ratio);
+    if (id != null) {
+      setId(offset, id);
+    }
+    if (modStamp != null) {
+      setModStamp(offset, modStamp);
+    }
+    if (flag != null) {
+      setCrudFlag(offset, flag);
+    }
+  }
+
 	/**
-	 * @param modstamp the modstamp to set
+	 * Creates the ratioArray arraylist object based on ratio content string
+   * @throws MOException
+   *
 	 */
-	@Override
-	public void setModStamp(String modstamp) {
-		super.setModStamp(modstamp);
-	}
-	
-	/**
-	 * @return the modStamp
-	 */
-	@Override
-	public String getModStamp() {
-		return super.getModStamp();
-	}
-	
-	/**
-	 * @param ratio the ratio of this object
-	 */
-	public void setRatio(double ratio) {
-		super.setContent(ratio + "");
-	}
-	
-	/**
-	 * @return the ratio as a double
-	 */
-	public double getRatio() {
-		return Double.parseDouble(super.getContent());
+	private void setRatioArray() throws MOException {
+
+    String ratioContent = super.getContent();
+    // Create array representation of split ratios indexed by dt
+    try {
+      ratioArray = new ArrayList<Double>();
+      // if ratio content value exists populate ratioArray arraylist from string
+      if (ratioContent != null) {
+        String[] contentArray = ratioContent.split(",");
+        // For each value separated by a comma, add it to content array
+        for (int i = 0; i < contentArray.length; i++) {
+          ratioArray.add(Double.valueOf(contentArray[i].trim()));
+        }
+      }
+    }
+    catch (Exception ex) {
+      throw new MOException(ex,
+          "Invalid split ratio content string. Should be a comma separated string of double values.");
+    }
 	}
 
-	  
-	/**
-	 * @param id the vehicle type id for this ratio
-	 */
-	@Override
-	public void setVehicleTypeId(long id) {
-		super.setVehicleTypeId(id);
-	}
-	
-	/**
-	 * @return the vehicle type id for this ratio
-	 */
-	@Override
-	public long getVehicleTypeId() {
-		return super.getVehicleTypeId();
-	}
-	
-	/**
-	 * @param offset the order in the set of ratios
-	 */
-	@Override
-	public void setRatioOrder(int offset) {
-		super.setRatioOrder(offset);
-	}
-	
-	/**
-	 * @return the vehicle type id for this ratio
-	 */
-	@Override
-	public int getRatioOrder() {
-		return super.getRatioOrder();
-	}
+  /**
+   * Set idArray arraylist based on id content string
+   * @throws MOException
+   *
+   */
+  private void setIdArray() throws MOException {
+
+    String idContent = super.getIds();
+    // Create array representation of split ratios ids indexed by dt
+    try {
+      idArray = new ArrayList<Long>();
+      // if id content value exists populate ratioArray arraylist from string
+      if (idContent != null) {
+        String[] contentArray = idContent.split(",");
+        // For each value separated by a comma, add it to content array
+        for (int i = 0; i < contentArray.length; i++) {
+          idArray.add(Long.valueOf(contentArray[i].trim()));
+        }
+      }
+    }
+    catch (Exception ex) {
+      throw new MOException(ex,
+          "Invalid id content string. Should be a comma separated string of long values.");
+    }
+  }
+
+  /**
+   * Set modStampArray arraylist based on modStamp content string
+   * @throws MOException
+   *
+   */
+  private void setModStampArray() throws MOException {
+
+    String modStampContent = super.getModStamps();
+    // Create array representation of split ration modstamps indexed by dt
+    try {
+      modStampArray = new ArrayList<String>();
+
+      if (modStampContent != null) {
+        // if modStamp content exists populate modStampArray arraylist from string
+        String[] contentArray = modStampContent.split(",");
+        // For each value separated by a comma, add it to content array
+        for (int i = 0; i < contentArray.length; i++) {
+          modStampArray.add(contentArray[i].trim());
+        }
+      }
+    }
+    catch (Exception ex) {
+      throw new MOException(ex,
+          "Invalid modStamp content string. Should be a comma separated string of String date values.");
+    }
+  }
+
+  /**
+   * Set crudFlagArray arraylist based on crudFlag content string
+   * @throws MOException
+   *
+   */
+  private void setCrudFlagArray() throws MOException {
+
+    String crudFlagContent = super.getCrudFlags();
+    // Create array representation of split ratio crudFlags indexed by dt
+    try {
+      crudFlagArray = new ArrayList<CrudFlag>();
+
+      if (crudFlagContent != null) {
+        // if CrudFlag content exists populate crudFlagArray arraylist from string
+        String[] contentArray = crudFlagContent.split(",");
+        // For each value separated by a comma, add it to content array
+        for (int i = 0; i < contentArray.length; i++) {
+          crudFlagArray.add(CrudFlag.valueOf(contentArray[i].trim()));
+        }
+      }
+    }
+    catch (Exception ex) {
+      throw new MOException(ex,
+          "Invalid CrudFlag content string. Should be a comma separated string of String date values.");
+    }
+  }
 	
 	/**
 	 * Returns true if the linkInId, linkOutId, and vehTypeId all match
@@ -159,83 +449,7 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
 	 * @return boolean
 	 */
 	public boolean isValid(){
+    // TODO work on validation logic
 		return true;
-	}
-
-	/**
-	 * This method is used in testing to sort the ratios by id.
-	 *
-	 * @return int
-	 */
-	public int compareTo(Splitratio other){
-		return (int)(this.getId() - other.getId());
-	}
-
-	/**
-	 * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
-	 *
-	 * @return CRUD Flag enumeration
-	 */
-	public CrudFlag getCrudFlagEnum() {
-
-		CrudFlag flag = null;
-		// Check if CRUDFlag is null, if so return NONE enumeration
-		if (super.getCrudFlag() == null) {
-			setCrudFlagEnum(CrudFlag.NONE);
-			flag = CrudFlag.NONE;
-		}
-		else {
-			switch (CrudFlag.valueOf(super.getCrudFlag())) {
-				case CREATE:
-					flag = CrudFlag.CREATE;
-					break;
-				case RETRIEVE:
-					flag = CrudFlag.RETRIEVE;
-					break;
-				case UPDATE:
-					flag = CrudFlag.UPDATE;
-					break;
-				case DELETE:
-					flag = CrudFlag.DELETE;
-					break;
-				default:
-					flag = CrudFlag.NONE;
-					break;
-
-			}
-		}
-		return flag;
-	}
-
-	/**
-	 * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
-	 *
-	 * @param CRUD Flag enumeration
-	 */
-	public void setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag flag) {
-		// Check if CRUDFlag is null, if so return NONE enumeration
-		if (flag == null) {
-			super.setCrudFlag("NONE");
-		}
-		else {
-			switch (flag) {
-				case CREATE:
-					super.setCrudFlag("CREATE");
-					break;
-				case RETRIEVE:
-					super.setCrudFlag("RETRIEVE");
-					break;
-				case UPDATE:
-					super.setCrudFlag("UPDATE");
-					break;
-				case DELETE:
-					super.setCrudFlag("DELETE");
-					break;
-				default:
-					super.setCrudFlag("NONE");
-					break;
-
-			}
-		}
 	}
 }
