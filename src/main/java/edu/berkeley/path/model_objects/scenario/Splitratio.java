@@ -292,7 +292,7 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
       // Create content string based on crudFlagArray list, by removing "[", "]" characters and
       // spaces between commas.
       String crudFlagContent = crudFlagArray.toString().replaceAll("(\\[|\\]|\\s)","");
-      setContent(crudFlagContent);
+      setCrudFlags(crudFlagContent);
     }
     catch(Exception ex) {
       throw new MOException(ex,

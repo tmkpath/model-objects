@@ -120,19 +120,21 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
 
   /**
    * Get the profile at the specified node.
-   * Creates a list of SplitRatioProlies associated with the node passed in.
+   * Return Split Ratio Profile associated with the node passed in.
    * If there are no profiles associated with this node null is returned.
    * 
-   * @param Node get split ratio profiles associated with the node
-   * @return List<SplitRatioProfile> or null if empty
+   * @param nodeId get split ratio profile associated with the node
+   * @return SplitRatioProfile or null if not found
    */
-  public List<SplitRatioProfile> getSplitRatioProfileAtNode(Node node) {
-	  List<SplitRatioProfile> profiles = new ArrayList<SplitRatioProfile>();
-	  for(SplitRatioProfile p : getListOfSplitRatioProfiles())
-		  if(p.getNodeId() == node.getId())
-			  profiles.add(p);
-    
-	  return profiles.size() != 0 ? profiles : null;
+  public SplitRatioProfile getSplitRatioProfileAtNode(long nodeId) {
+
+	  for(SplitRatioProfile p : getListOfSplitRatioProfiles()) {
+		  if(p.getNodeId() == nodeId) {
+			  return p;
+      }
+    }
+    // Otherwise not found so return null
+	  return null;
   }
 
   

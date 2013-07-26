@@ -311,19 +311,22 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 
   /**
    * Get the profile at the specified link.
-   * Creates a list of DemandProfiles associated with the node passed in.
-   * If there are no profiles associated with this link null is returned.
+   * Returns DemandProfile associated with link id passed in.
+   * If there are no profiles associated with this link id null is returned.
    *
-   * @param Link get demand profiles associated with the node
-   * @return List<DemandProfile> or null if empty
+   * @param linkId get demand profile associated with the link id
+   * @return DemandProfile or null if not found
    */
-  public List<DemandProfile> getDemandAtLink(Link link) {
-    List<DemandProfile> profiles = new ArrayList<DemandProfile>();
-    for(DemandProfile p : getListOfDemandProfiles())
-      if(p.getLinkIdOrg() == link.getId())
-        profiles.add(p);
+  public DemandProfile getDemandAtLink(long linkId) {
 
-    return profiles.size() != 0 ? profiles : null;
+    for(DemandProfile p : getListOfDemandProfiles()) {
+      if(p.getLinkIdOrg() == linkId) {
+        return p;
+      }
+    }
+    // Otherwise not found so return null
+    return null;
+
   }
     
 }

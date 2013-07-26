@@ -1,7 +1,7 @@
 package edu.berkeley.path.model_objects.scenario;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -161,16 +161,12 @@ public class SplitRatioSetTest {
 	{
 		Node n = new Node();
 		n.setId(ID);
-		List<SplitRatioProfile> profiles = set.getSplitRatioProfileAtNode(n);
-		assertEquals(ID, profiles.size());
-
-		profiles.add(TestConfiguration.createSplitRatioProfile(1,3720,300,3,CrudFlag.UPDATE));
-		profiles = set.getSplitRatioProfileAtNode(n);
-		assertEquals(2, profiles.size());
+		SplitRatioProfile profile = set.getSplitRatioProfileAtNode(n.getId());
+		assertEquals(ID, profile.getNodeId());
 
 		n.setId(1111);
-		profiles = set.getSplitRatioProfileAtNode(n);
-		assertEquals(0, profiles.size());
+		profile = set.getSplitRatioProfileAtNode(n.getId());
+		assertNull(profile);
 	}
 
 	

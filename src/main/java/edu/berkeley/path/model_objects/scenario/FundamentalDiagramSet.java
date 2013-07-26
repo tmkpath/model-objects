@@ -35,7 +35,7 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
 	
 	
 	/**
-	 * get the FundamentalDiagramProfile who link if matches the parameter
+	 * Returns the FundamentalDiagramProfile associated with the given linkId
 	 *  
 	 * @param linkId the link id associated with the profile
 	 * @return FundamentalDiagramProfile associated with linkId
