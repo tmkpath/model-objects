@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.joda.time.Interval;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -55,108 +54,7 @@ public class SplitRatioSetTest {
 		assertEquals(3, set.getListOfSplitRatioProfiles().size());
 	}
 
-	/*@Test
-	public void testSlice(){
-
-		//start the same  and end in middle
-		Interval i = new Interval(3600000,3680000);
-		List<SplitRatioProfile> profs = set.slice(i);
-		List<Splitratio> ratios1 = profs.get(0).getListOfSplitratios();
-		List<Splitratio> ratios2 = profs.get(1).getListOfSplitratios();
-		List<Splitratio> ratios3 = profs.get(2).getListOfSplitratios();
-
-		assertEquals(3, profs.size());
-		assertEquals(1, ratios1.size());
-		assertEquals(1, ratios2.size());
-		assertEquals(1, ratios3.size());
-
-		//start and start
-		i = new Interval(3600000,3600000);
-		profs = set.slice(i);
-		ratios1 = profs.get(0).getListOfSplitratios();
-		ratios2 = profs.get(1).getListOfSplitratios();
-		ratios3 = profs.get(2).getListOfSplitratios();
-
-		assertEquals(3, profs.size());
-		assertEquals(1, ratios1.size());
-		assertEquals(0, ratios2.size());
-		assertEquals(0, ratios3.size());
-
-		//end and end
-		i = new Interval(4500000,4500000);
-		profs = set.slice(i);
-		ratios1 = profs.get(0).getListOfSplitratios();
-		ratios2 = profs.get(1).getListOfSplitratios();
-		ratios3 = profs.get(2).getListOfSplitratios();
-
-		assertEquals(3, profs.size());
-		assertEquals(1, ratios1.size());
-		assertEquals(1, ratios2.size());
-		assertEquals(1, ratios3.size());
-
-
-		//start in middle and end in middle - do not cross samples
-		i = new Interval(3660000,3730000);
-		profs = set.slice(i);
-		ratios1 = profs.get(0).getListOfSplitratios();
-		ratios2 = profs.get(1).getListOfSplitratios();
-		ratios3 = profs.get(2).getListOfSplitratios();
-
-		assertEquals(3, profs.size());
-		assertEquals(1, ratios1.size());
-		assertEquals(2, ratios2.size());
-		assertEquals(2, ratios3.size());
-
-		//start in middle and end in middle but cross samples
-		i = new Interval(3660000,3990000);
-		profs = set.slice(i);
-		ratios1 = profs.get(0).getListOfSplitratios();
-		ratios2 = profs.get(1).getListOfSplitratios();
-		ratios3 = profs.get(2).getListOfSplitratios();
-
-		assertEquals(3, profs.size());
-		assertEquals(2, ratios1.size());
-		assertEquals(3, ratios2.size());
-		assertEquals(2, ratios3.size());
-
-		//start and end before
-		i = new Interval(3200000,3500000);
-		profs = set.slice(i);
-		ratios1 = profs.get(0).getListOfSplitratios();
-		ratios2 = profs.get(1).getListOfSplitratios();
-		ratios3 = profs.get(2).getListOfSplitratios();
-
-		assertEquals(3, profs.size());
-		assertEquals(0, ratios1.size());
-		assertEquals(0, ratios2.size());
-		assertEquals(0, ratios3.size());
-
-		//start and end after
-		i = new Interval(4800000,4900000);
-		profs = set.slice(i);
-		ratios1 = profs.get(0).getListOfSplitratios();
-		ratios2 = profs.get(1).getListOfSplitratios();
-		ratios3 = profs.get(2).getListOfSplitratios();
-
-		assertEquals(3, profs.size());
-		assertEquals(0, ratios1.size());
-		assertEquals(0, ratios2.size());
-		assertEquals(0, ratios3.size());
-
-		//start before and end after
-		i = new Interval(3500000,4700000);
-		profs = set.slice(i);
-		ratios1 = profs.get(0).getListOfSplitratios();
-		ratios2 = profs.get(1).getListOfSplitratios();
-		ratios3 = profs.get(2).getListOfSplitratios();
-
-		assertEquals(3, profs.size());
-		assertEquals(4, ratios1.size());
-		assertEquals(4, ratios2.size());
-		assertEquals(4, ratios3.size());
-
-	}   */
-	
+  @Test
 	public void testGetSplitRatioProfileAtNode() throws MOException
 	{
 		Node n = new Node();
