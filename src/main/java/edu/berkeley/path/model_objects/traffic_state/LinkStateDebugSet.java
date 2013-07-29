@@ -8,8 +8,7 @@ import java.util.List;
  */
 public class LinkStateDebugSet extends edu.berkeley.path.model_objects.jaxb.LinkStateDebugSet {
 
-	public void setLinkStateDebugList(List<LinkState> linkStateList) {
-		this.linkStateDebug = (List<edu.berkeley.path.model_objects.jaxb.LinkStateDebug>)(List<?>)linkStateList;
+	public void setLinkStateDebugList(List<LinkStateDebug> linkStateDebugList) {
+		this.linkStateDebug = (List<edu.berkeley.path.model_objects.jaxb.LinkStateDebug>)(List<?>)linkStateDebugList;
 	}
-
 }
