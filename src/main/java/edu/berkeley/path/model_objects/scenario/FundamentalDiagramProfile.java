@@ -140,13 +140,13 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
 	}
 	
 	/**
-	 * Return Calibration Algorithm Type id as Integer
+	 * Return Calibration Algorithm Type id as CalibrationAlgorithmType
 	 * 
-	 * @return Calibration Algorithm Type id as Integer
+	 * @return Calibration Algorithm Type id as CalibrationAlgorithmType
 	 */
 	@Override
-	public Integer getCalAlgType() {
-	  return super.getCalAlgType();
+	public CalibrationAlgorithmType getCalibrationAlgorithmType() {
+	  return (CalibrationAlgorithmType)super.getCalibrationAlgorithmType();
 	}
 	
 	/**
@@ -154,9 +154,8 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
 	 * 
 	 * @param Calibration Algorithm Type id
 	 */
-	@Override
-	public void setCalAlgType(Integer i) {
-	  super.setCalAlgType(i);
+	public void setCalibrationAlgorithmType(CalibrationAlgorithmType type) {
+	  super.setCalibrationAlgorithmType(type);
 	}
 	
 	/**
