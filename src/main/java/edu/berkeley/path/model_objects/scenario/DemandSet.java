@@ -388,7 +388,6 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
     }
     // Otherwise not found so return null
     return null;
-
   }
     
 }

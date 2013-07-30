@@ -51,11 +51,12 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	 * @param Object_Parameter Parameter values to set object values to be called from Demand Reader
 	 *
 	 */
-	public void setByName(Object_Parameter p) {
+	public void setByName(Object_Parameter p, int offset) throws MOException {
 
-		if (p.name.compareToIgnoreCase("flow") == 0 ) 		setContent(String.valueOf(p.fltParam));
+    if (p.name.compareToIgnoreCase("id") == 0 ) 				setId(offset, p.intParam);
+		else if (p.name.compareToIgnoreCase("flow") == 0 ) 		setDemand(offset, p.fltParam);
 		else if (p.name.compareToIgnoreCase("vehTypeId") == 0 ) 	setVehicleTypeId(p.intParam);
-		else if (p.name.compareToIgnoreCase("modStamp") == 0 ) 		setModStamps(p.strParam);
+		else if (p.name.compareToIgnoreCase("modStamp") == 0 ) 		setModStamp(offset, p.strParam);
 	}
 
 	/**
@@ -64,14 +65,17 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	 * @return Array of Demand Object parameters to be used by Demand Writer
    * @throws MOException
 	 */
-	public Object_Parameter[] getAll(int offset) throws MOException {
+	public Object_Parameter[] getAll(int offset, Long demandProfileId) throws MOException {
 		
 		Object_Parameter[] params = new Object_Parameter[7];
 
-		params[0] = new Object_Parameter("flow", 0, Double.parseDouble(getContent()), null);
-		params[1] = new Object_Parameter("vehTypeId", vehicleTypeId, 0.0F, null);
-		params[2] = new Object_Parameter("modStamp", 0, 0.0F, getModStamp(offset));
-		params[3] = new Object_Parameter("crud", getCrudFlag(offset).ordinal(), 0.0F, null);
+    params[0] = new Object_Parameter("id", getId(offset), 0.0F, null);
+    params[1] = new Object_Parameter("demandProfId", demandProfileId, 0.0F, null);
+		params[2] = new Object_Parameter("flow", 0, getDemand(offset), null);
+		params[3] = new Object_Parameter("vehTypeId", getVehicleTypeId(), 0.0F, null);
+    params[4] = new Object_Parameter("demandOrder", offset, 0.0F, null);
+		params[5] = new Object_Parameter("modStamp", 0, 0.0F, getModStamp(offset));
+		params[6] = new Object_Parameter("crud", getCrudFlag(offset).ordinal(), 0.0F, null);
 		
 		Object_Parameter.setPositions(params);
 		

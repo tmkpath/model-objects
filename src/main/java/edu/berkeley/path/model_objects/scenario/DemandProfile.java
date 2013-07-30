@@ -63,7 +63,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 		else if (p.name.compareToIgnoreCase("startTime") == 0 ) 	setStartTime(p.fltParam);
 		else if (p.name.compareToIgnoreCase("SAMPLERATE") == 0 ) 	setDt(p.fltParam);
 		else if (p.name.compareToIgnoreCase("orgLinkId") == 0 ) 	setLinkIdOrg(p.intParam);
-		else if (p.name.compareToIgnoreCase("destinationNetworkId") == 0 ) 	setDestinationNetworkId(p.intParam);
+		else if (p.name.compareToIgnoreCase("destNetworkId") == 0 ) 	setDestinationNetworkId(p.intParam);
 		else if (p.name.compareToIgnoreCase("stdDevAdd") == 0 ) 	setStdDevAdd(p.fltParam);
 		else if (p.name.compareToIgnoreCase("stdDevMult") == 0 ) 	setStdDevMult(p.fltParam);
 		else if (p.name.compareToIgnoreCase("modStamp") == 0 ) 		setModStamp(p.strParam);
@@ -75,16 +75,17 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	 * 
 	 * @return
 	 */
-	public Object_Parameter[] getAll() {
+	public Object_Parameter[] getAll(Long demandSetId) {
 		
 		Object_Parameter[] params = new Object_Parameter[11];
 		
 		params[0] = new Object_Parameter("id", getId(), 0.0F, null);
+    params[1] = new Object_Parameter("demandSetId", demandSetId, 0.0F, null);
 		params[2] = new Object_Parameter("knob", 0, knob, null);
 		params[3] = new Object_Parameter("startTime", 0, startTime, null);
 		params[4] = new Object_Parameter("SAMPLERATE", 0, dt, null);
 		params[5] = new Object_Parameter("orgLinkId", getLinkIdOrg(), 0.0F, null);
-		params[6] = new Object_Parameter("destinationNetworkId", destinationNetworkId, 0.0F, null);
+		params[6] = new Object_Parameter("destNetworkId", destinationNetworkId, 0.0F, null);
 		params[7] = new Object_Parameter("stdDevAdd", 0, stdDevAdd, null);
 		params[8] = new Object_Parameter("stdDevMult", 0, stdDevMult, null);
 		params[9] = new Object_Parameter("modStamp", 0, 0.0F, modStamp);
