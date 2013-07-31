@@ -551,6 +551,7 @@
         <xs:sequence>
           <xs:element ref="fundamentalDiagram" minOccurs="0" maxOccurs="unbounded" />
           <xs:element ref="fundamentalDiagramType" minOccurs="0" maxOccurs="1" />
+          <xs:element ref="calibrationAlgorithmType" minOccurs="0" maxOccurs="1" />
         </xs:sequence>
 				<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 				<xs:attribute name="id" type="xs:long" use="required" />
@@ -561,6 +562,7 @@
 				<!-- in time units -->
 				<xs:attribute name="dt" type="xs:double" use="optional" /> 
 				<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+				<xs:attribute name="agg_run_id" type="xs:long" use="optional" />
 			</xs:complexType>
 		</xs:element>
 
@@ -586,6 +588,16 @@
 			</xs:element>  
 
 			<xs:element name="fundamentalDiagramType">
+				<xs:complexType>
+					<xs:attribute name="id" type="xs:int" use="required" />							
+					<xs:attribute name="name" type="xs:string" use="required" />							
+					<xs:attribute name="description" type="xs:string" use="required" />				
+					<xs:attribute name="in_use" type="xs:int" use="required" />					
+					<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="calibrationAlgorithmType">
 				<xs:complexType>
 					<xs:attribute name="id" type="xs:int" use="required" />							
 					<xs:attribute name="name" type="xs:string" use="required" />							
