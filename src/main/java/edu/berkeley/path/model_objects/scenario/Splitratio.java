@@ -30,6 +30,12 @@ import edu.berkeley.path.model_objects.MOException;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
 import java.util.ArrayList;
 
+/**
+ * This Class extends the base Split Ratio Model Object
+ *
+ * @author mnjuhn
+ * @author smorris
+ */
 public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio {
 
   // Array of ratioArray, idArray, modStampArray and crudFlagArray derived from comma separated content strings

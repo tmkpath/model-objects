@@ -28,64 +28,28 @@ package edu.berkeley.path.model_objects.measurements;
 
 import java.util.List;
 
-import javax.xml.datatype.XMLGregorianCalendar;
-
-import edu.berkeley.path.model_objects.measurements.PeMSDatum;
-
-
-/** 
- * Model Object PeMS Data Profile class.
- *  
- * @author Gunes Dervisoglu (gunesder@berkeley.edu)
- */
-public class PeMSDataProfile extends edu.berkeley.path.model_objects.jaxb.PeMSDataProfile{
+public class PeMSAggregateDataSet extends edu.berkeley.path.model_objects.jaxb.PeMSAggregateDataSet{
 	
 	/**
-	 * TODO: Validation
-	 * TODO: Unit Tests
-	 */
-	
-	/**
-	 * Return list of PeMSDatum objects (i.e. the profile)
+	 * Return list of PeMSAggregateDatum objects (i.e. the profile)
 	 * 
 	 * @return peMSDatum list as List<PeMSDatum>
 	 */
 	@SuppressWarnings("unchecked")
-	public List<PeMSDatum> getListOfPeMSDatum() {
-	  List<edu.berkeley.path.model_objects.jaxb.PeMSDatum> datumList = super.getPeMSDatum();
+	public List<PeMSAggregateDataProfile> getListOfProfiles() {
+	  List<edu.berkeley.path.model_objects.jaxb.PeMSAggregateDataProfile> profileList = super.getPeMSAggregateDataProfile();
 	  // return casted list of Nodes from JAXB base class
-      return (List<PeMSDatum>)(List<?>)datumList;
+      return (List<PeMSAggregateDataProfile>)(List<?>)profileList;
     }
 	
-	
 	/**
-	 * Set list of PeMSDatum objects (i.e. the profile)
+	 * Set list of PeMSAggregateDataProfile objects (i.e. the data set)
 	 * 
-	 * @param peMSDatum list as List<PeMSDatum>
+	 * @param PeMSAggregateDataProfile list as List<PeMSAggregateDataProfile>
 	 */
-	public void setPeMSDatum(List<PeMSDatum> peMSData) {
-	  getPeMSDatum().clear();
-	  getPeMSDatum().addAll(peMSData);
-	}
-	
-	/**
-	 * Return vdsId of the data profile
-	 * 
-	 * @return vdsId as long
-	 */
-	@Override
-	public long getVdsId() {
-	  return super.getVdsId();
-	}
-	
-	/**
-	 * Set vdsId of the data profile
-	 * 
-	 * @param vdsId as long
-	 */
-	@Override
-	public void setVdsId(long vdsId) {
-	  super.setVdsId(vdsId);
+	public void setPeMSAggregateDataProfile(List<PeMSAggregateDataProfile> peMSDataSet) {
+	  getPeMSAggregateDataProfile().clear();
+	  getPeMSAggregateDataProfile().addAll(peMSDataSet);
 	}
 
 }

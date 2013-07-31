@@ -36,213 +36,399 @@ import java.util.ArrayList;
  * Model Object Demand class.
  *  
  * @author Alexey Goder (alexey@goder.com)
+ * @author mnjuhn
  */
 public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 
-  // array of demands derived from comma separated content string
-  /** @y.exclude */ private ArrayList<Double> demands;
+  // array of demands, ids, ModStamps and CRUDFlags derived from comma separated content string
+  /** @y.exclude */ private ArrayList<Double> demandArray;
+  /** @y.exclude */ private ArrayList<Long> idArray;
+  /** @y.exclude */ private ArrayList<String> modStampArray;
+  /** @y.exclude */ private ArrayList<CrudFlag> crudFlagArray;
 
 	/**
 	 * Set value by name
-	 * @param Object_Parameter
-	 * @
+	 * @param Object_Parameter Parameter values to set object values to be called from Demand Reader
+	 *
 	 */
-	public void setByName(Object_Parameter p) {
+	public void setByName(Object_Parameter p, int offset) throws MOException {
 
-		if (p.name.compareToIgnoreCase("flow") == 0 ) 		setContent(String.valueOf(p.fltParam));
+    if (p.name.compareToIgnoreCase("id") == 0 ) 				setId(offset, p.intParam);
+		else if (p.name.compareToIgnoreCase("flow") == 0 ) 		setDemand(offset, p.fltParam);
 		else if (p.name.compareToIgnoreCase("vehTypeId") == 0 ) 	setVehicleTypeId(p.intParam);
-		//else if (p.name.compareToIgnoreCase("modStamp") == 0 ) 		setModStamp(p.strParam);
-		
+		else if (p.name.compareToIgnoreCase("modStamp") == 0 ) 		setModStamp(offset, p.strParam);
 	}
 
-	
 	/**
 	 * Get an array of all parameters
 	 * 
-	 * @return
+	 * @return Array of Demand Object parameters to be used by Demand Writer
+   * @throws MOException
 	 */
-	public Object_Parameter[] getAll() {
+	public Object_Parameter[] getAll(int offset, Long demandProfileId) throws MOException {
 		
 		Object_Parameter[] params = new Object_Parameter[7];
 
-		params[0] = new Object_Parameter("flow", 0, Double.parseDouble(getContent()), null);
-		params[1] = new Object_Parameter("vehTypeId", vehicleTypeId, 0.0F, null);
-		//params[2] = new Object_Parameter("modStamp", 0, 0.0F, modStamp);
-		params[3] = new Object_Parameter("crud", getCrudFlagEnum().ordinal(), 0.0F, null);
+    params[0] = new Object_Parameter("id", getId(offset), 0.0F, null);
+    params[1] = new Object_Parameter("demandProfId", demandProfileId, 0.0F, null);
+		params[2] = new Object_Parameter("flow", 0, getDemand(offset), null);
+		params[3] = new Object_Parameter("vehTypeId", getVehicleTypeId(), 0.0F, null);
+    params[4] = new Object_Parameter("demandOrder", offset, 0.0F, null);
+		params[5] = new Object_Parameter("modStamp", 0, 0.0F, getModStamp(offset));
+		params[6] = new Object_Parameter("crud", getCrudFlag(offset).ordinal(), 0.0F, null);
 		
 		Object_Parameter.setPositions(params);
 		
 		return params;
 	}
 
-	/**
-	 * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
-	 *
-	 * @return CRUD Flag enumeration
-	 */
-	public CrudFlag getCrudFlagEnum() {
+  /**
+   * Gets the length of the number of Demands for a particular link in,
+   * link out and vehicle-type.  Essentially the number of dt's
+   *
+   * @return current number of ratios defined
+   */
+  public int getDemandSize() throws MOException {
+    if (demandArray == null) {
+      setDemandArray();
+    }
 
-		CrudFlag flag = null;
-		// Check if CRUDFlag is null, if so return NONE enumeration
-		/*if (super.getCrudFlag() == null) {
-			setCrudFlagEnum(CrudFlag.NONE);
-			flag = CrudFlag.NONE;
-		}
-		else {
-			switch (CrudFlag.valueOf(super.getCrudFlag())) {
-				case CREATE:
-					flag = CrudFlag.CREATE;
-					break;
-				case RETRIEVE:
-					flag = CrudFlag.RETRIEVE;
-					break;
-				case UPDATE:
-					flag = CrudFlag.UPDATE;
-					break;
-				case DELETE:
-					flag = CrudFlag.DELETE;
-					break;
-				default:
-					flag = CrudFlag.NONE;
-					break;
-
-			}
-		}           */
-		return flag;
-	}
-
-	/**
-	 * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
-	 *
-	 * @param CRUD Flag enumeration
-	 */
-	public void setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag flag) {
-		// Check if CRUDFlag is null, if so return NONE enumeration
-		/*if (flag == null) {
-			super.setCrudFlag("NONE");
-		}
-		else {
-			switch (flag) {
-				case CREATE:
-					super.setCrudFlag("CREATE");
-					break;
-				case RETRIEVE:
-					super.setCrudFlag("RETRIEVE");
-					break;
-				case UPDATE:
-					super.setCrudFlag("UPDATE");
-					break;
-				case DELETE:
-					super.setCrudFlag("DELETE");
-					break;
-				default:
-					super.setCrudFlag("NONE");
-					break;
-
-			}
-		}  */
-	}
+    return demandArray.size();
+  }
 
   /**
-   * Function to update a  demand at a given dt offset
+   * Gets the value of the demand property.
    *
-   * @param demand New demand value
-   * @param offset dt offset of demand value to be updated
+   * @param offset dt to get demand from
+   * @return demand value
    *
-   * @throws MOException
    */
-  public void updateDemand(Double demand, int offset) throws MOException {
+  public Double getDemand(int offset) throws MOException {
 
-    String content = null;
-    try {
-      // update demand array at offset
-      demands.set(offset, demand);
-      // Create array representation of demands indexed by dt
-      String[] contentArray = getContent().split(",");
-      // Update demand at offset
-      contentArray[offset] = String.valueOf(demand);
-      // Convert content array back to comma separated string
-      content = org.apache.commons.lang.StringUtils.join(contentArray, ",");
-      // set new demand content string and recreated demand array
-      setContent(content);
+    Double demand = null;
+    // Demand -- if no demandArray list has been created, create one
+    if (demandArray == null) {
+      setDemandArray();
     }
-    catch( Exception ex ) {
+    try {
+      // get demand value at offset
+      demand = demandArray.get(offset);
+    } catch(Exception ex) {
       throw new MOException(ex,
-          "Error updating  demand value " + demand + " at dt offset " + offset);
+          "Error getting demand value at offset " + offset + ".");
+    }
+    return demand;
+  }
+
+  /**
+   * Sets the value of the demand property.
+   *
+   */
+  public void setDemand(int offset, Double value) throws MOException {
+
+    // Demand -- if no demandArray list has been created, create one
+    if (demandArray == null) {
+      setDemandArray();
+    }
+
+    try {
+      // add demand to array at offset
+      demandArray.add(offset, value);
+      // Create content string based on demandArray list, by removing "[", "]" characters and
+      // spaces between commas.
+      String demandContent = demandArray.toString().replaceAll("(\\[|\\]|\\s)","");
+      super.setContent(demandContent);
+    }
+    catch(Exception ex) {
+      throw new MOException(ex,
+          "Error adding new demand value " + value + " at offset " + offset +
+              ". Must add demands in order.");
+    }
+  }
+
+  /**
+   * Gets the value of the id property.
+   *
+   * @param offset representing dt order
+   * @return Id of demand at offset
+   */
+  public Long getId(int offset) throws MOException {
+
+    Long id = null;
+
+    // Id -- if no idArray list has been created, create one
+    if (idArray == null) {
+      setIdArray();
+    }
+    try {
+      // get id value at offset
+      id = idArray.get(offset);
+    } catch(Exception ex) {
+      throw new MOException(ex,
+          "Error getting demand id at offset " + offset + ".");
+    }
+    return id;
+
+  }
+
+  /**
+   * Sets the value of the id property.
+   *
+   */
+  public void setId(int offset, Long value) throws MOException {
+
+    // idArray -- if no idArray list has been created, create one
+    if (idArray == null) {
+      setIdArray();
+    }
+    try {
+      // add demand to array at offset
+      idArray.add(offset, value);
+      // Create content string based on demandArray list, by removing "[", "]" characters and
+      // spaces between commas.
+      String idContent = idArray.toString().replaceAll("(\\[|\\]|\\s)","");
+      super.setIds(idContent);
+    }
+    catch(Exception ex) {
+      throw new MOException(ex,
+          "Error adding new split ratio id " + value + " at offset " + offset +
+              ". Must add ratio's in order.");
+    }
+  }
+
+  /**
+   * Gets the value of the modstamp property.
+   *
+   * @param offset representing dt order
+   * @return ModStamp of demand at offset
+   *
+   */
+  public String getModStamp(int offset) throws MOException {
+
+    String modStamp = null;
+
+    // modStamp -- if no modStampArray list has been created, create one
+    if (modStampArray == null) {
+      setModStampArray();
+    }
+    try {
+      // get modStamp value at offset
+      modStamp = modStampArray.get(offset);
+    } catch(Exception ex) {
+      throw new MOException(ex,
+          "Error getting split demand modStamp at offset " + offset + ".");
+    }
+    return modStamp;
+  }
+
+  /**
+   * Sets the value of the modStamp property.
+   *
+   */
+  public void setModStamp(int offset, String value) throws MOException {
+
+    // ModStamp -- if no modStampArray list has been created, add one
+    if (modStampArray == null) {
+      setModStampArray();
+    }
+    try {
+      // add demand to array at offset
+      modStampArray.add(offset, value);
+      // Create content string based on demandArray list, by removing "[", "]" characters and
+      // spaces between commas.
+      String modStampContent = modStampArray.toString().replaceAll("(\\[|\\]|,\\s,)","");
+      super.setModStamps(modStampContent);
+    }
+    catch(Exception ex) {
+      throw new MOException(ex,
+          "Error adding new demand modStamp " + value + " at offset " + offset +
+              ". Must add demands in order.");
+    }
+  }
+
+  /**
+   * Gets the value of the CrudFlag property.
+   *
+   * @param offset representing dt order
+   * @return CrudFlag of demand at offset
+   */
+  public CrudFlag getCrudFlag(int offset) throws MOException {
+
+    CrudFlag crudFlag = null;
+
+    // CrudFlag -- if no crudFlagArray list has been created, add one
+    if (crudFlagArray == null) {
+      setCrudFlagArray();
+    }
+    try {
+      // get crudFlag value at offset
+      crudFlag = crudFlagArray.get(offset);
+    } catch(Exception ex) {
+      throw new MOException(ex,
+          "Error getting crudFlag modStamp at offset " + offset + ".");
+    }
+    return crudFlag;
+
+  }
+
+  /**
+   * Sets the value of the modStamp property.
+   *
+   */
+  public void setCrudFlag(int offset, CrudFlag value) throws MOException {
+
+    // CrudFlag -- if no crudFlagArray list has been created, add one
+    if (crudFlagArray == null) {
+      setCrudFlagArray();
+    }
+    try {
+      // add CrudFlag to array at offset
+      crudFlagArray.add(offset, value);
+      // Create content string based on crudFlagArray list, by removing "[", "]" characters and
+      // spaces between commas.
+      String crudFlagContent = crudFlagArray.toString().replaceAll("(\\[|\\]|\\s)","");
+      setCrudFlags(crudFlagContent);
+    }
+    catch(Exception ex) {
+      throw new MOException(ex,
+          "Error adding new split demand CRUDFlag " + value.toString() + " at offset " + offset +
+              ". Must add demands in order.");
     }
   }
 
 
   /**
-   * Function to add demand to end of list
+   * Function to add demand to end of list by offset (dt) or update existing demands
+   * If a new demand for a dt is added it must be done in order.
    *
-   * @param demand new demand value
-   * @return dt offset of demand added
+   * @param offset dt offset to add demand
+   * @param demand new offset value
+   * @param id of demand in database, can be null
+   * @param modStamp of split demand in database, can be null
+   * @param flag of database action (CRUD) on demand, can be null
    *
    * @throws MOException
    */
-  public int addDemand(Double demand) throws MOException {
-    String content = getContent();
-    // if no content value is set, create
-    if (content == null) {
-      demands = new ArrayList<Double>();
-    }
-    try {
-      // update demand array at offset
-      demands.add(demand);
-      // add demand to end of content string
-      content = content + "," + demand;
-      // set new demand content string and recreated demand array
-      setContent(content);
-    }
-    catch( Exception ex ) {
-      throw new MOException(ex,
-          "Error adding new demand value " + demand );
-    }
-    // return demand list length - 1 which is the dt offset
-    return demands.size() - 1;
+  public void setDemand(int offset, Double demand, Long id, String modStamp, CrudFlag flag) throws MOException {
 
+    setDemand(offset, demand);
+    if (id != null) {
+      setId(offset, id);
+    }
+    if (modStamp != null) {
+      setModStamp(offset, modStamp);
+    }
+    if (flag != null) {
+      setCrudFlag(offset, flag);
+    }
   }
 
   /**
-   * @param demand(s) content String as comma separated double string values
-   *  otherwise throws exception
+   * Creates the demandArray arraylist object based on demand content string
    * @throws MOException
    *
    */
-  public void setDemands(String content) throws MOException {
+  private void setDemandArray() throws MOException {
 
+    String demandContent = super.getContent();
     // Create array representation of demands indexed by dt
     try {
-      String[] contentArray = content.split(",");
-      demands = new ArrayList<Double>();
-      // For each value separated by a comma, add it to demands array
-      for (int i = 0; i < contentArray.length; i++) {
-        demands.add(Double.valueOf(contentArray[i].trim()));
+      demandArray = new ArrayList<Double>();
+      // if demand content value exists populate demandArray arraylist from string
+      if (demandContent != null) {
+        String[] contentArray = demandContent.split(",");
+        // For each value separated by a comma, add it to content array
+        for (int i = 0; i < contentArray.length; i++) {
+          demandArray.add(Double.valueOf(contentArray[i].trim()));
+        }
       }
     }
     catch (Exception ex) {
       throw new MOException(ex,
-          "Invalid demand content string. Should be a comma separated string of double values.");
+          "Invalid split demand content string. Should be a comma separated string of double values.");
     }
-
-    // set demand content string
-    super.setContent(content);
   }
 
   /**
-   * @return the demand(s) content String as a comma separated values
+   * Set idArray arraylist based on id content string
+   * @throws MOException
+   *
    */
-  public String getDemandsContent() {
-    return super.getContent();
+  private void setIdArray() throws MOException {
+
+    String idContent = super.getIds();
+    // Create array representation of split demands ids indexed by dt
+    try {
+      idArray = new ArrayList<Long>();
+      // if id content value exists populate demandArray arraylist from string
+      if (idContent != null) {
+        String[] contentArray = idContent.split(",");
+        // For each value separated by a comma, add it to content array
+        for (int i = 0; i < contentArray.length; i++) {
+          idArray.add(Long.valueOf(contentArray[i].trim()));
+        }
+      }
+    }
+    catch (Exception ex) {
+      throw new MOException(ex,
+          "Invalid id content string. Should be a comma separated string of long values.");
+    }
   }
 
   /**
-   * @return the demand(s) as a array of doubles indexed by dt
+   * Set modStampArray arraylist based on modStamp content string
+   * @throws MOException
+   *
    */
-  public ArrayList<Double> getDemandsArray() {
-    return demands;
+  private void setModStampArray() throws MOException {
+
+    String modStampContent = super.getModStamps();
+    // Create array representation of split demand modstamps indexed by dt
+    try {
+      modStampArray = new ArrayList<String>();
+
+      if (modStampContent != null) {
+        // if modStamp content exists populate modStampArray arraylist from string
+        String[] contentArray = modStampContent.split(",");
+        // For each value separated by a comma, add it to content array
+        for (int i = 0; i < contentArray.length; i++) {
+          modStampArray.add(contentArray[i].trim());
+        }
+      }
+    }
+    catch (Exception ex) {
+      throw new MOException(ex,
+          "Invalid modStamp content string. Should be a comma separated string of String date values.");
+    }
   }
+
+  /**
+   * Set crudFlagArray arraylist based on crudFlag content string
+   * @throws MOException
+   *
+   */
+  private void setCrudFlagArray() throws MOException {
+
+    String crudFlagContent = super.getCrudFlags();
+    // Create array representation of split demand crudFlags indexed by dt
+    try {
+      crudFlagArray = new ArrayList<CrudFlag>();
+
+      if (crudFlagContent != null) {
+        // if CrudFlag content exists populate crudFlagArray arraylist from string
+        String[] contentArray = crudFlagContent.split(",");
+        // For each value separated by a comma, add it to content array
+        for (int i = 0; i < contentArray.length; i++) {
+          crudFlagArray.add(CrudFlag.valueOf(contentArray[i].trim()));
+        }
+      }
+    }
+    catch (Exception ex) {
+      throw new MOException(ex,
+          "Invalid CrudFlag content string. Should be a comma separated string of String date values.");
+    }
+  }
+
 	/**
 	 * @param id the vehicle type id for this demand
 	 */
@@ -258,4 +444,22 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 	public long getVehicleTypeId() {
 		return super.getVehicleTypeId();
 	}
+
+  /**
+   * Returns true if the vehTypeId matches this object vehicleTypeId
+   *
+   * @return boolean
+   */
+  public boolean equals(long vehTypeId){
+    return vehTypeId == this.getVehicleTypeId();
+  }
+
+  /**
+   * Checks to make sure the object is correct
+   * @return boolean
+   */
+  public boolean isValid(){
+    // TODO work on validation logic
+    return true;
+  }
 }

@@ -89,13 +89,11 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 		int offset = (int)Math.floor(daySeconds / this.getDt());
 		
 		List<Splitratio> ratios = getListOfSplitratios();
-		for(Splitratio r : ratios)
-		{
+		for(Splitratio r : ratios) {
 			if(r.equals(link_in_id, link_out_id, vehicle_type_id)) {
         try {
           // get all ratios values for link in, link out and vehicle type id - indexed by dt
           // check if ratio exists for offset
-
           if (r.getRatioSize() > offset) {
             return r.getRatio(offset);
           }
@@ -124,13 +122,11 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	public Double getSplitRatio(long link_in_id, long link_out_id, long vehicle_type_id, long offsetTime) {
 		List<Splitratio> ratios = getListOfSplitratios();
 		int offset = (int)Math.floor(offsetTime / this.getDt());
-		for(Splitratio r : ratios)
-		{
+		for(Splitratio r : ratios) {
       if(r.equals(link_in_id, link_out_id, vehicle_type_id)) {
         try {
           // get all ratios values for link in, link out and vehicle type id - indexed by dt
           // check if ratio exists for offset
-
           if (r.getRatioSize() > offset) {
             return r.getRatio(offset);
           }

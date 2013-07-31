@@ -85,4 +85,28 @@ public class MeasurementObjectFactory extends edu.berkeley.path.model_objects.ja
 		return new VDS();
 	}
 	
+	/** 
+	 * Create an instance of PeMSAggregateDatum object
+	 * @return PeMSAggregateDatum object
+	 */
+	public PeMSAggregateDatum createPeMSAggregateDatum(){
+		return new PeMSAggregateDatum();
+	}
+	
+	/** 
+	 * Create an instance of PeMSAggregateDataProfile object
+	 * @return PeMSAggregateDataProfile object
+	 */
+	public PeMSAggregateDataProfile createPeMSAggregateDataProfile(){
+		return new PeMSAggregateDataProfile();
+	}
+	
+	/** 
+	 * Create an instance of PeMSAggregateDataSet object
+	 * @return PeMSAggregateDataSet object
+	 */
+	public PeMSAggregateDataSet createPeMSAggregateDataSet(){
+		return new PeMSAggregateDataSet();
+	}
+	
 }

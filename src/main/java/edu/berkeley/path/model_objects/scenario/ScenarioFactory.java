@@ -189,4 +189,14 @@ public class ScenarioFactory extends edu.berkeley.path.model_objects.jaxb.Object
   public RouteLink createRouteLink() {
     return new RouteLink();
   }
+  
+  /**
+   * Create an instance of createCalibrationAlgorithmType Model Object
+   * 
+   * @return  createCalibrationAlgorithmType Model Object 
+   */
+  public CalibrationAlgorithmType createCalibrationAlgorithmType() {
+      return new CalibrationAlgorithmType();
+  }
+  
 }

@@ -30,6 +30,8 @@ package edu.berkeley.path.model_objects.scenario;
 import java.util.ArrayList;
 import java.util.List;
 
+import core.Monitor;
+import edu.berkeley.path.model_objects.MOException;
 import edu.berkeley.path.model_objects.scenario.Object_Parameter;
 import edu.berkeley.path.model_objects.shared.DateTime;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
@@ -61,7 +63,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 		else if (p.name.compareToIgnoreCase("startTime") == 0 ) 	setStartTime(p.fltParam);
 		else if (p.name.compareToIgnoreCase("SAMPLERATE") == 0 ) 	setDt(p.fltParam);
 		else if (p.name.compareToIgnoreCase("orgLinkId") == 0 ) 	setLinkIdOrg(p.intParam);
-		else if (p.name.compareToIgnoreCase("destinationNetworkId") == 0 ) 	setDestinationNetworkId(p.intParam);
+		else if (p.name.compareToIgnoreCase("destNetworkId") == 0 ) 	setDestinationNetworkId(p.intParam);
 		else if (p.name.compareToIgnoreCase("stdDevAdd") == 0 ) 	setStdDevAdd(p.fltParam);
 		else if (p.name.compareToIgnoreCase("stdDevMult") == 0 ) 	setStdDevMult(p.fltParam);
 		else if (p.name.compareToIgnoreCase("modStamp") == 0 ) 		setModStamp(p.strParam);
@@ -73,16 +75,17 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	 * 
 	 * @return
 	 */
-	public Object_Parameter[] getAll() {
+	public Object_Parameter[] getAll(Long demandSetId) {
 		
 		Object_Parameter[] params = new Object_Parameter[11];
 		
 		params[0] = new Object_Parameter("id", getId(), 0.0F, null);
+    params[1] = new Object_Parameter("demandSetId", demandSetId, 0.0F, null);
 		params[2] = new Object_Parameter("knob", 0, knob, null);
 		params[3] = new Object_Parameter("startTime", 0, startTime, null);
 		params[4] = new Object_Parameter("SAMPLERATE", 0, dt, null);
 		params[5] = new Object_Parameter("orgLinkId", getLinkIdOrg(), 0.0F, null);
-		params[6] = new Object_Parameter("destinationNetworkId", destinationNetworkId, 0.0F, null);
+		params[6] = new Object_Parameter("destNetworkId", destinationNetworkId, 0.0F, null);
 		params[7] = new Object_Parameter("stdDevAdd", 0, stdDevAdd, null);
 		params[8] = new Object_Parameter("stdDevMult", 0, stdDevMult, null);
 		params[9] = new Object_Parameter("modStamp", 0, 0.0F, modStamp);
@@ -196,11 +199,19 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	 */
 	public Double[] getDemand(long vehicle_type_id){
 		List<Demand> list = getListOfDemands();
-		for (Demand d : list){
-			if(d.getVehicleTypeId() == vehicle_type_id) {
-        // Copy demands arraylist to primative array of doubles
-        Double[] demandValues = new Double[d.getDemandsArray().size()];
-        return d.getDemandsArray().toArray(demandValues);
+		for (Demand d : list) {
+      if(d.equals(vehicle_type_id)) {
+        try {
+          // Copy demands arraylist to primative array of doubles
+          Double[] demandValues = new Double[d.getDemandSize()];
+          for (int i = 0; i < d.getDemandSize(); i++) {
+            demandValues[i] = d.getDemand(i);
+          }
+          return demandValues;
+        } catch(MOException exc) {
+          Monitor.err("Error, cannot find demand for vehicle type id " + vehicle_type_id + ". "
+              + exc.getMessage());
+        }
       }
 		}
 
@@ -219,14 +230,17 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	public Double getDemand(long vehicle_type_id, long offsetTime){
 		List<Demand> list = getListOfDemands();
 		int offset = (int)Math.floor(offsetTime / this.getDt());
-		for(Demand d : list)
-		{
-			if(d.getVehicleTypeId()== vehicle_type_id) {
-        // get all demand values for vehicle type id - indexed by dt
-        ArrayList<Double> demandsByDT = d.getDemandsArray();
-        // check if demands exists for offset
-        if (demandsByDT.size() > offset) {
-          return demandsByDT.get(offset);
+		for(Demand d : list) {
+      if(d.equals(vehicle_type_id)) {
+        try {
+          // get all demand values with same vehicle type id - indexed by dt
+          // check if demand exists for offset
+          if (d.getDemandSize() > offset) {
+            return d.getDemand(offset);
+          }
+        } catch(MOException exc) {
+          Monitor.err("Error, cannot find demand for vehicle type id " + vehicle_type_id + " and offset "
+              + offsetTime + ". " + exc.getMessage());
         }
       }
 		}
@@ -258,12 +272,16 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 		List<Demand> list = getListOfDemands();
 		for(Demand d : list)
 		{
-      if(d.getVehicleTypeId() == vehicle_type_id) {
-        // get all demand values for vehicle type id - indexed by dt
-        ArrayList<Double> demandsByDT = d.getDemandsArray();
-        // check if demands exists for offset
-        if (demandsByDT.size() > offset) {
-          return demandsByDT.get(offset);
+      if(d.equals(vehicle_type_id)) {
+        try {
+          // get all demand values with same vehicle type id - indexed by dt
+          // check if demand exists for offset
+          if (d.getDemandSize() > offset) {
+            return d.getDemand(offset);
+          }
+        } catch(MOException exc) {
+          Monitor.err("Error, cannot find demand for vehicle type id " + vehicle_type_id + " and time "
+              + time + ". " + exc.getMessage());
         }
       }
 		}

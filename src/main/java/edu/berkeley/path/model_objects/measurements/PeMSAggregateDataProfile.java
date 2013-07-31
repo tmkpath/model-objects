@@ -28,44 +28,29 @@ package edu.berkeley.path.model_objects.measurements;
 
 import java.util.List;
 
-import javax.xml.datatype.XMLGregorianCalendar;
-
-import edu.berkeley.path.model_objects.measurements.PeMSDatum;
-
-
-/** 
- * Model Object PeMS Data Profile class.
- *  
- * @author Gunes Dervisoglu (gunesder@berkeley.edu)
- */
-public class PeMSDataProfile extends edu.berkeley.path.model_objects.jaxb.PeMSDataProfile{
+public class PeMSAggregateDataProfile extends edu.berkeley.path.model_objects.jaxb.PeMSAggregateDataProfile {
 	
 	/**
-	 * TODO: Validation
-	 * TODO: Unit Tests
-	 */
-	
-	/**
-	 * Return list of PeMSDatum objects (i.e. the profile)
+	 * Return list of PeMSAggregateDatum objects (i.e. the profile)
 	 * 
-	 * @return peMSDatum list as List<PeMSDatum>
+	 * @return peMSAggregateDatum list as List<PeMSAggregateDatum>
 	 */
 	@SuppressWarnings("unchecked")
-	public List<PeMSDatum> getListOfPeMSDatum() {
-	  List<edu.berkeley.path.model_objects.jaxb.PeMSDatum> datumList = super.getPeMSDatum();
+	public List<PeMSAggregateDatum> getListOfPeMSAggregateDatum() {
+	  List<edu.berkeley.path.model_objects.jaxb.PeMSAggregateDatum> datumList = super.getPeMSAggregateDatum();
 	  // return casted list of Nodes from JAXB base class
-      return (List<PeMSDatum>)(List<?>)datumList;
+      return (List<PeMSAggregateDatum>)(List<?>)datumList;
     }
 	
 	
 	/**
-	 * Set list of PeMSDatum objects (i.e. the profile)
+	 * Set list of PeMSAggregateDatum objects (i.e. the profile)
 	 * 
-	 * @param peMSDatum list as List<PeMSDatum>
+	 * @param peMSAggregateDatum list as List<PeMSAggregateDatum>
 	 */
-	public void setPeMSDatum(List<PeMSDatum> peMSData) {
-	  getPeMSDatum().clear();
-	  getPeMSDatum().addAll(peMSData);
+	public void setPeMSAggregateDatum(List<PeMSAggregateDatum> peMSData) {
+	  getPeMSAggregateDatum().clear();
+	  getPeMSAggregateDatum().addAll(peMSData);
 	}
 	
 	/**
@@ -87,5 +72,5 @@ public class PeMSDataProfile extends edu.berkeley.path.model_objects.jaxb.PeMSDa
 	public void setVdsId(long vdsId) {
 	  super.setVdsId(vdsId);
 	}
-
+	
 }
