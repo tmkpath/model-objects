@@ -56,7 +56,7 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	 * @param projectId the projectId to set
 	 */
 	 @Override
-	public void setProjectId(Long projectId) {
+	public void setProjectId(long projectId) {
 		 super.setProjectId(projectId);
 	}
 

@@ -27,25 +27,32 @@
 package edu.berkeley.path.model_objects.scenario;
 
 import edu.berkeley.path.model_objects.shared.CrudFlag;
+import core.Monitor;
 
 public class Density extends edu.berkeley.path.model_objects.jaxb.Density {
+
+  // density value from content string
+  /** @y.exclude */ private Double density;
 
   public boolean isValid() {
     //TODO generate actual implementation
     return true;
   }
 
-  public long getVehicleTypeId() {
-    return getVehicleType().getId();
+  /**
+   * @param id the vehicle type id for this density
+   */
+  @Override
+  public void setVehicleTypeId(long id) {
+    super.setVehicleTypeId(id);
   }
 
-  public void setVehicleType(long id, String name, double size, int isStandard) {
-    VehicleType type = new VehicleType();
-    type.setId(id);
-    type.setName(name);
-    type.setSizeFactor(size);
-    type.setIsStandard(isStandard);
-    setVehicleType(type);
+  /**
+   * @return the vehicle type id for this density
+   */
+  @Override
+  public long getVehicleTypeId() {
+    return super.getVehicleTypeId();
   }
 
 	/**
@@ -153,22 +160,63 @@ public class Density extends edu.berkeley.path.model_objects.jaxb.Density {
   }
 
   @Override
-  public long getDestinationNetworkId() {
+  public Long getDestinationNetworkId() {
     return super.getDestinationNetworkId();
   }
 
   @Override
-  public void setDestinationNetworkId(long value) {
+  public void setDestinationNetworkId(Long value) {
     super.setDestinationNetworkId(value);
   }
 
+  /*
+   * Get the density value as a Content String
+   *
+   * @return String of density value
+   */
   @Override
-  public double getDensity() {
-    return super.getDensity();
+  public String getContent() {
+    return super.getContent();
   }
 
+  /*
+   * Set the density value from Content String
+   *
+   * @param value String value of content string
+   */
   @Override
-  public void setDensity(double value) {
-    super.setDensity(value);
+  public void setContent(String value) {
+    super.setContent(value);
+    try {
+      this.density = Double.valueOf(value);
+    } catch (Exception ex) {
+      Monitor.err("Error setting density, invalid content string.");
+    }
   }
+
+  /*
+   * Get the density value as a Double
+   *
+   * @return Density
+   */
+  public Double getDensity() {
+    return this.density;
+  }
+
+  /*
+   * Set the density value and content string
+   *
+   * @param value Density as a Double
+   */
+  public void setDensity(Double value) {
+    this.density = value;
+
+    try {
+      super.setContent(value.toString());
+    } catch (Exception ex) {
+      Monitor.err("Error setting density, invalid content string.");
+    }
+
+  }
+
 }

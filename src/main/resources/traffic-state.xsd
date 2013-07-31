@@ -47,7 +47,6 @@
     <xs:complexType>
       <xs:all>
 				<xs:element name="timestamp" type="dateTime" minOccurs="0" maxOccurs="1" />
-        <xs:element ref="VehicleTypeOrder" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="linkState" minOccurs="1" maxOccurs="unbounded"/>
       </xs:all>
 
@@ -88,7 +87,6 @@
     <xs:complexType>
       <xs:all>
 				<xs:element name="timestamp" type="dateTime" minOccurs="0" maxOccurs="1" />
-        <xs:element ref="VehicleTypeOrder" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="linkPerformance" minOccurs="1" maxOccurs="unbounded"/>
       </xs:all>
 
@@ -302,11 +300,6 @@
         <!-- Timestamp for the link performance - optional, because
 	     it can be assigned to the <linkPerformanceSet> at once. -->
 				<xs:element name="timestamp" type="dateTime" minOccurs="0" maxOccurs="1" />
-
-	<!-- Vehicle type order defines the order of density
-             and flow values in the corresponding elements.
-             This can be assigned at the <linkPerformanceSet> level. -->
-        <xs:element ref="VehicleTypeOrder" minOccurs="0" maxOccurs="1"/>
 
 	<!-- Traffic performance by vehicle type. -->
         <xs:element ref="trafficPerformanceByVehicleType" minOccurs="1" maxOccurs="1"/>

@@ -30,8 +30,6 @@ package edu.berkeley.path.model_objects.scenario;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
 import java.util.List;
 
-import edu.berkeley.path.model_objects.scenario.FundamentalDiagram;
-
 /** 
  * Model Object Fundamental Diagram Profile class.
  *  
@@ -140,6 +138,45 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
 	public void setId(long l) {
 	  super.setId(l);
 	}
+	
+	/**
+	 * Return Calibration Algorithm Type id as CalibrationAlgorithmType
+	 * 
+	 * @return Calibration Algorithm Type id as CalibrationAlgorithmType
+	 */
+	@Override
+	public CalibrationAlgorithmType getCalibrationAlgorithmType() {
+	  return (CalibrationAlgorithmType)super.getCalibrationAlgorithmType();
+	}
+	
+	/**
+	 * Set Calibration Algorithm Type id as Integer
+	 * 
+	 * @param Calibration Algorithm Type id
+	 */
+	public void setCalibrationAlgorithmType(CalibrationAlgorithmType type) {
+	  super.setCalibrationAlgorithmType(type);
+	}
+	
+	/**
+	 * Return Aggregation Run id as Long
+	 * 
+	 * @return Aggregation Run id as Long
+	 */
+	@Override
+	public Long getAggRunId() {
+	  return super.getAggRunId();
+	}
+	
+	/**
+	 * Set Aggregation Run id as Long
+	 * 
+	 * @param Aggregation Run id as Long
+	 */
+	@Override
+	public void setAggRunId(Long l) {
+	  super.setAggRunId(l);
+	}
 
 	/**
 	 * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
@@ -228,5 +265,27 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
     public String getModStamp() {
         return super.getModStamp();
     }
+
+    /**
+     * Set the fundamental Diagram Type
+     *
+     * @param type Fundamental Diagram Type
+     */
+    public void setFundamentalDiagramType(FundamentalDiagramType type) {
+      super.setFundamentalDiagramType(type);
+    }
+
+    /**
+     * Get the fundamental Diagram Type
+     *
+     * @return Fundamental Diagram Type object
+     */
+    @Override
+    public FundamentalDiagramType getFundamentalDiagramType() {
+      return (FundamentalDiagramType)super.getFundamentalDiagramType();
+    }
+
+
+
 
 }

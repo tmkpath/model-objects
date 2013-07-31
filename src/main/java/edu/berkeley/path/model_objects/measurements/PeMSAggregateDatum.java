@@ -26,7 +26,7 @@
 
 package edu.berkeley.path.model_objects.measurements;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+import java.math.BigInteger;
 
 import edu.berkeley.path.model_objects.shared.DateTime;
 
@@ -35,13 +35,7 @@ import edu.berkeley.path.model_objects.shared.DateTime;
  *  
  * @author Gunes Dervisoglu (gunesder@berkeley.edu)
  */
-
-public class PeMSDatum extends edu.berkeley.path.model_objects.jaxb.PeMSDatum{
-	
-	/**
-	 * TODO: Getters and Setters for gFactor, densityError, flowError, funcLoopFact
-	 * TODO: Unit Tests
-	 */
+public class PeMSAggregateDatum extends edu.berkeley.path.model_objects.jaxb.PeMSAggregateDatum{
 	
 	/**
 	 * Return timestamp of datum
@@ -124,6 +118,26 @@ public class PeMSDatum extends edu.berkeley.path.model_objects.jaxb.PeMSDatum{
 	}
 	
 	/**
+	 * Return health value
+	 * 
+	 * @return health as Double
+	 */
+	@Override
+	public Double getHealth() {
+	  return super.getHealth();
+	}
+	
+	/**
+	 * Set health value
+	 * 
+	 * @param health as Double
+	 */
+	@Override
+	public void setHealth(Double health) {
+	  super.setHealth(health);
+	}
+	
+	/**
 	 * Return vds id
 	 * 
 	 * @return vds id as long
@@ -143,4 +157,44 @@ public class PeMSDatum extends edu.berkeley.path.model_objects.jaxb.PeMSDatum{
 	  super.setVdsId(l);
 	}
 	
+	/**
+	 * Return run id
+	 * 
+	 * @return run id as long
+	 */
+	@Override
+	public long getRunId() {
+	  return super.getRunId();
+	}
+	
+	/**
+	 * Set vds id
+	 * 
+	 * @param vds id as long
+	 */
+	@Override
+	public void setRunId(long r) {
+	  super.setRunId(r);
+	}
+	
+	/**
+	 * Return aggregation period in minutes
+	 * 
+	 * @return aggregation period as BigInteger
+	 */
+	@Override
+	public Integer getAggPeriod() {
+	  return super.getAggPeriod();
+	}
+	
+	/**
+	 * Set aggregation period in minutes
+	 * 
+	 * @param aggregation period as BigInteger
+	 */
+	@Override
+	public void setAggPeriod(Integer a) {
+	  super.setAggPeriod(a);
+	}
+
 }

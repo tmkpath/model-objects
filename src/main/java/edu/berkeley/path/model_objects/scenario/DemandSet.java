@@ -32,8 +32,6 @@ package edu.berkeley.path.model_objects.scenario;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.berkeley.path.model_objects.scenario.DemandProfile;
-import edu.berkeley.path.model_objects.jaxb.VehicleTypeOrder;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
 
 public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
@@ -55,12 +53,6 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
     public void setModStamp(String value) {
         this.modStamp = value;
     }
-    
-    /**
-     * Check if this object is valid
-     * @return
-     */
-	public Boolean isValid() { return true; }
 	
 	/**
 	 * Set value by name
@@ -167,11 +159,11 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 	}
 	   /**
      * Gets the value of the description property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
 	@Override
 	public String getDescription() {
@@ -180,41 +172,15 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 
     /**
      * Sets the value of the description property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     @Override
     public void setDescription(String value) {
         this.description = value;
-    }
-
-    /**
-     * Gets the value of the vehicleTypeOrder property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link VehicleTypeOrder }
-     *     
-     */
-    @Override
-    public VehicleTypeOrder getVehicleTypeOrder() {
-        return vehicleTypeOrder;
-    }
-
-    /**
-     * Sets the value of the vehicleTypeOrder property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link VehicleTypeOrder }
-     *     
-     */
-    @Override
-    public void setVehicleTypeOrder(VehicleTypeOrder value) {
-        this.vehicleTypeOrder = value;
     }
 
 	/**
@@ -248,24 +214,24 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 	  
     /**
      * Gets the value of the projectId property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link Long }
-     *     
+     *
      */
     @Override
-    public long getProjectId() {   
+    public long getProjectId() {
             return projectId;
     }
 
     /**
      * Sets the value of the projectId property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link Long }
-     *     
+     *
      */
     @Override
     public void setProjectId(long value) {
@@ -274,7 +240,7 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 
     /**
      * Gets the value of the id property.
-     * 
+     *
      */
     @Override
     public long getId() {
@@ -283,7 +249,7 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 
     /**
      * Sets the value of the id property.
-     * 
+     *
      */
     @Override
     public void setId(long value) {
@@ -292,11 +258,11 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 
     /**
      * Gets the value of the name property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     @Override
     public String getName() {
@@ -309,16 +275,119 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 
     /**
      * Sets the value of the name property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     @Override
     public void setName(String value) {
         this.name = value;
     }
-    
+
+  /**
+   * Gets the value of the lockedForEdit property.
+   *
+   * @return boolean
+   *
+   */
+  @Override
+  public boolean isLockedForEdit() {
+    return super.isLockedForEdit();
+  }
+
+  /**
+   * Sets the value of the lockedForEdit property.
+   *
+   * @param Boolean value
+   *
+   */
+  @Override
+  public void setLockedForEdit(Boolean value) {
+    super.setLockedForEdit(value);
+  }
+
+  /**
+   * Gets the value of the lockedForHistory property.
+   *
+   * @return boolean
+   *
+   */
+  @Override
+  public boolean isLockedForHistory() {
+    return super.isLockedForHistory();
+  }
+
+  /**
+   * Sets the value of the lockedForHistory property.
+   *
+   * @param Boolean value
+   *
+   */
+  @Override
+  public void setLockedForHistory(Boolean value) {
+    super.setLockedForHistory(value);
+  }
+
+  /**
+   * Ensures all required fields are set
+   *
+   * @return boolean
+   */
+  public boolean isValid(){
+    // TODO - validation logic
+    return true;
+  }
+
+  /**
+   * Gets the value of the demandProfile property.
+   *
+   *
+   * @return List<DemandProfile>
+   *
+   *
+   */
+  @SuppressWarnings("unchecked")
+  public List<DemandProfile> getListOfDemandProfiles() {
+    // return casted list of Nodes from JAXB base class
+    return (List<DemandProfile>)(List<?>)super.getDemandProfile();
+  }
+
+  /**
+   * Set the demands profiles list. Attaches list of Demand Profile Model Objects to set.
+   *
+   * @param List<Demand>	List of extended Demand Profiles to add
+   */
+  @SuppressWarnings("unchecked")
+  public void setListOfDemandProfiles(List<DemandProfile> demands) {
+    List<edu.berkeley.path.model_objects.jaxb.DemandProfile> profiles = super.getDemandProfile();
+    if ( profiles == null ) {
+      profiles = new ArrayList<edu.berkeley.path.model_objects.jaxb.DemandProfile>();
+    }
+    profiles.clear();
+    profiles.addAll((List<edu.berkeley.path.model_objects.jaxb.DemandProfile>)(List<?>)demands);
+    super.demandProfile = profiles;
+  }
+
+
+  /**
+   * Get the profile at the specified link.
+   * Returns DemandProfile associated with link id passed in.
+   * If there are no profiles associated with this link id null is returned.
+   *
+   * @param linkId get demand profile associated with the link id
+   * @return DemandProfile or null if not found
+   */
+  public DemandProfile getDemandProfileAtLink(long linkId) {
+
+    for(DemandProfile p : getListOfDemandProfiles()) {
+      if(p.getLinkIdOrg() == linkId) {
+        return p;
+      }
+    }
+    // Otherwise not found so return null
+    return null;
+  }
     
 }

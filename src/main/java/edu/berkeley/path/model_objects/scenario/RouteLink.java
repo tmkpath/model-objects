@@ -24,7 +24,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  **/
 
-package edu.berkeley.path.model_objects.network;
+package edu.berkeley.path.model_objects.scenario;
 
 import edu.berkeley.path.model_objects.shared.CrudFlag;
 
@@ -36,7 +36,7 @@ import java.util.List;
 /** Route class
 * @author Matthew Juhn (mnjuhn@berkeley.edu)
 */
-public class RouteLinks extends edu.berkeley.path.model_objects.jaxb.RouteLinks {
+public class RouteLink extends edu.berkeley.path.model_objects.jaxb.RouteLink {
 
     /**
      * Return id of route link
@@ -153,51 +153,38 @@ public class RouteLinks extends edu.berkeley.path.model_objects.jaxb.RouteLinks 
      * @return order of route link as long
      */
     @Override
-    public long getLinkOrder() {
+    public int getLinkOrder() {
         return super.getLinkOrder();
     }
 
-    /**
-     * Set order of route link
-     *
-     * @param order of route link
-     */
-    @Override
-    public void setLinkOrder(long order) {
-        super.setLinkOrder(order);
-    }
+  /**
+   * Set order of link in route
+   *
+   * @param linkOrder as long
+   */
+  @Override
+  public void setLinkOrder(int linkOrder) {
+    super.setLinkOrder(linkOrder);
+  }
 
-    /**
-     * Return id of link reference
-     *
-     * @return id of link reference as Long
-     */
-    public Long getLinkReferenceId() {
-        Long id = null;
-        if (getLinkReferences() != null) {
-            List<LinkReference> linkRef = getLinkReferences().getLinkReference();
-            if (linkRef.size() > 0) {
-                id = linkRef.get(0).getId();
-            }
-        }
-        return id;
-    }
+  /**
+   * Return Link ID of the of route link
+   *
+   * @return linkId as long
+   */
+  @Override
+  public long getLinkId() {
+    return super.getLinkId();
+  }
 
-    /**
-     * Set id of link
-     *
-     * @param id of link reference
-     */
-    public void setLinkReferenceId(Long id) {
-        // define Link reference
-        LinkReference linkRef = new LinkReference();
-        linkRef.setId(id);
-        LinkReferences linkRefs = new LinkReferences();
+  /**
+   * Set Link ID of the route link
+   *
+   * @param linkId as long
+   */
+  @Override
+  public void setLinkId(long linkId) {
+    super.setLinkId(linkId);
+  }
 
-        // Set link reference defined above
-        linkRefs.getLinkReference().add(linkRef);
-
-        // add link reference object
-        setLinkReferences(linkRefs);
-    }
 }
