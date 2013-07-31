@@ -67,7 +67,7 @@
       
       <!-- Aggregation time interval - if used at this level, it
            applies to the states of all links in the set. -->
-      <xs:attribute name="dt" type="xs:double" use="optional"/>
+      <xs:attribute name="dt" type="xs:long" use="optional"/>
 
       <!-- Quantity type - if used at this level, it
            applies to the states of all links in the set. -->
@@ -81,8 +81,47 @@
     </xs:complexType>
   </xs:element>
 
+  <!-- Link State Debug Set -->
+  <xs:element name="linkStateDebugSet">
+      <xs:complexType>
+          <xs:all>
+              <xs:element name="timestamp" type="dateTime" minOccurs="0" maxOccurs="1" />
+              <xs:element ref="linkState-debug" minOccurs="1" maxOccurs="unbounded"/>
+          </xs:all>
 
-   <!-- Link Performance Set -->
+          <!-- Network reference - if used at this level, it
+               applies to the states of all links in the set. -->
+          <xs:attribute name="network_id" type="xs:long" use="optional"/>
+
+          <!-- Run ID - if used at this level, it
+               applies to the states of all links in the set. -->
+          <xs:attribute name="run_id" type="xs:long" use="optional"/>
+
+          <!-- Particle ID is used in enseble estimation or prediction
+               for debug purpose only. When particle ID is set,
+               quantity_type is implied to be 'standard'.
+               If used at this level, particle ID applies to the states
+               of all links in the set. -->
+          <xs:attribute name="particle_id" type="xs:long" use="optional" default="-1"/>
+
+          <!-- Aggregation time interval - if used at this level, it
+               applies to the states of all links in the set. -->
+          <xs:attribute name="dt" type="xs:long" use="optional"/>
+
+          <!-- Quantity type - if used at this level, it
+               applies to the states of all links in the set. -->
+          <xs:attribute name="quantity_type" use="optional">
+              <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                      <xs:pattern value="standard|mean|median|1q|3q|95|min|max|best|worst"/>
+                  </xs:restriction>
+              </xs:simpleType>
+          </xs:attribute>
+      </xs:complexType>
+  </xs:element>
+
+
+    <!-- Link Performance Set -->
   <xs:element name="linkPerformanceSet">
     <xs:complexType>
       <xs:all>
