@@ -134,7 +134,7 @@ public class PeMSAggregateDatum extends edu.berkeley.path.model_objects.jaxb.PeM
 	 */
 	@Override
 	public void setHealth(Double health) {
-	  super.setSpeed(health);
+	  super.setHealth(health);
 	}
 	
 	/**
