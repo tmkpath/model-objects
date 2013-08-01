@@ -55,21 +55,21 @@ public class DemandProfileTest {
 
   @Test
   public void testGetDemandNoTime(){
-    Double[] ratios = profile.getDemand(1);
-    assertEquals(4,ratios.length);
-    assertEquals(ratios[0], 0.5D, EPSILON);
+    Double[] demands = profile.getDemand(1);
+    assertEquals(4,demands.length);
+    assertEquals(demands[0], 0.5D, EPSILON);
   }
 
   @Test
   public void testDemandStringTime(){
-    double ratio = profile.getDemand(1,"00:00:00");
-    assertEquals(ratio, 0.5, 0.0);
+    double demand = profile.getDemand(1,"00:00:00");
+    assertEquals(demand, 0.5, 0.0);
 
-    double ratio2 = profile.getDemand(1,"00:05:00");
-    assertEquals(ratio2, 0.1, 0.0);
+    double demand2 = profile.getDemand(1,"00:05:00");
+    assertEquals(demand2, 0.1, 0.0);
 
-    double ratio3 = profile.getDemand(1,"00:04:00");
-    assertEquals(ratio3, 0.5, 0.0);
+    double demand3 = profile.getDemand(1,"00:04:00");
+    assertEquals(demand3, 0.5, 0.0);
 
     double ratio4 = profile.getDemand(1,"00:10:00");
     assertEquals(ratio4, 1, 0.0);
@@ -77,17 +77,17 @@ public class DemandProfileTest {
 
   @Test
   public void testGetSplitRatioOffset(){
-    double ratio = profile.getDemand(1, 0);
-    assertEquals(ratio, 0.5, 0.0);
+    double demand = profile.getDemand(1, 0);
+    assertEquals(demand, 0.5, 0.0);
 
-    double ratio2 = profile.getDemand(1, 300);
-    assertEquals(ratio2, 0.1, 0.0);
+    double demand2 = profile.getDemand(1, 300);
+    assertEquals(demand2, 0.1, 0.0);
 
-    double ratio3 = profile.getDemand(1, 400);
-    assertEquals(ratio3, 0.1, 0.0);
+    double demand3 = profile.getDemand(1, 400);
+    assertEquals(demand3, 0.1, 0.0);
 
-    double ratio4 = profile.getDemand(1,  600);
-    assertEquals(ratio4, 1, 0.0);
+    double demand4 = profile.getDemand(1,  600);
+    assertEquals(demand4, 1, 0.0);
   }
 
 
