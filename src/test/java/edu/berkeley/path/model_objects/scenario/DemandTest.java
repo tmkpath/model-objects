@@ -47,11 +47,11 @@ public class DemandTest {
   public void testGetters() throws MOException {
 
     assertEquals(VEHICLE_TYPE_ID, demand.getVehicleTypeId());
-    // ratios were added for offset 1 and 3,
+    // demands were added for offset 1 and 3,
     assertEquals(DEMAND1, demand.getDemand(OFFSET1), EPSILON);
     assertEquals(DEMAND2, demand.getDemand(OFFSET2), EPSILON);
     assertEquals(DEMAND3, demand.getDemand(OFFSET3), EPSILON);
-    // ratio ids were added for offset 1 and 3, offset 2 should be null
+    // demand ids were added for offset 1 and 3, offset 2 should be null
     assertEquals(ID1, demand.getId(OFFSET1), EPSILON);
     assertEquals(ID2, demand.getId(OFFSET2), EPSILON);
     assertEquals(ID3, demand.getId(OFFSET3), EPSILON);
