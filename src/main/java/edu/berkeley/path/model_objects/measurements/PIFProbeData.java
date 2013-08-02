@@ -24,7 +24,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  **/
 
-package edu.berkeley.path.model_objects.scenario;
+package edu.berkeley.path.model_objects.measurements;
 
 import edu.berkeley.path.model_objects.shared.DateTime;
 

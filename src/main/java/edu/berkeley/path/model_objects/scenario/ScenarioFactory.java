@@ -30,6 +30,9 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import edu.berkeley.path.model_objects.measurements.PIFProbeData;
+import edu.berkeley.path.model_objects.measurements.PIFProbeDataSet;
+
 public class ScenarioFactory extends edu.berkeley.path.model_objects.jaxb.ObjectFactory {
 
     /**

@@ -24,12 +24,12 @@
  * POSSIBILITY OF SUCH DAMAGE.
  **/
 
-package edu.berkeley.path.model_objects.scenario;
+package edu.berkeley.path.model_objects.measurements;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.berkeley.path.model_objects.scenario.PIFProbeData;
+import edu.berkeley.path.model_objects.measurements.PIFProbeData;
 
 public class PIFProbeDataSet extends edu.berkeley.path.model_objects.jaxb.PIFProbeDataSet{
     /**

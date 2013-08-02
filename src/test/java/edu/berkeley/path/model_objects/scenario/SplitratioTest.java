@@ -47,21 +47,27 @@ public class SplitratioTest {
   }
   
   @Test
-  public void testGetters() throws MOException {
-	  assertEquals(LINK_IN_ID, ratio.getLinkIn());
-	  assertEquals(LINK_OUT_ID, ratio.getLinkOut());
-	  assertEquals(VEHICLE_TYPE_ID, ratio.getVehicleTypeId());
-    // ratios were added for offset 1 and 3,
-	  assertEquals(RATIO1, ratio.getRatio(OFFSET1), EPSILON);
-    assertEquals(RATIO2, ratio.getRatio(OFFSET2), EPSILON);
-    assertEquals(RATIO3, ratio.getRatio(OFFSET3), EPSILON);
-    // ratio ids were added for offset 1 and 3, offset 2 should be null
-    assertEquals(ID1, ratio.getId(OFFSET1), EPSILON);
-    assertEquals(ID2, ratio.getId(OFFSET2), EPSILON);
-    assertEquals(ID3, ratio.getId(OFFSET3), EPSILON);
-    // check modstamps
-	  assertEquals(MOD_STAMP,ratio.getModStamp(OFFSET1));
-    // check crudFlag
-    assertEquals(CrudFlag.CREATE, ratio.getCrudFlag(OFFSET1));
+  public void testGetters() {
+    try {
+      assertEquals(LINK_IN_ID, ratio.getLinkIn());
+      assertEquals(LINK_OUT_ID, ratio.getLinkOut());
+      assertEquals(VEHICLE_TYPE_ID, ratio.getVehicleTypeId());
+      // ratios were added for offset 1 and 3,
+      assertEquals(RATIO1, ratio.getRatio(OFFSET1), EPSILON);
+      assertEquals(RATIO2, ratio.getRatio(OFFSET2), EPSILON);
+      assertEquals(RATIO3, ratio.getRatio(OFFSET3), EPSILON);
+      // ratio ids were added for offset 1 and 3, offset 2 should be null
+      assertEquals(ID1, ratio.getId(OFFSET1), EPSILON);
+      assertEquals(ID2, ratio.getId(OFFSET2), EPSILON);
+      assertEquals(ID3, ratio.getId(OFFSET3), EPSILON);
+      // check modstamps
+      assertEquals(MOD_STAMP,ratio.getModStamp(OFFSET1));
+      // check crudFlag
+      assertEquals(CrudFlag.CREATE, ratio.getCrudFlag(OFFSET1));
+    } catch (Exception e) {
+      e.printStackTrace();
+      // assert fails if exception is thrown
+      assertTrue(false);
+    }
   }
 }
