@@ -48,7 +48,7 @@ public class DemandSetTest {
   }
 
   @Test
-  public void testGetters(){
+  public void testGetters() {
     assertEquals(DESCRIPTION, set.getDescription());
     assertEquals(PROJECT_ID, set.getProjectId());
     assertEquals(ID,set.getId());
@@ -60,8 +60,7 @@ public class DemandSetTest {
   }
 
   @Test
-  public void testGetDemandProfileAtLink() throws MOException
-  {
+  public void testGetDemandProfileAtLink() {
     DemandProfile profile = set.getDemandProfileAtLink(ID);
     assertEquals(ID, profile.getLinkIdOrg());
 

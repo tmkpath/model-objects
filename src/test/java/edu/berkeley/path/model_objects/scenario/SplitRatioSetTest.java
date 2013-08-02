@@ -55,8 +55,7 @@ public class SplitRatioSetTest {
 	}
 
   @Test
-	public void testGetSplitRatioProfileAtNode() throws MOException
-	{
+	public void testGetSplitRatioProfileAtNode() {
 		Node n = new Node();
 		n.setId(ID);
 		SplitRatioProfile profile = set.getSplitRatioProfileAtNode(n.getId());
