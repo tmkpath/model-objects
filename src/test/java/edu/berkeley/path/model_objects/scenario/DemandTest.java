@@ -8,6 +8,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import edu.berkeley.path.model_objects.MOException;
 
@@ -62,7 +63,7 @@ public class DemandTest {
     } catch (Exception e) {
       e.printStackTrace();
       // assert fails if exception is thrown
-      assertTrue(false);
+      fail();
     }
   }
 }

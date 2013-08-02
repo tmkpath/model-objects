@@ -5,6 +5,7 @@ import edu.berkeley.path.model_objects.shared.CrudFlag;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -67,7 +68,7 @@ public class SplitratioTest {
     } catch (Exception e) {
       e.printStackTrace();
       // assert fails if exception is thrown
-      assertTrue(false);
+      fail();
     }
   }
 }
