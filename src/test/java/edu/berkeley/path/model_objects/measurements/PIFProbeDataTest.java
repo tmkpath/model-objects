@@ -1,7 +1,8 @@
-package edu.berkeley.path.model_objects.scenario;
+package edu.berkeley.path.model_objects.measurements;
 
 import static org.junit.Assert.assertEquals;
 
+import edu.berkeley.path.model_objects.measurements.PIFProbeData;
 import org.junit.Before;
 import org.junit.Test;
 
