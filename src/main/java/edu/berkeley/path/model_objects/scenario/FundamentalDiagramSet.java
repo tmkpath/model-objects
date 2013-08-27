@@ -48,6 +48,21 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
           }
 	        return null;
 	 }
+	 
+	 /**
+	  * Returns the FundamentalDiagramProfile associated with the given linkId
+	  *  
+	  * @param linkId the link id associated with the profile
+	  * @return FundamentalDiagramProfile associated with linkId
+	  */
+	 public FundamentalDiagramProfile getFundamentalDiagramProfileBySensor(long sensorId) {
+		 for(FundamentalDiagramProfile fdp : this.getListOfFundamentalDiagramProfiles()) {
+			 if(fdp.getSensorId() == sensorId) {
+				 return fdp;
+			 }
+		 }
+		 return null;
+	 }
 
     //TODO: Add validation logic
     public boolean isValid() {
