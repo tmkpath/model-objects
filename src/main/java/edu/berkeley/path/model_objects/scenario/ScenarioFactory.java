@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2013 The Regents of the University of California.
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -37,12 +37,12 @@ public class ScenarioFactory extends edu.berkeley.path.model_objects.jaxb.Object
 
     /**
      * Create an instance of Sensor Model Object
-     * 
+     *
      * @return  Sensor Model Object
      */
-	public Sensor createSensor() {
-		return new Sensor();
-	}
+    public Sensor createSensor() {
+        return new Sensor();
+    }
 
   /**
    * Create an instance of SensorSet Model Object
@@ -70,67 +70,80 @@ public class ScenarioFactory extends edu.berkeley.path.model_objects.jaxb.Object
     return new InitialDensitySet();
   }
 
-	   /**
+   /**
      * Create an instance of DemandSet Model Object
-     * 
-     * @return  DemandSet Model Object 
+     *
+     * @return  DemandSet Model Object
      */
     public DemandSet createDemandSet() {
         return new DemandSet();
     }
-    
+
     /**
      * Create an instance of DemandProfile Model Object
-     * 
-     * @return  DemandProfile Model Object 
+     *
+     * @return  DemandProfile Model Object
      */
     public DemandProfile createDemandProfile() {
         return new DemandProfile();
     }
-    
+
     /**
      * Create an instance of FundamentalDiagramSet Model Object
-     * 
-     * @return  FundamentalDiagramSet Model Object 
+     *
+     * @return  FundamentalDiagramSet Model Object
      */
     public FundamentalDiagramSet createFundamentalDiagramSet() {
         return new FundamentalDiagramSet();
     }
-    
+
+    /**
+     * Create an instance of FundamentalDiagramProfile Model Object
+     *
+     * @return  FundamentalDiagramProfile Model Object
+     */
+    public FundamentalDiagramProfile createFundamentalDiagramProfile() {
+        return new FundamentalDiagramProfile();
+    }
+
+    public FundamentalDiagram createFundamentalDiagram() {
+        return new FundamentalDiagram();
+    }
+
     /**
      * Create an instance of FundamentalDiagramType Model Object
-     * 
-     * @return  FundamentalDiagramType Model Object 
+     *
+     * @return  FundamentalDiagramType Model Object
      */
     public FundamentalDiagramType createFundamentalDiagramType() {
         return new FundamentalDiagramType();
     }
-    
+
     /**
      * Create an instance of Splitratio Model Object
-     * 
+     *
      * @return Splitratio Model Object
-     * 
+     *
      */
     public Splitratio createSplitratio() {
         return new Splitratio();
     }
-    
+
     /**
      * Create an instance of SplitRatioProfile Model Object
-     * 
+     *
      * @return SplitRatioProfile Model Object
-     * 
+     *
      */
     public SplitRatioProfile createSplitRatioProfile() {
         return new SplitRatioProfile();
     }
-    
+
     /**
      * Create an instance of SplitRatioProfile Model Object
-     * 
+     *
      * @return SplitRatioProfile Model Object
-     * 
+     *
      */
     public Demand createDemand() {
         return new Demand();
@@ -152,16 +165,16 @@ public class ScenarioFactory extends edu.berkeley.path.model_objects.jaxb.Object
    */
   public SplitRatioSet createSplitRatioSet() {
 
-	return new SplitRatioSet();
+    return new SplitRatioSet();
   }
-  
+
   /**
    * Create an instance of PIFProbeData  Model Object
    *
    * @return  PIFProbeData  Model Object
    */
   public PIFProbeData createPIFProbeData() {
-	return new PIFProbeData();
+    return new PIFProbeData();
   }
 
   /**
@@ -170,7 +183,7 @@ public class ScenarioFactory extends edu.berkeley.path.model_objects.jaxb.Object
    * @return  PIFProbeDataSet  Model Object
    */
   public PIFProbeDataSet createPIFProbeDataSet() {
-	  return new PIFProbeDataSet();
+      return new PIFProbeDataSet();
   }
 
   /**
@@ -192,14 +205,13 @@ public class ScenarioFactory extends edu.berkeley.path.model_objects.jaxb.Object
   public RouteLink createRouteLink() {
     return new RouteLink();
   }
-  
+
   /**
    * Create an instance of createCalibrationAlgorithmType Model Object
-   * 
-   * @return  createCalibrationAlgorithmType Model Object 
+   *
+   * @return  createCalibrationAlgorithmType Model Object
    */
   public CalibrationAlgorithmType createCalibrationAlgorithmType() {
       return new CalibrationAlgorithmType();
   }
-  
 }
