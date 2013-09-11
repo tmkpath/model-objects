@@ -297,4 +297,15 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
   public void setLockedForHistory(Boolean value) {
     super.setLockedForHistory(value);
   }
+
+  /**
+   * Function to validate model object Scenario. Should call the isValid method
+   * of each Set, Network, etc, it contains.
+   *
+   * @return True if scenario is valid
+   */
+  public Boolean isValid() {
+    // TODO: Implement, return true for now.
+    return true;
+  }
 }

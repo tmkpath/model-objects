@@ -333,7 +333,7 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
   /**
    * Ensures all required fields are set
    *
-   * @return boolean
+   * @return True if valid
    */
   public boolean isValid(){
     // TODO - validation logic

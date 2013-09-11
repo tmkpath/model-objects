@@ -36,7 +36,7 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 	 * 
 	 * @return boolean 
 	 */
-	protected boolean isValid() {
+	public boolean isValid() {
 		for(Sensor s : getSensors()){
 			if(!s.isValid())
 				return false;

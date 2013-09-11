@@ -63,11 +63,6 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
 		 }
 		 return null;
 	 }
-
-    //TODO: Add validation logic
-    public boolean isValid() {
-        return true;
-    }
 	 
 	  /**
      * Gets the value of the description property.
@@ -131,6 +126,16 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
 		profs.add((edu.berkeley.path.model_objects.jaxb.FundamentalDiagramProfile)profile);
 		fundamentalDiagramProfile = profs;
 	}
+
+  /**
+   * Function to validate FD set.
+   *
+   * @return True if FD set is valid
+   */
+  public Boolean isValid() {
+    // TODO: Implement, return true for now.
+    return true;
+  }
 	
     /**
      * Gets the value of the projectId property.
