@@ -33,11 +33,11 @@ import java.util.List;
 
 public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
   // Store internal set ID for scenario components
-  /** @y.exclude */  private long splitRatioSetId;
-  /** @y.exclude */  private long demandSetId;
-  /** @y.exclude */  private long fdSetId;
-  /** @y.exclude */  private long sensorSetId;
-  /** @y.exclude */  private long routeSetId;
+  /** @y.exclude */  private Long splitRatioSetId;
+  /** @y.exclude */  private Long demandSetId;
+  /** @y.exclude */  private Long fdSetId;
+  /** @y.exclude */  private Long sensorSetId;
+  /** @y.exclude */  private Long routeSetId;
 
   /**
    * Get the list of networks for this scenario
@@ -238,43 +238,43 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
     super.setSchemaVersion(value);
   }
 
-  public long getSplitRatioSetId() {
+  public Long getSplitRatioSetId() {
     return splitRatioSetId;
   }
 
-  public void setSplitRatioSetId(long splitRatioSetId) {
+  public void setSplitRatioSetId(Long splitRatioSetId) {
     this.splitRatioSetId = splitRatioSetId;
   }
 
-  public long getDemandSetId() {
+  public Long getDemandSetId() {
     return demandSetId;
   }
 
-  public void setDemandSetId(long demandSetId) {
+  public void setDemandSetId(Long demandSetId) {
     this.demandSetId = demandSetId;
   }
 
-  public long getFdSetId() {
+  public Long getFdSetId() {
     return fdSetId;
   }
 
-  public void setFdSetId(long fdSetId) {
+  public void setFdSetId(Long fdSetId) {
     this.fdSetId = fdSetId;
   }
 
-  public long getSensorSetId() {
+  public Long getSensorSetId() {
     return sensorSetId;
   }
 
-  public void setSensorSetId(long sensorSetId) {
+  public void setSensorSetId(Long sensorSetId) {
     this.sensorSetId = sensorSetId;
   }
 
-  public long getRouteSetId() {
+  public Long getRouteSetId() {
     return routeSetId;
   }
 
-  public void setRouteSetId(long routeSetId) {
+  public void setRouteSetId(Long routeSetId) {
     this.routeSetId = routeSetId;
   }
 
