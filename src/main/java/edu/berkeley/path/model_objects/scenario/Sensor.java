@@ -268,7 +268,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	 */
 	@Override
 	public Integer getLaneNumber() {
-		return super.getLaneNumber().intValue();
+		return super.getLaneNumber();
 	}
 
 

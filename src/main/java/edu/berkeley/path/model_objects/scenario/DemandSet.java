@@ -77,12 +77,12 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 		
 		Object_Parameter[] params = new Object_Parameter[6];
 		
-		params[0] = new Object_Parameter("id", getId(), 0.0F, null);
-		params[1] = new Object_Parameter("description", 0, 0.0F, description);
-		params[2] = new Object_Parameter("projectId", getProjectId(), 0.0F, null);
-		params[3] = new Object_Parameter("name", 0, 0.0F, getName());
-		params[4] = new Object_Parameter("ModStamp", 0, 0.0F, getModStamp());
-		params[5] = new Object_Parameter("crud", getCrudFlagEnum().ordinal(), 0.0F, null);
+		params[0] = new Object_Parameter("id", getId(), 0.0D, null);
+		params[1] = new Object_Parameter("description", 0L, 0.0D, description);
+		params[2] = new Object_Parameter("projectId", getProjectId(), 0.0D, null);
+		params[3] = new Object_Parameter("name", 0L, 0.0D, getName());
+		params[4] = new Object_Parameter("ModStamp", 0L, 0.0D, getModStamp());
+		params[5] = new Object_Parameter("crud", new Long(getCrudFlagEnum().ordinal()), 0.0D, null);
 		
 		Object_Parameter.setPositions(params);
 		
@@ -333,7 +333,7 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
   /**
    * Ensures all required fields are set
    *
-   * @return boolean
+   * @return True if valid
    */
   public boolean isValid(){
     // TODO - validation logic

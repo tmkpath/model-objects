@@ -36,13 +36,13 @@ package edu.berkeley.path.model_objects.scenario;
  */
 public class Object_Parameter {
 		
-	public long intParam ;
-	public double fltParam ;
+	public Long intParam ;
+	public Double fltParam ;
 	public String strParam ;
 	public String name;
 	public int objectParameterPosition;
 	
-	public Object_Parameter(String pName, long pInt, double pFlt, String pStr) {
+	public Object_Parameter(String pName, Long pInt, Double pFlt, String pStr) {
 		name = pName;
 		intParam = pInt;
 		fltParam = pFlt;

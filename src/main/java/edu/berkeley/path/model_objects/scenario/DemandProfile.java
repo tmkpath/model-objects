@@ -79,17 +79,17 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 		
 		Object_Parameter[] params = new Object_Parameter[11];
 		
-		params[0] = new Object_Parameter("id", getId(), 0.0F, null);
-    params[1] = new Object_Parameter("demandSetId", demandSetId, 0.0F, null);
-		params[2] = new Object_Parameter("knob", 0, knob, null);
-		params[3] = new Object_Parameter("startTime", 0, startTime, null);
-		params[4] = new Object_Parameter("SAMPLERATE", 0, dt, null);
-		params[5] = new Object_Parameter("orgLinkId", getLinkIdOrg(), 0.0F, null);
-		params[6] = new Object_Parameter("destNetworkId", destinationNetworkId, 0.0F, null);
-		params[7] = new Object_Parameter("stdDevAdd", 0, stdDevAdd, null);
-		params[8] = new Object_Parameter("stdDevMult", 0, stdDevMult, null);
-		params[9] = new Object_Parameter("modStamp", 0, 0.0F, modStamp);
-		params[10] = new Object_Parameter("crud", getCrudFlagEnum().ordinal(), 0.0F, null);
+		params[0] = new Object_Parameter("id", getId(), 0.0D, null);
+    params[1] = new Object_Parameter("demandSetId", demandSetId, 0.0D, null);
+		params[2] = new Object_Parameter("knob", 0L, knob, null);
+		params[3] = new Object_Parameter("startTime", 0L, startTime, null);
+		params[4] = new Object_Parameter("SAMPLERATE", 0L, dt, null);
+		params[5] = new Object_Parameter("orgLinkId", getLinkIdOrg(), 0.0D, null);
+		params[6] = new Object_Parameter("destNetworkId", destinationNetworkId, 0.0D, null);
+		params[7] = new Object_Parameter("stdDevAdd", 0L, stdDevAdd, null);
+		params[8] = new Object_Parameter("stdDevMult", 0L, stdDevMult, null);
+		params[9] = new Object_Parameter("modStamp", 0L, 0.0D, modStamp);
+		params[10] = new Object_Parameter("crud", new Long(getCrudFlagEnum().ordinal()), 0.0D, null);
 		
 		Object_Parameter.setPositions(params);
 		

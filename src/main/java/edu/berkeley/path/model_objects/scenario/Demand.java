@@ -69,13 +69,23 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
 		
 		Object_Parameter[] params = new Object_Parameter[7];
 
-    params[0] = new Object_Parameter("id", getId(offset), 0.0F, null);
-    params[1] = new Object_Parameter("demandProfId", demandProfileId, 0.0F, null);
-		params[2] = new Object_Parameter("flow", 0, getDemand(offset), null);
-		params[3] = new Object_Parameter("vehTypeId", getVehicleTypeId(), 0.0F, null);
-    params[4] = new Object_Parameter("demandOrder", offset, 0.0F, null);
-		params[5] = new Object_Parameter("modStamp", 0, 0.0F, getModStamp(offset));
-		params[6] = new Object_Parameter("crud", getCrudFlag(offset).ordinal(), 0.0F, null);
+    // try getting demand id, if can't find it set to 0
+    Long id = 0L;
+    String modStamp = "";
+    try {
+      id = getId(offset);
+      modStamp = getModStamp(offset);
+    } catch (Exception exc) {
+      // do nothing
+    }
+
+    params[0] = new Object_Parameter("id", id, 0.0D, null);
+    params[1] = new Object_Parameter("demandProfId", demandProfileId, 0.0D, null);
+		params[2] = new Object_Parameter("flow", 0L, getDemand(offset), null);
+		params[3] = new Object_Parameter("vehTypeId", getVehicleTypeId(), 0.0D, null);
+    params[4] = new Object_Parameter("demandOrder", new Long(offset), 0.0D, null);
+		params[5] = new Object_Parameter("modStamp", 0L, 0.0D, modStamp);
+		params[6] = new Object_Parameter("crud", new Long(getCrudFlag(offset).ordinal()), 0.0D, null);
 		
 		Object_Parameter.setPositions(params);
 		
