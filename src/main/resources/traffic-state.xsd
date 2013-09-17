@@ -193,7 +193,9 @@
              aggregated - just like network_id, this attribute
          is optional for the same reason. -->
       <xs:attribute name="dt" type="xs:double" use="optional"/>
-      
+
+      <xs:attribute name="density" type="xs:double" use="required"/>
+
       <!-- Optionally, we can stick fundamental diagram parameters
            into the link state: free flow speed, critical speed,
            and capacity. Capacity values are total, not(!) per lane. -->
