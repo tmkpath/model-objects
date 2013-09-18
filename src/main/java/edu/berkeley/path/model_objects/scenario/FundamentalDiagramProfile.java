@@ -28,6 +28,8 @@ package edu.berkeley.path.model_objects.scenario;
 
 
 import edu.berkeley.path.model_objects.shared.CrudFlag;
+import edu.berkeley.path.model_objects.shared.DateTime;
+
 import java.util.List;
 
 /** 
@@ -52,7 +54,6 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
 	/**
 	 * Set list of FD objects
 	 * 
-	 * @return FD list as List<FundamentalDiagram>
 	 */
 	public void setListOfFDs(List<FundamentalDiagram> fdList) {
 		getFundamentalDiagram().clear();
@@ -132,7 +133,7 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
 	/**
 	 * Set FDProfile id as long
 	 * 
-	 * @param FD id
+	 * @param l FD id
 	 */
 	@Override
 	public void setId(long l) {
@@ -152,7 +153,7 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
 	/**
 	 * Set Calibration Algorithm Type id as Integer
 	 * 
-	 * @param Calibration Algorithm Type id
+	 * @param type Calibration Algorithm Type id
 	 */
 	public void setCalibrationAlgorithmType(CalibrationAlgorithmType type) {
 	  super.setCalibrationAlgorithmType(type);
@@ -171,7 +172,7 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
 	/**
 	 * Set Aggregation Run id as Long
 	 * 
-	 * @param Aggregation Run id as Long
+	 * @param l Aggregation Run id as Long
 	 */
 	@Override
 	public void setAggRunId(Long l) {
@@ -217,7 +218,7 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
 	/**
 	 * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
 	 *
-	 * @param CRUD Flag enumeration
+	 * @param flag CRUD Flag enumeration
 	 */
 	public void setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag flag) {
 		// Check if CRUDFlag is null, if so return NONE enumeration
@@ -286,6 +287,23 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
     }
 
 
+	public FundamentalDiagram getFD(String time) {
+		DateTime dateTime = new DateTime();
+		org.joda.time.DateTime joda = dateTime.setDateString("1970-01-01 00:00:00");
+		long milliseconds1 = joda.getMillis();
 
+		DateTime dateTime2= new DateTime();
+		org.joda.time.DateTime joda2 = dateTime2.setDateString("1970-01-01 " + time);
+		long milliseconds2 = joda2.getMillis();
+
+		long daySeconds = ((milliseconds2  - milliseconds1) / 1000) + 1;
+		int offset = (int)Math.floor(daySeconds / this.getDt());
+
+		if(getListOfFDs().size() > offset) {
+			return getListOfFDs().get(offset);
+		} else {
+			throw new IllegalStateException("Error, cannot find fundamental diagram for time " + time + " (offset " + offset + ").");
+		}
+	}
 
 }
