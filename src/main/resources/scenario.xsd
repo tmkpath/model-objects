@@ -214,7 +214,7 @@
 				<xs:complexType>
 					<xs:attribute name="id" type="xs:long" use="required" />
 					<xs:attribute name="name" type="xs:string" use="required"/>
-					<xs:attribute name="description" type="xs:string" use="required"/>
+					<xs:attribute name="description" type="xs:string" use="optional"/>
 				</xs:complexType>
 			</xs:element>
 

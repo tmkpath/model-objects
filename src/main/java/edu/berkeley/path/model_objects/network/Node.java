@@ -126,9 +126,7 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
    */
   public void addOutputLink(long id) {
 
-    // create new container class holding output links
-    Output outLink = new Output();
-    outLink.setLinkId(id);
+
 
     // If no output link has been added so far
     if (getOutputs() == null ) {
@@ -136,8 +134,21 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
       setOutputs(outputs);
     }
 
-    // add output linkId container class to list of outputs links
-    getOutputs().getOutput().add(outLink);
+    boolean found = false;
+    // make sure output link has not already been added, if so set found to true
+    for (Output output : getOutputs().getOutput()) {
+      if (output.getLinkId() == id) {
+        found = true;
+      }
+    }
+
+    // add output linkId container class to list of outputs links if not found
+    if (!found) {
+      // create new container class holding output links
+      Output outLink = new Output();
+      outLink.setLinkId(id);
+      getOutputs().getOutput().add(outLink);
+    }
   }
 
   /**
@@ -148,18 +159,27 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
    */
   public void addInputLink(long id) {
 
-    // create new container class holding input links
-    Input inLink = new Input();
-    inLink.setLinkId(id);
-
     // If no input link has been added so far
     if (getInputs() == null ) {
       Inputs inputs = new Inputs();
       setInputs(inputs);
     }
 
-    // add input linkId container class to list of inputs links
-    getInputs().getInput().add(inLink);
+    boolean found = false;
+    // make sure input link has not already been added, if so set found to true
+    for (Input input : getInputs().getInput()) {
+      if (input.getLinkId() == id) {
+        found = true;
+      }
+    }
+
+    // add input linkId container class to list of inputs links if not found
+    if (!found) {
+      // create new container class holding input links
+      Input inLink = new Input();
+      inLink.setLinkId(id);
+      getInputs().getInput().add(inLink);
+    }
   }
 
 	/** 
