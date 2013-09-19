@@ -240,7 +240,7 @@ public class SerializerTest {
 				"        </node>\n" +
 				"    </NodeList>\n" +
 				"    <LinkList>\n" +
-				"        <link in_sync=\"true\" id=\"9999\" speed_limit=\"0.0\" length=\"1916.4512171408285\" lane_offset=\"0.0\" lanes=\"1.0\">\n" +
+				"        <link in_sync=\"true\" id=\"9999\" length=\"1916.4512171408285\" lane_offset=\"0.0\" lanes=\"1.0\">\n" +
 				"            <begin node_id=\"10001\"/>\n" +
 				"            <end node_id=\"10000\"/>\n" +
 				"            <roads>\n" +
@@ -249,7 +249,7 @@ public class SerializerTest {
 				"            <dynamics type=\"CTM\"/>\n" +
 				"            <shape>_{~eF``liVkATy@PwCl@mEbAeAXo@JG@G?EAKAICOC??QqAk@sE??cBZq@Li@JaBXcBb@i@PoB`@gAVcATeARqDx@sBd@oAVmAXmDt@aFlAeATyAXaCh@q@RqAX??Of@_@dAe@rAIPIPGJMR??kDr@</shape>\n" +
 				"        </link>\n" +
-				"        <link in_sync=\"true\" id=\"10000\" speed_limit=\"0.0\" length=\"724.8395315693305\" lane_offset=\"0.0\" lanes=\"1.0\">\n" +
+				"        <link in_sync=\"true\" id=\"10000\" length=\"724.8395315693305\" lane_offset=\"0.0\" lanes=\"1.0\">\n" +
 				"            <begin node_id=\"10000\"/>\n" +
 				"            <end node_id=\"10002\"/>\n" +
 				"            <roads>\n" +
@@ -258,7 +258,7 @@ public class SerializerTest {
 				"            <dynamics type=\"CTM\"/>\n" +
 				"            <shape>szafFrzliVIBaJpBqE`AkAZ_ATkAVuE`AyDbAy@RKB</shape>\n" +
 				"        </link>\n" +
-				"        <link in_sync=\"true\" id=\"10001\" speed_limit=\"0.0\" length=\"366.7504885192787\" lane_offset=\"0.0\" lanes=\"1.0\">\n" +
+				"        <link in_sync=\"true\" id=\"10001\" length=\"366.7504885192787\" lane_offset=\"0.0\" lanes=\"1.0\">\n" +
 				"            <begin node_id=\"10002\"/>\n" +
 				"            <end node_id=\"9999\"/>\n" +
 				"            <roads>\n" +
