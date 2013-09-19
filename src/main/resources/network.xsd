@@ -58,7 +58,7 @@
         </xs:all>
 				<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 				<xs:attribute name="id" type="xs:long" use="required" />
-				<xs:attribute name="node_name" type="xs:string" use="required" />
+				<xs:attribute name="node_name" type="xs:string" use="optional" />
 				<xs:attribute name="in_sync" type="xs:boolean" use="optional" default="true" />
 				<xs:attribute name="mod_stamp" type="xs:string" use="optional" />
 			</xs:complexType>
@@ -142,8 +142,8 @@
 				<xs:attribute name="lane_offset" type="xs:double" use="optional" default="0" />
 				<!-- in length units, as specified in settings.units -->
 				<xs:attribute name="length" type="xs:double" use="required" /> 
-				<xs:attribute name="speed_limit" type="xs:double" use="required"/>
-				<xs:attribute name="link_name" type="xs:string" use="required" />
+				<xs:attribute name="speed_limit" type="xs:double" use="optional"/>
+				<xs:attribute name="link_name" type="xs:string" use="optional" />
 				<xs:attribute name="mod_stamp" type="xs:string" use="optional" />
 				<xs:attribute name="id" type="xs:long" use="required" />
 				<xs:attribute name="in_sync" type="xs:boolean" use="optional" default="true" />

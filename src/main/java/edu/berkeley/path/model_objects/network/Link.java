@@ -103,7 +103,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * @return number of s
    */
   @Override
-  public double getSpeedLimit() {
+  public Double getSpeedLimit() {
     return super.getSpeedLimit();
   }
   
@@ -113,7 +113,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * @param number lanes of link 
    */
   @Override
-  public void setSpeedLimit(double speed) {
+  public void setSpeedLimit(Double speed) {
     super.setSpeedLimit(speed);
   }
 
