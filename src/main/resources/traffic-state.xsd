@@ -201,7 +201,10 @@
            and capacity. Capacity values are total, not(!) per lane. -->
       <xs:attribute name="ff_speed" type="xs:double" use="optional"/>
       <xs:attribute name="crit_speed" type="xs:double" use="optional"/>
+      <xs:attribute name="congestion_speed" type="xs:double" use="optional"/>
       <xs:attribute name="capacity" type="xs:double" use="optional"/>
+      <xs:attribute name="jam_density" type="xs:double" use="optional"/>
+      <xs:attribute name="capacity_drop" type="xs:double" use="optional"/>
     </xs:complexType>
   </xs:element>
 
@@ -255,7 +258,10 @@
            and capacity. Capacity values are total, not(!) per lane. -->
       <xs:attribute name="ff_speed" type="xs:double" use="optional"/>
       <xs:attribute name="crit_speed" type="xs:double" use="optional"/>
+      <xs:attribute name="congestion_speed" type="xs:double" use="optional"/>
       <xs:attribute name="capacity" type="xs:double" use="optional"/>
+      <xs:attribute name="jam_density" type="xs:double" use="optional"/>
+      <xs:attribute name="capacity_drop" type="xs:double" use="optional"/>
     </xs:complexType>
   </xs:element>
 
