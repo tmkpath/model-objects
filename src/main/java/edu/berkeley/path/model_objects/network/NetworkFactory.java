@@ -69,15 +69,5 @@ public class NetworkFactory extends edu.berkeley.path.model_objects.jaxb.ObjectF
     public Node createNode() {
         return new Node();
     }
-    
-    /**
-     * Create an instance of Node Model Object
-     * 
-     * @return  Node Model Object
-     */
-		@Override
-    public Point createPoint() {
-        return new Point();
-    }
 
 }
