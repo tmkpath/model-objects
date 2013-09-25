@@ -85,6 +85,7 @@
 			<xs:attribute name="id" type="xs:long" use="required"/>
 			<xs:attribute name="name" type="xs:string" use="optional" />
 			<xs:attribute name="schemaVersion" type="xs:string" use="required" />
+      <xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
 			<xs:attribute name="lockedForEdit" type="xs:boolean" use="optional" default="false" />
 			<xs:attribute name="lockedForHistory" type="xs:boolean" use="optional" default="false" />
 		</xs:complexType>
