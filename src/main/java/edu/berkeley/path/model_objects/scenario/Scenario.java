@@ -298,6 +298,16 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
     super.setLockedForHistory(value);
   }
 
+  @Override
+  public String getModStamp() {
+    return super.getModStamp();
+  }
+
+  @Override
+  public void setModStamp(String value) {
+    super.setModStamp(value);
+  }
+
   /**
    * Function to validate model object Scenario. Should call the isValid method
    * of each Set, Network, etc, it contains.
