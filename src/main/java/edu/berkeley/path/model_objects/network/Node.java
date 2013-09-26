@@ -510,9 +510,16 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
     if (getId() != node.getId()) return false;
     if (getTypeId() != node.getTypeId()) return false;
     //TODO check primary name
-    if (getPoint().getLongitude() != node.getPoint().getLongitude()) return false;
-    if (getPoint().getLatitude() != node.getPoint().getLatitude()) return false;
-
+    
+    // check both nodes have same point, or null
+    Point p1 = getPoint(), p2 = node.getPoint();
+    if (p1 != null) {
+    	if (p2 == null) return false;
+	    if (p1.getLongitude() != p2.getLongitude()) return false;
+	    if (p1.getLatitude() != p2.getLatitude()) return false;
+    }
+    else
+    	if (p2 != null) return false;
 
     return true;
   }
