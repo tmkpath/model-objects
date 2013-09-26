@@ -104,13 +104,9 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
 	 */
 	@SuppressWarnings("unchecked")
 	public void setListOfFundamentalDiagramProfiles(List<FundamentalDiagramProfile> profiles) {
-		List<edu.berkeley.path.model_objects.jaxb.FundamentalDiagramProfile> profs = super.getFundamentalDiagramProfile();
-		if ( profs == null ) {
-		  profs = new ArrayList<edu.berkeley.path.model_objects.jaxb.FundamentalDiagramProfile>();  
-		}
-		profs.clear();
-		profs.addAll((List<edu.berkeley.path.model_objects.jaxb.FundamentalDiagramProfile>)(List<?>)profiles);
-		fundamentalDiagramProfile = profs;
+		super.getFundamentalDiagramProfile().clear();
+		super.getFundamentalDiagramProfile().addAll(
+			(List<edu.berkeley.path.model_objects.jaxb.FundamentalDiagramProfile>)(List<?>)profiles);
 	}
 	
 	/**
