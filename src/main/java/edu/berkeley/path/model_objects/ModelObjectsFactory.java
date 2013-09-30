@@ -54,6 +54,7 @@ import edu.berkeley.path.model_objects.scenario.SplitRatioSet;
 import edu.berkeley.path.model_objects.scenario.Splitratio;
 import edu.berkeley.path.model_objects.shared.Point;
 import edu.berkeley.path.model_objects.shared.Position;
+import edu.berkeley.path.model_objects.shared.Project;
 import edu.berkeley.path.model_objects.shared.SharedObjectFactory;
 
 /**
@@ -181,6 +182,11 @@ public class ModelObjectsFactory extends ObjectFactory {
   }
 
   @Override
+  public Project createProject(){
+    return sharedFactory.createProject();
+  }
+
+  @Override
   public FundamentalDiagramProfile createFundamentalDiagramProfile() {
     return scenarioFactory.createFundamentalDiagramProfile();
   }
@@ -189,4 +195,5 @@ public class ModelObjectsFactory extends ObjectFactory {
   public FundamentalDiagram createFundamentalDiagram() {
     return scenarioFactory.createFundamentalDiagram();
   }
+
 }
