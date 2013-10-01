@@ -53,6 +53,8 @@ import edu.berkeley.path.model_objects.scenario.SplitRatioProfile;
 import edu.berkeley.path.model_objects.scenario.SplitRatioSet;
 import edu.berkeley.path.model_objects.scenario.Splitratio;
 import edu.berkeley.path.model_objects.shared.Point;
+import edu.berkeley.path.model_objects.shared.Position;
+import edu.berkeley.path.model_objects.shared.SharedObjectFactory;
 
 /**
  * This factory is intended to load a whole scenario from JSON/XML
@@ -61,6 +63,7 @@ import edu.berkeley.path.model_objects.shared.Point;
 public class ModelObjectsFactory extends ObjectFactory {
   private ScenarioFactory scenarioFactory = new ScenarioFactory();
   private NetworkFactory networkFactory = new NetworkFactory();
+  private SharedObjectFactory sharedFactory = new SharedObjectFactory();
 
   @Override
   public Sensor createSensor() {
@@ -169,7 +172,12 @@ public class ModelObjectsFactory extends ObjectFactory {
 
   @Override
   public Point createPoint() {
-    return networkFactory.createPoint();
+    return sharedFactory.createPoint();
+  }
+
+  @Override
+  public Position createPosition() {
+    return sharedFactory.createPosition();
   }
 
   @Override

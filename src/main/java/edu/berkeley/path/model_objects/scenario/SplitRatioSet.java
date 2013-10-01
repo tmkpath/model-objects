@@ -94,13 +94,8 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
 	 */
 	@SuppressWarnings("unchecked")
 	public void setListOfSplitRatioProfiles(List<SplitRatioProfile> ratios) {
-		List<edu.berkeley.path.model_objects.jaxb.SplitRatioProfile> splits = super.getSplitRatioProfile();
-		if ( splits == null ) {
-		  splits = new ArrayList<edu.berkeley.path.model_objects.jaxb.SplitRatioProfile>();  
-		}
-		splits.clear();
-		splits.addAll((List<edu.berkeley.path.model_objects.jaxb.SplitRatioProfile>)(List<?>)ratios);
-		super.splitRatioProfile = splits;
+		getSplitRatioProfile().clear();
+		getSplitRatioProfile().addAll((List<edu.berkeley.path.model_objects.jaxb.SplitRatioProfile>)(List<?>)ratios);
 	}
 	
     /**

@@ -43,7 +43,8 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
    * Get the list of networks for this scenario
    * @return  a List of Network model objects
    */
-  public List<Network> getListOfNetworks() {
+  @SuppressWarnings("unchecked")
+public List<Network> getListOfNetworks() {
     // Check for null NetworkSet
     NetworkSet networkSet = super.getNetworkSet();
     if(networkSet == null) {
@@ -57,9 +58,9 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
    * Set the list of networks for this scenario
    * @param networks  list of Network MO
    */
-  public void setListOfNetworks(List<Network> networks) {
-    super.getNetworkSet().getNetwork().clear();
-    super.getNetworkSet().getNetwork().addAll(networks);
+  public void setListOfNetworks(List<Network> networks) { 
+	getListOfNetworks().clear();
+	getListOfNetworks().addAll(networks);
   }
 
   @Override
@@ -296,6 +297,16 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
   @Override
   public void setLockedForHistory(Boolean value) {
     super.setLockedForHistory(value);
+  }
+
+  @Override
+  public String getModStamp() {
+    return super.getModStamp();
+  }
+
+  @Override
+  public void setModStamp(String value) {
+    super.setModStamp(value);
   }
 
   /**
