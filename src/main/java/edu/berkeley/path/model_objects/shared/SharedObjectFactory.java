@@ -53,6 +53,14 @@ public class SharedObjectFactory extends edu.berkeley.path.model_objects.jaxb.Ob
 	public Point createPoint(){
 		return new Point();
 	}
+
+  /**
+   * Create an instance of Project object
+   * @return Project object
+   */
+  public Project createProject(){
+    return new Project();
+  }
 	
 	
 }

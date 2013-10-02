@@ -96,7 +96,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
   /**
    * Set name of description
    * 
-   * @param name of network as string
+   * @param description of network as string
    */
   @Override
   public void setDescription(String description) {
