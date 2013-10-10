@@ -176,30 +176,6 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 		super.setDisplayPosition(dp);
 	}
 
-    
-	/**
-	 * This is the percentage of the length of the link from the begin node 
-	 * where this sensor resides.
-	 * 
-	 * @return Double the linkPosition as percent from the the begin node
-	 */
-	@Override
-	public Double getLinkPosition() {
-		return super.getLinkPosition();
-	}
-
-
-	/**
-	 * Set the link position for this sensor
-	 * 
-	 * @param linkPosition percent away from beginning of link
-	 */
-	@Override
-	public void setLinkPosition(Double linkPosition) {
-		super.setLinkPosition(linkPosition);
-	}
-
-
 	/**
 	 * @return Parameters the parameters associated with this sensor
 	 */

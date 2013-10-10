@@ -71,7 +71,6 @@ public class SensorTest {
 	    sensor.setDisplayPosition(p);
 
 		sensor.setModStamp(MOD_STAMP);
-		sensor.setLinkPosition(LINK_POSITION);
 		sensor.setLinkId(1L);
 		sensor.setSensorParameters(new Parameters());
 		sensor.setSensorIdOriginal(ENTITY_ID);
@@ -86,7 +85,6 @@ public class SensorTest {
 	  public void testGetters() {
 		    assertEquals(CrudFlag.NONE, sensor.getCrudFlagEnum());
 		    assertEquals(MOD_STAMP, sensor.getModStamp());
-		    assertEquals(LINK_POSITION, sensor.getLinkPosition(), EPSILON);
 		    assertEquals(LINK_ID, (long)sensor.getLinkId());
 		    assertNotNull(sensor.getParameters());
 		    assertEquals(ENTITY_ID, sensor.getSensorIdOriginal());

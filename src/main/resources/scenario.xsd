@@ -85,7 +85,7 @@
 			<xs:attribute name="id" type="xs:long" use="required"/>
 			<xs:attribute name="name" type="xs:string" use="optional" />
 			<xs:attribute name="schemaVersion" type="xs:string" use="required" />
-      <xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+      		<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
 			<xs:attribute name="lockedForEdit" type="xs:boolean" use="optional" default="false" />
 			<xs:attribute name="lockedForHistory" type="xs:boolean" use="optional" default="false" />
 		</xs:complexType>
@@ -188,10 +188,11 @@
           <xs:element ref="table" minOccurs="0" />
           <!-- Application type ID -->
           <xs:element ref="sensor_type" minOccurs="0" maxOccurs="1"/>
+					<!-- Needed for Controller -->
+					<xs:element ref="usageType" minOccurs="0" />
         </xs:all>
 				<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 				<xs:attribute name="id" type="xs:long" use="required"/>
-				<xs:attribute name="link_position" type="xs:double" use="optional" />
 				<xs:attribute name="link_id" type="xs:long" use="optional" />
 				<xs:attribute name="java_class" type="xs:string" use="optional" />
 				<xs:attribute name="sensor_id_original" type="xs:string" use="optional" />
@@ -446,6 +447,9 @@
 			<xs:attribute name="id" type="xs:long" use="required"/>
 			<xs:attribute name="project_id" type="xs:long" use="required" />
 			<xs:attribute name="name" type="xs:string" use="optional" default="" />
+			<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+			<xs:attribute name="lockedForEdit" type="xs:boolean" use="optional" default="false" />
+			<xs:attribute name="lockedForHistory" type="xs:boolean" use="optional" default="false" />
 		</xs:complexType>
 	</xs:element>
 
@@ -453,26 +457,79 @@
 			<xs:complexType>
         <xs:sequence>
           <xs:element ref="parameters" minOccurs="0" />
-          <xs:element ref="display_position" minOccurs="0" />
-          <xs:element ref="targetElements" minOccurs="1" />
-          <xs:element ref="feedbackElements" minOccurs="0" />
+          <!-- <xs:element ref="ActuatorSet" minOccurs="1" /> -->
+          <xs:element ref="ActuatorSet" minOccurs="1" />
+          <!-- <xs:element ref="SensorSet" minOccurs="0" /> -->
+          <xs:element ref="SensorSet" minOccurs="0" />
           <xs:element ref="queue_controller" minOccurs="0" />
           <xs:element ref="ActivationIntervals" minOccurs="0" />
           <xs:element ref="table" minOccurs="0" maxOccurs="unbounded" />
+					<xs:element ref="controllerType" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
 				<xs:attribute name="name" type="xs:string" use="optional" />
-				<xs:attribute name="type" use="required">
-					<xs:simpleType>
-						<xs:restriction base="xs:string">
-							<xs:pattern value="IRM_ALINEA|IRM_TOD|IRM_TOS|CRM_SWARM|CRM_HERO|CRM_MPC|VSL_TOD|SIG_Pretimed|SIG_Actuated"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:attribute>
 				<xs:attribute name="id" type="xs:long" use="required" />
-				<!-- in time units -->
-				<xs:attribute name="dt" type="xs:double" use="required" />
-				<xs:attribute name="enabled" type="xs:boolean" use="required" />
-				<xs:attribute name="java_class" type="xs:string" use="optional" />
+				<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+				<xs:attribute name="lockedForEdit" type="xs:boolean" use="optional" default="false" />
+				<xs:attribute name="lockedForHistory" type="xs:boolean" use="optional" default="false" />
+			</xs:complexType>
+		</xs:element>
+
+		<xs:element name="controllerType">
+			<xs:complexType>
+				<xs:attribute name="id" type="xs:int" use="required" />
+				<xs:attribute name="name" type="xs:string" use="required" />
+				<xs:attribute name="description" type="xs:string" use="optional" />
+				<xs:attribute name="in_use" type="xs:int" use="optional" />
+				<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+			</xs:complexType>
+		</xs:element>
+
+		<!-- used by controller -->
+		<xs:element name="ActuatorSet">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element ref="description" minOccurs="0" />
+					<xs:element ref="actuator" minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+				<xs:attribute name="id" type="xs:long" use="required" />
+				<xs:attribute name="project_id" type="xs:long" use="required" />
+				<xs:attribute name="name" type="xs:string" use="optional" default="" />
+				<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+				<xs:attribute name="lockedForEdit" type="xs:boolean" use="optional" default="false" />
+				<xs:attribute name="lockedForHistory" type="xs:boolean" use="optional" default="false" />
+			</xs:complexType>
+		</xs:element>
+
+    <xs:element name="actuator">
+      <xs:complexType>
+				<xs:sequence>
+					<!-- Needed for Controller -->
+					<xs:element ref="usageType" minOccurs="0" />
+    			<xs:element ref="scenarioElement" minOccurs="0" maxOccurs="unbounded" />
+    			<xs:element ref="actuatorType" minOccurs="0" maxOccurs="unbounded" />
+        	<xs:element ref="display_position" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="optional" />
+      </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="actuatorType">
+			<xs:complexType>
+				<xs:attribute name="id" type="xs:int" use="required" />
+				<xs:attribute name="name" type="xs:string" use="required" />
+				<xs:attribute name="description" type="xs:string" use="optional" />
+				<xs:attribute name="in_use" type="xs:int" use="optional" />
+				<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+			</xs:complexType>
+		</xs:element>
+
+		<xs:element name="usageType">
+			<xs:complexType>
+				<xs:attribute name="id" type="xs:int" use="required" />
+				<xs:attribute name="name" type="xs:string" use="required" />
+				<xs:attribute name="description" type="xs:string" use="optional" />
+				<xs:attribute name="in_use" type="xs:int" use="optional" />
+				<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
 			</xs:complexType>
 		</xs:element>
 
@@ -529,7 +586,9 @@
 							</xs:simpleType>
 						</xs:attribute>
 					</xs:complexType>
-				</xs:element>				
+				</xs:element>
+				
+					  
 					  
   <!-- FundamentalDiagramSet .............................................. -->
 
