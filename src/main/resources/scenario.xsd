@@ -459,10 +459,10 @@
 			<xs:complexType>
         <xs:sequence>
           <xs:element ref="parameters" minOccurs="0" />
-          <!-- <xs:element ref="ActuatorSet" minOccurs="1" /> -->
-          <xs:element ref="ActuatorSet" minOccurs="1" />
-          <!-- <xs:element ref="SensorSet" minOccurs="0" /> -->
-          <xs:element ref="SensorSet" minOccurs="0" />
+					<!-- <xs:element ref="targetElements" minOccurs="1" /> -->
+					<xs:element ref="target_actuators" minOccurs="0" />
+					<!-- <xs:element ref="feedbackElements" minOccurs="0" /> -->
+					<xs:element ref="feedback_sensors" minOccurs="0" />
           <xs:element ref="queue_controller" minOccurs="0" />
           <xs:element ref="ActivationIntervals" minOccurs="0" />
           <xs:element ref="table" minOccurs="0" maxOccurs="unbounded" />
