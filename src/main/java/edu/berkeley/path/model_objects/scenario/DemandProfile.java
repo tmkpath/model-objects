@@ -167,7 +167,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	/**
 	 * Gets the list of Demands
 	 * 
-	 * @return List<Demand> List of split ratios
+	 * @return List<Demand> List of demands
 	 */
  	@SuppressWarnings("unchecked")
 	public List<Demand> getListOfDemands() {
