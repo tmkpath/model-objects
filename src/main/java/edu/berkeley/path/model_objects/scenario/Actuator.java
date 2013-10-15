@@ -233,7 +233,7 @@ public class Actuator extends edu.berkeley.path.model_objects.jaxb.Actuator {
   /**
    * Convenience method for users to get Scenario Element Type Id directly
    *
-   * @return long The id of the SensorType
+   * @return long The id of the ScenarioElementType
    */
   public long getScenarioElementTypeId() {
     return getScenarioElementType().getId();
@@ -260,7 +260,7 @@ public class Actuator extends edu.berkeley.path.model_objects.jaxb.Actuator {
    *
    * @return Point the displayPosition as Point Object; null if not set
    */
-  public edu.berkeley.path.model_objects.shared.Point getDisplayActuatorPosition() {
+  public edu.berkeley.path.model_objects.shared.Point getActuatorDisplayPosition() {
     edu.berkeley.path.model_objects.shared.Point result = null;
 
     if(super.getDisplayPosition() != null
@@ -274,7 +274,7 @@ public class Actuator extends edu.berkeley.path.model_objects.jaxb.Actuator {
   }
 
   /**
-   * @param point the point of the sensor (put into a JAXB displayPosition) to set
+   * @param point the point of the actuator (put into a JAXB displayPosition) to set
    */
   public void setDisplayPosition(edu.berkeley.path.model_objects.shared.Point point) {
     DisplayPosition dp = new DisplayPosition();
