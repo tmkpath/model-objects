@@ -188,8 +188,6 @@
           <xs:element ref="table" minOccurs="0" />
           <!-- Application type ID -->
           <xs:element ref="sensor_type" minOccurs="0" maxOccurs="1"/>
-					<!-- Needed for Controller -->
-					<xs:element ref="usageType" minOccurs="0" />
         </xs:all>
 				<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 				<xs:attribute name="id" type="xs:long" use="required"/>
@@ -218,6 +216,8 @@
 					<xs:attribute name="id" type="xs:long" use="required" />
 					<xs:attribute name="name" type="xs:string" use="required"/>
 					<xs:attribute name="description" type="xs:string" use="optional"/>
+					<xs:attribute name="in_use" type="xs:string" use="optional"/>
+					<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
 				</xs:complexType>
 			</xs:element>
 
@@ -487,7 +487,6 @@
 			</xs:complexType>
 		</xs:element>
 
-		<!-- used by controller -->
 		<xs:element name="ActuatorSet">
 			<xs:complexType>
 				<xs:sequence>
@@ -503,29 +502,27 @@
 			</xs:complexType>
 		</xs:element>
 
+		<!-- Needed for Controller -->
     <xs:element name="actuator">
       <xs:complexType>
 				<xs:sequence>
-					<!-- Needed for Controller -->
-					<xs:element ref="usageType" minOccurs="0" />
-    			<xs:element ref="scenarioElement" minOccurs="0" maxOccurs="unbounded" />
-    			<xs:element ref="actuator_type" minOccurs="0" />
-        	<xs:element ref="display_position" minOccurs="0" />
+    			<xs:element ref="scenarioElementType" minOccurs="0" maxOccurs="1" />
+    			<xs:element ref="actuator_type" minOccurs="0" maxOccurs="1" />
+        	<xs:element ref="display_position" minOccurs="0" maxOccurs="1"/>
 					<xs:element ref="parameters" minOccurs="0" />
 					<xs:element ref="table" minOccurs="0" />
         </xs:sequence>
+				<xs:attribute name="id" type="xs:long" use="required" />
         <xs:attribute name="name" type="xs:string" use="optional" />
 				<xs:attribute name="network_id" type="xs:long" use="optional" />
 				<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
 				<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
-				<xs:attribute name="lockedForEdit" type="xs:boolean" use="optional" default="false" />
-				<xs:attribute name="lockedForHistory" type="xs:boolean" use="optional" default="false" />
       </xs:complexType>
     </xs:element>
     
     <xs:element name="actuator_type">
 			<xs:complexType>
-				<xs:attribute name="id" type="xs:int" use="required" />
+				<xs:attribute name="id" type="xs:long" use="required" />
 				<xs:attribute name="name" type="xs:string" use="required" />
 				<xs:attribute name="description" type="xs:string" use="optional" />
 				<xs:attribute name="in_use" type="xs:int" use="optional" />
@@ -612,22 +609,31 @@
 				</xs:complexType>
 			</xs:element>
 
-				<xs:element name="scenarioElement"> 
-					<xs:complexType>
-						<xs:attribute name="id" type="xs:long" use="required" />
-						<xs:attribute name="usage" type="xs:string" use="optional" />
-						<xs:attribute name="type" use="required">
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:pattern value="link|node|controller|sensor|event|signal"/>
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:attribute>
-					</xs:complexType>
-				</xs:element>
-				
-					  
-					  
+			<xs:element name="scenarioElement">
+				<xs:complexType>
+					<xs:attribute name="id" type="xs:long" use="required" />
+					<xs:attribute name="usage" type="xs:string" use="optional" />
+					<xs:attribute name="type" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="link|node|controller|sensor|event|signal"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+
+			<!-- Scenario Element Type -->
+			<xs:element name="scenarioElementType">
+				<xs:complexType>
+					<xs:attribute name="id" type="xs:long" use="required" />
+					<xs:attribute name="name" type="xs:string" use="required"/>
+					<xs:attribute name="description" type="xs:string" use="optional"/>
+					<xs:attribute name="in_use" type="xs:string" use="optional"/>
+					<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+				</xs:complexType>
+			</xs:element>
+
   <!-- FundamentalDiagramSet .............................................. -->
 
 	<xs:element name="FundamentalDiagramSet">

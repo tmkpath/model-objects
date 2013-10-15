@@ -41,8 +41,6 @@ import edu.berkeley.path.model_objects.shared.CrudFlag;
  */
 public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 
-
-
 	/**
 	 * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
 	 *
