@@ -198,7 +198,7 @@
 				<xs:attribute name="data_feed_id" type="xs:long" use="optional" />
 				<xs:attribute name="lane_number" type="xs:int" use="optional" />
 				<xs:attribute name="link_offset" type="xs:double" use="optional" />
-				<xs:attribute name="modStamp" type="xs:string" use="optional" />
+				<xs:attribute name="mod_stamp" type="xs:string" use="optional" />
 				<xs:attribute name="health_status" use="optional">
 					<xs:simpleType >
 						<xs:restriction base="xs:double">
@@ -234,18 +234,18 @@
 			<xs:attribute name="name" type="xs:string" use="optional" default="" />
 			<!-- time stamp in [units of time] after midnight -->
 			<xs:attribute name="tstamp" type="xs:double" use="optional" default="0.0"/>		
-			<xs:attribute name="modStamp" type="xs:string" use="optional" />
+			<xs:attribute name="mod_stamp" type="xs:string" use="optional" />
 		</xs:complexType>
 	</xs:element>
 
-		<xs:element name="density">			
+		<xs:element name="density">
 			<xs:complexType mixed="true">    <!-- text in vehicles/[unit of length] -->
 				<xs:attribute name="vehicle_type_id" type="xs:long" use="required" />
 				<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 				<xs:attribute name="id" type="xs:long" use="required"/>
 				<xs:attribute name="link_id" type="xs:long" use="required" />
 				<xs:attribute name="destination_network_id" type="xs:long" use="optional" />
-				<xs:attribute name="modStamp" type="xs:string" use="optional" />
+				<xs:attribute name="mod_stamp" type="xs:string" use="optional" />
 			</xs:complexType>
 		</xs:element>
 
