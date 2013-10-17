@@ -26,18 +26,20 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
-import edu.berkeley.path.model_objects.jaxb.DisplayPosition;
-import edu.berkeley.path.model_objects.shared.*;
+import edu.berkeley.path.model_objects.shared.CrudFlag;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Model Object Actuator class.
+ * Model Object Controller Set class.
  *
  * @author mnjuhn
  */
-public class Actuator extends edu.berkeley.path.model_objects.jaxb.Actuator {
+public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller {
 
   /**
-   * Check to make sure all actuator is valid
+   * Check to make sure all controller is valid
    *
    * @return boolean
    */
@@ -76,26 +78,6 @@ public class Actuator extends edu.berkeley.path.model_objects.jaxb.Actuator {
   @Override
   public String getName() {
     return super.getName();
-  }
-
-  /**
-   * Sets network id actuator is associated with
-   *
-   * @param id the network id to set
-   */
-  @Override
-  public void setNetworkId(Long id) {
-    super.setNetworkId(id);
-  }
-
-  /**
-   * Gets the network id associated with actuator
-   *
-   * @return network id associated with actuator
-   */
-  @Override
-  public Long getNetworkId() {
-    return super.getNetworkId();
   }
 
   /**
@@ -184,102 +166,39 @@ public class Actuator extends edu.berkeley.path.model_objects.jaxb.Actuator {
   }
 
   /**
-   * Get Actuator Type for this object
+   * Get Controller Type for this object
    *
-   * @return ActuatorType  An object representing the the id, name, and
+   * @return ControllerType  An object representing the the id, name, and
    * description for this ScenarioElementType
    */
   @Override
-  public edu.berkeley.path.model_objects.jaxb.ActuatorType getActuatorType() {
-    return super.getActuatorType();
+  public edu.berkeley.path.model_objects.jaxb.ControllerType getControllerType() {
+    return super.getControllerType();
   }
 
   /**
-   * Convenience method for users to get Actuator Type Id directly
+   * Convenience method for users to get Controller Type Id directly
    *
-   * @return long The id of the Actuator Type
+   * @return long The id of the Controller Type
    */
-  public long getActuatorTypeId() {
-    return getActuatorType().getId();
+  public long getControllerTypeId() {
+    return getControllerType().getId();
   }
 
   /**
-   * Set the Actuator Type for this object based on the parameters passed in.
+   * Set the Controller Type for this object based on the parameters passed in.
    *
-   * @param typeId Id of the ActuatorType
-   * @param name Name of the ActuatorType
-   * @param desc Description of the ActuatorType
+   * @param typeId Id of the ControllerType
+   * @param name Name of the ControllerType
+   * @param desc Description of the ControllerType
    */
-  public void setActuatorType(long typeId, String name, String desc) {
-    edu.berkeley.path.model_objects.jaxb.ActuatorType type =
-        new edu.berkeley.path.model_objects.jaxb.ActuatorType();
+  public void setControllerType(int typeId, String name, String desc) {
+    edu.berkeley.path.model_objects.jaxb.ControllerType type =
+        new edu.berkeley.path.model_objects.jaxb.ControllerType();
     type.setId(typeId);
     type.setName(name);
     type.setDescription(desc);
-    setActuatorType(type);
-  }
-
-  /**
-   * Get Scenario Element Type for this object
-   *
-   * @return ScenarioElementType  An object representing the the id, name, and
-   * description for this ScenarioElementType
-   */
-  @Override
-  public edu.berkeley.path.model_objects.jaxb.ScenarioElementType getScenarioElementType() {
-    return super.getScenarioElementType();
-  }
-
-  /**
-   * Convenience method for users to get Scenario Element Type Id directly
-   *
-   * @return long The id of the ScenarioElementType
-   */
-  public long getScenarioElementTypeId() {
-    return getScenarioElementType().getId();
-  }
-
-  /**
-   * Set the Scenario Element Type for this object based on the parameters passed in.
-   *
-   * @param typeId Id of the ScenarioElementType
-   * @param name Name of the ScenarioElementType
-   * @param desc Description of the ScenarioElementType
-   */
-  public void setScenarioElementType(long typeId, String name, String desc) {
-    edu.berkeley.path.model_objects.jaxb.ScenarioElementType type =
-        new edu.berkeley.path.model_objects.jaxb.ScenarioElementType();
-    type.setId(typeId);
-    type.setName(name);
-    type.setDescription(desc);
-    super.setScenarioElementType(type);
-  }
-
-  /**
-   * Return the Display position as a Point object.
-   *
-   * @return Point the displayPosition as Point Object; null if not set
-   */
-  public edu.berkeley.path.model_objects.shared.Point getActuatorDisplayPosition() {
-    edu.berkeley.path.model_objects.shared.Point result = null;
-
-    if(super.getDisplayPosition() != null
-        && super.getDisplayPosition().getPoint() != null
-        && super.getDisplayPosition().getPoint().size() > 0) {
-
-      result = (edu.berkeley.path.model_objects.shared.Point) super.getDisplayPosition().getPoint().get(0);
-    }
-
-    return result;
-  }
-
-  /**
-   * @param point the point of the actuator (put into a JAXB displayPosition) to set
-   */
-  public void setDisplayPosition(edu.berkeley.path.model_objects.shared.Point point) {
-    DisplayPosition dp = new DisplayPosition();
-    dp.getPoint().add(point);
-    super.setDisplayPosition(dp);
+    super.setControllerType(type);
   }
 
   /**
@@ -297,5 +216,6 @@ public class Actuator extends edu.berkeley.path.model_objects.jaxb.Actuator {
   public void setParameters(edu.berkeley.path.model_objects.shared.Parameters parameters) {
     super.setParameters(parameters);
   }
+
 
 }
