@@ -36,6 +36,24 @@ import edu.berkeley.path.model_objects.measurements.PIFProbeDataSet;
 public class ScenarioFactory extends edu.berkeley.path.model_objects.jaxb.ObjectFactory {
 
   /**
+   * Create an instance of Actuator Model Object
+   *
+   * @return Actuator Model Object
+   */
+  public Actuator createActuator() {
+    return new Actuator();
+  }
+
+  /**
+   * Create an instance of ActuatorSet Model Object
+   *
+   * @return ActuatorSet Model Object
+   */
+  public ActuatorSet createActuatorSet() {
+    return new ActuatorSet();
+  }
+
+  /**
    * Create an instance of Sensor Model Object
    *
    * @return Sensor Model Object
