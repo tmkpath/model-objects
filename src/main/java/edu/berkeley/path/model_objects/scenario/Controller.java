@@ -27,6 +27,9 @@
 package edu.berkeley.path.model_objects.scenario;
 
 import edu.berkeley.path.model_objects.shared.CrudFlag;
+import edu.berkeley.path.model_objects.jaxb.ActivationIntervals;
+import edu.berkeley.path.model_objects.jaxb.Interval;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -179,10 +182,15 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
   /**
    * Convenience method for users to get Controller Type Id directly
    *
-   * @return long The id of the Controller Type
+   * @return Integer The id of the Controller Type
    */
-  public long getControllerTypeId() {
-    return getControllerType().getId();
+  public Integer getControllerTypeId() {
+    if (getControllerType() != null) {
+      return getControllerType().getId();
+    }
+    else {
+      return null;
+    }
   }
 
   /**
@@ -192,7 +200,7 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
    * @param name Name of the ControllerType
    * @param desc Description of the ControllerType
    */
-  public void setControllerType(int typeId, String name, String desc) {
+  public void setControllerType(Integer typeId, String name, String desc) {
     edu.berkeley.path.model_objects.jaxb.ControllerType type =
         new edu.berkeley.path.model_objects.jaxb.ControllerType();
     type.setId(typeId);
@@ -202,6 +210,136 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
   }
 
   /**
+   * Get Activation Start time
+   *
+   * @returns the activation start time in seconds
+   */
+  public Double getActivationStartTime () {
+    if (getActivationIntervals() != null &&
+        getActivationIntervals().getInterval() != null &&
+        getActivationIntervals().getInterval().size() > 0) {
+      return getActivationIntervals().getInterval().get(0).getStartTime();
+    }
+    else {
+      return null;
+    }
+  }
+
+  /**
+   * Set Activation Start time
+   *
+   * @param Activation start time in seconds
+   */
+  public void setActivationStartTime (Double seconds) {
+    // If the activation interval exists, change start time
+    if (getActivationIntervals() != null &&
+        getActivationIntervals().getInterval() != null &&
+        getActivationIntervals().getInterval().size() > 0) {
+      // get the existing activation interval and set it's start time
+      getActivationIntervals().getInterval().get(0).setStartTime(seconds);
+
+    } else {
+      // otherwise create new interval
+      Interval interval = new Interval();
+      interval.setStartTime(seconds);
+      ActivationIntervals activationIntervals = new ActivationIntervals();
+      activationIntervals.getInterval().add(interval);
+      setActivationIntervals(activationIntervals);
+    }
+
+  }
+
+  /**
+   * Get Activation End time
+   *
+   * @returns the activation end time in seconds
+   */
+  public Double getActivationEndTime () {
+    if (getActivationIntervals() != null &&
+        getActivationIntervals().getInterval() != null &&
+        getActivationIntervals().getInterval().size() > 0) {
+      return getActivationIntervals().getInterval().get(0).getEndTime();
+    }
+    else {
+      return null;
+    }
+  }
+
+  /**
+   * Set Activation end time
+   *
+   * @param Activation end time in seconds
+   */
+  public void setActivationEndTime (Double seconds) {
+    // If the activation interval exists, change end time
+    if (getActivationIntervals() != null &&
+        getActivationIntervals().getInterval() != null &&
+        getActivationIntervals().getInterval().size() > 0) {
+      // get the existing activation interval and set it's end time
+      getActivationIntervals().getInterval().get(0).setEndTime(seconds);
+
+    } else {
+      // otherwise create new interval
+      Interval interval = new Interval();
+      interval.setEndTime(seconds);
+      ActivationIntervals activationIntervals = new ActivationIntervals();
+      activationIntervals.getInterval().add(interval);
+      setActivationIntervals(activationIntervals);
+    }
+
+  }
+
+  /**
+   * Get Sensor Set associated with this controller.
+   *
+   * @return Sensor Set Model Object.
+   */
+  @SuppressWarnings("unchecked")
+  public SensorSet getSensorSet() {
+    edu.berkeley.path.model_objects.jaxb.SensorSet sensorSet = getSensorSet();
+
+    // cast sensor
+    return (SensorSet) sensorSet;
+  }
+
+  /**
+   * Set Sensor Set associated with this controller.
+   *
+   * @param set Sensor Set Model Object.
+   */
+  @SuppressWarnings("unchecked")
+  public void setSensorSet(SensorSet set) {
+    setSensorSet(set);
+  }
+
+
+  /**
+   * Get Actuator Set associated with this controller.
+   *
+   * @return Actuator Set Model Object.
+   */
+  @SuppressWarnings("unchecked")
+  public ActuatorSet getActuatorSet() {
+    edu.berkeley.path.model_objects.jaxb.ActuatorSet actuatorSet = getActuatorSet();
+
+    // cast sensor
+    return (ActuatorSet) actuatorSet;
+  }
+
+  /**
+   * Set Actuator Set associated with this controller.
+   *
+   * @param set Actuator Set Model Object.
+   */
+  @SuppressWarnings("unchecked")
+  public void setActuatorSet(ActuatorSet set) {
+    setActuatorSet(set);
+  }
+
+
+  /**
+   * Get Parameters
+   *
    * @return Parameters the parameters associated with this actuator
    */
   @Override
