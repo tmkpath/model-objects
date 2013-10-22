@@ -99,6 +99,26 @@ public class Actuator extends edu.berkeley.path.model_objects.jaxb.Actuator {
   }
 
   /**
+   * Sets element id acted upon
+   *
+   * @param id the element id to set
+   */
+  @Override
+  public void setElementId(Long id) {
+    super.setElementId(id);
+  }
+
+  /**
+   * Gets the element id acted upon
+   *
+   * @return element id acted upon
+   */
+  @Override
+  public Long getElementId() {
+    return super.getElementId();
+  }
+
+  /**
    * @param modstamp the modstamp to set
    */
   @Override
@@ -252,7 +272,7 @@ public class Actuator extends edu.berkeley.path.model_objects.jaxb.Actuator {
     type.setId(typeId);
     type.setName(name);
     type.setDescription(desc);
-    setScenarioElementType(type);
+    super.setScenarioElementType(type);
   }
 
   /**
