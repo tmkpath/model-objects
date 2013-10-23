@@ -200,6 +200,13 @@ public class Density extends edu.berkeley.path.model_objects.jaxb.Density {
    * @return Density
    */
   public Double getDensity() {
+    if (this.density == null) {
+      try {
+        this.density = Double.valueOf(super.getContent());
+      } catch (Exception ex) {
+        Monitor.err("Error getting density, invalid content string.");
+      }
+    }
     return this.density;
   }
 

@@ -306,4 +306,13 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
 		}
 	}
 
+	public FundamentalDiagram getFD(long offsetTime) {
+		int offset = (int)Math.floor(offsetTime / this.getDt());
+
+		if(getListOfFDs().size() > offset) {
+			return getListOfFDs().get(offset);
+		} else {
+			throw new IllegalStateException("Error, cannot find fundamental diagram for offset time " + offsetTime + " (offset " + offset + ").");
+		}
+	}
 }

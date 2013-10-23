@@ -41,8 +41,6 @@ import edu.berkeley.path.model_objects.shared.CrudFlag;
  */
 public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 
-
-
 	/**
 	 * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
 	 *
@@ -176,30 +174,6 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 		super.setDisplayPosition(dp);
 	}
 
-    
-	/**
-	 * This is the percentage of the length of the link from the begin node 
-	 * where this sensor resides.
-	 * 
-	 * @return Double the linkPosition as percent from the the begin node
-	 */
-	@Override
-	public Double getLinkPosition() {
-		return super.getLinkPosition();
-	}
-
-
-	/**
-	 * Set the link position for this sensor
-	 * 
-	 * @param linkPosition percent away from beginning of link
-	 */
-	@Override
-	public void setLinkPosition(Double linkPosition) {
-		super.setLinkPosition(linkPosition);
-	}
-
-
 	/**
 	 * @return Parameters the parameters associated with this sensor
 	 */
@@ -259,6 +233,27 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 	public void setSensorIdOriginal(String sensorIdOriginal) {
 		super.setSensorIdOriginal(sensorIdOriginal);
 	}
+
+  /**
+   * Get the original link type
+   *
+   * @return String the linkTypeOriginal
+   */
+  @Override
+  public String getLinkTypeOriginal() {
+    return super.getLinkTypeOriginal();
+  }
+
+
+  /**
+   * Set the original link type
+   *
+   * @param LinkTypeOriginal the LinkTypeOriginal to set
+   */
+  @Override
+  public void setLinkTypeOriginal(String linkTypeOriginal) {
+    super.setLinkTypeOriginal(linkTypeOriginal);
+  }
 
 
 	/**

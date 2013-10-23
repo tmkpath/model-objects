@@ -232,7 +232,7 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
    * @return  Index of link in output links array
    */ 
 	public int getOutputLinkIndex(long id){
-		for(int i=0;i<nIn;i++){
+		for(int i=0;i<nOut;i++){
 			if(outputLink[i]!=null)
 				if(outputLink[i].getId() == id)
 					return i;
