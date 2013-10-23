@@ -234,6 +234,27 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 		super.setSensorIdOriginal(sensorIdOriginal);
 	}
 
+  /**
+   * Get the original link type
+   *
+   * @return String the linkTypeOriginal
+   */
+  @Override
+  public String getLinkTypeOriginal() {
+    return super.getLinkTypeOriginal();
+  }
+
+
+  /**
+   * Set the original link type
+   *
+   * @param LinkTypeOriginal the LinkTypeOriginal to set
+   */
+  @Override
+  public void setLinkTypeOriginal(String linkTypeOriginal) {
+    super.setLinkTypeOriginal(linkTypeOriginal);
+  }
+
 
 	/**
 	 * Get the lane number the sensor is located in
