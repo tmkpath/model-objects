@@ -181,10 +181,9 @@ public List<Network> getListOfNetworks() {
   //TODO Needs ControllerSet MO
   @Override
   public ControllerSet getControllerSet() {
-    return super.getControllerSet();
+    return (ControllerSet) super.getControllerSet();
   }
 
-  @Override
   public void setControllerSet(ControllerSet value) {
     super.setControllerSet(value);
   }

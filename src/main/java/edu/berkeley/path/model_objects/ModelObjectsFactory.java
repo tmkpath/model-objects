@@ -33,27 +33,10 @@ import edu.berkeley.path.model_objects.network.Link;
 import edu.berkeley.path.model_objects.network.Network;
 import edu.berkeley.path.model_objects.network.NetworkFactory;
 import edu.berkeley.path.model_objects.network.Node;
-import edu.berkeley.path.model_objects.scenario.CalibrationAlgorithmType;
-import edu.berkeley.path.model_objects.scenario.Demand;
-import edu.berkeley.path.model_objects.scenario.DemandProfile;
-import edu.berkeley.path.model_objects.scenario.DemandSet;
-import edu.berkeley.path.model_objects.scenario.Density;
-import edu.berkeley.path.model_objects.scenario.FundamentalDiagram;
-import edu.berkeley.path.model_objects.scenario.FundamentalDiagramProfile;
-import edu.berkeley.path.model_objects.scenario.FundamentalDiagramSet;
-import edu.berkeley.path.model_objects.scenario.FundamentalDiagramType;
-import edu.berkeley.path.model_objects.scenario.InitialDensitySet;
-import edu.berkeley.path.model_objects.scenario.Route;
-import edu.berkeley.path.model_objects.scenario.RouteLink;
-import edu.berkeley.path.model_objects.scenario.Scenario;
-import edu.berkeley.path.model_objects.scenario.ScenarioFactory;
-import edu.berkeley.path.model_objects.scenario.Sensor;
-import edu.berkeley.path.model_objects.scenario.SensorSet;
-import edu.berkeley.path.model_objects.scenario.SplitRatioProfile;
-import edu.berkeley.path.model_objects.scenario.SplitRatioSet;
-import edu.berkeley.path.model_objects.scenario.Splitratio;
+import edu.berkeley.path.model_objects.scenario.*;
 import edu.berkeley.path.model_objects.shared.Point;
 import edu.berkeley.path.model_objects.shared.Position;
+import edu.berkeley.path.model_objects.shared.Project;
 import edu.berkeley.path.model_objects.shared.SharedObjectFactory;
 
 /**
@@ -64,6 +47,16 @@ public class ModelObjectsFactory extends ObjectFactory {
   private ScenarioFactory scenarioFactory = new ScenarioFactory();
   private NetworkFactory networkFactory = new NetworkFactory();
   private SharedObjectFactory sharedFactory = new SharedObjectFactory();
+
+  @Override
+  public Actuator createActuator() {
+    return new Actuator();
+  }
+
+  @Override
+  public ActuatorSet createActuatorSet() {
+    return new ActuatorSet();
+  }
 
   @Override
   public Sensor createSensor() {
@@ -181,6 +174,11 @@ public class ModelObjectsFactory extends ObjectFactory {
   }
 
   @Override
+  public Project createProject(){
+    return sharedFactory.createProject();
+  }
+
+  @Override
   public FundamentalDiagramProfile createFundamentalDiagramProfile() {
     return scenarioFactory.createFundamentalDiagramProfile();
   }
@@ -189,4 +187,5 @@ public class ModelObjectsFactory extends ObjectFactory {
   public FundamentalDiagram createFundamentalDiagram() {
     return scenarioFactory.createFundamentalDiagram();
   }
+
 }

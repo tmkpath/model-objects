@@ -70,7 +70,7 @@ public class FundamentalDiagramType extends edu.berkeley.path.model_objects.jaxb
      * Gets the value of the inUse property.
      * 
      */
-    public int getInUse() {
+    public Integer getInUse() {
         return super.getInUse();
     }
 
@@ -78,7 +78,7 @@ public class FundamentalDiagramType extends edu.berkeley.path.model_objects.jaxb
      * Sets the value of the inUse property.
      * 
      */
-    public void setInUse(int value) {
+    public void setInUse(Integer value) {
         super.setInUse(value);
     }
 
