@@ -25,25 +25,26 @@
  **/
 package edu.berkeley.path.model_objects.util;
 
-import edu.berkeley.path.model_objects.jaxb.ObjectFactory;
-import java.io.StringReader;
-import java.io.StringWriter;
-
-import edu.berkeley.path.model_objects.MOException;
-import core.Exceptions;
 import core.Monitor;
-
-import javax.xml.bind.*;
-import javax.xml.stream.XMLStreamReader;
-import javax.xml.stream.XMLStreamWriter;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.transform.stream.StreamSource;
-
+import edu.berkeley.path.model_objects.MOException;
+import edu.berkeley.path.model_objects.jaxb.ObjectFactory;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.codehaus.jettison.mapped.MappedNamespaceConvention;
 import org.codehaus.jettison.mapped.MappedXMLStreamReader;
 import org.codehaus.jettison.mapped.MappedXMLStreamWriter;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.PropertyException;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+import javax.xml.stream.XMLStreamWriter;
+import javax.xml.transform.stream.StreamSource;
+import java.io.StringReader;
+import java.io.StringWriter;
 
 
 /**
@@ -54,7 +55,19 @@ import org.codehaus.jettison.json.JSONObject;
  */
 @SuppressWarnings("restriction")
 public class Serializer {
-  
+  // use a global JAXB context where possible because is expensive to create it every time
+  private static JAXBContext globalJAXBContext;
+
+  static {
+    try {
+      globalJAXBContext = JAXBContext.newInstance("edu.berkeley.path.model_objects.jaxb");
+      // a possible different way of initializing the object, using a list of classes
+      //context = JAXBContext.newInstance(Scenario.class, LinkState.class);
+    } catch (JAXBException e) {
+      e.printStackTrace();
+    }
+  }
+
   /**
    * Method to convert/unmarshall XML to JAXB model object.
    * 
@@ -76,6 +89,7 @@ public class Serializer {
     try {
       // Create JAXB context object which tell the unmarshaller which JAXB class to create
       // is expected to be created
+      // TODO FIND A WAY TO CREATE A GLOBAL CONTEXT OBJECT FOR THAT
       JAXBContext context = JAXBContext.newInstance(jaxbClass);
       Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
 			// If Factory is passed in can create extended objects from serialization
@@ -123,8 +137,7 @@ public class Serializer {
     try {
       // Create JAXB context object which tell the marshaller which JAXB class was specified
       // to be converted from XML
-      JAXBContext context = JAXBContext.newInstance("edu.berkeley.path.model_objects.jaxb");
-      Marshaller jaxbMarshaller = context.createMarshaller();
+      Marshaller jaxbMarshaller = globalJAXBContext.createMarshaller();
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
       jaxbMarshaller.marshal(jaxbObject, result);    
       // get XML string
@@ -218,12 +231,9 @@ public class Serializer {
     String json = null;
     StringWriter result = new StringWriter();
     try {
-      // Create JAXB context object which tell the marshaller which JAXB class was specified
-      // to be converted from JSON
-      JAXBContext context = JAXBContext.newInstance("edu.berkeley.path.model_objects.jaxb");
       org.codehaus.jettison.mapped.Configuration config = new org.codehaus.jettison.mapped.Configuration();
       XMLStreamWriter xmlsw = new MappedXMLStreamWriter(new MappedNamespaceConvention(config), result);
-      Marshaller jaxbMarshaller = context.createMarshaller();
+      Marshaller jaxbMarshaller = globalJAXBContext.createMarshaller();
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
       jaxbMarshaller.marshal(jaxbObject, xmlsw);    
       // get XML string
