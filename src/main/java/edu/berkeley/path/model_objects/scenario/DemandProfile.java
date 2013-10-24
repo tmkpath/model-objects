@@ -27,14 +27,13 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import core.Monitor;
 import edu.berkeley.path.model_objects.MOException;
-import edu.berkeley.path.model_objects.scenario.Object_Parameter;
-import edu.berkeley.path.model_objects.shared.DateTime;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
+import edu.berkeley.path.model_objects.shared.DateTime;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /** 
@@ -52,58 +51,13 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	 public final Boolean isValid() { return true; }
 	 
 	/**
-	 * Set value by name
-	 * @param Object_Parameter
-	 * @
-	 */
-	public void setByName(Object_Parameter p) {
-		
-		if (p.name.compareToIgnoreCase("id") == 0 ) 				setId(p.intParam);
-		else if (p.name.compareToIgnoreCase("knob") == 0 ) 			setKnob(p.fltParam);
-		else if (p.name.compareToIgnoreCase("startTime") == 0 ) 	setStartTime(p.fltParam);
-		else if (p.name.compareToIgnoreCase("SAMPLERATE") == 0 ) 	setDt(p.fltParam);
-		else if (p.name.compareToIgnoreCase("orgLinkId") == 0 ) 	setLinkIdOrg(p.intParam);
-		else if (p.name.compareToIgnoreCase("destNetworkId") == 0 ) 	setDestinationNetworkId(p.intParam);
-		else if (p.name.compareToIgnoreCase("stdDevAdd") == 0 ) 	setStdDevAdd(p.fltParam);
-		else if (p.name.compareToIgnoreCase("stdDevMult") == 0 ) 	setStdDevMult(p.fltParam);
-		else if (p.name.compareToIgnoreCase("modStamp") == 0 ) 		setModStamp(p.strParam);
-		
-	}
-	 
-	/**
-	 * Get an array of all parameters
-	 * 
-	 * @return
-	 */
-	public Object_Parameter[] getAll(Long demandSetId) {
-		
-		Object_Parameter[] params = new Object_Parameter[11];
-		
-		params[0] = new Object_Parameter("id", getId(), 0.0D, null);
-    params[1] = new Object_Parameter("demandSetId", demandSetId, 0.0D, null);
-		params[2] = new Object_Parameter("knob", 0L, knob, null);
-		params[3] = new Object_Parameter("startTime", 0L, startTime, null);
-		params[4] = new Object_Parameter("SAMPLERATE", 0L, dt, null);
-		params[5] = new Object_Parameter("orgLinkId", getLinkIdOrg(), 0.0D, null);
-		params[6] = new Object_Parameter("destNetworkId", destinationNetworkId, 0.0D, null);
-		params[7] = new Object_Parameter("stdDevAdd", 0L, stdDevAdd, null);
-		params[8] = new Object_Parameter("stdDevMult", 0L, stdDevMult, null);
-		params[9] = new Object_Parameter("modStamp", 0L, 0.0D, modStamp);
-		params[10] = new Object_Parameter("crud", new Long(getCrudFlagEnum().ordinal()), 0.0D, null);
-		
-		Object_Parameter.setPositions(params);
-		
-		return params;
-	}
-
-	/**
 	 * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
 	 *
 	 * @return CRUD Flag enumeration
 	 */
 	public CrudFlag getCrudFlagEnum() {
 
-		CrudFlag flag = null;
+		CrudFlag flag;
 		// Check if CRUDFlag is null, if so return NONE enumeration
 		if (super.getCrudFlag() == null) {
 			setCrudFlagEnum(CrudFlag.NONE);
@@ -135,7 +89,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	/**
 	 * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
 	 *
-	 * @param CRUD Flag enumeration
+	 * @param flag Flag enumeration
 	 */
 	public void setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag flag) {
 		// Check if CRUDFlag is null, if so return NONE enumeration
@@ -178,7 +132,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	/**
 	 * Set the Demand list. 
 	 * 
-	 * @param List<Demand>	List of extended Demands to add
+	 * @param demands	List of extended Demands to add
 	 */
 	@SuppressWarnings("unchecked")
 	public void setListOfDemands(List<Demand> demands) {
@@ -194,7 +148,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	/**
 	 * returns all the Demand values in this DemandProfile that have the same vehicle type.
 	 * 
-	 * @param vehicle_type_id
+	 * @param vehicle_type_id vehicle type
 	 * @return Double[]
 	 */
 	public Double[] getDemand(long vehicle_type_id){
@@ -223,8 +177,8 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	 * returns the Demand value at the offset from the start time of this profile passed in
 	 * If the offset is between sample times we return the ratio closer to the beginning of the sample
 	 * 
-	 * @param vehicle_type_id
-	 * @param long offset in seconds since start_time of profile
+	 * @param vehicle_type_id vehicle type
+	 * @param offsetTime offset in seconds since start_time of profile
 	 * @return the Demand corresponding to the parameters passed in or -1 if not found
 	 */
 	public Double getDemand(long vehicle_type_id, long offsetTime){
@@ -252,7 +206,7 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	 * returns the Demand value at the time passed in 
 	 * If the time falls between sample times we return the ratio closer to the beginning of the sample
 	 *
-	 * @param vehicle_type_id
+	 * @param vehicle_type_id vehicle type
 	 * @param time String Format : 14:05:00
 	 * @return double
 	 */
