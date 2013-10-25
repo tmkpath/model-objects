@@ -24,9 +24,13 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.berkeley.path.model_objects.scenario;
+package edu.berkeley.path.model_objects.dynamic;
 
+import edu.berkeley.path.model_objects.dynamic.DynamicDemand;
+import edu.berkeley.path.model_objects.dynamic.DynamicDemandProfile;
+import edu.berkeley.path.model_objects.scenario.DemandProfile;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
+import edu.berkeley.path.model_objects.shared.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,23 +46,41 @@ import java.util.List;
  */
 public class DynamicDemandSet extends edu.berkeley.path.model_objects.jaxb.DynamicDemandSet {
 
+  /**
+   * Get App run id
+   *
+   * @return app run id
+   */
   @Override
   public long getAppRunId() {
     return appRunId;
   }
 
+  /**
+   * Set App run id
+   *
+   * @param value representing app run id
+   */
   @Override
   public void setAppRunId(long value) {
     this.appRunId = value;
   }
 
-  @Override
-  public double getEstTstamp() {
-    return estTstamp;
+  /**
+   * Get Estimation timestamp as represented in number of seconds since epoch
+   *
+   * @return date time object
+   */
+  public DateTime getEstimationTstamp() {
+    return (DateTime) estTstamp;
   }
 
-  @Override
-  public void setEstTstamp(double value) {
+  /**
+   * Set Estimation timestamp as represented in number of seconds since epoch
+   *
+   * @param value representing date time object
+   */
+  public void setEstimationTstamp(DateTime value) {
     this.estTstamp = value;
   }
 
@@ -180,11 +202,11 @@ public class DynamicDemandSet extends edu.berkeley.path.model_objects.jaxb.Dynam
     @SuppressWarnings("unchecked")
     public List<DemandProfile> getDemandProfileList() {
 
-      if (demandProfile == null) {
+      if (dynamicDemandProfile == null) {
 
-        demandProfile = new ArrayList<edu.berkeley.path.model_objects.jaxb.DemandProfile>();
+        dynamicDemandProfile = new ArrayList<edu.berkeley.path.model_objects.jaxb.DynamicDemandProfile>();
       }
-      return (List<DemandProfile>)(List<?>)this.demandProfile;
+      return (List<DemandProfile>)(List<?>)this.dynamicDemandProfile;
     }
 
     /**
@@ -194,12 +216,12 @@ public class DynamicDemandSet extends edu.berkeley.path.model_objects.jaxb.Dynam
     @SuppressWarnings("unchecked")
     public void setDemandProfileList(List<DemandProfile> dpList) {
 
-      if ( demandProfile == null ) {
+      if ( dynamicDemandProfile == null ) {
 
-        demandProfile = new ArrayList<edu.berkeley.path.model_objects.jaxb.DemandProfile>();
+        dynamicDemandProfile = new ArrayList<edu.berkeley.path.model_objects.jaxb.DynamicDemandProfile>();
       }
-      demandProfile.clear();
-      demandProfile.addAll((List<edu.berkeley.path.model_objects.jaxb.DemandProfile>)(List<?>)dpList);
+      dynamicDemandProfile.clear();
+      dynamicDemandProfile.addAll((List<edu.berkeley.path.model_objects.jaxb.DynamicDemandProfile>)(List<?>)dpList);
     }
 
     /**
@@ -339,9 +361,9 @@ public class DynamicDemandSet extends edu.berkeley.path.model_objects.jaxb.Dynam
      *
      */
     @SuppressWarnings("unchecked")
-    public List<DemandProfile> getListOfDemandProfiles() {
+    public List<DynamicDemandProfile> getListOfDemandProfiles() {
       // return casted list of Nodes from JAXB base class
-      return (List<DemandProfile>)(List<?>)super.getDemandProfile();
+      return (List<DynamicDemandProfile>)(List<?>)super.getDynamicDemandProfile();
     }
 
     /**
@@ -350,14 +372,14 @@ public class DynamicDemandSet extends edu.berkeley.path.model_objects.jaxb.Dynam
      * @param demands	List of extended Demand Profiles to add
      */
     @SuppressWarnings("unchecked")
-    public void setListOfDemandProfiles(List<DemandProfile> demands) {
-      List<edu.berkeley.path.model_objects.jaxb.DemandProfile> profiles = super.getDemandProfile();
+    public void setListOfDemandProfiles(List<DynamicDemand> demands) {
+      List<edu.berkeley.path.model_objects.jaxb.DynamicDemandProfile> profiles = super.getDynamicDemandProfile();
       if ( profiles == null ) {
-        profiles = new ArrayList<edu.berkeley.path.model_objects.jaxb.DemandProfile>();
+        profiles = new ArrayList<edu.berkeley.path.model_objects.jaxb.DynamicDemandProfile>();
       }
       profiles.clear();
-      profiles.addAll((List<edu.berkeley.path.model_objects.jaxb.DemandProfile>)(List<?>)demands);
-      super.demandProfile = profiles;
+      profiles.addAll((List<edu.berkeley.path.model_objects.jaxb.DynamicDemandProfile>)(List<?>)demands);
+      super.dynamicDemandProfile = profiles;
     }
 
 
@@ -369,9 +391,9 @@ public class DynamicDemandSet extends edu.berkeley.path.model_objects.jaxb.Dynam
      * @param linkId get demand profile associated with the link id
      * @return DemandProfile or null if not found
      */
-    public DemandProfile getDemandProfileAtLink(long linkId) {
+    public DynamicDemandProfile getDemandProfileAtLink(long linkId) {
 
-      for(DemandProfile p : getListOfDemandProfiles()) {
+      for(DynamicDemandProfile p : getListOfDemandProfiles()) {
         if(p.getLinkIdOrg() == linkId) {
           return p;
         }

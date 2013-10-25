@@ -6,6 +6,8 @@ import java.util.List;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
 import edu.berkeley.path.model_objects.scenario.SplitRatioProfile;
 import edu.berkeley.path.model_objects.scenario.Splitratio;
+import edu.berkeley.path.model_objects.dynamic.DynamicSplitRatioProfile;
+import edu.berkeley.path.model_objects.dynamic.DynamicSplitRatio;
 
 import edu.berkeley.path.model_objects.scenario.DemandProfile;
 import edu.berkeley.path.model_objects.scenario.Demand;
@@ -27,8 +29,8 @@ public class TestConfiguration {
 		
 		return profile;
 	}
-	
-	public static Splitratio createSplitRatio(int link_in, int link_out, int veh_id, String ratios ) throws MOException {
+
+  public static Splitratio createSplitRatio(int link_in, int link_out, int veh_id, String ratios ) throws MOException {
     Splitratio r = new Splitratio();
     r.setLinkIn(link_in);
     r.setLinkOut(link_out);
@@ -36,6 +38,33 @@ public class TestConfiguration {
     r.setContent(ratios);
     return r;
   }
+	
+	public static DynamicSplitRatio createDynamicSplitRatio(int link_in, int link_out, int veh_id, String ratios ) throws MOException {
+    DynamicSplitRatio r = new DynamicSplitRatio();
+    r.setLinkIn(link_in);
+    r.setLinkOut(link_out);
+    r.setVehicleTypeId(veh_id);
+    r.setContent(ratios);
+    return r;
+  }
+
+  public static DynamicSplitRatioProfile createDynamicSplitRatioProfile(int nodeId, double start, double dt, long dest, CrudFlag flag ) throws MOException {
+    DynamicSplitRatioProfile profile = new DynamicSplitRatioProfile();
+    profile.setNodeId(nodeId);
+    profile.setStartTime(start);
+    profile.setDt(dt);
+    profile.setDestinationNetworkId(dest);
+    profile.setCrudFlagEnum(flag);
+
+    List<DynamicSplitRatio> ratios = new ArrayList<DynamicSplitRatio>();
+
+    ratios.add(createDynamicSplitRatio(1,2,3,"0.5,0.1,1.0,0.6"));
+    profile.setListOfSplitRatios(ratios);
+
+    return profile;
+  }
+
+
 
   public static DemandProfile createDemandProfile(int linkId, double start, double dt, long dest, CrudFlag flag ) throws MOException {
     DemandProfile profile = new DemandProfile();
