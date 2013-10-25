@@ -26,6 +26,7 @@
 
 package edu.berkeley.path.model_objects.util;
 
+import edu.berkeley.path.model_objects.ModelObjectsFactory;
 import org.junit.*;
 import static org.junit.Assert.*;
 import edu.berkeley.path.model_objects.jaxb.Node;
@@ -305,7 +306,7 @@ public class SerializerTest {
 
 		// unmarshal XML into Network object
 		Network network = new Network();
-		network = Serializer.xmlToObject(beforeXML, network.getClass(), new NetworkFactory());
+		network = Serializer.xmlToObject(beforeXML, network.getClass(), new ModelObjectsFactory());
 
 		String afterXML = Serializer.objectToXml(network);
 
