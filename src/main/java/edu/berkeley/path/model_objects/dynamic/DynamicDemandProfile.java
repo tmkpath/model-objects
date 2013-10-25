@@ -25,10 +25,11 @@
  **/
 
 
-package edu.berkeley.path.model_objects.scenario;
+package edu.berkeley.path.model_objects.dynamic;
 
 import core.Monitor;
 import edu.berkeley.path.model_objects.MOException;
+import edu.berkeley.path.model_objects.scenario.Demand;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
 import edu.berkeley.path.model_objects.shared.DateTime;
 
@@ -126,7 +127,7 @@ public class DynamicDemandProfile extends edu.berkeley.path.model_objects.jaxb.D
   @SuppressWarnings("unchecked")
   public List<Demand> getListOfDemands() {
     // return casted list of Demands JAXB base class
-    return (List<Demand>)(List<?>)super.getDemand();
+    return (List<Demand>)(List<?>)super.getDynamicDemand();
   }
 
   /**
@@ -136,13 +137,13 @@ public class DynamicDemandProfile extends edu.berkeley.path.model_objects.jaxb.D
    */
   @SuppressWarnings("unchecked")
   public void setListOfDemands(List<Demand> demands) {
-    List<edu.berkeley.path.model_objects.jaxb.Demand> list = getDemand();
+    List<edu.berkeley.path.model_objects.jaxb.DynamicDemand> list = getDynamicDemand();
     if ( list == null ) {
-      list = new ArrayList<edu.berkeley.path.model_objects.jaxb.Demand>();
+      list = new ArrayList<edu.berkeley.path.model_objects.jaxb.DynamicDemand>();
     }
     list.clear();
-    list.addAll((List<edu.berkeley.path.model_objects.jaxb.Demand>)(List<?>)demands);
-    demand = list;
+    list.addAll((List<edu.berkeley.path.model_objects.jaxb.DynamicDemand>)(List<?>)demands);
+    dynamicDemand = list;
   }
 
   /**
