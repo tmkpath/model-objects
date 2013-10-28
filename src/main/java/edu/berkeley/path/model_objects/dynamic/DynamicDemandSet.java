@@ -26,8 +26,6 @@
 
 package edu.berkeley.path.model_objects.dynamic;
 
-import edu.berkeley.path.model_objects.dynamic.DynamicDemand;
-import edu.berkeley.path.model_objects.dynamic.DynamicDemandProfile;
 import edu.berkeley.path.model_objects.scenario.DemandProfile;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
 import edu.berkeley.path.model_objects.shared.DateTime;
@@ -372,7 +370,7 @@ public class DynamicDemandSet extends edu.berkeley.path.model_objects.jaxb.Dynam
      * @param demands	List of extended Demand Profiles to add
      */
     @SuppressWarnings("unchecked")
-    public void setListOfDemandProfiles(List<DynamicDemand> demands) {
+    public void setListOfDemandProfiles(List<DynamicDemandProfile> demands) {
       List<edu.berkeley.path.model_objects.jaxb.DynamicDemandProfile> profiles = super.getDynamicDemandProfile();
       if ( profiles == null ) {
         profiles = new ArrayList<edu.berkeley.path.model_objects.jaxb.DynamicDemandProfile>();

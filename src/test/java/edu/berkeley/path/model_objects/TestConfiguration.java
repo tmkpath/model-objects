@@ -1,16 +1,17 @@
 package edu.berkeley.path.model_objects;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import edu.berkeley.path.model_objects.shared.CrudFlag;
+import edu.berkeley.path.model_objects.dynamic.DynamicDemand;
+import edu.berkeley.path.model_objects.dynamic.DynamicDemandProfile;
+import edu.berkeley.path.model_objects.dynamic.DynamicSplitRatio;
+import edu.berkeley.path.model_objects.dynamic.DynamicSplitRatioProfile;
+import edu.berkeley.path.model_objects.scenario.Demand;
+import edu.berkeley.path.model_objects.scenario.DemandProfile;
 import edu.berkeley.path.model_objects.scenario.SplitRatioProfile;
 import edu.berkeley.path.model_objects.scenario.Splitratio;
-import edu.berkeley.path.model_objects.dynamic.DynamicSplitRatioProfile;
-import edu.berkeley.path.model_objects.dynamic.DynamicSplitRatio;
+import edu.berkeley.path.model_objects.shared.CrudFlag;
 
-import edu.berkeley.path.model_objects.scenario.DemandProfile;
-import edu.berkeley.path.model_objects.scenario.Demand;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestConfiguration {
 	
@@ -90,4 +91,27 @@ public class TestConfiguration {
     return r;
   }
 
+  public static DynamicDemandProfile createDynamicDemandProfile(int linkId, double start, double dt, long dest, CrudFlag flag ) throws MOException {
+    DynamicDemandProfile profile = new DynamicDemandProfile();
+    profile.setLinkIdOrg(linkId);
+    profile.setStartTime(start);
+    profile.setDt(dt);
+    profile.setDestinationNetworkId(dest);
+    profile.setCrudFlagEnum(flag);
+
+    List<DynamicDemand> demands = new ArrayList<DynamicDemand>();
+
+    demands.add(createDynamicDemand(1,"0.5,0.1,1.0,0.6"));
+    demands.add(createDynamicDemand(2,"0.5,0.1,1.0,0.6"));
+    profile.setListOfDemands(demands);
+
+    return profile;
+  }
+
+  public static DynamicDemand createDynamicDemand(int veh_id, String demands ) throws MOException {
+    DynamicDemand r = new DynamicDemand();
+    r.setVehicleTypeId(veh_id);
+    r.setContent(demands);
+    return r;
+  }
 }
