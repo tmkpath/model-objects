@@ -31,6 +31,7 @@ import edu.berkeley.path.model_objects.measurements.*;
 import edu.berkeley.path.model_objects.network.*;
 import edu.berkeley.path.model_objects.scenario.*;
 import edu.berkeley.path.model_objects.shared.*;
+import edu.berkeley.path.model_objects.dynamic.*;
 
 /**
  * This factory is intended to load a whole scenario from JSON/XML
@@ -117,6 +118,36 @@ public class ModelObjectsFactory extends ObjectFactory {
   public DemandProfile createDemandProfile() {
     return new DemandProfile();
   }
+
+  /**
+   * Create an instance of DynamicDemandSet Model Object
+   *
+   * @return DynamicDemandSet Model Object
+   */
+  @Override
+  public DynamicDemandSet createDynamicDemandSet() {
+    return new DynamicDemandSet();
+  }
+
+  /**
+   * Create an instance of DynamicDemandProfile Model Object
+   *
+   * @return DynamicDemandProfile Model Object
+   */
+  @Override
+  public DynamicDemandProfile createDynamicDemandProfile() {
+    return new DynamicDemandProfile();
+  }
+
+	/**
+	 * Create an instance of DynamicDemand Model Object
+	 *
+	 * @return DynamicDemand Model Object
+	 */
+	@Override
+	public DynamicDemand createDynamicDemand() {
+		return new DynamicDemand();
+	}
 
   /**
    * Create an instance of FundamentalDiagramSet Model Object
