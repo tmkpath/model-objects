@@ -236,6 +236,36 @@ public class ModelObjectsFactory extends ObjectFactory {
   }
 
   /**
+   * Create an instance of DynamicSplitRatioSet Model Object
+   *
+   * @return DynamicSplitRatioSet Model Object
+   */
+  @Override
+  public DynamicSplitRatioSet createDynamicSplitRatioSet() {
+    return new DynamicSplitRatioSet();
+  }
+
+  /**
+   * Create an instance of DynamicSplitRatioProfile Model Object
+   *
+   * @return DynamicSplitRatioProfile Model Object
+   */
+  @Override
+  public DynamicSplitRatioProfile createDynamicSplitRatioProfile() {
+    return new DynamicSplitRatioProfile();
+  }
+
+  /**
+   * Create an instance of DynamicSplitRatio Model Object
+   *
+   * @return DynamicSplitRatio Model Object
+   */
+  @Override
+  public DynamicSplitRatio createDynamicSplitRatio() {
+    return new DynamicSplitRatio();
+  }
+
+  /**
    * Create an instance of PIFProbeData  Model Object
    *
    * @return PIFProbeData  Model Object

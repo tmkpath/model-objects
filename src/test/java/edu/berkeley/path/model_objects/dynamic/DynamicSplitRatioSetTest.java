@@ -41,7 +41,6 @@ import edu.berkeley.path.model_objects.MOException;
 
 public class DynamicSplitRatioSetTest {
   private static final long ID = 1;
-  private static final long PROJECT_ID = 10;
   private static final String DESCRIPTION = "Test Set";
   private static final String NAME = "Test Set Name";
   private static final String MOD_STAMP = "01-APR-1982 23:23:12";
@@ -52,7 +51,6 @@ public class DynamicSplitRatioSetTest {
   public void setUp() throws MOException {
     set = new DynamicSplitRatioSet();
     set.setDescription(DESCRIPTION);
-    set.setProjectId(PROJECT_ID);
     set.setId(ID);
     set.setName(NAME);
     set.setModStamp(MOD_STAMP);
@@ -70,7 +68,6 @@ public class DynamicSplitRatioSetTest {
   @Test
   public void testGetters(){
     assertEquals(DESCRIPTION, set.getDescription());
-    assertEquals(PROJECT_ID, set.getProjectId());
     assertEquals(ID,set.getId());
     assertEquals(NAME, set.getName());
     assertEquals(MOD_STAMP, set.getModStamp());
