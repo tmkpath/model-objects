@@ -12,7 +12,6 @@
 				<xs:element name="est_tstamp" type="dateTime" minOccurs="1" maxOccurs="1" />
 			</xs:sequence>
 			<xs:attribute name="id" type="xs:long" use="required"/>
-			<xs:attribute name="project_id" type="xs:long" use="required"/>
 			<xs:attribute name="name" type="xs:string" use="optional" default=""/>
 			<xs:attribute name="app_run_id" type="xs:long" use="required"/>
 			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
@@ -64,7 +63,6 @@
 			<xs:element name="est_tstamp" type="dateTime" minOccurs="1" maxOccurs="1" />
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:long" use="required"/>
-		<xs:attribute name="project_id" type="xs:long" use="required" />
 		<xs:attribute name="name" type="xs:string" use="optional" default="" />
 		<xs:attribute name="app_run_id" type="xs:long" use="required"/>
 		<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />

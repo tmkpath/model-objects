@@ -222,31 +222,6 @@ public class DynamicDemandSet extends edu.berkeley.path.model_objects.jaxb.Dynam
       dynamicDemandProfile.addAll((List<edu.berkeley.path.model_objects.jaxb.DynamicDemandProfile>)(List<?>)dpList);
     }
 
-    /**
-     * Gets the value of the projectId property.
-     *
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *
-     */
-    @Override
-    public long getProjectId() {
-      return projectId;
-    }
-
-    /**
-     * Sets the value of the projectId property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *
-     */
-    @Override
-    public void setProjectId(long value) {
-      this.projectId = value;
-    }
 
     /**
      * Gets the value of the id property.

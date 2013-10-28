@@ -139,28 +139,6 @@ public class DynamicSplitRatioSet extends edu.berkeley.path.model_objects.jaxb.D
   }
 
   /**
-   * Gets the value of the projectId property.
-   *
-   * @return String
-   *
-   */
-  @Override
-  public long getProjectId() {
-    return super.getProjectId();
-  }
-
-  /**
-   * Sets the value of the projectId property.
-   *
-   * @param Long value
-   *
-   */
-  @Override
-  public void setProjectId(long value) {
-    super.setProjectId(value);
-  }
-
-  /**
    * Gets the value of the id property.
    *
    * @return long

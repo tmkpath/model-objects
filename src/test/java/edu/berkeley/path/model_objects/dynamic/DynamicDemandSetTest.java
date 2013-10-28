@@ -16,7 +16,6 @@ import static org.junit.Assert.assertNull;
 
 public class DynamicDemandSetTest {
 
-  private static final long PROJECT_ID = 10;
   private static final int APP_RUN_ID = 20;
   private static final String DESCRIPTION = "Test Set";
   private static final String NAME = "Test Set Name";
@@ -34,7 +33,6 @@ public class DynamicDemandSetTest {
     // Create Demand Set Object
     set = new DynamicDemandSet();
     set.setDescription(DESCRIPTION);
-    set.setProjectId(PROJECT_ID);
     set.setId(ID);
     set.setName(NAME);
     set.setModStamp(MOD_STAMP);
@@ -58,7 +56,6 @@ public class DynamicDemandSetTest {
   @Test
   public void testGetters() {
     assertEquals(DESCRIPTION, set.getDescription());
-    assertEquals(PROJECT_ID, set.getProjectId());
     assertEquals(ID,set.getId());
     assertEquals(NAME, set.getName());
     assertEquals(MOD_STAMP, set.getModStamp());
