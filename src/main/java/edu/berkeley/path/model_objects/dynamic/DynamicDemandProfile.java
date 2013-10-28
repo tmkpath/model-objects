@@ -125,9 +125,9 @@ public class DynamicDemandProfile extends edu.berkeley.path.model_objects.jaxb.D
    * @return List<Demand> List of demands
    */
   @SuppressWarnings("unchecked")
-  public List<Demand> getListOfDemands() {
+  public List<DynamicDemand> getListOfDemands() {
     // return casted list of Demands JAXB base class
-    return (List<Demand>)(List<?>)super.getDynamicDemand();
+    return (List<DynamicDemand>)(List<?>)super.getDynamicDemand();
   }
 
   /**
@@ -136,7 +136,7 @@ public class DynamicDemandProfile extends edu.berkeley.path.model_objects.jaxb.D
    * @param demands	List of extended Demands to add
    */
   @SuppressWarnings("unchecked")
-  public void setListOfDemands(List<Demand> demands) {
+  public void setListOfDemands(List<DynamicDemand> demands) {
     List<edu.berkeley.path.model_objects.jaxb.DynamicDemand> list = getDynamicDemand();
     if ( list == null ) {
       list = new ArrayList<edu.berkeley.path.model_objects.jaxb.DynamicDemand>();
@@ -153,8 +153,8 @@ public class DynamicDemandProfile extends edu.berkeley.path.model_objects.jaxb.D
    * @return Double[]
    */
   public Double[] getDemand(long vehicle_type_id){
-    List<Demand> list = getListOfDemands();
-    for (Demand d : list) {
+    List<DynamicDemand> list = getListOfDemands();
+    for (DynamicDemand d : list) {
       if(d.equals(vehicle_type_id)) {
         try {
           // Copy demands arraylist to primative array of doubles
@@ -183,9 +183,9 @@ public class DynamicDemandProfile extends edu.berkeley.path.model_objects.jaxb.D
    * @return the Demand corresponding to the parameters passed in or -1 if not found
    */
   public Double getDemand(long vehicle_type_id, long offsetTime){
-    List<Demand> list = getListOfDemands();
+    List<DynamicDemand> list = getListOfDemands();
     int offset = (int)Math.floor(offsetTime / this.getDt());
-    for(Demand d : list) {
+    for(DynamicDemand d : list) {
       if(d.equals(vehicle_type_id)) {
         try {
           // get all demand values with same vehicle type id - indexed by dt
@@ -224,8 +224,8 @@ public class DynamicDemandProfile extends edu.berkeley.path.model_objects.jaxb.D
     long daySeconds = ((milliseconds2  - milliseconds1) / 1000) + 1;
     int offset = (int)Math.floor(daySeconds / this.getDt());
 
-    List<Demand> list = getListOfDemands();
-    for(Demand d : list)
+    List<DynamicDemand> list = getListOfDemands();
+    for(DynamicDemand d : list)
     {
       if(d.equals(vehicle_type_id)) {
         try {
