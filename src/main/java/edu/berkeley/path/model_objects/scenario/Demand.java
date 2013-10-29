@@ -46,52 +46,6 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
   /** @y.exclude */ private ArrayList<String> modStampArray;
   /** @y.exclude */ private ArrayList<CrudFlag> crudFlagArray;
 
-	/**
-	 * Set value by name
-	 * @param Object_Parameter Parameter values to set object values to be called from Demand Reader
-	 *
-	 */
-	public void setByName(Object_Parameter p, int offset) throws MOException {
-
-    if (p.name.compareToIgnoreCase("id") == 0 ) 				setId(offset, p.intParam);
-		else if (p.name.compareToIgnoreCase("flow") == 0 ) 		setDemand(offset, p.fltParam);
-		else if (p.name.compareToIgnoreCase("vehTypeId") == 0 ) 	setVehicleTypeId(p.intParam);
-		else if (p.name.compareToIgnoreCase("modStamp") == 0 ) 		setModStamp(offset, p.strParam);
-	}
-
-	/**
-	 * Get an array of all parameters
-	 * 
-	 * @return Array of Demand Object parameters to be used by Demand Writer
-   * @throws MOException
-	 */
-	public Object_Parameter[] getAll(int offset, Long demandProfileId) throws MOException {
-		
-		Object_Parameter[] params = new Object_Parameter[7];
-
-    // try getting demand id, if can't find it set to 0
-    Long id = 0L;
-    String modStamp = "";
-    try {
-      id = getId(offset);
-      modStamp = getModStamp(offset);
-    } catch (Exception exc) {
-      // do nothing
-    }
-
-    params[0] = new Object_Parameter("id", id, 0.0D, null);
-    params[1] = new Object_Parameter("demandProfId", demandProfileId, 0.0D, null);
-		params[2] = new Object_Parameter("flow", 0L, getDemand(offset), null);
-		params[3] = new Object_Parameter("vehTypeId", getVehicleTypeId(), 0.0D, null);
-    params[4] = new Object_Parameter("demandOrder", new Long(offset), 0.0D, null);
-		params[5] = new Object_Parameter("modStamp", 0L, 0.0D, modStamp);
-		params[6] = new Object_Parameter("crud", new Long(getCrudFlag(offset).ordinal()), 0.0D, null);
-		
-		Object_Parameter.setPositions(params);
-		
-		return params;
-	}
-
   /**
    * Gets the length of the number of Demands for a particular link in,
    * link out and vehicle-type.  Essentially the number of dt's
@@ -115,7 +69,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
    */
   public Double getDemand(int offset) throws MOException {
 
-    Double demand = null;
+    Double demand;
     // Demand -- if no demandArray list has been created, create one
     if (demandArray == null) {
       setDemandArray();
@@ -164,7 +118,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
    */
   public Long getId(int offset) throws MOException {
 
-    Long id = null;
+    Long id;
 
     // Id -- if no idArray list has been created, create one
     if (idArray == null) {
@@ -215,7 +169,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
    */
   public String getModStamp(int offset) throws MOException {
 
-    String modStamp = null;
+    String modStamp;
 
     // modStamp -- if no modStampArray list has been created, create one
     if (modStampArray == null) {
@@ -264,7 +218,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
    */
   public CrudFlag getCrudFlag(int offset) throws MOException {
 
-    CrudFlag crudFlag = null;
+    CrudFlag crudFlag;
 
     // CrudFlag -- if no crudFlagArray list has been created, add one
     if (crudFlagArray == null) {
@@ -348,9 +302,9 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
       if (demandContent != null) {
         String[] contentArray = demandContent.split(",");
         // For each value separated by a comma, add it to content array
-        for (int i = 0; i < contentArray.length; i++) {
-          demandArray.add(Double.valueOf(contentArray[i].trim()));
-        }
+	      for (String aContentArray : contentArray) {
+		      demandArray.add(Double.valueOf(aContentArray.trim()));
+	      }
       }
     }
     catch (Exception ex) {
@@ -374,9 +328,9 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
       if (idContent != null) {
         String[] contentArray = idContent.split(",");
         // For each value separated by a comma, add it to content array
-        for (int i = 0; i < contentArray.length; i++) {
-          idArray.add(Long.valueOf(contentArray[i].trim()));
-        }
+	      for (String aContentArray : contentArray) {
+		      idArray.add(Long.valueOf(aContentArray.trim()));
+	      }
       }
     }
     catch (Exception ex) {
@@ -401,9 +355,9 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
         // if modStamp content exists populate modStampArray arraylist from string
         String[] contentArray = modStampContent.split(",");
         // For each value separated by a comma, add it to content array
-        for (int i = 0; i < contentArray.length; i++) {
-          modStampArray.add(contentArray[i].trim());
-        }
+	      for (String aContentArray : contentArray) {
+		      modStampArray.add(aContentArray.trim());
+	      }
       }
     }
     catch (Exception ex) {
@@ -428,9 +382,9 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
         // if CrudFlag content exists populate crudFlagArray arraylist from string
         String[] contentArray = crudFlagContent.split(",");
         // For each value separated by a comma, add it to content array
-        for (int i = 0; i < contentArray.length; i++) {
-          crudFlagArray.add(CrudFlag.valueOf(contentArray[i].trim()));
-        }
+	      for (String aContentArray : contentArray) {
+		      crudFlagArray.add(CrudFlag.valueOf(aContentArray.trim()));
+	      }
       }
     }
     catch (Exception ex) {

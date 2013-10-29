@@ -23,8 +23,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-
-package edu.berkeley.path.model_objects.scenario;
+package edu.berkeley.path.model_objects.dynamic;
 
 import edu.berkeley.path.model_objects.shared.CrudFlag;
 
@@ -37,42 +36,42 @@ import org.junit.Test;
 
 import edu.berkeley.path.model_objects.MOException;
 
-public class SplitratioTest {
-	private static final String MOD_STAMP = "01-APR-1982 23:23:12";
-	private static final long ID1 = 1;
+public class DynamicSplitRatioTest {
+  private static final String MOD_STAMP = "01-APR-1982 23:23:12";
+  private static final long ID1 = 1;
   private static final long ID2 = 2;
   private static final long ID3 = 3;
-	private static final long LINK_IN_ID = 2;
-	private static final long LINK_OUT_ID = 3;
-	private static final long VEHICLE_TYPE_ID = 4;
-	private static final double RATIO1 = 0.1;
+  private static final long LINK_IN_ID = 2;
+  private static final long LINK_OUT_ID = 3;
+  private static final long VEHICLE_TYPE_ID = 4;
+  private static final double RATIO1 = 0.1;
   private static final double RATIO2 = 0.4;
   private static final double RATIO3 = 0.5;
   private static final int OFFSET1 = 0;
   private static final int OFFSET2 = 1;
   private static final int OFFSET3 = 2;
   private static final double EPSILON = 0.001;
-	
-	private Splitratio ratio;
 
-	@Before
-	public void setUp() throws MOException {
-		  ratio = new Splitratio();
-		  ratio.setLinkIn(LINK_IN_ID);
-		  ratio.setLinkOut(LINK_OUT_ID);
-      // add ratios for offset 1 and 3
-		  ratio.setRatio(OFFSET1, RATIO1, ID1,  MOD_STAMP, CrudFlag.CREATE);
-      ratio.setRatio(OFFSET2, RATIO2, ID2,  MOD_STAMP, CrudFlag.CREATE);
-      ratio.setRatio(OFFSET3, RATIO3, ID3,  MOD_STAMP, CrudFlag.CREATE);
-		  ratio.setVehicleTypeId(VEHICLE_TYPE_ID);
-	}
-  
+  private DynamicSplitRatio ratio;
+
+  @Before
+  public void setUp() throws MOException {
+    ratio = new DynamicSplitRatio();
+    ratio.setLinkIn(LINK_IN_ID);
+    ratio.setLinkOut(LINK_OUT_ID);
+    // add ratios for offset 1 and 3
+    ratio.setRatio(OFFSET1, RATIO1, ID1,  MOD_STAMP, CrudFlag.CREATE);
+    ratio.setRatio(OFFSET2, RATIO2, ID2,  MOD_STAMP, CrudFlag.CREATE);
+    ratio.setRatio(OFFSET3, RATIO3, ID3,  MOD_STAMP, CrudFlag.CREATE);
+    ratio.setVehicleTypeId(VEHICLE_TYPE_ID);
+  }
+
   @Test
   public void testEquals(){
-	  assertTrue(ratio.equals(LINK_IN_ID, LINK_OUT_ID , VEHICLE_TYPE_ID));
-	  assertFalse(ratio.equals(LINK_IN_ID, LINK_IN_ID, 11111));
+    assertTrue(ratio.equals(LINK_IN_ID, LINK_OUT_ID , VEHICLE_TYPE_ID));
+    assertFalse(ratio.equals(LINK_IN_ID, LINK_IN_ID, 11111));
   }
-  
+
   @Test
   public void testGetters() {
     try {

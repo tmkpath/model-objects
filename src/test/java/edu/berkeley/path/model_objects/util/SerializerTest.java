@@ -26,10 +26,14 @@
 
 package edu.berkeley.path.model_objects.util;
 
+import edu.berkeley.path.model_objects.ModelObjectsFactory;
 import org.junit.*;
 import static org.junit.Assert.*;
 import edu.berkeley.path.model_objects.jaxb.Node;
 import edu.berkeley.path.model_objects.network.*;
+import edu.berkeley.path.model_objects.scenario.Sensor;
+import edu.berkeley.path.model_objects.scenario.SensorSet;
+import edu.berkeley.path.model_objects.shared.Point;
 import core.*;
 
 import java.util.*;
@@ -112,6 +116,33 @@ public class SerializerTest {
     // Compare expected with actual results
     assertEquals(expectedXML, nodeExtXML);
     assertEquals(expectedJSON, nodeExtJSON);
+  }
+  
+  @Test
+  public void testSensorSetMarshall() throws Exception {
+	  	SensorSet set = new SensorSet();
+		
+	  	Sensor sensor = new Sensor();
+
+	  	ArrayList<Sensor> sensors = new ArrayList<Sensor>();
+		
+	  	Long id = 2L;
+		Double latitude = 37.0;
+		Double longitude = -122.0;
+		Integer laneCount = 2;
+		sensor.setSensorIdOriginal(id + "");
+		Point p = new Point();
+		p.setLatitude(latitude);
+		p.setLongitude(longitude);
+		sensor.setDisplayPosition(p);
+		sensor.setLaneNumber(laneCount);
+		sensor.setLinkTypeOriginal("ML ");
+		// set sensor type to default of loop since we are bringing in PeMS data
+		sensor.setSensorType(1, "LOOP", "");
+		sensors.add(sensor);
+		set.setSensors(sensors);
+		String xml =  Serializer.objectToXml(set);
+		assertNotNull(xml);
   }
   
   @Test
@@ -275,7 +306,7 @@ public class SerializerTest {
 
 		// unmarshal XML into Network object
 		Network network = new Network();
-		network = Serializer.xmlToObject(beforeXML, network.getClass(), new NetworkFactory());
+		network = Serializer.xmlToObject(beforeXML, network.getClass(), new ModelObjectsFactory());
 
 		String afterXML = Serializer.objectToXml(network);
 

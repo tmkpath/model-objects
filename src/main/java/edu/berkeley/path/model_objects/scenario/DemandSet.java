@@ -29,16 +29,16 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import edu.berkeley.path.model_objects.shared.CrudFlag;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import edu.berkeley.path.model_objects.shared.CrudFlag;
 
 public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 
 	 /**
 	  * Get modstamp
-	  * @return
+	  * @return modstamp
 	  */
 	@Override
 	public String getModStamp() {
@@ -47,7 +47,7 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 	
 	/**
 	 * Set modstamp
-	 * @param value
+	 * @param value modstamp
 	 */
 	@Override
     public void setModStamp(String value) {
@@ -55,49 +55,13 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
     }
 	
 	/**
-	 * Set value by name
-	 * @param Object_Parameter
-	 * @
-	 */
-	public void setByName(Object_Parameter p) {
-		
-		if (p.name.compareToIgnoreCase("id") == 0 ) setId(p.intParam);
-		else if (p.name.compareToIgnoreCase("description") == 0 ) setDescription(p.strParam);
-		else if (p.name.compareToIgnoreCase("projectId") == 0 ) setProjectId(p.intParam);
-		else if (p.name.compareToIgnoreCase("name") == 0 ) setName(p.strParam);	
-		else if (p.name.compareToIgnoreCase("ModStamp") == 0 ) setModStamp(p.strParam);	
-	}
-	
-	/**
-	 * Get an array of all parameters
-	 * 
-	 * @return Object_Parameter array
-	 */
-	public Object_Parameter[] getAll() {
-		
-		Object_Parameter[] params = new Object_Parameter[6];
-		
-		params[0] = new Object_Parameter("id", getId(), 0.0D, null);
-		params[1] = new Object_Parameter("description", 0L, 0.0D, description);
-		params[2] = new Object_Parameter("projectId", getProjectId(), 0.0D, null);
-		params[3] = new Object_Parameter("name", 0L, 0.0D, getName());
-		params[4] = new Object_Parameter("ModStamp", 0L, 0.0D, getModStamp());
-		params[5] = new Object_Parameter("crud", new Long(getCrudFlagEnum().ordinal()), 0.0D, null);
-		
-		Object_Parameter.setPositions(params);
-		
-		return params;
-
-	}
-
-	/**
 	 * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
 	 *
 	 * @return CRUD Flag enumeration
 	 */
 	public CrudFlag getCrudFlagEnum() {
 
-		CrudFlag flag = null;
+		CrudFlag flag;
 		// Check if CRUDFlag is null, if so return NONE enumeration
 		if (super.getCrudFlag() == null) {
 			setCrudFlagEnum(CrudFlag.NONE);
@@ -129,7 +93,7 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 	/**
 	 * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
 	 *
-	 * @param CRUD Flag enumeration
+	 * @param flag Flag enumeration
 	 */
 	public void setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag flag) {
 		// Check if CRUDFlag is null, if so return NONE enumeration
@@ -199,7 +163,7 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
 
     /**
      * Set DemandProfile list
-     * @param DemandProfile list
+     * @param dpList DemandProfile list
      */
 	@SuppressWarnings("unchecked")
 	public void setDemandProfileList(List<DemandProfile> dpList) {
@@ -300,7 +264,7 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
   /**
    * Sets the value of the lockedForEdit property.
    *
-   * @param Boolean value
+   * @param value locked edit flag
    *
    */
   @Override
@@ -322,7 +286,7 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
   /**
    * Sets the value of the lockedForHistory property.
    *
-   * @param Boolean value
+   * @param value locked history flag
    *
    */
   @Override
@@ -357,7 +321,7 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
   /**
    * Set the demands profiles list. Attaches list of Demand Profile Model Objects to set.
    *
-   * @param List<Demand>	List of extended Demand Profiles to add
+   * @param demands	List of extended Demand Profiles to add
    */
   @SuppressWarnings("unchecked")
   public void setListOfDemandProfiles(List<DemandProfile> demands) {
