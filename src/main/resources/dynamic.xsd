@@ -120,11 +120,8 @@
 
 		<xs:element name="DynamicDensity">
 			<xs:complexType mixed="true">    <!-- text in vehicles/[unit of length] -->
-				<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
-				<xs:attribute name="id" type="xs:long" use="required"/>
 				<xs:attribute name="link_id" type="xs:long" use="required" />
 				<xs:attribute name="destination_network_id" type="xs:long" use="optional" />
-				<xs:attribute name="mod_stamp" type="xs:string" use="optional" />
 			</xs:complexType>
 		</xs:element>
 
