@@ -60,7 +60,7 @@ public class DynamicSplitRatioSet extends edu.berkeley.path.model_objects.jaxb.D
    */
   @Override
   public long getAppRunId() {
-    return appRunId;
+    return this.appRunId;
   }
 
   /**
@@ -74,7 +74,7 @@ public class DynamicSplitRatioSet extends edu.berkeley.path.model_objects.jaxb.D
   }
 
   /**
-   * Get Estimation timestamp as represented in number of seconds since epoch
+   * Get Estimation timestamp as represented as Model Object DateTime object
    *
    * @return date time object
    */
@@ -83,7 +83,7 @@ public class DynamicSplitRatioSet extends edu.berkeley.path.model_objects.jaxb.D
   }
 
   /**
-   * Set Estimation timestamp as represented in number of seconds since epoch
+   * Set Estimation timestamp as represented as Model Object DateTime object
    *
    * @param value representing date time object
    */

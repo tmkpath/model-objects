@@ -65,7 +65,7 @@ public class DynamicDemandSet extends edu.berkeley.path.model_objects.jaxb.Dynam
   }
 
   /**
-   * Get Estimation timestamp as represented in number of seconds since epoch
+   * Get Estimation timestamp as represented as Model Object DateTime object
    *
    * @return date time object
    */
@@ -74,7 +74,7 @@ public class DynamicDemandSet extends edu.berkeley.path.model_objects.jaxb.Dynam
   }
 
   /**
-   * Set Estimation timestamp as represented in number of seconds since epoch
+   * Set Estimation timestamp as represented as Model Object DateTime object
    *
    * @param value representing date time object
    */
