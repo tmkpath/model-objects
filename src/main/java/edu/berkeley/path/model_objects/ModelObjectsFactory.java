@@ -90,6 +90,27 @@ public class ModelObjectsFactory extends ObjectFactory {
   }
 
   /**
+   * Create an instance of Dynamic InitialDensitySet Model Object
+   *
+   * @return DynamicInitialDensitySet Model Object
+   */
+  @Override
+  public DynamicInitialDensitySet createDynamicInitialDensitySet() {
+    return new DynamicInitialDensitySet();
+  }
+
+
+  /**
+   * Create an instance of Dynamic Density Model Object
+   *
+   * @return Dynamic Density Model Object
+   */
+  @Override
+  public DynamicDensity createDynamicDensity() {
+    return new DynamicDensity();
+  }
+
+  /**
    * Create an instance of InitialDensitySet Model Object
    *
    * @return InitialDensitySet Model Object
