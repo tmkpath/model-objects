@@ -91,6 +91,17 @@
 		</xs:complexType>
 	</xs:element>
 
+	<!-- Scenario Set Type -->
+	<xs:element name="ScenarioSetType">
+		<xs:complexType>
+			<xs:attribute name="id" type="xs:long" use="required" />
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="description" type="xs:string" use="optional"/>
+			<xs:attribute name="in_use" type="xs:string" use="optional"/>
+			<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+		</xs:complexType>
+	</xs:element>
+
   <!-- NetworkSet ............................................................... -->
 
 	<xs:element name="NetworkSet">
@@ -188,6 +199,7 @@
           <xs:element ref="table" minOccurs="0" />
           <!-- Application type ID -->
           <xs:element ref="sensor_type" minOccurs="0" maxOccurs="1"/>
+					<xs:element ref="usageType" minOccurs="0" maxOccurs="1"/>
         </xs:all>
 				<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 				<xs:attribute name="id" type="xs:long" use="required"/>
@@ -247,11 +259,13 @@
 					<xs:element ref="display_position" minOccurs="0" maxOccurs="1"/>
 					<xs:element ref="parameters" minOccurs="0" />
 					<xs:element ref="table" minOccurs="0" />
+					<xs:element ref="usageType" minOccurs="0" maxOccurs="1"/>
 				</xs:sequence>
 				<xs:attribute name="id" type="xs:long" use="required" />
 				<xs:attribute name="name" type="xs:string" use="optional" />
 				<xs:attribute name="network_id" type="xs:long" use="optional" />
 				<xs:attribute name="element_id" type="xs:long" use="optional" />
+				<xs:attribute name="actuator_id_original" type="xs:string" use="optional" />
 				<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
 				<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 			</xs:complexType>
@@ -587,7 +601,7 @@
 						<xs:element ref="usageType" minOccurs="1" maxOccurs="1" />
 					</xs:sequence>
 					<xs:attribute name="id" type="xs:long" use="optional" />
-					<xs:attribute name="actuator_id" type="xs:long" use="required" />
+					<xs:attribute name="actuator_id_original" type="xs:string" use="required" />
 					<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 					<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
 				</xs:complexType>
@@ -607,7 +621,7 @@
 						<xs:element ref="usageType" minOccurs="1" maxOccurs="1" />
 					</xs:sequence>
 					<xs:attribute name="id" type="xs:long" use="optional" />
-					<xs:attribute name="sensor_id" type="xs:long" use="required" />
+					<xs:attribute name="sensor_id_original" type="xs:string" use="required" />
 					<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 					<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
 				</xs:complexType>

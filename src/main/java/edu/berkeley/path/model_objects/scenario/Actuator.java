@@ -240,6 +240,27 @@ public class Actuator extends edu.berkeley.path.model_objects.jaxb.Actuator {
   }
 
   /**
+   * Get the original actuator id
+   *
+   * @return String the actuatorIdOriginal
+   */
+  @Override
+  public String getActuatorIdOriginal() {
+    return super.getActuatorIdOriginal();
+  }
+
+
+  /**
+   * Set the original actuator id
+   *
+   * @param actuatorIdOriginal the actuatorIdOriginal to set
+   */
+  @Override
+  public void setActuatorIdOriginal(String actuatorIdOriginal) {
+    super.setActuatorIdOriginal(actuatorIdOriginal);
+  }
+
+  /**
    * Get Scenario Element Type for this object
    *
    * @return ScenarioElementType  An object representing the the id, name, and
@@ -316,6 +337,47 @@ public class Actuator extends edu.berkeley.path.model_objects.jaxb.Actuator {
    */
   public void setParameters(edu.berkeley.path.model_objects.shared.Parameters parameters) {
     super.setParameters(parameters);
+  }
+
+  /**
+   * Get Usage Type for this Actuator Reference
+   *
+   * @return UsageType  An object representing the the id, name, and
+   * description for this UsageType
+   */
+  @Override
+  public edu.berkeley.path.model_objects.jaxb.UsageType getUsageType() {
+    return super.getUsageType();
+  }
+
+  /**
+   * Convenience method for users to get Usage Type Id directly
+   *
+   * @return Integer The id of the Usage Type
+   */
+  public Integer getUsageTypeId() {
+    if (getUsageType() != null) {
+      return getUsageType().getId();
+    }
+    else {
+      return null;
+    }
+  }
+
+  /**
+   * Set the Usage Type for this Actuator based on the parameters passed in.
+   *
+   * @param typeId Id of the UsageType
+   * @param name Name of the UsageType
+   * @param desc Description of the UsageType
+   */
+  public void setUsageType(Integer typeId, String name, String desc) {
+    edu.berkeley.path.model_objects.jaxb.UsageType type =
+        new edu.berkeley.path.model_objects.jaxb.UsageType();
+    type.setId(typeId);
+    type.setName(name);
+    type.setDescription(desc);
+    super.setUsageType(type);
   }
 
 }

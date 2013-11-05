@@ -41,6 +41,10 @@ import java.util.List;
  */
 public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller {
 
+  // Store internal set ID for controller components
+  /** @y.exclude */  private Long actuatorSetId;
+  /** @y.exclude */  private Long sensorSetId;
+
   /**
    * Check to make sure all controller is valid
    *
@@ -290,54 +294,6 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
   }
 
   /**
-   * Get Sensor Set associated with this controller.
-   *
-   * @return Sensor Set Model Object.
-   */
-  @SuppressWarnings("unchecked")
-  public SensorSet getSensorSet() {
-    edu.berkeley.path.model_objects.jaxb.SensorSet sensorSet = getSensorSet();
-
-    // cast sensor
-    return (SensorSet) sensorSet;
-  }
-
-  /**
-   * Set Sensor Set associated with this controller.
-   *
-   * @param set Sensor Set Model Object.
-   */
-  @SuppressWarnings("unchecked")
-  public void setSensorSet(SensorSet set) {
-    setSensorSet(set);
-  }
-
-
-  /**
-   * Get Actuator Set associated with this controller.
-   *
-   * @return Actuator Set Model Object.
-   */
-  @SuppressWarnings("unchecked")
-  public ActuatorSet getActuatorSet() {
-    edu.berkeley.path.model_objects.jaxb.ActuatorSet actuatorSet = getActuatorSet();
-
-    // cast sensor
-    return (ActuatorSet) actuatorSet;
-  }
-
-  /**
-   * Set Actuator Set associated with this controller.
-   *
-   * @param set Actuator Set Model Object.
-   */
-  @SuppressWarnings("unchecked")
-  public void setActuatorSet(ActuatorSet set) {
-    setActuatorSet(set);
-  }
-
-
-  /**
    * Get Controller Parameters
    *
    * @return Parameters the parameters associated with this actuator
@@ -425,6 +381,42 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
     sensorList.getFeedbackSensor().clear();
     sensorList.getFeedbackSensor().addAll((List<edu.berkeley.path.model_objects.jaxb.FeedbackSensor>)(List<?>)sensors);
     setFeedbackSensors(sensorList);
+  }
+
+  /**
+   * Get the Actuator set id associated to this controller
+   *
+   * @return Actuator set id
+   */
+  public Long getActuatorSetId() {
+    return actuatorSetId;
+  }
+
+  /**
+   * Set the Actuator set id associated with this controller
+   *
+   * @param actuatorSetId Id of the Actuator set
+   */
+  public void setActuatorSetId(Long actuatorSetId) {
+    this.actuatorSetId = actuatorSetId;
+  }
+
+  /**
+   * Get the Sensor set id associated to this controller
+   *
+   * @return Sensor set id
+   */
+  public Long getSensorSetId() {
+    return sensorSetId;
+  }
+
+  /**
+   * Set the Sensor set id associated with this controller
+   *
+   * @param sensorSetId Id of the Sensor set
+   */
+  public void setSensorSetId(Long sensorSetId) {
+    this.sensorSetId = sensorSetId;
   }
 
 
