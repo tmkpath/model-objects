@@ -30,7 +30,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
-	
+
+  // Describes set type to distinguish between master and controller sub-sets
+  /** @y.exclude */  private ScenarioSetType sensorSetType;
+
 	/**
 	 * Check to make sure all the Sensors are valid
 	 * 
@@ -199,5 +202,43 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
 		// return casted list of Sensors from JAXB base class
 		return (List<Sensor>)(List<?>)super.getSensor();
 	}
+
+  /**
+   * Get the object representing this sensor set type
+   *
+   * @return ScenarioSetType
+   */
+  public ScenarioSetType getSensorSetType() {
+    return sensorSetType;
+  }
+
+  /**
+   * Get id representing this sensor set types as defined in the database
+   *
+   * @return Long
+   */
+  public Long getSensorSetTypeId() {
+    if (sensorSetType != null) {
+      return sensorSetType.getId();
+    }
+    else {
+      return null;
+    }
+  }
+
+  /**
+   * Set the number representing the set type as defined in the database
+   *
+   * @param Id  Set type id as defined in database
+   * @param name  Name of set type (ie master or controller)
+   * @param description Description of set type
+   */
+  public void setSensorSetType(Long Id, String name, String description) {
+    ScenarioSetType setType = new ScenarioSetType();
+    setType.setId(Id);
+    setType.setName(name);
+    setType.setDescription(description);
+    sensorSetType = setType;
+  }
 
 }

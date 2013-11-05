@@ -80,6 +80,26 @@ public class ModelObjectsFactory extends ObjectFactory {
   }
 
   /**
+   * Create an instance of Controller Model Object
+   *
+   * @return Controller Model Object
+   */
+  @Override
+  public Controller createController() {
+    return new Controller();
+  }
+
+  /**
+   * Create an instance of ControllerSet Model Object
+   *
+   * @return ControllerSet Model Object
+   */
+  @Override
+  public ControllerSet createControllerSet() {
+    return new ControllerSet();
+  }
+
+  /**
    * Create an instance of Density Model Object
    *
    * @return Density Model Object

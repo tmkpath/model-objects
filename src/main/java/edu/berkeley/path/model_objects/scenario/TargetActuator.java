@@ -65,16 +65,16 @@ public class TargetActuator extends edu.berkeley.path.model_objects.jaxb.TargetA
    * @param id the id to set
    */
   @Override
-  public void setActuatorId(long id) {
-    super.setActuatorId(id);
+  public void setActuatorIdOriginal(String id) {
+    super.setActuatorIdOriginal(id);
   }
 
   /**
    * @return the id
    */
   @Override
-  public long getActuatorId() {
-    return super.getActuatorId();
+  public String getActuatorIdOriginal() {
+    return super.getActuatorIdOriginal();
   }
 
   /**

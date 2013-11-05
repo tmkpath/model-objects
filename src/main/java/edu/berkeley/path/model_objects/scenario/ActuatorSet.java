@@ -36,6 +36,9 @@ import java.util.List;
  */
 public class ActuatorSet extends edu.berkeley.path.model_objects.jaxb.ActuatorSet {
 
+  // Describes set type to distinguish between master and controller sub-sets
+  /** @y.exclude */  private ScenarioSetType actuatorSetType;
+
   /**
    * Check to make sure all the Actuators are valid
    *
@@ -203,6 +206,44 @@ public class ActuatorSet extends edu.berkeley.path.model_objects.jaxb.ActuatorSe
   public List<Actuator> getActuators() {
     // return casted list of actuators from JAXB base class
     return (List<Actuator>)(List<?>)super.getActuator();
+  }
+
+  /**
+   * Get the object representing this actuator set type
+   *
+   * @return ScenarioSetType Object which contains scenario set type information
+   */
+  public ScenarioSetType getActuatorSetType() {
+    return actuatorSetType;
+  }
+
+  /**
+   * Get id representing this actuator set types as defined in the database
+   *
+   * @return Long
+   */
+  public Long getActuatorSetTypeId() {
+    if (actuatorSetType != null) {
+      return actuatorSetType.getId();
+    }
+    else {
+      return null;
+    }
+  }
+
+  /**
+   * Set the number representing the set type as defined in the database
+   *
+   * @param Id  Set type id as defined in database
+   * @param name  Name of set type (ie master or controller)
+   * @param description Description of set type
+   */
+  public void setActuatorSetType(Long Id, String name, String description) {
+    ScenarioSetType setType = new ScenarioSetType();
+    setType.setId(Id);
+    setType.setName(name);
+    setType.setDescription(description);
+    actuatorSetType = setType;
   }
 
 }

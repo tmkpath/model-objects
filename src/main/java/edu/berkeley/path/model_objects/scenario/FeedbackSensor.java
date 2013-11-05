@@ -65,16 +65,16 @@ public class FeedbackSensor extends edu.berkeley.path.model_objects.jaxb.Feedbac
    * @param id the id to set
    */
   @Override
-  public void setSensorId(long id) {
-    super.setSensorId(id);
+  public void setSensorIdOriginal(String id) {
+    super.setSensorIdOriginal(id);
   }
 
   /**
    * @return the id
    */
   @Override
-  public long getSensorId() {
-    return super.getSensorId();
+  public String getSensorIdOriginal() {
+    return super.getSensorIdOriginal();
   }
 
   /**
