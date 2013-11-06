@@ -36,6 +36,9 @@ import java.util.List;
  */
 public class ControllerSet extends edu.berkeley.path.model_objects.jaxb.ControllerSet {
 
+  // Describes set type to distinguish between master and controller sub-sets
+  /** @y.exclude */  private ScenarioSetType controllerSetType;
+
   /**
    * Check to make sure all the Controllers are valid
    *
@@ -203,6 +206,35 @@ public class ControllerSet extends edu.berkeley.path.model_objects.jaxb.Controll
   public List<Controller> getControllers() {
     // return casted list of controllers from JAXB base class
     return (List<Controller>)(List<?>)super.getController();
+  }
+
+  /**
+   * Get id representing this controller set types as defined in the database
+   *
+   * @return Long
+   */
+  public Long getControllerSetTypeId() {
+    if (controllerSetType != null) {
+      return controllerSetType.getId();
+    }
+    else {
+      return null;
+    }
+  }
+
+  /**
+   * Set the number representing the set type as defined in the database
+   *
+   * @param Id  Set type id as defined in database
+   * @param name  Name of set type (ie master or controller)
+   * @param description Description of set type
+   */
+  public void setControllerSetType(Long Id, String name, String description) {
+    ScenarioSetType setType = new ScenarioSetType();
+    setType.setId(Id);
+    setType.setName(name);
+    setType.setDescription(description);
+    controllerSetType = setType;
   }
 
 }

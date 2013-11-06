@@ -124,10 +124,15 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
   /**
    * Convenience method for users to get SensorTypeId directly
    * 
-   * @return long The id of the SensorType
+   * @return Long The id of the SensorType
    */
-  public long getSensorTypeId() {
-    return getSensorType().getId();
+  public Long getSensorTypeId() {
+    if (getSensorType() != null) {
+      return getSensorType().getId();
+    }
+    else {
+      return null;
+    }
   }
 
   /**

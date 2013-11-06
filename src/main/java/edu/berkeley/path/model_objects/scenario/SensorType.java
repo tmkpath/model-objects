@@ -87,7 +87,7 @@ public class SensorType  extends edu.berkeley.path.model_objects.jaxb.SensorType
      */
 	@Override
     public void setDescription(String value) {
-        this.setDescription(value);
+        super.setDescription(value);
     }
 	
 
