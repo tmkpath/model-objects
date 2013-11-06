@@ -281,8 +281,13 @@ public class Actuator extends edu.berkeley.path.model_objects.jaxb.Actuator {
    *
    * @return long The id of the ScenarioElementType
    */
-  public long getScenarioElementTypeId() {
-    return getScenarioElementType().getId();
+  public Long getScenarioElementTypeId() {
+    if (getScenarioElementType() != null) {
+      return getScenarioElementType().getId();
+    }
+    else {
+      return null;
+    }
   }
 
   /**
