@@ -41,6 +41,10 @@ import java.util.List;
  */
 public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller {
 
+  // Store internal set ID for controller components
+  /** @y.exclude */  private Long actuatorSetId;
+  /** @y.exclude */  private Long sensorSetId;
+
   /**
    * Check to make sure all controller is valid
    *
@@ -172,7 +176,7 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
    * Get Controller Type for this object
    *
    * @return ControllerType  An object representing the the id, name, and
-   * description for this ScenarioElementType
+   * description for this ControllerType
    */
   @Override
   public edu.berkeley.path.model_objects.jaxb.ControllerType getControllerType() {
@@ -290,55 +294,7 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
   }
 
   /**
-   * Get Sensor Set associated with this controller.
-   *
-   * @return Sensor Set Model Object.
-   */
-  @SuppressWarnings("unchecked")
-  public SensorSet getSensorSet() {
-    edu.berkeley.path.model_objects.jaxb.SensorSet sensorSet = getSensorSet();
-
-    // cast sensor
-    return (SensorSet) sensorSet;
-  }
-
-  /**
-   * Set Sensor Set associated with this controller.
-   *
-   * @param set Sensor Set Model Object.
-   */
-  @SuppressWarnings("unchecked")
-  public void setSensorSet(SensorSet set) {
-    setSensorSet(set);
-  }
-
-
-  /**
-   * Get Actuator Set associated with this controller.
-   *
-   * @return Actuator Set Model Object.
-   */
-  @SuppressWarnings("unchecked")
-  public ActuatorSet getActuatorSet() {
-    edu.berkeley.path.model_objects.jaxb.ActuatorSet actuatorSet = getActuatorSet();
-
-    // cast sensor
-    return (ActuatorSet) actuatorSet;
-  }
-
-  /**
-   * Set Actuator Set associated with this controller.
-   *
-   * @param set Actuator Set Model Object.
-   */
-  @SuppressWarnings("unchecked")
-  public void setActuatorSet(ActuatorSet set) {
-    setActuatorSet(set);
-  }
-
-
-  /**
-   * Get Parameters
+   * Get Controller Parameters
    *
    * @return Parameters the parameters associated with this actuator
    */
@@ -349,10 +305,118 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
 
 
   /**
+   * Set Controller Parameters
+   *
    * @param Parameters the parameters to set the actuator
    */
   public void setParameters(edu.berkeley.path.model_objects.shared.Parameters parameters) {
     super.setParameters(parameters);
+  }
+
+  /**
+   * Get the list of Target Actuators Attached to Controller.
+   *
+   * @return List of Target Actuator Model Objects.
+   */
+  @SuppressWarnings("unchecked")
+  public List<TargetActuator> getListOfTargetActuators() {
+    edu.berkeley.path.model_objects.jaxb.TargetActuators actuatorList = getTargetActuators();
+    // check if actuator exists, if not create it and add list of actuators
+    if ( actuatorList == null ) {
+      actuatorList = new edu.berkeley.path.model_objects.jaxb.TargetActuators();
+      actuatorList.getTargetActuator().clear();
+      // set newly created actuator list object to controller class, so a Actuatorlist now exists
+      setTargetActuators(actuatorList);
+    }
+    // return casted list of Actuators from JAXB base class
+    return (List<TargetActuator>)(List<?>)actuatorList.getTargetActuator();
+  }
+
+  /**
+   * Set the target actuators. Attaches list of Actuator Model Objects to Controller.
+   *
+   * @param List<TargetActuator>	List of extended Target Actuators to add
+   */
+  @SuppressWarnings("unchecked")
+  public void setListOfTargetActuators(List<TargetActuator> actuators) {
+    edu.berkeley.path.model_objects.jaxb.TargetActuators actuatorList = getTargetActuators();
+    if ( actuatorList == null ) {
+      actuatorList = new edu.berkeley.path.model_objects.jaxb.TargetActuators();
+    }
+    actuatorList.getTargetActuator().clear();
+    actuatorList.getTargetActuator().addAll((List<edu.berkeley.path.model_objects.jaxb.TargetActuator>)(List<?>)actuators);
+    setTargetActuators(actuatorList);
+  }
+
+  /**
+   * Get the list of Feedback Sensors Attached to Controller.
+   *
+   * @return List of Feedback Sensor Model Objects.
+   */
+  @SuppressWarnings("unchecked")
+  public List<FeedbackSensor> getListOfFeedbackSensors() {
+    edu.berkeley.path.model_objects.jaxb.FeedbackSensors sensorList = getFeedbackSensors();
+    // check if sensor exists, if not create it and add list of sensors
+    if ( sensorList == null ) {
+      sensorList = new edu.berkeley.path.model_objects.jaxb.FeedbackSensors();
+      sensorList.getFeedbackSensor().clear();
+      // set newly created sensor list object to controller class, so a Sensorlist now exists
+      setFeedbackSensors(sensorList);
+    }
+    // return casted list of Sensors from JAXB base class
+    return (List<FeedbackSensor>)(List<?>)sensorList.getFeedbackSensor();
+  }
+
+  /**
+   * Set the feedback sensors. Attaches list of Sensor Model Objects to Controller.
+   *
+   * @param List<FeedbackSensor>	List of extended Feedback Sensors to add
+   */
+  @SuppressWarnings("unchecked")
+  public void setListOfFeedbackSensors(List<FeedbackSensor> sensors) {
+    edu.berkeley.path.model_objects.jaxb.FeedbackSensors sensorList = getFeedbackSensors();
+    if ( sensorList == null ) {
+      sensorList = new edu.berkeley.path.model_objects.jaxb.FeedbackSensors();
+    }
+    sensorList.getFeedbackSensor().clear();
+    sensorList.getFeedbackSensor().addAll((List<edu.berkeley.path.model_objects.jaxb.FeedbackSensor>)(List<?>)sensors);
+    setFeedbackSensors(sensorList);
+  }
+
+  /**
+   * Get the Actuator set id associated to this controller
+   *
+   * @return Actuator set id
+   */
+  public Long getActuatorSetId() {
+    return actuatorSetId;
+  }
+
+  /**
+   * Set the Actuator set id associated with this controller
+   *
+   * @param actuatorSetId Id of the Actuator set
+   */
+  public void setActuatorSetId(Long actuatorSetId) {
+    this.actuatorSetId = actuatorSetId;
+  }
+
+  /**
+   * Get the Sensor set id associated to this controller
+   *
+   * @return Sensor set id
+   */
+  public Long getSensorSetId() {
+    return sensorSetId;
+  }
+
+  /**
+   * Set the Sensor set id associated with this controller
+   *
+   * @param sensorSetId Id of the Sensor set
+   */
+  public void setSensorSetId(Long sensorSetId) {
+    this.sensorSetId = sensorSetId;
   }
 
 

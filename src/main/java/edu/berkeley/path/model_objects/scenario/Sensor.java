@@ -405,5 +405,46 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
 		return isValid;
 	}
 
+  /**
+   * Get Usage Type for this Sensor Reference
+   *
+   * @return UsageType  An object representing the the id, name, and
+   * description for this UsageType
+   */
+  @Override
+  public edu.berkeley.path.model_objects.jaxb.UsageType getUsageType() {
+    return super.getUsageType();
+  }
+
+  /**
+   * Convenience method for users to get Usage Type Id directly
+   *
+   * @return Integer The id of the Usage Type
+   */
+  public Integer getUsageTypeId() {
+    if (getUsageType() != null) {
+      return getUsageType().getId();
+    }
+    else {
+      return null;
+    }
+  }
+
+  /**
+   * Set the Usage Type for this Sensor based on the parameters passed in.
+   *
+   * @param typeId Id of the UsageType
+   * @param name Name of the UsageType
+   * @param desc Description of the UsageType
+   */
+  public void setUsageType(Integer typeId, String name, String desc) {
+    edu.berkeley.path.model_objects.jaxb.UsageType type =
+        new edu.berkeley.path.model_objects.jaxb.UsageType();
+    type.setId(typeId);
+    type.setName(name);
+    type.setDescription(desc);
+    super.setUsageType(type);
+  }
+
 
 }

@@ -279,14 +279,14 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
   @SuppressWarnings("unchecked")
 	public List<Link> getListOfLinks() {
 	  edu.berkeley.path.model_objects.jaxb.LinkList linkList = getLinkList();
-    // check if node list exists, if not create it and add empty list of nodes
+    // check if links list exists, if not create it and add empty list of links
     if ( linkList == null ) {
       linkList = new edu.berkeley.path.model_objects.jaxb.LinkList();  
       linkList.getLink().clear();
-      // set newly created node list object to network class, so a Nodelist now exists
+      // set newly created link list object to network class, so a Linklist now exists
       setLinkList(linkList);
     }
-    // return casted list of Nodes from JAXB base class
+    // return casted list of Links from JAXB base class
     return (List<Link>)(List<?>)linkList.getLink();	
 	}
 	
