@@ -100,7 +100,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
       demandArray.add(offset, value);
       // Create content string based on demandArray list, by removing "[", "]" characters and
       // spaces between commas.
-      String demandContent = demandArray.toString().replaceAll("(\\[|\\]|\\s)","");
+      String demandContent = getContent() + "," + value;
       super.setContent(demandContent);
     }
     catch(Exception ex) {
@@ -150,7 +150,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
       idArray.add(offset, value);
       // Create content string based on demandArray list, by removing "[", "]" characters and
       // spaces between commas.
-      String idContent = idArray.toString().replaceAll("(\\[|\\]|\\s)","");
+      String idContent = getIds() + "," + value;
       super.setIds(idContent);
     }
     catch(Exception ex) {
@@ -200,7 +200,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
       modStampArray.add(offset, value);
       // Create content string based on demandArray list, by removing "[", "]" characters and
       // spaces between commas.
-      String modStampContent = modStampArray.toString().replaceAll("(\\[|\\]|,\\s,)","");
+      String modStampContent = getModStamps() + "," + value;
       super.setModStamps(modStampContent);
     }
     catch(Exception ex) {
@@ -250,7 +250,7 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
       crudFlagArray.add(offset, value);
       // Create content string based on crudFlagArray list, by removing "[", "]" characters and
       // spaces between commas.
-      String crudFlagContent = crudFlagArray.toString().replaceAll("(\\[|\\]|\\s)","");
+      String crudFlagContent = getCrudFlags() + "," + value;
       setCrudFlags(crudFlagContent);
     }
     catch(Exception ex) {
