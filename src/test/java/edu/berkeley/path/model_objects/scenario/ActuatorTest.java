@@ -86,7 +86,7 @@ public class ActuatorTest {
     assertEquals(LNG, actuator.getActuatorDisplayPosition().getLng(), EPSILON);
     assertEquals(LAT, actuator.getActuatorDisplayPosition().getLat(), EPSILON);
 
-    assertEquals(ACT_TYPE_ID, actuator.getActuatorTypeId());
-    assertEquals(ELEMENT_ID, actuator.getScenarioElementTypeId());
+    assertEquals(ACT_TYPE_ID, actuator.getActuatorTypeId(), EPSILON);
+    assertEquals(ELEMENT_ID, actuator.getScenarioElementTypeId(), EPSILON);
   }
 }

@@ -51,16 +51,23 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="parameter" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="description" minOccurs="0" maxOccurs="1" />
 			</xs:sequence>
+			<xs:attribute name="id" type="xs:long" use="optional" />
+			<xs:attribute name="name" type="xs:string" use="optional" />
+			<xs:attribute name="type_id" type="xs:long" use="optional" />
 			<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 		</xs:complexType>
 	</xs:element>  
 
 		<xs:element name="parameter">
 			<xs:complexType>
+				<xs:attribute name="id" type="xs:long" use="optional" />
 				<xs:attribute name="name" type="xs:string" use="required" />
 				<xs:attribute name="value" type="xs:string" use="required" />
 				<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+				<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 			</xs:complexType>
 		</xs:element>
 

@@ -126,7 +126,7 @@ public class ActuatorSet extends edu.berkeley.path.model_objects.jaxb.ActuatorSe
   }
 
   /**
-   * @param description the description to set
+   * @param desc the description to set
    */
   @Override
   public void setDescription(String desc) {
