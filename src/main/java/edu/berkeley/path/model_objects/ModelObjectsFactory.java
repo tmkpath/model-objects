@@ -403,6 +403,22 @@ public class ModelObjectsFactory extends ObjectFactory {
   }
 
   /**
+   * Create an instance of Parameters object
+   * @return Parameters object
+   */
+  public Parameters createParameters(){
+    return new Parameters();
+  }
+
+  /**
+   * Create an instance of Parameter object
+   * @return Parameter object
+   */
+  public Parameter createParameter(){
+    return new Parameter();
+  }
+
+  /**
    * Create an instance of Project object
    * @return Project object
    */

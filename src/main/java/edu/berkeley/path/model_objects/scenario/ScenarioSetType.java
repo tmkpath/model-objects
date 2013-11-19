@@ -88,6 +88,6 @@ public class ScenarioSetType extends edu.berkeley.path.model_objects.jaxb.Scenar
    *
    */
   public void setDescription(String value) {
-    this.setDescription(value);
+    super.setDescription(value);
   }
 }

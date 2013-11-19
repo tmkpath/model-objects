@@ -44,6 +44,10 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
   // Store internal set ID for controller components
   /** @y.exclude */  private Long actuatorSetId;
   /** @y.exclude */  private Long sensorSetId;
+  /** @y.exclude */  private Long parametersId;
+  /** @y.exclude */  private Long queueControllerId;
+  /** @y.exclude */  private Long tableParametersId;
+  /** @y.exclude */  private Long subNetworkId;
 
   /**
    * Check to make sure all controller is valid
@@ -417,6 +421,78 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
    */
   public void setSensorSetId(Long sensorSetId) {
     this.sensorSetId = sensorSetId;
+  }
+
+  /**
+   * Get the parameters config id associated with this controller
+   *
+   * @return parameters config id
+   */
+  public Long getParametersId() {
+    return parametersId;
+  }
+
+  /**
+   * Set the parameters config id associated with this controller
+   *
+   * @param parametersId of its controller parameters
+   */
+  public void setParametersId(Long parametersId) {
+    this.parametersId = parametersId;
+  }
+
+  /**
+   * Get the queue controller id associated with this controller
+   *
+   * @return queue controller id
+   */
+  public Long getQueueControllerId() {
+    return queueControllerId;
+  }
+
+  /**
+   * Set the queue controller id associated with this controller
+   *
+   * @param queueControllerId of this controller
+   */
+  public void setQueueControllerId(Long queueControllerId) {
+    this.queueControllerId = queueControllerId;
+  }
+
+  /**
+   * Get the table parameters id associated with this controller
+   *
+   * @return table parameters id
+   */
+  public Long getTableParametersId() {
+    return tableParametersId;
+  }
+
+  /**
+   * Set the table parameters id associated with this controller
+   *
+   * @param tableParametersId of this controller
+   */
+  public void setTableParametersId(Long tableParametersId) {
+    this.tableParametersId = tableParametersId;
+  }
+
+  /**
+   * Get sub-network id associated with this controller
+   *
+   * @return sub-network id
+   */
+  public Long getSubNetworkId() {
+    return subNetworkId;
+  }
+
+  /**
+   * Set the sub-network id associated with this controller
+   *
+   * @param subNetworkId of this controller
+   */
+  public void setSubNetworkId(Long subNetworkId) {
+    this.subNetworkId = subNetworkId;
   }
 
 
