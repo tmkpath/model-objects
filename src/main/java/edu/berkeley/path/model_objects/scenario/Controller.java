@@ -92,6 +92,22 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
   }
 
   /**
+   * @param value to set as DT
+   */
+  @Override
+  public void setDt(double value) {
+    super.setDt(value);
+  }
+
+  /**
+   * @return the DT
+   */
+  @Override
+  public double getDt() {
+    return super.getDt();
+  }
+
+  /**
    * @param modstamp the modstamp to set
    */
   @Override

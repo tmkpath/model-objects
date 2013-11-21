@@ -64,7 +64,9 @@ public class ActuatorTest {
     //actuator type
     actuator.setActuatorType(ACT_TYPE_ID, ACT_TYPE_NAME, ACT_TYPE_DESC);
     // element type
-    actuator.setScenarioElementType(ELEMENT_ID, ELEMENT_NAME, ELEMENT_DESC);
+    ScenarioElement element = new ScenarioElement();
+    element.setScenarioElementType(ELEMENT_ID, ELEMENT_NAME, ELEMENT_DESC);
+    actuator.setScenarioElement(element);
 
     //display position
     Point p = new Point();
@@ -87,6 +89,6 @@ public class ActuatorTest {
     assertEquals(LAT, actuator.getActuatorDisplayPosition().getLat(), EPSILON);
 
     assertEquals(ACT_TYPE_ID, actuator.getActuatorTypeId(), EPSILON);
-    assertEquals(ELEMENT_ID, actuator.getScenarioElementTypeId(), EPSILON);
+    assertEquals(ELEMENT_ID, actuator.getScenarioElement().getScenarioElementTypeId(), EPSILON);
   }
 }

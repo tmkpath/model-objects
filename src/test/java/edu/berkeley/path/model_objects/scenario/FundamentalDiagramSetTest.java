@@ -25,12 +25,12 @@ public class FundamentalDiagramSetTest {
 		set.setLockedForHistory(true);
 		
 		List<FundamentalDiagramProfile> profiles = new ArrayList<FundamentalDiagramProfile>();
-		profiles.add(createFundamentalDiagramProfile(1,3600,300));
-		profiles.add(createFundamentalDiagramProfile(2,3660,300));
-		profiles.add(createFundamentalDiagramProfile(3,3720,300));
+		profiles.add(createFundamentalDiagramProfile(1L,3600,300));
+		profiles.add(createFundamentalDiagramProfile(2L,3660,300));
+		profiles.add(createFundamentalDiagramProfile(3L,3720,300));
 		
 		set.setListOfFundamentalDiagramProfiles(profiles);
-		set.setFundamentalDiagramProfile(createFundamentalDiagramProfile(1,3600,300));
+		set.setFundamentalDiagramProfile(createFundamentalDiagramProfile(1L,3600,300));
 		
 	}
 
@@ -46,7 +46,7 @@ public class FundamentalDiagramSetTest {
 		assertEquals(true, set.isLockedForHistory());
 	}
 	
-	private FundamentalDiagramProfile createFundamentalDiagramProfile(int linkId, double dt, double startTime) {
+	private FundamentalDiagramProfile createFundamentalDiagramProfile(Long linkId, double dt, double startTime) {
 		List<FundamentalDiagram> list = new ArrayList<FundamentalDiagram>();
 		list.add(createFundamentalDiagram(10,10,10,10,10,10,10,10,10));
 		list.add(createFundamentalDiagram(20,20,20,20,20,20,20,20,20));

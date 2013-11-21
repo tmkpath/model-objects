@@ -241,7 +241,7 @@ public class FundamentalDiagram extends edu.berkeley.path.model_objects.jaxb.Fun
 	 * @return FD order
 	 */
 	@Override
-	public int getOrder() {
+	public Integer getOrder() {
 	  return super.getOrder();
 	}
 	
@@ -251,7 +251,7 @@ public class FundamentalDiagram extends edu.berkeley.path.model_objects.jaxb.Fun
 	 * @param FD order
 	 */
 	@Override
-	public void setOrder(int i) {
+	public void setOrder(Integer i) {
 	  super.setOrder(i);
 	}
 
