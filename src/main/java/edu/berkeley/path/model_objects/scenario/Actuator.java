@@ -98,25 +98,6 @@ public class Actuator extends edu.berkeley.path.model_objects.jaxb.Actuator {
     return super.getNetworkId();
   }
 
-  /**
-   * Sets element id acted upon
-   *
-   * @param id the element id to set
-   */
-  @Override
-  public void setElementId(Long id) {
-    super.setElementId(id);
-  }
-
-  /**
-   * Gets the element id acted upon
-   *
-   * @return element id acted upon
-   */
-  @Override
-  public Long getElementId() {
-    return super.getElementId();
-  }
 
   /**
    * @param modstamp the modstamp to set
@@ -245,6 +226,24 @@ public class Actuator extends edu.berkeley.path.model_objects.jaxb.Actuator {
   }
 
   /**
+   * Get Scenario Element
+   *
+   * @return Scenario Element attached to actuator
+   */
+  public ScenarioElement getScenarioElement() {
+    return (ScenarioElement) super.getScenarioElement();
+  }
+
+  /**
+   * Set Scenario Element
+   *
+   * @param element Scenario Element attached to actuator
+   */
+  public void setScenarioElement(ScenarioElement element) {
+    super.setScenarioElement(element);
+  }
+
+  /**
    * Get the original actuator id
    *
    * @return String the actuatorIdOriginal
@@ -265,46 +264,6 @@ public class Actuator extends edu.berkeley.path.model_objects.jaxb.Actuator {
     super.setActuatorIdOriginal(actuatorIdOriginal);
   }
 
-  /**
-   * Get Scenario Element Type for this object
-   *
-   * @return ScenarioElementType  An object representing the the id, name, and
-   * description for this ScenarioElementType
-   */
-  @Override
-  public edu.berkeley.path.model_objects.jaxb.ScenarioElementType getScenarioElementType() {
-    return super.getScenarioElementType();
-  }
-
-  /**
-   * Convenience method for users to get Scenario Element Type Id directly
-   *
-   * @return long The id of the ScenarioElementType
-   */
-  public Long getScenarioElementTypeId() {
-    if (getScenarioElementType() != null) {
-      return getScenarioElementType().getId();
-    }
-    else {
-      return null;
-    }
-  }
-
-  /**
-   * Set the Scenario Element Type for this object based on the parameters passed in.
-   *
-   * @param typeId Id of the ScenarioElementType
-   * @param name Name of the ScenarioElementType
-   * @param desc Description of the ScenarioElementType
-   */
-  public void setScenarioElementType(long typeId, String name, String desc) {
-    edu.berkeley.path.model_objects.jaxb.ScenarioElementType type =
-        new edu.berkeley.path.model_objects.jaxb.ScenarioElementType();
-    type.setId(typeId);
-    type.setName(name);
-    type.setDescription(desc);
-    super.setScenarioElementType(type);
-  }
 
   /**
    * Return the Display position as a Point object.
