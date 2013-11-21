@@ -194,36 +194,6 @@ public class DynamicDemandSet extends edu.berkeley.path.model_objects.jaxb.Dynam
     }
 
     /**
-     * Get DemandProfile list
-     * @return DemandProfile list
-     */
-    @SuppressWarnings("unchecked")
-    public List<DemandProfile> getDemandProfileList() {
-
-      if (dynamicDemandProfile == null) {
-
-        dynamicDemandProfile = new ArrayList<edu.berkeley.path.model_objects.jaxb.DynamicDemandProfile>();
-      }
-      return (List<DemandProfile>)(List<?>)this.dynamicDemandProfile;
-    }
-
-    /**
-     * Set DemandProfile list
-     * @param dpList list
-     */
-    @SuppressWarnings("unchecked")
-    public void setDemandProfileList(List<DemandProfile> dpList) {
-
-      if ( dynamicDemandProfile == null ) {
-
-        dynamicDemandProfile = new ArrayList<edu.berkeley.path.model_objects.jaxb.DynamicDemandProfile>();
-      }
-      dynamicDemandProfile.clear();
-      dynamicDemandProfile.addAll((List<edu.berkeley.path.model_objects.jaxb.DynamicDemandProfile>)(List<?>)dpList);
-    }
-
-
-    /**
      * Gets the value of the id property.
      *
      */

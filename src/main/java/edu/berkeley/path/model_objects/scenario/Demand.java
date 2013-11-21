@@ -114,7 +114,12 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
         // add demand to array at offset
         demandArray.add(offset, value);
         // add demand to end of content string
-        String demandContent = getContent() + "," + value;
+        String demandContent;
+        if (getContent() != null) {
+          demandContent = getContent() + "," + value;
+        } else {
+          demandContent = String.valueOf(value);
+        }
         super.setContent(demandContent);
       }
     }
@@ -179,7 +184,12 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
         // add demand id to array at offset
         idArray.add(offset, value);
         /// add id to end of content string
-        String idContent = getIds() + "," + value;
+        String idContent;
+        if (getIds() != null) {
+          idContent = getIds() + "," + value;
+        } else {
+          idContent = String.valueOf(value);
+        }
         super.setIds(idContent);
       }
     }
@@ -244,7 +254,12 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
         // add demand modstamp to array at offset
         modStampArray.add(offset, value);
         // add modstamp to end of content string
-        String modStampContent = getModStamps() + "," + value;
+        String modStampContent;
+        if (getModStamps() != null) {
+          modStampContent = getModStamps() + "," + value;
+        } else {
+          modStampContent = String.valueOf(value);
+        }
         super.setModStamps(modStampContent);
       }
     }
@@ -305,7 +320,12 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
         // add demand CrudFlag to array at offset
         crudFlagArray.add(offset, value);
         // add CrudFlag to end of content string
-        String crudFlagContent = getCrudFlags() + "," + value;
+        String crudFlagContent;
+        if (getCrudFlags() != null) {
+          crudFlagContent = getCrudFlags() + "," + value;
+        } else {
+          crudFlagContent = String.valueOf(value);
+        }
         super.setCrudFlags(crudFlagContent);
       }
     }
