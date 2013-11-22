@@ -91,17 +91,21 @@ public class SplitRatioProfileTest {
 
 	@Test
 	public void testGetSplitRatioStringTime(){
-		double ratio = profile.getSplitRatio(1,2,3,"00:00:00");
+		double ratio = profile.getSplitRatio(1,2,3,"01:00:00");
 		assertEquals(ratio, 0.5, 0.0);
 
-		double ratio2 = profile.getSplitRatio(1,2,3,"00:05:00");
+		double ratio2 = profile.getSplitRatio(1,2,3,"01:05:00");
 		assertEquals(ratio2, 0.1, 0.0);
 
-		double ratio3 = profile.getSplitRatio(1,2,3,"00:04:00");
+		double ratio3 = profile.getSplitRatio(1,2,3,"01:04:00");
 		assertEquals(ratio3, 0.5, 0.0);
 
-		double ratio4 = profile.getSplitRatio(1,2,3,"00:10:00");
+		double ratio4 = profile.getSplitRatio(1,2,3,"01:10:00");
 		assertEquals(ratio4, 1, 0.0);
+
+    // get undefined ratio, so return -1
+    double ratio5 = profile.getSplitRatio(1,2,3,"23:10:00");
+    assertEquals(ratio5, -1, 0.0);
 	}
 	
 	@Test
@@ -117,6 +121,10 @@ public class SplitRatioProfileTest {
 
 		double ratio4 = profile.getSplitRatio(1,2,3, 600);
 		assertEquals(ratio4, 1, 0.0);
+
+    // get undefined ratio, so return -1
+    double ratio5 = profile.getSplitRatio(1,2,3, 100000);
+    assertEquals(ratio5, -1, 0.0);
 	}
 
 	

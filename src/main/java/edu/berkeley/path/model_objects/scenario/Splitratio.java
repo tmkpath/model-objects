@@ -157,7 +157,12 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
         // add ratio to array at offset
         ratioArray.add(offset, value);
         // add ratio to end of content string
-        String ratioContent = getContent() + "," + value;
+        String ratioContent;
+        if (getContent() != null) {
+          ratioContent = getContent() + "," + value;
+        } else {
+          ratioContent = String.valueOf(value);
+        }
         super.setContent(ratioContent);
       }
     }
@@ -217,8 +222,13 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
       else {
         // add split ratio id to array at offset
         idArray.add(offset, value);
-        /// add id to end of content string
-        String idContent = getIds() + "," + value;
+        /// add ratio id to end of content string
+        String idContent;
+        if (getIds() != null) {
+          idContent = getIds() + "," + value;
+        } else {
+          idContent = String.valueOf(value);
+        }
         super.setIds(idContent);
       }
     }
@@ -279,7 +289,12 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
         // add split ratio modstamp to array at offset
         modStampArray.add(offset, value);
         // add modstamp to end of content string
-        String modStampContent = getModStamps() + "," + value;
+        String modStampContent;
+        if (getModStamps() != null) {
+          modStampContent = getModStamps() + "," + value;
+        } else {
+          modStampContent = String.valueOf(value);
+        }
         super.setModStamps(modStampContent);
       }
     }
@@ -340,7 +355,12 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
         // add split ratio CrudFlag to array at offset
         crudFlagArray.add(offset, value);
         // add CrudFlag to end of content string
-        String crudFlagContent = getCrudFlags() + "," + value;
+        String crudFlagContent;
+        if (getCrudFlags() != null) {
+          crudFlagContent = getCrudFlags() + "," + value;
+        } else {
+          crudFlagContent = String.valueOf(value);
+        }
         super.setCrudFlags(crudFlagContent);
       }
     }
