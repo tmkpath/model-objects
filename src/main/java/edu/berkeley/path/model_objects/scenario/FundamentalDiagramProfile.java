@@ -66,7 +66,7 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
 	 * @return linkId as long
 	 */
 	@Override
-	public long getLinkId() {
+	public Long getLinkId() {
 	  return super.getLinkId();
 	}
 	
@@ -76,7 +76,7 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
 	 * @param linkId as long
 	 */
 	@Override
-	public void setLinkId(long linkId) {
+	public void setLinkId(Long linkId) {
 	  super.setLinkId(linkId);
 	}
 	
