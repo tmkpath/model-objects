@@ -62,17 +62,21 @@ public class DemandProfileTest {
 
   @Test
   public void testDemandStringTime(){
-    double demand = profile.getDemand(1,"00:00:00");
+    double demand = profile.getDemand(1,"01:00:00");
     assertEquals(demand, 0.5, 0.0);
 
-    double demand2 = profile.getDemand(1,"00:05:00");
+    double demand2 = profile.getDemand(1,"01:05:00");
     assertEquals(demand2, 0.1, 0.0);
 
-    double demand3 = profile.getDemand(1,"00:04:00");
+    double demand3 = profile.getDemand(1,"01:04:00");
     assertEquals(demand3, 0.5, 0.0);
 
-    double ratio4 = profile.getDemand(1,"00:10:00");
+    double ratio4 = profile.getDemand(1,"01:10:00");
     assertEquals(ratio4, 1, 0.0);
+
+    // get undefined demand, so return -1
+    double demand5 = profile.getDemand(1,"23:10:00");
+    assertEquals(demand5, -1, 0.0);
   }
 
   @Test
@@ -88,6 +92,10 @@ public class DemandProfileTest {
 
     double demand4 = profile.getDemand(1,  600);
     assertEquals(demand4, 1, 0.0);
+
+    // get undefined demand, so return -1
+    double demand5 = profile.getDemand(1, 10000000);
+    assertEquals(demand5, -1, 0.0);
   }
 
 

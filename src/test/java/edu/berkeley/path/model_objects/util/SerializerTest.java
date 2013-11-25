@@ -313,4 +313,25 @@ public class SerializerTest {
 		// Compare XML string results stripped of all whitespace
 		assertEquals(expectedXML.replaceAll("\\s",""), afterXML.replaceAll("\\s",""));
 	}
+
+  @Test
+  public void testUnMarshallSensor() throws Exception {
+
+    try {
+    String beforeXML=
+        "<SensorSet id=\"767\" project_id=\"1\" name=\"test Sensor Set\" description=\"test Sensor Set\" mod_stamp=\"21-NOV-2013 12:36:15.930437\" lockedForEdit=\"false\" lockedForHistory=\"false\"><sensor id=\"4843\" link_id=\"0\" sensor_id_original=\"400060\" link_type_original=\"ML\" data_feed_id=\"0\" lane_number=\"5\" link_offset=\"0\" mod_stamp=\"21-NOV-2013 12:36:15.967107\" health_status=\"0\"><display_position><point lat=\"37.870977\" lng=\"-122.305289\" elevation=\"0\"/></display_position><parameters/><sensor_type id=\"1\" name=\"Loop\" description=\"\"/></sensor><sensor id=\"4844\" link_id=\"0\" sensor_id_original=\"400612\" link_type_original=\"ML\" data_feed_id=\"0\" lane_number=\"5\" link_offset=\"0\" mod_stamp=\"21-NOV-2013 12:36:15.970105\" health_status=\"0\"><display_position><point lat=\"37.871027\" lng=\"-122.304954\" elevation=\"0\"/></display_position><parameters/><sensor_type id=\"1\" name=\"Loop\" description=\"\"/></sensor><sensor id=\"4842\" link_id=\"0\" sensor_id_original=\"400728\" link_type_original=\"ML\" data_feed_id=\"0\" lane_number=\"5\" link_offset=\"0\" mod_stamp=\"21-NOV-2013 12:36:15.964024\" health_status=\"0\"><display_position><point lat=\"37.866567\" lng=\"-122.303586\" elevation=\"0\"/></display_position><parameters/><sensor_type id=\"1\" name=\"Loop\" description=\"\"/></sensor><sensor id=\"4841\" link_id=\"0\" sensor_id_original=\"400176\" link_type_original=\"ML\" data_feed_id=\"0\" lane_number=\"5\" link_offset=\"0\" mod_stamp=\"21-NOV-2013 12:36:15.951450\" health_status=\"0\"><display_position><point lat=\"37.866548\" lng=\"-122.30386\" elevation=\"0\"/></display_position><parameters/><sensor_type id=\"1\" name=\"Loop\" description=\"\"/>" +
+            "</sensor><sensor crudFlag=\"CREATE\" id=\"1\"><display_position><point lat=\"37.87099149875574\" lng=\"-122.29731559753418\" elevation=\"0\"/></display_position><parameters/><sensor_type id=\"1\" name=\"Loop\" description=\"\"/></sensor></SensorSet>";
+
+    // unmarshal XML into Sensor object
+    SensorSet sensorSet = new SensorSet();
+    sensorSet = Serializer.xmlToObject(beforeXML, sensorSet.getClass(), new ModelObjectsFactory());
+    String afterXML = Serializer.objectToXml(sensorSet);
+
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail();
+    }
+
+  }
 }

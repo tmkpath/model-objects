@@ -85,7 +85,11 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
   }
 
   /**
-   * Sets the value of the demand property.
+   * Sets the value of the demand property at given offset.
+   * Note: Performance will be better to set demands in order
+   *
+   * @param  offset   The dt offset to add demand value
+   * @param  value    The demand value
    *
    */
   public void setDemand(int offset, Double value) throws MOException {
@@ -96,12 +100,28 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
     }
 
     try {
-      // add demand to array at offset
-      demandArray.add(offset, value);
-      // Create content string based on demandArray list, by removing "[", "]" characters and
-      // spaces between commas.
-      String demandContent = demandArray.toString().replaceAll("(\\[|\\]|\\s)","");
-      super.setContent(demandContent);
+      // if offset is less than list size, means you are replacing existing value.
+      if (offset < demandArray.size()) {
+        // add demand to array at offset
+        demandArray.set(offset, value);
+        // re-create content string based on demand Array list, by removing "[", "]" characters and
+        // spaces between commas.
+        String demandContent = demandArray.toString().replaceAll("(\\[|\\]|\\s)","");
+        super.setContent(demandContent);
+      }
+      // otherwise try to add demand to end of list
+      else {
+        // add demand to array at offset
+        demandArray.add(offset, value);
+        // add demand to end of content string
+        String demandContent;
+        if (getContent() != null) {
+          demandContent = getContent() + "," + value;
+        } else {
+          demandContent = String.valueOf(value);
+        }
+        super.setContent(demandContent);
+      }
     }
     catch(Exception ex) {
       throw new MOException(ex,
@@ -136,7 +156,11 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
   }
 
   /**
-   * Sets the value of the id property.
+   * Sets the value of the id property at given offset.
+   * Note: Performance will be better to set ids in order
+   *
+   * @param  offset   The dt offset to add id value
+   * @param  value    The id value
    *
    */
   public void setId(int offset, Long value) throws MOException {
@@ -146,12 +170,28 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
       setIdArray();
     }
     try {
-      // add demand to array at offset
-      idArray.add(offset, value);
-      // Create content string based on demandArray list, by removing "[", "]" characters and
-      // spaces between commas.
-      String idContent = idArray.toString().replaceAll("(\\[|\\]|\\s)","");
-      super.setIds(idContent);
+      // if offset is less than list size, means you are replacing existing value.
+      if (offset < idArray.size()) {
+        // add demand id to array at offset
+        idArray.set(offset, value);
+        // re-create content string based on id Array list, by removing "[", "]" characters and
+        // spaces between commas.
+        String idContent = idArray.toString().replaceAll("(\\[|\\]|\\s)","");
+        super.setIds(idContent);
+      }
+      // otherwise try to add demand id to end of list
+      else {
+        // add demand id to array at offset
+        idArray.add(offset, value);
+        /// add id to end of content string
+        String idContent;
+        if (getIds() != null) {
+          idContent = getIds() + "," + value;
+        } else {
+          idContent = String.valueOf(value);
+        }
+        super.setIds(idContent);
+      }
     }
     catch(Exception ex) {
       throw new MOException(ex,
@@ -186,7 +226,11 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
   }
 
   /**
-   * Sets the value of the modStamp property.
+   * Sets the value of the modstamp property at given offset.
+   * Note: Performance will be better to set modstamps in order
+   *
+   * @param  offset   The dt offset to add modstamp value
+   * @param  value    The modstamp value
    *
    */
   public void setModStamp(int offset, String value) throws MOException {
@@ -196,12 +240,28 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
       setModStampArray();
     }
     try {
-      // add demand to array at offset
-      modStampArray.add(offset, value);
-      // Create content string based on demandArray list, by removing "[", "]" characters and
-      // spaces between commas.
-      String modStampContent = modStampArray.toString().replaceAll("(\\[|\\]|,\\s,)","");
-      super.setModStamps(modStampContent);
+      // if offset is less than to list size, means you are replacing existing value.
+      if (offset < modStampArray.size()) {
+        // add demand modstamp to array at offset
+        modStampArray.set(offset, value);
+        // re-create content string based on modstamp Array list, by removing "[", "]" characters and
+        // spaces between commas.
+        String modStampContent = modStampArray.toString().replaceAll("(\\[|\\]|\\s)","");
+        super.setModStamps(modStampContent);
+      }
+      // otherwise try to add demand modstamp to end of list
+      else {
+        // add demand modstamp to array at offset
+        modStampArray.add(offset, value);
+        // add modstamp to end of content string
+        String modStampContent;
+        if (getModStamps() != null) {
+          modStampContent = getModStamps() + "," + value;
+        } else {
+          modStampContent = String.valueOf(value);
+        }
+        super.setModStamps(modStampContent);
+      }
     }
     catch(Exception ex) {
       throw new MOException(ex,
@@ -246,12 +306,28 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
       setCrudFlagArray();
     }
     try {
-      // add CrudFlag to array at offset
-      crudFlagArray.add(offset, value);
-      // Create content string based on crudFlagArray list, by removing "[", "]" characters and
-      // spaces between commas.
-      String crudFlagContent = crudFlagArray.toString().replaceAll("(\\[|\\]|\\s)","");
-      setCrudFlags(crudFlagContent);
+      // if offset is less than or equal to list size, means you are replacing existing value.
+      if (offset < crudFlagArray.size()) {
+        // add demand CrudFlag to array at offset
+        crudFlagArray.set(offset, value);
+        // re-create content string based on crudFlag Array list, by removing "[", "]" characters and
+        // spaces between commas.
+        String crudFlagContent = crudFlagArray.toString().replaceAll("(\\[|\\]|\\s)","");
+        super.setCrudFlags(crudFlagContent);
+      }
+      // otherwise try to add demand CrudFlag to end of list
+      else {
+        // add demand CrudFlag to array at offset
+        crudFlagArray.add(offset, value);
+        // add CrudFlag to end of content string
+        String crudFlagContent;
+        if (getCrudFlags() != null) {
+          crudFlagContent = getCrudFlags() + "," + value;
+        } else {
+          crudFlagContent = String.valueOf(value);
+        }
+        super.setCrudFlags(crudFlagContent);
+      }
     }
     catch(Exception ex) {
       throw new MOException(ex,

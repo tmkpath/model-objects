@@ -143,12 +143,28 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
     }
 
     try {
-      // add ratio to array at offset
-      ratioArray.add(offset, value);
-      // Create content string based on ratioArray list, by removing "[", "]" characters and
-      // spaces between commas.
-      String ratioContent = ratioArray.toString().replaceAll("(\\[|\\]|\\s)","");
-      super.setContent(ratioContent);
+      // if offset is less than list size, means you are replacing existing value.
+      if (offset < ratioArray.size()) {
+        // add ratio to array at offset
+        ratioArray.set(offset, value);
+        // re-create content string based on ratio Array list, by removing "[", "]" characters and
+        // spaces between commas.
+        String ratioContent = ratioArray.toString().replaceAll("(\\[|\\]|\\s)","");
+        super.setContent(ratioContent);
+      }
+      // otherwise try to add ratio to end of list
+      else {
+        // add ratio to array at offset
+        ratioArray.add(offset, value);
+        // add ratio to end of content string
+        String ratioContent;
+        if (getContent() != null) {
+          ratioContent = getContent() + "," + value;
+        } else {
+          ratioContent = String.valueOf(value);
+        }
+        super.setContent(ratioContent);
+      }
     }
     catch(Exception ex) {
       throw new MOException(ex,
@@ -193,12 +209,28 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
       setIdArray();
     }
     try {
-      // add ratio to array at offset
-      idArray.add(offset, value);
-      // Create content string based on ratioArray list, by removing "[", "]" characters and
-      // spaces between commas.
-      String idContent = idArray.toString().replaceAll("(\\[|\\]|\\s)","");
-      super.setIds(idContent);
+      // if offset is less than list size, means you are replacing existing value.
+      if (offset < idArray.size()) {
+        // add split ratio id to array at offset
+        idArray.set(offset, value);
+        // re-create content string based on id Array list, by removing "[", "]" characters and
+        // spaces between commas.
+        String idContent = idArray.toString().replaceAll("(\\[|\\]|\\s)","");
+        super.setIds(idContent);
+      }
+      // otherwise try to add split ratio id to end of list
+      else {
+        // add split ratio id to array at offset
+        idArray.add(offset, value);
+        /// add ratio id to end of content string
+        String idContent;
+        if (getIds() != null) {
+          idContent = getIds() + "," + value;
+        } else {
+          idContent = String.valueOf(value);
+        }
+        super.setIds(idContent);
+      }
     }
     catch(Exception ex) {
       throw new MOException(ex,
@@ -243,12 +275,28 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
       setModStampArray();
     }
     try {
-      // add ratio to array at offset
-      modStampArray.add(offset, value);
-      // Create content string based on ratioArray list, by removing "[", "]" characters and
-      // spaces between commas.
-      String modStampContent = modStampArray.toString().replaceAll("(\\[|\\]|,\\s,)","");
-      super.setModStamps(modStampContent);
+      // if offset is less than to list size, means you are replacing existing value.
+      if (offset < modStampArray.size()) {
+        // add split ratio modstamp to array at offset
+        modStampArray.set(offset, value);
+        // re-create content string based on split ratio Array list, by removing "[", "]" characters and
+        // spaces between commas.
+        String modStampContent = modStampArray.toString().replaceAll("(\\[|\\]|\\s)","");
+        super.setModStamps(modStampContent);
+      }
+      // otherwise try to add split ratio modstamp to end of list
+      else {
+        // add split ratio modstamp to array at offset
+        modStampArray.add(offset, value);
+        // add modstamp to end of content string
+        String modStampContent;
+        if (getModStamps() != null) {
+          modStampContent = getModStamps() + "," + value;
+        } else {
+          modStampContent = String.valueOf(value);
+        }
+        super.setModStamps(modStampContent);
+      }
     }
     catch(Exception ex) {
       throw new MOException(ex,
@@ -293,12 +341,28 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
       setCrudFlagArray();
     }
     try {
-      // add CrudFlag to array at offset
-      crudFlagArray.add(offset, value);
-      // Create content string based on crudFlagArray list, by removing "[", "]" characters and
-      // spaces between commas.
-      String crudFlagContent = crudFlagArray.toString().replaceAll("(\\[|\\]|\\s)","");
-      setCrudFlags(crudFlagContent);
+      // if offset is less than or equal to list size, means you are replacing existing value.
+      if (offset < crudFlagArray.size()) {
+        // add split ratio CrudFlag to array at offset
+        crudFlagArray.set(offset, value);
+        // re-create content string based on crudFlag Array list, by removing "[", "]" characters and
+        // spaces between commas.
+        String crudFlagContent = crudFlagArray.toString().replaceAll("(\\[|\\]|\\s)","");
+        super.setCrudFlags(crudFlagContent);
+      }
+      // otherwise try to add split ratio CrudFlag to end of list
+      else {
+        // add split ratio CrudFlag to array at offset
+        crudFlagArray.add(offset, value);
+        // add CrudFlag to end of content string
+        String crudFlagContent;
+        if (getCrudFlags() != null) {
+          crudFlagContent = getCrudFlags() + "," + value;
+        } else {
+          crudFlagContent = String.valueOf(value);
+        }
+        super.setCrudFlags(crudFlagContent);
+      }
     }
     catch(Exception ex) {
       throw new MOException(ex,

@@ -27,67 +27,68 @@
 package edu.berkeley.path.model_objects.scenario;
 
 /**
- * Object Representing Scenario Set Type.  For example a set under a
- * scenario can be a master set or a sub set.
- * Set Types are defined in the database under the sensor set type table.
+ * Model Object to house Scenario Element references
  *
  * @author mnjuhn
  */
-public class ScenarioSetType extends edu.berkeley.path.model_objects.jaxb.ScenarioSetType {
+public class ScenarioElement extends edu.berkeley.path.model_objects.jaxb.ScenarioElement {
 
   /**
-   * Gets the value of the id property.
-   *
+   * @param id the id to set
    */
+  @Override
+  public void setId(long id) {
+    super.setId(id);
+  }
+
+  /**
+   * @return the id
+   */
+  @Override
   public long getId() {
     return super.getId();
   }
 
   /**
-   * Sets the value of the id property.
+   * Get Scenario Element Type for this object
    *
+   * @return ScenarioElementType  An object representing the the id, name, and
+   * description for this ScenarioElementType
    */
-  public void setId(long value) {
-    super.setId(value);
+  @Override
+  public edu.berkeley.path.model_objects.jaxb.ScenarioElementType getScenarioElementType() {
+    return super.getScenarioElementType();
   }
 
   /**
-   * Gets the value of the name property.
+   * Convenience method for users to get Scenario Element Type Id directly
    *
-   * @return String name of type
-   *
+   * @return long The id of the ScenarioElementType
    */
-  public String getName() {
-    return super.getName();
+  public Long getScenarioElementTypeId() {
+    if (getScenarioElementType() != null) {
+      return getScenarioElementType().getId();
+    }
+    else {
+      return null;
+    }
   }
 
   /**
-   * Sets the value of the name property.
+   * Set the Scenario Element Type for this object based on the parameters passed in.
    *
-   * @param String value
-   *
+   * @param typeId Id of the ScenarioElementType
+   * @param name Name of the ScenarioElementType
+   * @param desc Description of the ScenarioElementType
    */
-  public void setName(String value) {
-    super.setName(value);
+  public void setScenarioElementType(long typeId, String name, String desc) {
+    edu.berkeley.path.model_objects.jaxb.ScenarioElementType type =
+        new edu.berkeley.path.model_objects.jaxb.ScenarioElementType();
+    type.setId(typeId);
+    type.setName(name);
+    type.setDescription(desc);
+    super.setScenarioElementType(type);
   }
 
-  /**
-   * Gets the value of the description property.
-   *
-   * @return String
-   *
-   */
-  public String getDescription() {
-    return super.getDescription();
-  }
 
-  /**
-   * Sets the value of the description property.
-   *
-   * @param value
-   *
-   */
-  public void setDescription(String value) {
-    super.setDescription(value);
-  }
 }

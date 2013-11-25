@@ -69,6 +69,7 @@
         <xs:element ref="VehicleTypeSet" minOccurs="1" />
         <xs:element ref="SignalSet" minOccurs="0" maxOccurs="1"  />
         <xs:element ref="SensorSet" minOccurs="0" maxOccurs="1"  />
+				<xs:element ref="ActuatorSet" minOccurs="0" maxOccurs="1"  />
         <xs:element ref="InitialDensitySet" minOccurs="0" maxOccurs="1" />
         <xs:element ref="WeavingFactorSet" minOccurs="0" maxOccurs="1" />
         <xs:element ref="SplitRatioSet" minOccurs="0" maxOccurs="1" />
@@ -253,18 +254,17 @@
 		<!-- Actuator - Needed for Controller -->
 		<xs:element name="actuator">
 			<xs:complexType>
-				<xs:sequence>
-					<xs:element ref="scenarioElementType" minOccurs="0" maxOccurs="1" />
+				<xs:all>
+					<xs:element ref="scenarioElement" minOccurs="0" maxOccurs="1" />
 					<xs:element ref="actuator_type" minOccurs="0" maxOccurs="1" />
 					<xs:element ref="display_position" minOccurs="0" maxOccurs="1"/>
 					<xs:element ref="parameters" minOccurs="0" />
 					<xs:element ref="table" minOccurs="0" />
 					<xs:element ref="usageType" minOccurs="0" maxOccurs="1"/>
-				</xs:sequence>
+				</xs:all>
 				<xs:attribute name="id" type="xs:long" use="required" />
 				<xs:attribute name="name" type="xs:string" use="optional" />
 				<xs:attribute name="network_id" type="xs:long" use="optional" />
-				<xs:attribute name="element_id" type="xs:long" use="optional" />
 				<xs:attribute name="actuator_id_original" type="xs:string" use="optional" />
 				<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
 				<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
@@ -528,6 +528,7 @@
 					<xs:element ref="controllerType" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
 				<xs:attribute name="name" type="xs:string" use="optional" />
+				<xs:attribute name="dt" type="xs:double" use="required" />
 				<xs:attribute name="id" type="xs:long" use="required" />
 				<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
 				<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
@@ -629,15 +630,10 @@
 
 			<xs:element name="scenarioElement">
 				<xs:complexType>
+					<xs:all>
+						<xs:element ref="scenarioElementType" minOccurs="1" maxOccurs="1" />
+					</xs:all>
 					<xs:attribute name="id" type="xs:long" use="required" />
-					<xs:attribute name="usage" type="xs:string" use="optional" />
-					<xs:attribute name="type" use="required">
-						<xs:simpleType>
-							<xs:restriction base="xs:string">
-								<xs:pattern value="link|node|controller|sensor|event|signal"/>
-							</xs:restriction>
-						</xs:simpleType>
-					</xs:attribute>
 				</xs:complexType>
 			</xs:element>
 
@@ -678,7 +674,7 @@
         </xs:sequence>
 				<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 				<xs:attribute name="id" type="xs:long" use="required" />
-				<xs:attribute name="link_id" type="xs:long" use="required" />
+				<xs:attribute name="link_id" type="xs:long" use="optional" />
         <xs:attribute name="sensor_id" type="xs:long" use="optional" />
 				<!-- in time units after midnight-->
 				<xs:attribute name="start_time" type="xs:double" use="optional" default="0" />
@@ -694,7 +690,7 @@
 					<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 					<xs:attribute name="id" type="xs:long" use="required" />
 					<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
-					<xs:attribute name="order" type="xs:int" use="required" />
+					<xs:attribute name="order" type="xs:int" use="optional" />
 					<!-- these are [vehicles/[time unit]/lane]   -->
 					<xs:attribute name="capacity" type="xs:double" use="required" />
 					<xs:attribute name="capacity_drop" type="xs:double" use="optional" default="0.0"/>	

@@ -99,6 +99,6 @@ public class SensorTest {
 		    assertEquals(LNG, sensor.getSensorDisplayPosition().getLng(), EPSILON);
 		    assertEquals(LAT, sensor.getSensorDisplayPosition().getLat(), EPSILON);
 	
-		    assertEquals(TYPE_ID, sensor.getSensorTypeId());
+		    assertEquals(TYPE_ID, sensor.getSensorTypeId(), EPSILON);
 	  }
 	}

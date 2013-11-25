@@ -86,6 +86,8 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 	    long milliseconds2 = joda2.getMillis();
 		
 		long daySeconds = ((milliseconds2  - milliseconds1) / 1000) + 1;
+    // consider profile start time
+    daySeconds -= this.getStartTime();
 		int offset = (int)Math.floor(daySeconds / this.getDt());
 		
 		List<Splitratio> ratios = getListOfSplitratios();
