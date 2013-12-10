@@ -60,6 +60,16 @@ public class ModelObjectsFactory extends ObjectFactory {
   }
 
   /**
+   * Create an instance of TargetActuator Model Object
+   *
+   * @return Target Actuator Model Object:w
+   *
+   */
+  public TargetActuator createTargetActuator() {
+    return new TargetActuator();
+  }
+
+  /**
    * Create an instance of Sensor Model Object
    *
    * @return Sensor Model Object
@@ -77,6 +87,16 @@ public class ModelObjectsFactory extends ObjectFactory {
   @Override
   public SensorSet createSensorSet() {
     return new SensorSet();
+  }
+
+  /**
+   * Create an instance of FeedbackSensor Model Object
+   *
+   * @return Feedback Sensor Model Object
+   */
+  @Override
+  public FeedbackSensor createFeedbackSensor() {
+    return new FeedbackSensor();
   }
 
   /**
