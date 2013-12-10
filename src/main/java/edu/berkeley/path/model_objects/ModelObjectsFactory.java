@@ -62,11 +62,22 @@ public class ModelObjectsFactory extends ObjectFactory {
   /**
    * Create an instance of TargetActuator Model Object
    *
-   * @return Target Actuator Model Object:w
+   * @return Target Actuator Model Object
    *
    */
   public TargetActuator createTargetActuator() {
     return new TargetActuator();
+  }
+
+  /**
+   * Create an instance of ScenarioElement Model Object
+   *
+   * @return Scenario Element Model Object
+   *
+   */
+  @Override
+  public ScenarioElement createScenarioElement() {
+    return new ScenarioElement();
   }
 
   /**
