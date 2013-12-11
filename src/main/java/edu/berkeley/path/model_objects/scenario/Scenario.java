@@ -327,15 +327,6 @@ public List<Network> getListOfNetworks() {
     super.setModStamp(value);
   }
 
-    @Override
-    public ActuatorSet getActuatorSet() {
-        return (ActuatorSet) super.getActuatorSet();
-    }
-
-    public void setActuatorSet(ActuatorSet value) {
-        super.setActuatorSet(value);
-    }
-
     /**
    * Function to validate model object Scenario. Should call the isValid method
    * of each Set, Network, etc, it contains.
