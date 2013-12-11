@@ -37,6 +37,7 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
   /** @y.exclude */  private Long demandSetId;
   /** @y.exclude */  private Long fdSetId;
   /** @y.exclude */  private Long sensorSetId;
+  /** @y.exclude */  private Long actuatorSetId;
   /** @y.exclude */  private Long routeSetId;
 
   /**
@@ -114,6 +115,16 @@ public List<Network> getListOfNetworks() {
 
   public void setSensorSet(SensorSet value) {
     super.setSensorSet(value);
+  }
+
+  @Override
+  public ActuatorSet getActuatorSet() {
+    return (ActuatorSet) super.getActuatorSet();
+  }
+
+
+  public void setActuatorSet(ActuatorSet value) {
+    super.setActuatorSet(value);
   }
 
   @Override
@@ -270,6 +281,14 @@ public List<Network> getListOfNetworks() {
     this.sensorSetId = sensorSetId;
   }
 
+  public Long getActuatorSetId() {
+    return actuatorSetId;
+  }
+
+  public void setActuatorSetId(Long actuatorSetId) {
+    this.actuatorSetId = actuatorSetId;
+  }
+
   public Long getRouteSetId() {
     return routeSetId;
   }
@@ -307,15 +326,6 @@ public List<Network> getListOfNetworks() {
   public void setModStamp(String value) {
     super.setModStamp(value);
   }
-
-    @Override
-    public ActuatorSet getActuatorSet() {
-        return (ActuatorSet) super.getActuatorSet();
-    }
-
-    public void setActuatorSet(ActuatorSet value) {
-        super.setActuatorSet(value);
-    }
 
     /**
    * Function to validate model object Scenario. Should call the isValid method
