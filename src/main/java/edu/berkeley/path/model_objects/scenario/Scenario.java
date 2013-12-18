@@ -38,6 +38,7 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
   /** @y.exclude */  private Long fdSetId;
   /** @y.exclude */  private Long sensorSetId;
   /** @y.exclude */  private Long actuatorSetId;
+  /** @y.exclude */  private Long controllerSetId;
   /** @y.exclude */  private Long routeSetId;
 
   /**
@@ -288,6 +289,15 @@ public List<Network> getListOfNetworks() {
   public void setActuatorSetId(Long actuatorSetId) {
     this.actuatorSetId = actuatorSetId;
   }
+
+  public Long getControllerSetId() {
+    return controllerSetId;
+  }
+
+  public void setControllerSetId(Long controllerSetId) {
+    this.controllerSetId = controllerSetId;
+  }
+
 
   public Long getRouteSetId() {
     return routeSetId;
