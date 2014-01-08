@@ -31,6 +31,7 @@ import edu.berkeley.path.model_objects.MOException;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /** 
  * Model Object Demand class.
@@ -501,5 +502,35 @@ public class Demand extends edu.berkeley.path.model_objects.jaxb.Demand {
   public boolean isValid(){
     // TODO work on validation logic
     return true;
+  }
+
+  /**
+   * Get a subList of demands
+   * @param start   low endpoint of subList
+   * @param end     high endpoint of subList
+   * @return        new list of demands
+   */
+  public List<Double> getSubList(int start, int end) {
+      if (demandArray == null) {
+          try {
+              setDemandArray();
+          } catch (MOException e) {
+              e.printStackTrace();
+          }
+      }
+
+      return demandArray.subList(start, end);
+  }
+
+  /**
+   * Set all demand values from a List
+   * @param demandList  list of demand values
+   */
+  public void setDemandList(List<Double> demandList) {
+    //copy elements
+    demandArray = new ArrayList<Double>(demandList);
+    // recreate content string
+    String demandContent = demandArray.toString().replaceAll("(\\[|\\]|\\s)","");
+    super.setContent(demandContent);
   }
 }
