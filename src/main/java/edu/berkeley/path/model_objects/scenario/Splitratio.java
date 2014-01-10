@@ -29,6 +29,7 @@ package edu.berkeley.path.model_objects.scenario;
 import edu.berkeley.path.model_objects.MOException;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This Class extends the base Split Ratio Model Object
@@ -522,4 +523,34 @@ public class Splitratio extends edu.berkeley.path.model_objects.jaxb.Splitratio 
     // TODO work on validation logic
 		return true;
 	}
+
+  /**
+   * Get a subList of split ratios
+   * @param start   low endpoint of subList
+   * @param end     high endpoint of subList
+   * @return        new list of ratios
+   */
+  public List<Double> getSubList(int start, int end) {
+      if (ratioArray == null) {
+          try {
+              setRatioArray();
+          } catch (MOException e) {
+              e.printStackTrace();
+          }
+      }
+
+      return ratioArray.subList(start, end);
+  }
+
+  /**
+   * Set all split ratio values from a List
+   * @param ratioList  list of ratio values
+   */
+  public void setRatioList(List<Double> ratioList) {
+      //copy elements
+      ratioArray = new ArrayList<Double>(ratioList);
+      // recreate content string
+      String ratioContent = ratioArray.toString().replaceAll("(\\[|\\]|\\s)","");
+      super.setContent(ratioContent);
+  }
 }
