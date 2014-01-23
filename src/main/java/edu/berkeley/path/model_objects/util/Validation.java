@@ -25,15 +25,33 @@
  **/
 package edu.berkeley.path.model_objects.util;
 
+import edu.berkeley.path.model_objects.MOException;
 import javax.xml.XMLConstants;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.*;
 
 import core.Monitor;
+import org.drools.RuleBase;
+import org.drools.RuleBaseFactory;
+import org.drools.WorkingMemory;
+import org.drools.compiler.DroolsError;
+import org.drools.compiler.DroolsParserException;
+import org.drools.compiler.PackageBuilder;
+import org.drools.compiler.PackageBuilderErrors;
+import org.drools.rule.*;
+import org.drools.rule.Package;
 import org.xml.sax.SAXException;
-import java.io.File;
+
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+
+import java.io.*;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Collections;
 
 /**
  * Validate Scenario Model Object.  This class has utility methods to validate
@@ -51,6 +69,103 @@ import java.io.IOException;
 public class Validation {
 
   public final String schemaFileName = "scenario.xsd";
+
+  /**
+   * Validation context. The validation class will validate accordingly based on it's given context.
+   */
+  public static enum Context {
+    /**
+     * Validate XML serialized representation of object
+     */
+    XML,
+    /**
+     * Validate JON serialized representation of object
+     */
+    JSON,
+    /**
+     * Validate Object to Database Schema (ie. check foreign key constraints
+     */
+    DATABASE,
+    /**
+     * Validation for Common Sense validation rules
+     */
+    COMMON
+  }
+
+  private static final Map<Context, String> contextFileMap;
+  static {
+    Map<Context, String> cMap = new HashMap<Context, String>();
+    cMap.put(Context.XML, "");
+    cMap.put(Context.JSON, "");
+    cMap.put(Context.DATABASE, "/edu/berkeley/path/model_objects/scenario/database.drl");
+    cMap.put(Context.COMMON, "/edu/berkeley/path/model_objects/scenario/framework.drl");
+    contextFileMap = Collections.unmodifiableMap(cMap);
+  }
+
+  private Reader getRuleFileAsReader(String ruleFile) {
+    InputStream resourceAsStream = getClass().getResourceAsStream(ruleFile);
+
+    return new InputStreamReader(resourceAsStream);
+  }
+
+  private RuleBase addRulesToWorkingMemory(PackageBuilder packageBuilder) {
+    RuleBase ruleBase = RuleBaseFactory.newRuleBase();
+    org.drools.rule.Package rulesPackage = packageBuilder.getPackage();
+    ruleBase.addPackage(rulesPackage);
+
+    return ruleBase;
+  }
+
+  private void assertNoRuleErrors(PackageBuilder packageBuilder) {
+    PackageBuilderErrors errors = packageBuilder.getErrors();
+
+    if (errors.getErrors().length > 0) {
+      StringBuilder errorMessages = new StringBuilder();
+      errorMessages.append("Found errors in package builder\n");
+      for (int i = 0; i < errors.getErrors().length; i++) {
+        DroolsError errorMessage = errors.getErrors()[i];
+        errorMessages.append(errorMessage);
+        errorMessages.append("\n");
+      }
+      errorMessages.append("Could not parse knowledge");
+
+      throw new IllegalArgumentException(errorMessages.toString());
+    }
+  }
+
+  private RuleBase initialiseDrools() throws IOException, DroolsParserException {
+    PackageBuilder packageBuilder = new PackageBuilder();
+
+    String ruleFile = "/edu/berkeley/path/model_objects/scenario/database.drl";
+    Reader reader = getRuleFileAsReader(ruleFile);
+    packageBuilder.addPackageFromDrl(reader);
+
+    assertNoRuleErrors(packageBuilder);
+    return addRulesToWorkingMemory(packageBuilder);
+  }
+
+  /**
+   * Validate given Data Access Object in context given
+   */
+  public ValidationResult validate(Object obj, String objId, Context context) throws MOException {
+
+    String objName = obj.getClass().getName();
+    ValidationResult result = new ValidationResult(objName, objId, context.name());
+    // get rules file based on context
+
+    try {
+      RuleBase ruleBase = initialiseDrools();
+      WorkingMemory workingMemory = ruleBase.newStatefulSession();
+
+      workingMemory.insert(obj);
+      workingMemory.fireAllRules();
+
+    } catch (Exception e) {
+      throw new MOException(e, "Error trying to validate " + objName + " With ID " + objId );
+    }
+
+    return result;
+  }
 
   /**
    * Validate XML file against model object schema
