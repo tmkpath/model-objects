@@ -5,9 +5,14 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
     http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <groupId>edu.berkeley.path</groupId>
+  <parent>
+    <groupId>edu.berkeley.path</groupId>
+    <artifactId>CC</artifactId>
+    <version>0.101-SNAPSHOT</version>
+  </parent>
+
   <artifactId>model-objects</artifactId>
-  <version>0.1-SNAPSHOT</version>
+
   <modelVersion>4.0.0</modelVersion>
 
   <properties>
@@ -65,7 +70,7 @@
     <dependency>
       <groupId>edu.berkeley.path</groupId>
       <artifactId>CORE</artifactId>
-      <version>0.1-SNAPSHOT</version>
+      <version>${project.parent.version}</version>
     </dependency>  
     <dependency>
       <groupId>junit</groupId>
