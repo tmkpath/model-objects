@@ -46,30 +46,35 @@ public class ValidationMessage {
     WARNING
   }
 
-  private final String object; // Object generating validation message
-  private final String objectId; // Id of Object generating validation message
   private final String message; // Validation message
-  private final String context;  // Context Object was being evaluated in
   private final Severity severity; // Severity of message
 
   /**
    * Contructor the create Validation Message Object
    *
-   * @param object    Object being validated
-   * @param objectId  Id of Object being validated
    * @param message   Validation Message
-   * @param context   Context object is validated within
+   * @param severity  Severity of message
    */
-  public ValidationMessage(String object, String objectId, String message, String context, Severity severity) {
-    this.object = object;
-    this.objectId = objectId;
+  public ValidationMessage(String message, Severity severity) {
     this.message = message;
-    this.context = context;
     this.severity = severity;
   }
 
+  /**
+   * Returns Validation message
+   *
+   * @return message
+   */
   public String getMessage() {
     return this.message;
+  }
+
+  /**
+   * Returns Validaiton Message Severity
+   * @return severity
+   */
+  public Severity getSeverity() {
+    return this.severity;
   }
 
 

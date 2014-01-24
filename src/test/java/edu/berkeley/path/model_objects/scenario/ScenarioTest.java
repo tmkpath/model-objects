@@ -26,6 +26,9 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import edu.berkeley.path.model_objects.util.ValidationMessage;
+import edu.berkeley.path.model_objects.util.Validation;
+import edu.berkeley.path.model_objects.util.ValidationResult;
 import org.junit.*;
 
 import static org.junit.Assert.assertEquals;
@@ -36,38 +39,45 @@ public class ScenarioTest {
   private static final long ID = 1;
   private static final String NAME = "Scenario Name";
   private static final String DESCRIPTION = "Scenario Name";
-  private static final Long PROJECT_ID = 1L;
+  private static final Long PROJECT_ID = 0L;
   private static Scenario scenario;
 
 
 
-  /*private void createScenario(WorkingMemory workingMemory) {
+  private Scenario createScenario() {
     scenario = new Scenario();
     scenario.setId(ID);
     scenario.setDescription(DESCRIPTION);
     scenario.setName(NAME);
     scenario.setProjectId(PROJECT_ID);
-    workingMemory.insert(scenario);
+    return scenario;
   }
 
   @Test
   public void testGetters() {
+    Scenario scenario = createScenario();
+
     try {
-      System.out.println("Initialize Drools");
-      RuleBase ruleBase = initialiseDrools();
-      WorkingMemory workingMemory = initializeScenarioObject(ruleBase);
-      int expectedNumberOfRulesFired = 1;
+      Validation validation = new Validation();
+      Validation.Context context = Validation.Context.DATABASE;
+      ValidationResult result = validation.validate(scenario, scenario.getId(), context );
+      System.out.println(result.getMessages(ValidationMessage.Severity.ERROR));
 
-      int actualNumberOfRulesFired = workingMemory.fireAllRules();
-
-      assertEquals(actualNumberOfRulesFired, expectedNumberOfRulesFired);
+//      System.out.println("Initialize Drools");
+//      RuleBase ruleBase = initialiseDrools();
+//      WorkingMemory workingMemory = initializeScenarioObject(ruleBase);
+//      int expectedNumberOfRulesFired = 1;
+//
+//      int actualNumberOfRulesFired = workingMemory.fireAllRules();
+//
+//      assertEquals(actualNumberOfRulesFired, expectedNumberOfRulesFired);
     } catch (Exception e ) {
       e.printStackTrace();
       Assert.fail();
     }
   }
 
-  @Test
+  /*@Test
   public void testScenarioXMLFile() {
     try {
       file

@@ -25,9 +25,12 @@
  **/
 package edu.berkeley.path.model_objects.util;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+
+import core.Monitor;
 
 /**
  * Class to store results of validation process.
@@ -37,23 +40,66 @@ import java.util.HashMap;
 public class ValidationResult {
 
   private final String object; // Object generating validation message
-  private final String objectId; // Id of Object generating validation message
+  private final Long objectId; // Id of Object generating validation message
   private final String context;  // Context Object was being evaluated in
   // Hashmap of validation messages indexed by severity
   private final Map<ValidationMessage.Severity, List<ValidationMessage>> messages;
 
   /**
-   * Contructor the create Validation Result Object
+   * Constructor the create Validation Result Object.
    *
    * @param object    Object being validated
    * @param objectId  Id of Object being validated
    * @param context   Context object is validated within
    */
-  public ValidationResult(String object, String objectId, String context) {
+  public ValidationResult(String object, Long objectId, String context) {
     this.object = object;
     this.objectId = objectId;
     this.context = context;
     this.messages = new HashMap<ValidationMessage.Severity, List<ValidationMessage>>();
+  }
+
+  /**
+   * Add message to validation result map
+   *
+   * @param message   Error or Warning message
+   * @param severity  Severity of message (ie. Error or Warning)
+   */
+  public void addMessage(String message, ValidationMessage.Severity severity) {
+
+    // Create new Validation message
+    ValidationMessage validationMessage = new ValidationMessage(message, severity);
+
+    // add message list for given severity to Map since one does not exists
+    if (this.messages.get(severity) == null) {
+      ArrayList<ValidationMessage> messageList = new ArrayList<ValidationMessage>();
+      this.messages.put(severity, messageList);
+    }
+    // Add message to Hash Map by severity as key
+    List<ValidationMessage> messageList;
+    messageList = this.messages.get(severity);
+
+    messageList.add(validationMessage);
+  }
+
+  /**
+   * Get Messages by severity, each formatted on a new line.
+   * Returns null if any.
+   *
+   * @param severity  Severity type of messages to get.
+   *
+   * @return Error and Warning messages.
+   */
+  public String getMessages(ValidationMessage.Severity severity) {
+    String messagesStr = "";
+    List<ValidationMessage> messageList = this.messages.get(severity);
+    if (messageList != null) {
+      // add each message of given severity to message String
+      for (ValidationMessage message : messageList) {
+        messagesStr = messagesStr + severity.name() + " : " + message.getMessage();
+      }
+    }
+    return messagesStr;
   }
 
   /**
@@ -63,10 +109,12 @@ public class ValidationResult {
    * @return true if validation produced no errors, otherwise false.
    */
   public boolean isValid() {
-    if (messages.get(ValidationMessage.Severity.ERROR) == null) {
+    if (this.messages.get(ValidationMessage.Severity.ERROR) == null) {
       return true;
     } else {
       return false;
     }
   }
+
+
 }

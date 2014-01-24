@@ -26,6 +26,7 @@
 package edu.berkeley.path.model_objects.util;
 
 import edu.berkeley.path.model_objects.MOException;
+import edu.berkeley.path.model_objects.scenario.Scenario;
 import javax.xml.XMLConstants;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -147,7 +148,7 @@ public class Validation {
   /**
    * Validate given Data Access Object in context given
    */
-  public ValidationResult validate(Object obj, String objId, Context context) throws MOException {
+  public ValidationResult validate(Object obj, Long objId, Context context) throws MOException {
 
     String objName = obj.getClass().getName();
     ValidationResult result = new ValidationResult(objName, objId, context.name());
@@ -158,6 +159,7 @@ public class Validation {
       WorkingMemory workingMemory = ruleBase.newStatefulSession();
 
       workingMemory.insert(obj);
+      workingMemory.insert(result);
       workingMemory.fireAllRules();
 
     } catch (Exception e) {

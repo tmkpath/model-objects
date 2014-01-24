@@ -1,5 +1,6 @@
-package edu.berkeley.path.model_objects.scenario;
+package edu.berkeley.path.model_objects.util;
 
+import edu.berkeley.path.model_objects.scenario.Scenario;
 import core.*;
 
 rule "Project ID of Scenario is not null or 0"
@@ -7,8 +8,9 @@ dialect "mvel"
 dialect "java"
 when
   $scenario : Scenario ( projectId == 0 || projectId == null)
+  $result : ValidationResult()
 then
-  System.out.println("Error: Invalid Project ID. Cannot be null or 0.");
+  $result.addMessage("Error: Invalid Project ID. Cannot be null or 0.", ValidationMessage.Severity.ERROR);
 end
 
 rule "Project ID of Scenario is an existing project in Database"
@@ -16,6 +18,7 @@ dialect "mvel"
 dialect "java"
 when
   $scenario : Scenario ( projectId != 0 && projectId != null)
+  $result : ValidationResult()
 then
   Long projectId = $scenario.getProjectId();
   java.sql.Connection dbConn = oraDatabase.doConnect();
@@ -32,18 +35,18 @@ then
   oraDatabaseReader.psSetParam(query, 1, oraSPEnums.spParamType.INT_VAR, projectId + "");
   oraDatabaseReader.psQuery(query);
 
-  if (oraDatabaseReader.rsNext(query)) {
-    System.out.println("Scenario's Project ID exists in Database.");
-  } else {
-    System.out.println("Error : Scenario's Project ID DOES NOT exist in Database.");
+  // Add ERROR message to validation if no project with given id exists in DB
+  if (!oraDatabaseReader.rsNext(query)) {
+    $result.addMessage("Scenario's Project ID DOES NOT exist in Database.", ValidationMessage.Severity.ERROR);
   }
 end
 
-rule "Network Name is not null or 0"
-dialect "mvel"
-dialect "java"
-when
-  $scenario : Scenario ( getListOfNetworks() )
-then
-  System.out.println("Error: Invalid Network Name. Cannot be null.");
-end
+//rule "Network Name is not null or 0"
+//dialect "mvel"
+//dialect "java"
+//when
+//  $scenario : Scenario ( getListOfNetworks() )
+//  $result : ValidationResult();
+//then
+//  $result.addMessage("Error: Invalid Network Name. Cannot be null.", ValidationMessage.Severity.ERROR);
+//end
