@@ -103,7 +103,7 @@ public class ValidationResult {
   }
 
   /**
-   * Returns whether or not evaulation of object and in context was valid or not.
+   * Returns whether or not evaluation of object and in context was valid or not.
    * Valid means there where no errors thrown, but there possibly might be warnings.
    *
    * @return true if validation produced no errors, otherwise false.
