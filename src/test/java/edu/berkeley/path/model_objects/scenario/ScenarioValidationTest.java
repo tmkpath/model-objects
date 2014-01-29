@@ -26,15 +26,16 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import edu.berkeley.path.model_objects.network.Network;
 import edu.berkeley.path.model_objects.util.ValidationMessage;
 import edu.berkeley.path.model_objects.util.Validation;
 import edu.berkeley.path.model_objects.util.ValidationResult;
 import org.junit.*;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertFalse;
 
-public class ScenarioTest {
+public class ScenarioValidationTest {
 
   private static final long ID = 1;
   private static final String NAME = "Scenario Name";
@@ -42,19 +43,32 @@ public class ScenarioTest {
   private static final Long PROJECT_ID = 0L;
   private static Scenario scenario;
 
-
-
   private Scenario createScenario() {
     scenario = new Scenario();
     scenario.setId(ID);
     scenario.setDescription(DESCRIPTION);
     scenario.setName(NAME);
     scenario.setProjectId(PROJECT_ID);
+    Network network = new Network();
+    SensorSet sensorSet = new SensorSet();
+    DemandSet demandSet = new DemandSet();
+    FundamentalDiagramSet fdSet = new FundamentalDiagramSet();
+    SplitRatioSet srSet = new SplitRatioSet();
+    ActuatorSet actuatorSet = new ActuatorSet();
+    ControllerSet controllerSet = new ControllerSet();
+    scenario.getListOfNetworks().add(network);
+    scenario.setSensorSet(sensorSet);
+    scenario.setDemandSet(demandSet);
+    scenario.setFundamentalDiagramSet(fdSet);
+    scenario.setSplitRatioSet(srSet);
+    scenario.setSensorSet(sensorSet);
+    scenario.setActuatorSet(actuatorSet);
+    scenario.setControllerSet(controllerSet);
     return scenario;
   }
 
   @Test
-  public void testGetters() {
+  public void testDatabaseRules() {
     Scenario scenario = createScenario();
 
     try {
@@ -63,31 +77,46 @@ public class ScenarioTest {
       ValidationResult result = validation.validate(scenario, scenario.getId(), context );
       System.out.println(result.getMessages(ValidationMessage.Severity.ERROR));
 
-//      System.out.println("Initialize Drools");
-//      RuleBase ruleBase = initialiseDrools();
-//      WorkingMemory workingMemory = initializeScenarioObject(ruleBase);
-//      int expectedNumberOfRulesFired = 1;
-//
-//      int actualNumberOfRulesFired = workingMemory.fireAllRules();
-//
-//      assertEquals(actualNumberOfRulesFired, expectedNumberOfRulesFired);
+      int expectedNumberOfRulesFired = 8;
+      int expectedNumberOfErrors = 8;
+      // make sure all scenario database rules were fired
+      assertEquals(result.getNumOfRulesFired(), expectedNumberOfRulesFired);
+      // assert that error
+      assertFalse(result.isValid());
+
+      assertEquals(result.getNumOfErrors(), expectedNumberOfErrors);
+
     } catch (Exception e ) {
       e.printStackTrace();
       Assert.fail();
     }
   }
 
-  /*@Test
-  public void testScenarioXMLFile() {
+  @Test
+  public void testCommonRules() {
+    Scenario scenario = createScenario();
+
     try {
-      file
+      Validation validation = new Validation();
+      Validation.Context context = Validation.Context.COMMON;
+      ValidationResult result = validation.validate(scenario, scenario.getId(), context );
+      System.out.println(result.getMessages(ValidationMessage.Severity.ERROR));
+
+      int expectedNumberOfRulesFired = 7;
+      int expectedNumberOfErrors = 7;
+      // make sure all scenario database rules were fired
+      assertEquals(result.getNumOfRulesFired(), expectedNumberOfRulesFired);
+      // assert that error
+      assertFalse(result.isValid());
+
+      assertEquals(result.getNumOfErrors(), expectedNumberOfErrors);
+
     } catch (Exception e ) {
       e.printStackTrace();
       Assert.fail();
     }
+  }
 
-
-  }*/
 
 }
 

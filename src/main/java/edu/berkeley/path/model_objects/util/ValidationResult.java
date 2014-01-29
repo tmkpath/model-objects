@@ -39,6 +39,7 @@ import core.Monitor;
  */
 public class ValidationResult {
 
+  private int numOfRulesFired;
   private final String object; // Object generating validation message
   private final Long objectId; // Id of Object generating validation message
   private final String context;  // Context Object was being evaluated in
@@ -96,7 +97,7 @@ public class ValidationResult {
     if (messageList != null) {
       // add each message of given severity to message String
       for (ValidationMessage message : messageList) {
-        messagesStr = messagesStr + severity.name() + " : " + message.getMessage();
+        messagesStr = messagesStr + severity.name() + " : " + message.getMessage() + "\n";
       }
     }
     return messagesStr;
@@ -114,6 +115,22 @@ public class ValidationResult {
     } else {
       return false;
     }
+  }
+
+  public int getNumOfRulesFired() {
+    return this.numOfRulesFired;
+  }
+
+  public void setNumOfRulesFired(int numOfRules) {
+    this.numOfRulesFired = numOfRules;
+  }
+
+  public int getNumOfErrors() {
+    return this.messages.get(ValidationMessage.Severity.ERROR).size();
+  }
+
+  public int getNumOfWarnings() {
+    return this.messages.get(ValidationMessage.Severity.WARNING).size();
   }
 
 

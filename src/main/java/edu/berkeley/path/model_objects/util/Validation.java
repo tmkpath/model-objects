@@ -99,7 +99,7 @@ public class Validation {
     cMap.put(Context.XML, "");
     cMap.put(Context.JSON, "");
     cMap.put(Context.DATABASE, "/edu/berkeley/path/model_objects/scenario/database.drl");
-    cMap.put(Context.COMMON, "/edu/berkeley/path/model_objects/scenario/framework.drl");
+    cMap.put(Context.COMMON, "/edu/berkeley/path/model_objects/scenario/common.drl");
     contextFileMap = Collections.unmodifiableMap(cMap);
   }
 
@@ -134,10 +134,10 @@ public class Validation {
     }
   }
 
-  private RuleBase initialiseDrools() throws IOException, DroolsParserException {
+  private RuleBase initialiseDrools(Context context) throws IOException, DroolsParserException {
     PackageBuilder packageBuilder = new PackageBuilder();
 
-    String ruleFile = "/edu/berkeley/path/model_objects/scenario/database.drl";
+    String ruleFile = this.contextFileMap.get(context);
     Reader reader = getRuleFileAsReader(ruleFile);
     packageBuilder.addPackageFromDrl(reader);
 
@@ -147,6 +147,10 @@ public class Validation {
 
   /**
    * Validate given Data Access Object in context given
+   *
+   * @param obj     Object to validate
+   * @param objId   Id of object being validated
+   * @param context context to validate object to
    */
   public ValidationResult validate(Object obj, Long objId, Context context) throws MOException {
 
@@ -155,12 +159,13 @@ public class Validation {
     // get rules file based on context
 
     try {
-      RuleBase ruleBase = initialiseDrools();
+      RuleBase ruleBase = initialiseDrools(context);
       WorkingMemory workingMemory = ruleBase.newStatefulSession();
 
       workingMemory.insert(obj);
       workingMemory.insert(result);
-      workingMemory.fireAllRules();
+      int numOfRules = workingMemory.fireAllRules();
+      result.setNumOfRulesFired(numOfRules);
 
     } catch (Exception e) {
       throw new MOException(e, "Error trying to validate " + objName + " With ID " + objId );
@@ -170,28 +175,55 @@ public class Validation {
   }
 
   /**
+   * Validate given serialized object string to object and context given
+   *
+   * @param serializedObject     Serialized Object to validate
+   * @param obj                  Object being validated
+   * @param context              Context to validate object to
+   */
+  public ValidationResult validate(String serializedObject, Object obj, Context context) throws MOException {
+
+    String error = "";
+    String objName = obj.getClass().getName();
+    ValidationResult result = new ValidationResult(objName, null, context.name());
+    // validate serialized object to XML
+    if (context == Context.XML) {
+      error = validateXML(serializedObject);
+    }
+    // TODO: be able to validate JSON
+
+    // If there was an error message add it to validaiton result
+    if (error != null && error != "") {
+      result.addMessage(error, ValidationMessage.Severity.ERROR);
+    }
+    return result;
+  }
+
+  /**
    * Validate XML file against model object schema
    *
-   * @param   fileName xml file to validate
-   * @return  List of errors, will be null if none exist
+   * @param   xmlFile xml file to validate
+   * @return  Validation Result, will be null if none exist
    */
-  public String validateXML(File xmlFile) {
+  private String validateXML(String xml) {
+
     String errorMsg = "";
+
+    // TODO: Currently only validates against scenario xsd.
+    // add lookup Map to correct file based on object class name
+    // Read in schema file name
     File schemaFile = new File(this.schemaFileName);
-    Source xmlSourceFile = new StreamSource(xmlFile);
+    Source xmlSourceFile = new StreamSource(new StringReader(xml));
     SchemaFactory schemaFactory =
         SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
     try {
       Schema schema = schemaFactory.newSchema(schemaFile);
       Validator validator = schema.newValidator();
       validator.validate(xmlSourceFile);
-      Monitor.out(xmlFile.getName() + " is valid");
-      errorMsg = "Valid";
+
     } catch (SAXException e) {
-      Monitor.out(xmlFile.getName() + " is NOT valid");
       errorMsg = "Invalid XML file: " + e.getLocalizedMessage();
     } catch (IOException e) {
-      Monitor.out("Error Reading " + xmlFile.getName());
       errorMsg = "Error reading XML file: " + e.getLocalizedMessage();
     }
 
