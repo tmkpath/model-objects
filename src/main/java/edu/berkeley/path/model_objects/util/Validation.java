@@ -90,7 +90,11 @@ public class Validation {
     /**
      * Validation for Common Sense validation rules
      */
-    COMMON
+    COMMON,
+    /**
+     * Runnable
+     */
+    RUNNABLE
   }
 
   private static final Map<Context, String> contextFileMap;
