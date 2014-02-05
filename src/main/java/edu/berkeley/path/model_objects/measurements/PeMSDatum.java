@@ -26,8 +26,6 @@
 
 package edu.berkeley.path.model_objects.measurements;
 
-import javax.xml.datatype.XMLGregorianCalendar;
-
 import edu.berkeley.path.model_objects.shared.DateTime;
 
 /** 
