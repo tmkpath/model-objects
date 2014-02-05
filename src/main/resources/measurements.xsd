@@ -58,6 +58,43 @@
       <xs:attribute name="vds_id" type="xs:long" use="required"/>
     </xs:complexType>
   </xs:element>
+
+	<xs:element name="SimulatedSensorSet">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SimulatedSensorProfile" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:element name="SimulatedSensorProfile">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SimulatedSensorDatum" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:attribute name="vds_id" type="xs:long" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:element name="SimulatedSensorDatum">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="GFactor" minOccurs="1" maxOccurs="unbounded" />
+				<xs:element name="timestamp" type="dateTime" minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+			<xs:attribute name="flow" type="xs:double" use="optional" default="0.0"/>
+			<xs:attribute name="density" type="xs:double" use="optional" default="0.0"/>
+			<xs:attribute name="density_error" type="xs:double" use="optional" default="0.0"/>
+			<xs:attribute name="speed" type="xs:double" use="optional" default="27.0"/>
+			<xs:attribute name="speed_error" type="xs:double" use="optional" default="0.0"/>
+			<xs:attribute name="free_flow_speed" type="xs:double" use="optional" default="27.0"/>
+			<xs:attribute name="func_loop_fact" type="xs:double" use="optional"/>
+			<xs:attribute name="vds_id" type="xs:long" use="required"/>
+			<xs:attribute name="app_run_id" type="xs:long" use="required"/>
+		</xs:complexType>
+	</xs:element>
   
   <xs:element name="PeMSAggregateDataSet">
     <xs:complexType>
