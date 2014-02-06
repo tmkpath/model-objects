@@ -119,23 +119,23 @@ public class SimulatedSensorDatum extends edu.berkeley.path.model_objects.jaxb.S
   }
 
   /**
-   * Return vds id
+   * Return entity id
    *
-   * @return vds id as long
+   * @return entity id as long
    */
   @Override
-  public long getVdsId() {
-    return super.getVdsId();
+  public long getEntityId() {
+    return super.getEntityId();
   }
 
   /**
-   * Set vds id
+   * Set entity id
    *
-   * @param vds id as long
+   * @param id as long
    */
   @Override
-  public void setVdsId(long l) {
-    super.setVdsId(l);
+  public void setEntityId(long id) {
+    super.setEntityId(id);
   }
 
   /**

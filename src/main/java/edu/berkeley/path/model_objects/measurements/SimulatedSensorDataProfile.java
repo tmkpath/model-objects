@@ -61,23 +61,23 @@ public class SimulatedSensorDataProfile extends edu.berkeley.path.model_objects.
   }
 
   /**
-   * Return vdsId of the data profile
+   * Return entity Id of the data profile
    *
-   * @return vdsId as long
+   * @return Entity Id as long
    */
   @Override
-  public long getVdsId() {
-    return super.getVdsId();
+  public long getEntityId() {
+    return super.getEntityId();
   }
 
   /**
-   * Set vdsId of the data profile
+   * Set Entity Id of the data profile
    *
-   * @param vdsId as long
+   * @param id as long
    */
   @Override
-  public void setVdsId(long vdsId) {
-    super.setVdsId(vdsId);
+  public void setEntityId(long id) {
+    super.setEntityId(id);
   }
 
 }
