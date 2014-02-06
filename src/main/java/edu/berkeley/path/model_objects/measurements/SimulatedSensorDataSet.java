@@ -33,28 +33,28 @@ import java.util.List;
  *
  * @author mnjuhn
  */
-public class SimulatedSensorSet extends edu.berkeley.path.model_objects.jaxb.SimulatedSensorSet{
+public class SimulatedSensorDataSet extends edu.berkeley.path.model_objects.jaxb.SimulatedSensorDataSet{
 
   /**
    * Return Set of Simulated Sensor
    *
-   * @return simulated sensor set as a List<SimulatedSensorProfile>
+   * @return simulated sensor set as a List<SimulatedSensorDataProfile>
    */
   @SuppressWarnings("unchecked")
-  public List<SimulatedSensorProfile> getListOfSimulatedSensorProfiles() {
-    List<edu.berkeley.path.model_objects.jaxb.SimulatedSensorProfile> profileList = super.getSimulatedSensorProfile();
+  public List<SimulatedSensorDataProfile> getListOfSimulatedSensorProfiles() {
+    List<edu.berkeley.path.model_objects.jaxb.SimulatedSensorDataProfile> profileList = super.getSimulatedSensorDataProfile();
     // return casted list of sensor profiles from JAXB base class
-    return (List<SimulatedSensorProfile>)(List<?>)profileList;
+    return (List<SimulatedSensorDataProfile>)(List<?>)profileList;
   }
 
   /**
-   * Set Simulated Sensor Set as a list of SimulatedSensorProfile objects
+   * Set Simulated Sensor Set as a list of SimulatedSensorDataProfile objects
    *
-   * @param sensorSet as List<SimulatedSensorProfile>
+   * @param sensorSet as List<SimulatedSensorDataProfile>
    */
-  public void setSimulatedSensorProfiles(List<SimulatedSensorProfile> sensorSet) {
-    super.getSimulatedSensorProfile().clear();
-    super.getSimulatedSensorProfile().addAll(sensorSet);
+  public void setSimulatedSensorProfiles(List<SimulatedSensorDataProfile> sensorSet) {
+    super.getSimulatedSensorDataProfile().clear();
+    super.getSimulatedSensorDataProfile().addAll(sensorSet);
   }
 
 }

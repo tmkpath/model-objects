@@ -232,6 +232,7 @@ public class Serializer {
     StringWriter result = new StringWriter();
     try {
       org.codehaus.jettison.mapped.Configuration config = new org.codehaus.jettison.mapped.Configuration();
+      config.setSupressAtAttributes(true);
       XMLStreamWriter xmlsw = new MappedXMLStreamWriter(new MappedNamespaceConvention(config), result);
       Marshaller jaxbMarshaller = globalJAXBContext.createMarshaller();
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
