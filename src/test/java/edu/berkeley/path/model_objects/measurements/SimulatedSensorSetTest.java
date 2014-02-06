@@ -61,20 +61,20 @@ public class SimulatedSensorSetTest {
     sensorList.add(sensor);
 
     // add sensor datum to a profile
-    SimulatedSensorProfile sensorProfile = new SimulatedSensorProfile();
+    SimulatedSensorDataProfile sensorProfile = new SimulatedSensorDataProfile();
     sensorProfile.setVdsId(VDS_ID);
     sensorProfile.setSimulatedSensorData(sensorList);
 
-    ArrayList<SimulatedSensorProfile> sensorProfileList = new ArrayList<SimulatedSensorProfile>();
+    ArrayList<SimulatedSensorDataProfile> sensorProfileList = new ArrayList<SimulatedSensorDataProfile>();
     sensorProfileList.add(sensorProfile);
 
     // add sensor profile to Set
-    SimulatedSensorSet sensorSet = new SimulatedSensorSet();
+    SimulatedSensorDataSet sensorSet = new SimulatedSensorDataSet();
     sensorSet.setSimulatedSensorProfiles(sensorProfileList);
 
     // Transverse sensor set, check that there is one profile under it
     assertEquals(sensorSet.getListOfSimulatedSensorProfiles().size(), 1);
-    SimulatedSensorProfile sensorProfile2 = sensorSet.getListOfSimulatedSensorProfiles().get(0);
+    SimulatedSensorDataProfile sensorProfile2 = sensorSet.getListOfSimulatedSensorProfiles().get(0);
 
     // Transverse sensor profile, check that there is one sensor under it
     assertEquals(sensorProfile2.getVdsId(), VDS_ID);

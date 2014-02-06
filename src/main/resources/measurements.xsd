@@ -59,16 +59,16 @@
     </xs:complexType>
   </xs:element>
 
-	<xs:element name="SimulatedSensorSet">
+	<xs:element name="SimulatedSensorDataSet">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="SimulatedSensorProfile" minOccurs="1" maxOccurs="unbounded" />
+				<xs:element ref="SimulatedSensorDataProfile" minOccurs="1" maxOccurs="unbounded" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 
 
-	<xs:element name="SimulatedSensorProfile">
+	<xs:element name="SimulatedSensorDataProfile">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="SimulatedSensorDatum" minOccurs="1" maxOccurs="unbounded" />

@@ -34,7 +34,7 @@ import java.util.List;
  *
  * @author mnjuhn
  */
-public class SimulatedSensorProfile extends edu.berkeley.path.model_objects.jaxb.SimulatedSensorProfile{
+public class SimulatedSensorDataProfile extends edu.berkeley.path.model_objects.jaxb.SimulatedSensorDataProfile {
 
 
   /**

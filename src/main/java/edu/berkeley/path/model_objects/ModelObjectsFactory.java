@@ -537,4 +537,31 @@ public class ModelObjectsFactory extends ObjectFactory {
     return new PeMSAggregateDataSet();
   }
 
+  /**
+   * Create an instance of SimulatedSensorDatum object
+   * @return SimulatedSensorDatum object
+   */
+  @Override
+  public SimulatedSensorDatum createSimulatedSensorDatum(){
+    return new SimulatedSensorDatum();
+  }
+
+  /**
+   * Create an instance of SimulatedSensorDataProfile object
+   * @return SimulatedSensorDataProfile object
+   */
+  @Override
+  public SimulatedSensorDataProfile createSimulatedSensorDataProfile(){
+    return new SimulatedSensorDataProfile();
+  }
+
+  /**
+   * Create an instance of SimulatedSensorDataSet object
+   * @return SimulatedSensorDataSet object
+   */
+  @Override
+  public SimulatedSensorDataSet createSimulatedSensorDataSet(){
+    return new SimulatedSensorDataSet();
+  }
+
 }
