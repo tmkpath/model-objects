@@ -40,7 +40,7 @@ public class SimulatedSensorSetTest {
   private static double SPEED_ERROR = 0.3;
   private static double SPEED = 11.0;
   private static double FLOW = 2.0;
-  private static long VDS_ID = 9900000;
+  private static long ENTITY_ID = 9900000;
   private static double EPSILON = 0.0005;
 
   @Test
@@ -55,14 +55,14 @@ public class SimulatedSensorSetTest {
     sensor.setFlow(FLOW);
     sensor.setDensity(DENSITY);
     sensor.setDensityError(DENSITY_ERROR);
-    sensor.setVdsId(VDS_ID);
+    sensor.setEntityId(ENTITY_ID);
 
     ArrayList<SimulatedSensorDatum> sensorList = new ArrayList<SimulatedSensorDatum>();
     sensorList.add(sensor);
 
     // add sensor datum to a profile
     SimulatedSensorDataProfile sensorProfile = new SimulatedSensorDataProfile();
-    sensorProfile.setVdsId(VDS_ID);
+    sensorProfile.setEntityId(ENTITY_ID);
     sensorProfile.setSimulatedSensorData(sensorList);
 
     ArrayList<SimulatedSensorDataProfile> sensorProfileList = new ArrayList<SimulatedSensorDataProfile>();
@@ -77,12 +77,12 @@ public class SimulatedSensorSetTest {
     SimulatedSensorDataProfile sensorProfile2 = sensorSet.getListOfSimulatedSensorProfiles().get(0);
 
     // Transverse sensor profile, check that there is one sensor under it
-    assertEquals(sensorProfile2.getVdsId(), VDS_ID);
+    assertEquals(sensorProfile2.getEntityId(), ENTITY_ID);
     assertEquals(sensorProfile2.getListOfSimulatedSensorDatum().size(), 1);
     SimulatedSensorDatum sensor2 = sensorProfile2.getListOfSimulatedSensorDatum().get(0);
 
     // Check that sensors attributes are correctly set
-    assertEquals(sensor2.getVdsId(), VDS_ID);
+    assertEquals(sensor2.getEntityId(), ENTITY_ID);
     assertEquals(sensor2.getAppRunId(), APP_RUN_ID);
     assertEquals(sensor2.getDensity(), DENSITY, EPSILON);
     assertEquals(sensor2.getDensityError(), DENSITY_ERROR, EPSILON);
