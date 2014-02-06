@@ -139,26 +139,6 @@ public class SimulatedSensorDatum extends edu.berkeley.path.model_objects.jaxb.S
   }
 
   /**
-   * Return list of GFactors
-   *
-   * @return GFactors
-   */
-  @Override
-  public List<GFactor> getGFactor() {
-    return super.getGFactor();
-  }
-
-  /**
-   * Set GFactors
-   *
-   * @param gFactors list of GFactors
-   */
-  public void setGFactor(List<GFactor> gFactors) {
-    super.getGFactor().clear();
-    super.getGFactor().addAll(gFactors);
-  }
-
-  /**
    * Gets the value of the densityError property.
    *
    * @return density error
@@ -196,26 +176,6 @@ public class SimulatedSensorDatum extends edu.berkeley.path.model_objects.jaxb.S
   @Override
   public void setSpeedError(Double value) {
     super.setSpeedError(value);
-  }
-
-  /**
-   * Gets the value of the funcLoopFact property.
-   *
-   * @return function loop fact
-   */
-  @Override
-  public Double getFuncLoopFact() {
-    return super.getFuncLoopFact();
-  }
-
-  /**
-   * Sets the value of the funcLoopFact property.
-   *
-   * @param value representing function loop fact
-   */
-  @Override
-  public void setFuncLoopFact(Double value) {
-    super.setFuncLoopFact(value);
   }
 
   /**
