@@ -1,0 +1,69 @@
+package edu.berkeley.path.model_objects.util;
+
+import edu.berkeley.path.model_objects.scenario.*;
+import edu.berkeley.path.model_objects.network.Network;
+import java.util.ArrayList;
+import java.util.List;
+
+rule "Network Name is not null"
+when
+  $scenario : Scenario ()
+  $network : Network( name == null || name == "") from $scenario.getListOfNetworks()
+  $result : ValidationResult()
+then
+  $result.addMessage("Invalid Network Name. Cannot be null.", ValidationMessage.Severity.ERROR);
+end
+
+rule "Sensor Set Name is not null"
+when
+  $scenario : Scenario (sensorSet != null)
+  $set : SensorSet( name == null || name == "") from $scenario.getSensorSet()
+  $result : ValidationResult()
+then
+  $result.addMessage("Invalid Sensor Set Name. Cannot be null.", ValidationMessage.Severity.ERROR);
+end
+
+rule "Demand Set Name is not null"
+when
+  $scenario : Scenario (demandSet != null)
+  $set : DemandSet( name == null || name == "") from $scenario.getDemandSet()
+  $result : ValidationResult()
+then
+  $result.addMessage("Invalid Demand Set Name. Cannot be null.", ValidationMessage.Severity.ERROR);
+end
+
+rule "FD Set Name is not null"
+when
+  $scenario : Scenario (fundamentalDiagramSet != null)
+  $set : FundamentalDiagramSet( name == null || name == "") from $scenario.getFundamentalDiagramSet()
+  $result : ValidationResult()
+then
+  $result.addMessage("Invalid Fundamental Diagram Set Name. Cannot be null.", ValidationMessage.Severity.ERROR);
+end
+
+rule "Split Ratio Set Name is not null"
+when
+  $scenario : Scenario (splitRatioSet != null)
+  $set : SplitRatioSet( name == null || name == "") from $scenario.getSplitRatioSet()
+  $result : ValidationResult()
+then
+  $result.addMessage("Invalid Split Ratio Set Name. Cannot be null.", ValidationMessage.Severity.ERROR);
+end
+
+rule "Actuator Set Name is not null"
+when
+  $scenario : Scenario (actuatorSet != null)
+  $set : ActuatorSet( name == null || name == "") from $scenario.getActuatorSet()
+  $result : ValidationResult()
+then
+  $result.addMessage("Invalid Actuator Set Name. Cannot be null.", ValidationMessage.Severity.ERROR);
+end
+
+rule "Controller Set Name is not null"
+when
+  $scenario : Scenario (controllerSet != null)
+  $set : ControllerSet( name == null || name == "") from $scenario.getControllerSet()
+  $result : ValidationResult()
+then
+  $result.addMessage("Invalid Controller Set Name. Cannot be null.", ValidationMessage.Severity.ERROR);
+end
