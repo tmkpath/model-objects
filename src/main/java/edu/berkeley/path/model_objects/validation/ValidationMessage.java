@@ -23,7 +23,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  **/
-package edu.berkeley.path.model_objects.util;
+package edu.berkeley.path.model_objects.validation;
 
 /**
  * Class to store Validation Messages and their severity (Error, Warning, etc).

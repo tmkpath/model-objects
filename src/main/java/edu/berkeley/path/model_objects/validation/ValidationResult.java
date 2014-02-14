@@ -23,14 +23,12 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  **/
-package edu.berkeley.path.model_objects.util;
+package edu.berkeley.path.model_objects.validation;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
-
-import core.Monitor;
 
 /**
  * Class to store results of validation process.

@@ -24,12 +24,13 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.berkeley.path.model_objects.scenario;
+package edu.berkeley.path.model_objects.validation;
 
+import edu.berkeley.path.model_objects.jaxb.NodeType;
 import edu.berkeley.path.model_objects.network.Network;
-import edu.berkeley.path.model_objects.util.ValidationMessage;
-import edu.berkeley.path.model_objects.util.Validation;
-import edu.berkeley.path.model_objects.util.ValidationResult;
+import edu.berkeley.path.model_objects.network.Link;
+import edu.berkeley.path.model_objects.network.Node;
+import edu.berkeley.path.model_objects.scenario.*;
 import org.junit.*;
 
 import static org.junit.Assert.assertEquals;
@@ -44,12 +45,28 @@ public class ScenarioValidationTest {
   private static Scenario scenario;
 
   private Scenario createScenario() {
+
     scenario = new Scenario();
     scenario.setId(ID);
     scenario.setDescription(DESCRIPTION);
     scenario.setName(NAME);
     scenario.setProjectId(PROJECT_ID);
+
+    // define network for test
     Network network = new Network();
+    // define and add link to network
+    Link link = new Link();
+    link.setLength(0.0D);
+    network.getListOfLinks().add(link);
+
+    // define node and add link to network
+    Node node = new Node();
+    NodeType nodeType = new NodeType();
+    nodeType.setId(6L); // set to terminal node type
+    nodeType.setName("Terminal");
+    node.setNodeType(nodeType);
+    network.getListOfNodes().add(node);
+
     SensorSet sensorSet = new SensorSet();
     DemandSet demandSet = new DemandSet();
     FundamentalDiagramSet fdSet = new FundamentalDiagramSet();
@@ -73,18 +90,17 @@ public class ScenarioValidationTest {
 
     try {
       Validation validation = new Validation();
-      Validation.Context context = Validation.Context.DATABASE;
+      Validation.ValidationContext context = Validation.ValidationContext.DATABASE;
       ValidationResult result = validation.validate(scenario, scenario.getId(), context );
-      System.out.println(result.getMessages(ValidationMessage.Severity.ERROR));
 
       int expectedNumberOfRulesFired = 8;
       int expectedNumberOfErrors = 8;
       // make sure all scenario database rules were fired
-      assertEquals(result.getNumOfRulesFired(), expectedNumberOfRulesFired);
+      assertEquals(expectedNumberOfRulesFired, result.getNumOfRulesFired());
       // assert that error
       assertFalse(result.isValid());
 
-      assertEquals(result.getNumOfErrors(), expectedNumberOfErrors);
+      assertEquals(expectedNumberOfErrors, result.getNumOfErrors());
 
     } catch (Exception e ) {
       e.printStackTrace();
@@ -93,23 +109,21 @@ public class ScenarioValidationTest {
   }
 
   @Test
-  public void testCommonRules() {
+  public void testFrameworkRules() {
     Scenario scenario = createScenario();
 
     try {
       Validation validation = new Validation();
-      Validation.Context context = Validation.Context.COMMON;
+      Validation.ValidationContext context = Validation.ValidationContext.FRAMEWORK;
       ValidationResult result = validation.validate(scenario, scenario.getId(), context );
-      System.out.println(result.getMessages(ValidationMessage.Severity.ERROR));
 
-      int expectedNumberOfRulesFired = 7;
-      int expectedNumberOfErrors = 7;
+      int expectedNumberOfRulesFired = 5;
+      int expectedNumberOfErrors = 5;
       // make sure all scenario database rules were fired
-      assertEquals(result.getNumOfRulesFired(), expectedNumberOfRulesFired);
+      assertEquals(expectedNumberOfRulesFired, result.getNumOfRulesFired());
       // assert that error
       assertFalse(result.isValid());
-
-      assertEquals(result.getNumOfErrors(), expectedNumberOfErrors);
+      assertEquals(expectedNumberOfErrors, result.getNumOfErrors());
 
     } catch (Exception e ) {
       e.printStackTrace();
