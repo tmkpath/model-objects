@@ -1,0 +1,3 @@
+package edu.berkeley.path.model_objects.validation;
+
+import edu.berkeley.path.model_objects.scenario.Scenario;
