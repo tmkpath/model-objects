@@ -50,6 +50,26 @@ public class RouteSet extends edu.berkeley.path.model_objects.jaxb.RouteSet {
   }
 
   /**
+   * Return project id of routeSet
+   *
+   * @return project id of routeSet as long
+   */
+  @Override
+  public long getProjectId() {
+    return super.getProjectId();
+  }
+
+  /**
+   * Set project id of routeSet
+   *
+   * @param id of routeSet
+   */
+  @Override
+  public void setProjectId(long id) {
+    super.setProjectId(id);
+  }
+
+    /**
    * Return name of routeSet
    *
    * @return name of routeSet as string

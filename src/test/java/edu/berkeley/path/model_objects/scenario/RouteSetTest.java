@@ -28,14 +28,20 @@ package edu.berkeley.path.model_objects.scenario;
 
 import org.junit.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import java.util.*;
 
-public class RouteTest {
+public class RouteSetTest {
+    RouteSet routeSet;
     Route route;
     ArrayList<RouteLink> rlinks;
     RouteLink rlink1;
     RouteLink rlink2;
+
+    private static String ROUTE_SET_NAME = "TEST ROUTE SET";
+    private static long ROUTE_SET_ID = 1;
+    private static long ROUTE_SET_PROJECT_ID = 1;
 
     private static String ROUTE_NAME = "TEST ROUTE";
     private static long ROUTE_ID = 1;
@@ -48,6 +54,11 @@ public class RouteTest {
 
     @Before
     public void setup() {
+        routeSet = new RouteSet();
+        routeSet.setId(ROUTE_SET_ID);
+        routeSet.setProjectId(ROUTE_SET_PROJECT_ID);
+        routeSet.setName(ROUTE_SET_NAME);
+
         // Mock route Object
         route = new Route();
         route.setName(ROUTE_NAME);
@@ -66,25 +77,40 @@ public class RouteTest {
         rlinks.add(rlink1);
         rlinks.add(rlink2);
         route.setListOfRouteLinks(rlinks);
+
+        List<Route> routes = new ArrayList<Route>();
+        routes.add(route);
+        routeSet.setListOfRoutes(routes);
     }
 
     @Test
     public void testSettersGetters() {
+        // test routeSet  model object
+        assertEquals(routeSet.getName(), ROUTE_SET_NAME);
+        assertEquals(routeSet.getId(), ROUTE_SET_ID);
+        assertEquals(routeSet.getProjectId(), ROUTE_SET_PROJECT_ID);
+
+        // test first in list of routes
+        route = routeSet.getListOfRoutes().get(0);
+        assertNotNull(route);
+        assertEquals(routeSet.getName(), ROUTE_SET_NAME);
+        assertEquals(routeSet.getId(), ROUTE_SET_ID);
+        assertEquals(routeSet.getProjectId(), ROUTE_SET_PROJECT_ID);
+
         // test route model object
         assertEquals(route.getName(), ROUTE_NAME);
         assertEquals(route.getId(), ROUTE_ID);
 
         // test first in list of route links
         rlink1 = route.getListOfRouteLinks().get(0);
-
+        assertNotNull(rlink1);
         assertEquals((long)rlink1.getLinkId(), ROUTE_LINK_ID1);
         assertEquals(rlink1.getLinkOrder(), ROUTE_LINK_ORDER1);
 
         // test second in list of route links
         rlink2 = route.getListOfRouteLinks().get(1);
-
+        assertNotNull(rlink2);
         assertEquals((long)rlink2.getLinkId(), ROUTE_LINK_ID2);
         assertEquals(rlink2.getLinkOrder(), ROUTE_LINK_ORDER2);
-
     }
 }
