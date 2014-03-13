@@ -344,7 +344,7 @@ public List<Network> getListOfNetworks() {
   public Long getRouteSetId() {
     // if the route set id is not set, try and get it from route set
     if (routeSetId == null) {
-      RouteSet routeSet = getRouteSet();
+      RouteSet routeSet = (RouteSet) getRouteSet();
       if (routeSet != null) {
         setRouteSetId(routeSet.getId());
       }

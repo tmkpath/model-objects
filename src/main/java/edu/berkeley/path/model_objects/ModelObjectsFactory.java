@@ -358,6 +358,16 @@ public class ModelObjectsFactory extends ObjectFactory {
   }
 
   /**
+   * Create an instance of RouteSet Model Object
+   *
+   * @return RouteSet Model Object
+   */
+  @Override
+  public RouteSet createRouteSet() {
+    return new RouteSet();
+  }
+
+  /**
    * Create an instance of Route Model Object
    *
    * @return Route Model Object
