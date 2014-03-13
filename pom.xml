@@ -71,7 +71,12 @@
       <groupId>edu.berkeley.path</groupId>
       <artifactId>CORE</artifactId>
       <version>0.101-SNAPSHOT</version>
-    </dependency>  
+    </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20090211</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
