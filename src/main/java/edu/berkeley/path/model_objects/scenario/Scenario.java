@@ -205,6 +205,13 @@ public List<Network> getListOfNetworks() {
     return (FundamentalDiagramSet) super.getFundamentalDiagramSet();
   }
 
+  public RouteSet getRouteSet() {
+    return (RouteSet) super.getRouteSet();
+  }
+
+  public void setRouteSet(RouteSet routeSet) {
+    super.setRouteSet(routeSet);
+  }
 
   public void setFundamentalDiagramSet(FundamentalDiagramSet value) {
     super.setFundamentalDiagramSet(value);
