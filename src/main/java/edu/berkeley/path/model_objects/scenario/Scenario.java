@@ -97,16 +97,16 @@ public List<Network> getListOfNetworks() {
     super.setVehicleTypeSet(value);
   }
 
-  //TODO Needs SignalSet MO
-  @Override
-  public SignalSet getSignalSet() {
-    return super.getSignalSet();
-  }
-
-  @Override
-  public void setSignalSet(SignalSet value) {
-    super.setSignalSet(value);
-  }
+  //TODO Needs MOs for Signal Plan, Phase, Set, etc 
+//  @Override
+//  public SignalSet getSignalSet() {
+//    return super.getSignalSet();
+//  }
+//
+//  @Override
+//  public void setSignalSet(SignalSet value) {
+//    super.setSignalSet(value);
+//  }
 
   @Override
   public SensorSet getSensorSet() {

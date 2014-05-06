@@ -67,7 +67,7 @@
         <xs:element ref="settings" minOccurs="0"  maxOccurs="1" />
         <xs:element ref="NetworkSet" minOccurs="0" maxOccurs="1" />
         <xs:element ref="VehicleTypeSet" minOccurs="1" />
-        <xs:element ref="SignalSet" minOccurs="0" maxOccurs="1"  />
+<!--        <xs:element ref="SignalSet" minOccurs="0" maxOccurs="1"  /> -->
         <xs:element ref="SensorSet" minOccurs="0" maxOccurs="1"  />
 				<xs:element ref="ActuatorSet" minOccurs="0" maxOccurs="1"  />
         <xs:element ref="InitialDensitySet" minOccurs="0" maxOccurs="1" />
@@ -114,51 +114,127 @@
 			<xs:attribute name="project_id" type="xs:long" use="required" />
 		</xs:complexType>
 	</xs:element>
-	  
-  <!-- SignalSet ................................................................ -->
 
-	<xs:element name="SignalSet">
+  <!-- SignalPlanSet ............................................................. -->
+<!-- issues: date representation  (string?)
+             optional vs required?
+             time in millis
+             references to other table/object ids (longs)
+             SignalPhase may have not movements or elements if it is not in_use
+             one mixed type (SignalTimingElement) where content is a list of phase_num
+-->
+
+	<xs:element name="SignalPlanSet">
 		<xs:complexType>
       <xs:sequence>
-        <xs:element ref="description" minOccurs="0" />
-        <xs:element ref="signal" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element ref="SignalPlan" minOccurs="1" maxOccurs="unbounded" />
+	<xs:element ref="SignalPlanSchedule" minOccurs="0" maxOccurs="unbounded" />
       </xs:sequence>
 			<xs:attribute name="id" type="xs:long" use="required"/>
-			<xs:attribute name="project_id" type="xs:long" use="required" />
-			<xs:attribute name="name" type="xs:string" use="optional" default="" />
+			<xs:attribute name="project_id" type="xs:long" use="required"/>
+			<xs:attribute name="name" type="xs:string" use="optional" />
+			<xs:attribute name="description" type="xs:string" use="optional" />
+			<xs:attribute name="default_plan_id" type="xs:long" use="required" />
 		</xs:complexType>
 	</xs:element>
 
-		<xs:element name="signal">
-			<xs:complexType>
-        <xs:sequence>
-          <xs:element ref="phase" minOccurs="0" maxOccurs="unbounded" />
-        </xs:sequence>
-				<xs:attribute name="id" type="xs:long" use="required"/>
-				<xs:attribute name="node_id" type="xs:long" use="required" />
-			</xs:complexType>
-		</xs:element>
 
-			<xs:element name="phase">
-				<xs:complexType>
-          <xs:all>
-            <xs:element ref="link_references" minOccurs="0" />
-          </xs:all>
-					<!-- NEMA convention for phase numbering (1-8). For right hand turns,
-					use the negative of the adjacent through movement (e.g. nema="-2" moves with nema="2" -->
-					<xs:attribute name="nema" type="xs:integer" use="required" />
-					<xs:attribute name="protected" type="xs:boolean" use="required" />
-					<xs:attribute name="permissive" type="xs:boolean" use="required" />
-					<xs:attribute name="lag" type="xs:boolean" use="required" />
-					<xs:attribute name="recall" type="xs:boolean" use="required" />
-					
-					<!-- the following are in units of time as set in settings.units -->
-					<xs:attribute name="yellow_time" type="xs:double" use="required" />
-					<xs:attribute name="red_clear_time" type="xs:double" use="required" />
-					<xs:attribute name="min_green_time" type="xs:double" use="required" />
-				</xs:complexType>
-			</xs:element>
-  
+	<xs:element name="SignalPlan">
+		<xs:complexType>
+      <xs:sequence>
+        <xs:element ref="SignalPhase" minOccurs="1" maxOccurs="unbounded" />
+	<xs:element ref="SignalTiming" minOccurs="1" maxOccurs="unbounded" />
+      </xs:sequence>
+			<xs:attribute name="id" type="xs:long" use="required"/>
+			<xs:attribute name="name" type="xs:string" use="optional" />
+			<xs:attribute name="description" type="xs:string" use="optional"/>
+			<xs:attribute name="plan_set_id" type="xs:long" use="required"/>
+			<xs:attribute name="offset_millis" type="xs:long" use="required" />
+			<xs:attribute name="cycle_length_millis" type="xs:long" use="required"/>
+			<xs:attribute name="start_time" type="xs:string" use="optional" />
+			<xs:attribute name="stop_time" type="xs:string" use="optional"/>
+			<xs:attribute name="reference_point" type="xs:long" use="optional" />
+			<xs:attribute name="reference_phase" type="xs:long" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="SignalPlanSchedule">
+		<xs:complexType>
+			<xs:attribute name="id" type="xs:long" use="required"/>
+
+			<xs:attribute name="plan_set_id" type="xs:long" use="required"/>
+			<xs:attribute name="period" type="xs:string" use="required" />
+			<xs:attribute name="action_type" type="xs:int" use="required"/>
+			<xs:attribute name="action_item" type="xs:string" use="required"/>
+			<xs:attribute name="Saturday" type="xs:boolean" use="required" />
+			<xs:attribute name="Sunday" type="xs:boolean" use="required" />
+			<xs:attribute name="Monday" type="xs:boolean" use="required" />
+			<xs:attribute name="Tuesday" type="xs:boolean" use="required" />
+			<xs:attribute name="Wednesday" type="xs:boolean" use="required" />
+			<xs:attribute name="Thursday" type="xs:boolean" use="required" />
+			<xs:attribute name="Friday" type="xs:boolean" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="SignalPhase">
+
+		<xs:complexType>
+      <xs:sequence>
+        <xs:element ref="SignalPhaseMovement" minOccurs="0" maxOccurs="1" />
+	<xs:element ref="SignalPhaseElement" minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+			<xs:attribute name="plan_id" type="xs:long" use="required"/>
+			<xs:attribute name="phase_number" type="xs:int" use="required" />
+			<xs:attribute name="in_use" type="xs:boolean" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="SignalPhaseElement">
+		<xs:complexType>
+			<xs:attribute name="id" type="xs:long" use="required"/>
+			<xs:attribute name="phase_element_type" type="xs:int" use="required" />
+			<xs:attribute name="phase_length_millis" type="xs:long" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="SignalPhaseMovement">
+		<xs:complexType>
+      <xs:sequence>
+        <xs:element ref="SignalMovementElement" minOccurs="1" maxOccurs="unbounded" />
+      </xs:sequence>
+			<xs:attribute name="plan_id" type="xs:long" use="required"/>
+			<xs:attribute name="phase_number" type="xs:int" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="SignalMovementElement">
+		<xs:complexType>
+			<xs:attribute name="id" type="xs:long" use="required"/>
+			<xs:attribute name="phase_movement_num" type="xs:int" use="required"/>
+			<xs:attribute name="link_id_to" type="xs:long" use="required"/>
+			<xs:attribute name="link_id_from" type="xs:long" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="SignalTiming">
+		<xs:complexType>
+      <xs:sequence>
+        <xs:element ref="SignalTimingElement" minOccurs="1" maxOccurs="unbounded" />
+      </xs:sequence>
+			<xs:attribute name="id" type="xs:long" use="required"/>
+			<xs:attribute name="plan_id" type="xs:long" use="required"/>
+			<xs:attribute name="signal_timing_type" type="xs:int" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	  
+	<xs:element name="SignalTimingElement">
+		<xs:complexType mixed="true"> <!-- content is list of phase_number (int) -->
+			<xs:attribute name="order" type="xs:int" use="required"/>
+			<xs:attribute name="time_step_millis" type="xs:long" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
+
   <!-- SensorSet ................................................................
   
   valid sensor parameters:
