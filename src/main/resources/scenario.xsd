@@ -116,13 +116,6 @@
 	</xs:element>
 
   <!-- SignalPlanSet ............................................................. -->
-<!-- issues: date representation  (string?)
-             optional vs required?
-             time in millis
-             references to other table/object ids (longs)
-             SignalPhase may have not movements or elements if it is not in_use
-             one mixed type (SignalTimingElement) where content is a list of phase_num
--->
 
 	<xs:element name="SignalPlanSet">
 		<xs:complexType>
@@ -133,7 +126,10 @@
 			<xs:attribute name="id" type="xs:long" use="required"/>
 			<xs:attribute name="project_id" type="xs:long" use="required"/>
 			<xs:attribute name="name" type="xs:string" use="optional" />
-			<xs:attribute name="description" type="xs:string" use="optional" />
+			<xs:attribute name="description" type="xs:string" use="optional"/>
+			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
+			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+
 			<xs:attribute name="default_plan_id" type="xs:long" use="required" />
 		</xs:complexType>
 	</xs:element>
@@ -148,12 +144,15 @@
 			<xs:attribute name="id" type="xs:long" use="required"/>
 			<xs:attribute name="name" type="xs:string" use="optional" />
 			<xs:attribute name="description" type="xs:string" use="optional"/>
+			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
+			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+
 			<xs:attribute name="plan_set_id" type="xs:long" use="required"/>
-			<xs:attribute name="offset_millis" type="xs:long" use="required" />
-			<xs:attribute name="cycle_length_millis" type="xs:long" use="required"/>
-			<xs:attribute name="start_time" type="xs:string" use="optional" />
-			<xs:attribute name="stop_time" type="xs:string" use="optional"/>
-			<xs:attribute name="reference_point" type="xs:long" use="optional" />
+			<xs:attribute name="offset_ms" type="xs:long" use="required"/>
+			<xs:attribute name="cycle_length_ms" type="xs:long" use="required"/>
+			<xs:attribute name="start_time" type="xs:long" use="optional"/>
+			<xs:attribute name="stop_time" type="xs:long" use="optional"/>
+			<xs:attribute name="reference_point" type="xs:long" use="optional"/>
 			<xs:attribute name="reference_phase" type="xs:long" use="optional"/>
 		</xs:complexType>
 	</xs:element>
@@ -161,18 +160,20 @@
 	<xs:element name="SignalPlanSchedule">
 		<xs:complexType>
 			<xs:attribute name="id" type="xs:long" use="required"/>
+			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
+			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 
 			<xs:attribute name="plan_set_id" type="xs:long" use="required"/>
-			<xs:attribute name="period" type="xs:string" use="required" />
-			<xs:attribute name="action_type" type="xs:int" use="required"/>
+			<xs:attribute name="period" type="xs:string" use="required"/>
+			<xs:attribute name="action_type" type="xs:long" use="required"/>
 			<xs:attribute name="action_item" type="xs:string" use="required"/>
-			<xs:attribute name="Saturday" type="xs:boolean" use="required" />
-			<xs:attribute name="Sunday" type="xs:boolean" use="required" />
-			<xs:attribute name="Monday" type="xs:boolean" use="required" />
-			<xs:attribute name="Tuesday" type="xs:boolean" use="required" />
-			<xs:attribute name="Wednesday" type="xs:boolean" use="required" />
-			<xs:attribute name="Thursday" type="xs:boolean" use="required" />
-			<xs:attribute name="Friday" type="xs:boolean" use="required" />
+			<xs:attribute name="Saturday" type="xs:boolean" use="required"/>
+			<xs:attribute name="Sunday" type="xs:boolean" use="required"/>
+			<xs:attribute name="Monday" type="xs:boolean" use="required"/>
+			<xs:attribute name="Tuesday" type="xs:boolean" use="required"/>
+			<xs:attribute name="Wednesday" type="xs:boolean" use="required"/>
+			<xs:attribute name="Thursday" type="xs:boolean" use="required"/>
+			<xs:attribute name="Friday" type="xs:boolean" use="required"/>
 		</xs:complexType>
 	</xs:element>
 
@@ -183,17 +184,23 @@
         <xs:element ref="SignalPhaseMovement" minOccurs="0" maxOccurs="1" />
 	<xs:element ref="SignalPhaseElement" minOccurs="0" maxOccurs="unbounded" />
       </xs:sequence>
+			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
+			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+
 			<xs:attribute name="plan_id" type="xs:long" use="required"/>
-			<xs:attribute name="phase_number" type="xs:int" use="required" />
-			<xs:attribute name="in_use" type="xs:boolean" use="required" />
+			<xs:attribute name="phase_number" type="xs:int" use="required"/>
+			<xs:attribute name="in_use" type="xs:int" use="required" />
 		</xs:complexType>
 	</xs:element>
 
 	<xs:element name="SignalPhaseElement">
 		<xs:complexType>
 			<xs:attribute name="id" type="xs:long" use="required"/>
-			<xs:attribute name="phase_element_type" type="xs:int" use="required" />
-			<xs:attribute name="phase_length_millis" type="xs:long" use="required" />
+			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
+			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+
+			<xs:attribute name="type" type="xs:long" use="required" />
+			<xs:attribute name="phase_length_ms" type="xs:long" use="required" />
 		</xs:complexType>
 	</xs:element>
 
@@ -202,6 +209,9 @@
       <xs:sequence>
         <xs:element ref="SignalMovementElement" minOccurs="1" maxOccurs="unbounded" />
       </xs:sequence>
+			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
+			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+
 			<xs:attribute name="plan_id" type="xs:long" use="required"/>
 			<xs:attribute name="phase_number" type="xs:int" use="required"/>
 		</xs:complexType>
@@ -210,7 +220,10 @@
 	<xs:element name="SignalMovementElement">
 		<xs:complexType>
 			<xs:attribute name="id" type="xs:long" use="required"/>
-			<xs:attribute name="phase_movement_num" type="xs:int" use="required"/>
+			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
+			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+
+			<xs:attribute name="movement_num" type="xs:int" use="required"/> 
 			<xs:attribute name="link_id_to" type="xs:long" use="required"/>
 			<xs:attribute name="link_id_from" type="xs:long" use="required"/>
 		</xs:complexType>
@@ -222,15 +235,54 @@
         <xs:element ref="SignalTimingElement" minOccurs="1" maxOccurs="unbounded" />
       </xs:sequence>
 			<xs:attribute name="id" type="xs:long" use="required"/>
+			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
+			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+
 			<xs:attribute name="plan_id" type="xs:long" use="required"/>
-			<xs:attribute name="signal_timing_type" type="xs:int" use="required"/>
+			<xs:attribute name="type" type="xs:long" use="required"/> 
 		</xs:complexType>
 	</xs:element>
 	  
 	<xs:element name="SignalTimingElement">
 		<xs:complexType mixed="true"> <!-- content is list of phase_number (int) -->
+			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
+			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+
 			<xs:attribute name="order" type="xs:int" use="required"/>
-			<xs:attribute name="time_step_millis" type="xs:long" use="required"/>
+			<xs:attribute name="time_step_ms" type="xs:long" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="SignalPhaseElementType">
+		<xs:complexType>
+			<xs:attribute name="id" type="xs:long" use="required"/>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="description" type="xs:string" use="optional"/>
+			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
+			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+			<xs:attribute name="in_use" type="xs:int" use="optional" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="SignalTimingType">
+		<xs:complexType>
+			<xs:attribute name="id" type="xs:long" use="required"/>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="description" type="xs:string" use="optional"/>
+			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
+			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+			<xs:attribute name="in_use" type="xs:int" use="optional" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="SignalScheduleActionType">
+		<xs:complexType>
+			<xs:attribute name="id" type="xs:long" use="required"/>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="description" type="xs:string" use="optional"/>
+			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
+			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+			<xs:attribute name="in_use" type="xs:int" use="optional" />
 		</xs:complexType>
 	</xs:element>
 
