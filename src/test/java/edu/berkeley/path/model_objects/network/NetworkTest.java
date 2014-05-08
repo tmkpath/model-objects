@@ -53,13 +53,13 @@ public class NetworkTest {
     nd1.setId(1);
     nd1.addMarkerName("one");
     nd1.setId(1);
-    nw.addNode(nd1);
+    nw.getListOfNodes().add(nd1);
 
     nd2 = new Node();
     nd2.setId(2);
     nd2.addMarkerName("two");
     nd2.setType(1, "test");
-    nw.addNode(nd2);
+    nw.getListOfNodes().add(nd2);
 
     ln = new Link();
     ln.setId(3);
@@ -81,7 +81,7 @@ public class NetworkTest {
 		ln.addPoint(p1);
 		ln.addPoint(p2);
     
-    nw.addLink(ln);
+    nw.getListOfLinks().add(ln);
   }
   
   @Test

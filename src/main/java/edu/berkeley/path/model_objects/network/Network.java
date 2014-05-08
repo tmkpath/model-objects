@@ -31,10 +31,8 @@ import edu.berkeley.path.model_objects.jaxb.Position;
 import edu.berkeley.path.model_objects.shared.Point;
 import edu.berkeley.path.model_objects.MOException;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
 
 /** Network class
 * @author Gabriel Gomes (gomes@path.berkeley.edu)
@@ -42,110 +40,105 @@ import java.util.Map;
 */
 public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 
-    /** @y.exclude */
-    protected boolean isempty;
-    /** @y.exclude */
-    protected Point   center;
-
-    private Map<Long, Node> nodeMap = new HashMap<Long, Node>();
-    private Map<Long, Link> linkMap = new HashMap<Long, Link>();
-
-    /**
-     * Return id of network
-     *
-     * @return id of network as long
-     */
-    @Override
-    public long getId() {
-        return super.getId();
-    }
-
-    /**
-     * Set id of network
-     *
-     * @param id of network as long
-     */
-    @Override
-    public void setId(long id) {
-        super.setId(id);
-    }
-
-    /**
-     * Return name of network
-     *
-     * @return name of network as string
-     */
-    @Override
-    public String getName() {
-        return super.getName();
-    }
-
-    /**
-     * Set name of network
-     *
-     * @param name of network as string
-     */
-    @Override
-    public void setName(String name) {
-        super.setName(name);
-    }
-
-    /**
-     * Return description of network
-     *
-     * @return description of network as string
-     */
-    @Override
-    public String getDescription() {
-        return super.getDescription();
-    }
-
-    /**
-     * Set name of description
-     *
-     * @param description of network as string
-     */
-    @Override
-    public void setDescription(String description) {
-        super.setDescription(description);
-    }
-
-    /**
-     * Return whether network is locked for edit
-     *
-     * @return true if locked for edit, false if not
-     */
-    @Override
-    public boolean isLockedForEdit() {
-        return super.isLockedForEdit();
-    }
-
-    /**
-     * Set whether network is locked for edit or not
-     *
-     * @param locked is true if locked, false if not locked
-     */
-    @Override
-    public void setLockedForEdit(Boolean locked) {
-        super.setLockedForEdit(locked);
-    }
-
-    /**
-     * Return whether network is locked historically.
-     *
-     * @return true if locked for edit, false if not
-     */
-    @Override
-    public boolean isLockedForHistory() {
-        return super.isLockedForHistory();
-    }
-
-    /**
-     * Set whether network is locked historically. This should be set
-     * when simulation is run on a network and output needs to reference
-     * the network state for historical/reproducible purposes.
-     *
-     * @param locked is true if locked, false if locked
+  /** @y.exclude */ protected boolean isempty;
+  /** @y.exclude */ protected Point center; 
+	
+  /**
+   * Return id of network
+   * 
+   * @return id of network as long
+   */
+  @Override
+  public long getId() {
+    return super.getId();
+  }
+  
+  /**
+   * Set id of network
+   * 
+   * @param id of network as long
+   */
+  @Override
+  public void setId(long id) {
+    super.setId(id);
+  }
+  
+  /**
+   * Return name of network
+   * 
+   * @return name of network as string
+   */
+  @Override
+  public String getName() {
+    return super.getName();
+  }
+  
+  /**
+   * Set name of network
+   * 
+   * @param name of network as string
+   */
+  @Override
+  public void setName(String name) {
+    super.setName(name);
+  }
+  
+  /**
+   * Return description of network
+   * 
+   * @return description of network as string
+   */
+  @Override
+  public String getDescription() {
+    return super.getDescription();
+  }
+  
+  /**
+   * Set name of description
+   * 
+   * @param description of network as string
+   */
+  @Override
+  public void setDescription(String description) {
+    super.setDescription(description);
+  }
+  
+  /**
+   * Return whether network is locked for edit
+   * 
+   * @return true if locked for edit, false if not
+   */
+  @Override
+  public boolean isLockedForEdit() {
+    return super.isLockedForEdit();
+  }
+  
+  /**
+   * Set whether network is locked for edit or not
+   * 
+   * @param locked is true if locked, false if not locked
+   */
+  @Override
+  public void setLockedForEdit(Boolean locked) {
+    super.setLockedForEdit(locked);
+  }
+  
+  /**
+   * Return whether network is locked historically.  
+   * 
+   * @return true if locked for edit, false if not
+   */
+  @Override
+  public boolean isLockedForHistory() {
+    return super.isLockedForHistory();
+  }
+  
+  /**
+   * Set whether network is locked historically. This should be set
+   * when simulation is run on a network and output needs to reference 
+   * the network state for historical/reproducible purposes.
+   * 
+   * @param locked is true if locked, false if locked
    */
   @Override
   public void setLockedForHistory(Boolean locked) {
@@ -237,17 +230,11 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 	public Link getLinkWithId(long id){
 		if(isempty)
 			return null;
-
-        Link res = linkMap.get(id);
-        if(res != null) return res;
-
 		for(edu.berkeley.path.model_objects.jaxb.Link link : getLinkList().getLink()){
 			if(link.getId() == id)
 				return (Link) link;
 		}
 		return null;
-
-//        return linkMap.get(id);
 	}
 
 	/** 
@@ -258,17 +245,11 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 	public Node getNodeWithId(long id){
 		if(isempty)
 			return null;
-
-        Node res = nodeMap.get(id);
-        if (res != null) return res;
-
 		for(edu.berkeley.path.model_objects.jaxb.Node node : getNodeList().getNode()){
 			if(node.getId() == id)
 				return (Node) node;
 		}
 		return null;
-
-//        return nodeMap.get(id);
 	}
 
 	/** 
@@ -323,13 +304,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 		nodeList.getNode().clear();
 		nodeList.getNode().addAll((List<edu.berkeley.path.model_objects.jaxb.Node>)(List<?>)nodes);
 		setNodeList(nodeList);
-
-        nodeMap.clear();
-        for(Node node: getListOfNodes()) {
-            nodeMap.put(node.getId(), node);
-        }
-
-    }
+	}
 	  
 	/**
 	 * Set the links. Attaches list of Link Model Objects to network.
@@ -339,18 +314,13 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 	@SuppressWarnings("unchecked")
 	public void setListOfLinks(List<Link> links) {
 	  edu.berkeley.path.model_objects.jaxb.LinkList linkList = getLinkList();
-        if ( linkList == null ) {
-          linkList = new edu.berkeley.path.model_objects.jaxb.LinkList();
-        }
-        linkList.getLink().clear();
-        linkList.getLink().addAll((List<edu.berkeley.path.model_objects.jaxb.Link>)(List<?>)links);
-        setLinkList(linkList);
-        linkMap.clear();
-        for(Link link: getListOfLinks()) {
-            linkMap.put(link.getId(), link);
-        }
-
+    if ( linkList == null ) {
+      linkList = new edu.berkeley.path.model_objects.jaxb.LinkList();  
     }
+    linkList.getLink().clear();
+    linkList.getLink().addAll((List<edu.berkeley.path.model_objects.jaxb.Link>)(List<?>)links);
+    setLinkList(linkList);
+	}
 
   /**
    * Based on the begin and end nodes of links, this sets the input and output links of all
@@ -516,15 +486,5 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
     else {
       throw new MOException(null, "Could not calculate Bounding Box. No Nodes set in network.");
     }
-  }
-
-  public void addNode(Node node) {
-    getListOfNodes().add(node);
-    nodeMap.put(node.getId(), node);
-  }
-
-  public void addLink(Link link) {
-    getListOfLinks().add(link);
-    linkMap.put(link.getId(), link);
   }
 }
