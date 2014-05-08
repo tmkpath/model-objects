@@ -237,13 +237,17 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 	public Link getLinkWithId(long id){
 		if(isempty)
 			return null;
-//		for(edu.berkeley.path.model_objects.jaxb.Link link : getLinkList().getLink()){
-//			if(link.getId() == id)
-//				return (Link) link;
-//		}
-//		return null;
 
-        return linkMap.get(id);
+        Link res = linkMap.get(id);
+        if(res != null) return res;
+
+		for(edu.berkeley.path.model_objects.jaxb.Link link : getLinkList().getLink()){
+			if(link.getId() == id)
+				return (Link) link;
+		}
+		return null;
+
+//        return linkMap.get(id);
 	}
 
 	/** 
@@ -254,13 +258,17 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 	public Node getNodeWithId(long id){
 		if(isempty)
 			return null;
-//		for(edu.berkeley.path.model_objects.jaxb.Node node : getNodeList().getNode()){
-//			if(node.getId() == id)
-//				return (Node) node;
-//		}
-//		return null;
 
-        return nodeMap.get(id);
+        Node res = nodeMap.get(id);
+        if (res != null) return res;
+
+		for(edu.berkeley.path.model_objects.jaxb.Node node : getNodeList().getNode()){
+			if(node.getId() == id)
+				return (Node) node;
+		}
+		return null;
+
+//        return nodeMap.get(id);
 	}
 
 	/** 
