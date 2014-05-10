@@ -121,7 +121,7 @@
 		<xs:complexType>
       <xs:sequence>
         <xs:element ref="SignalPlan" minOccurs="1" maxOccurs="unbounded" />
-	<xs:element ref="SignalPlanSchedule" minOccurs="0" maxOccurs="unbounded" />
+	<xs:element ref="SignalPlanScheduleSet" minOccurs="0" maxOccurs="1" />
       </xs:sequence>
 			<xs:attribute name="id" type="xs:long" use="required"/>
 			<xs:attribute name="project_id" type="xs:long" use="required"/>
@@ -157,15 +157,48 @@
 		</xs:complexType>
 	</xs:element>
 
+	<xs:element name="SignalPlanScheduleSet">
+		<xs:complexType>
+      <xs:sequence>
+        <xs:element ref="SignalPlanSchedule" minOccurs="1" maxOccurs="unbounded" />
+      </xs:sequence>
+			<xs:attribute name="id" type="xs:long" use="required"/>
+			<xs:attribute name="name" type="xs:string" use="optional" />
+			<xs:attribute name="description" type="xs:string" use="optional"/>
+			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
+			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+
+			<xs:attribute name="plan_set_id" type="xs:long" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
+
 	<xs:element name="SignalPlanSchedule">
+		<xs:complexType>
+      <xs:sequence>
+        <xs:element ref="SignalPlanSchedule" minOccurs="1" maxOccurs="unbounded" />
+      </xs:sequence>
+			<xs:attribute name="id" type="xs:long" use="required"/>
+			<xs:attribute name="name" type="xs:string" use="optional" />
+			<xs:attribute name="description" type="xs:string" use="optional"/>
+			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
+			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+
+			<xs:attribute name="schedule_set_id" type="xs:long" use="required"/>
+			<xs:attribute name="schedule_label" type="xs:string" use="required"/>
+			<xs:attribute name="action_type" type="xs:long" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:element name="SignalPlanScheduleDetail">
 		<xs:complexType>
 			<xs:attribute name="id" type="xs:long" use="required"/>
 			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
 			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 
-			<xs:attribute name="plan_set_id" type="xs:long" use="required"/>
+			<xs:attribute name="schedule_id" type="xs:long" use="required"/>
 			<xs:attribute name="period" type="xs:string" use="required"/>
-			<xs:attribute name="action_type" type="xs:long" use="required"/>
 			<xs:attribute name="action_item" type="xs:string" use="required"/>
 			<xs:attribute name="Saturday" type="xs:boolean" use="required"/>
 			<xs:attribute name="Sunday" type="xs:boolean" use="required"/>
@@ -176,6 +209,7 @@
 			<xs:attribute name="Friday" type="xs:boolean" use="required"/>
 		</xs:complexType>
 	</xs:element>
+
 
 	<xs:element name="SignalPhase">
 
