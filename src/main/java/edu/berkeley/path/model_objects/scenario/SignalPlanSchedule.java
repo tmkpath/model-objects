@@ -26,7 +26,18 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import java.util.List;
+
 public class SignalPlanSchedule extends edu.berkeley.path.model_objects.jaxb.SignalPlanSchedule {
+    public List<SignalPlanScheduleElement> getListOfSignalPlanScheduleElements() {
+        return (List<SignalPlanScheduleElement>)(List<?>) super.getSignalPlanScheduleElement();
+    }
+
+    public void setListOfSignalPlanScheduleElements(List<SignalPlanScheduleElement> elements) {
+        getListOfSignalPlanScheduleElements().clear();
+        getListOfSignalPlanScheduleElements().addAll(elements);
+    }
+
     @Override
     public long getId() {
         return super.getId();
@@ -35,6 +46,16 @@ public class SignalPlanSchedule extends edu.berkeley.path.model_objects.jaxb.Sig
     @Override
     public void setId(long value) {
         super.setId(value);
+    }
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    @Override
+    public void setName(String value) {
+        super.setName(value);
     }
 
     @Override
@@ -58,112 +79,22 @@ public class SignalPlanSchedule extends edu.berkeley.path.model_objects.jaxb.Sig
     }
 
     @Override
-    public long getPlanSetId() {
-        return super.getPlanSetId();
+    public long getScheduleSetId() {
+        return super.getScheduleSetId();
     }
 
     @Override
-    public void setPlanSetId(long value) {
-        super.setPlanSetId(value);
+    public void setScheduleSetId(long value) {
+        super.setScheduleSetId(value);
     }
 
     @Override
-    public String getPeriod() {
-        return super.getPeriod();
+    public long getTableNum() {
+        return super.getTableNum();
     }
 
     @Override
-    public void setPeriod(String value) {
-        super.setPeriod(value);
-    }
-
-    @Override
-    public long getActionType() {
-        return super.getActionType();
-    }
-
-    @Override
-    public void setActionType(long value) {
-        super.setActionType(value);
-    }
-
-    @Override
-    public String getActionItem() {
-        return super.getActionItem();
-    }
-
-    @Override
-    public void setActionItem(String value) {
-        super.setActionItem(value);
-    }
-
-    @Override
-    public boolean isSaturday() {
-        return super.isSaturday();
-    }
-
-    @Override
-    public void setSaturday(boolean value) {
-        super.setSaturday(value);
-    }
-
-    @Override
-    public boolean isSunday() {
-        return super.isSunday();
-    }
-
-    @Override
-    public void setSunday(boolean value) {
-        super.setSunday(value);
-    }
-
-    @Override
-    public boolean isMonday() {
-        return super.isMonday();
-    }
-
-    @Override
-    public void setMonday(boolean value) {
-        super.setMonday(value);
-    }
-
-    @Override
-    public boolean isTuesday() {
-        return super.isTuesday();
-    }
-
-    @Override
-    public void setTuesday(boolean value) {
-        super.setTuesday(value);
-    }
-
-    @Override
-    public boolean isWednesday() {
-        return super.isWednesday();
-    }
-
-    @Override
-    public void setWednesday(boolean value) {
-        super.setWednesday(value);
-    }
-
-    @Override
-    public boolean isThursday() {
-        return super.isThursday();
-    }
-
-    @Override
-    public void setThursday(boolean value) {
-        super.setThursday(value);
-    }
-
-    @Override
-    public boolean isFriday() {
-        return super.isFriday();
-    }
-
-    @Override
-    public void setFriday(boolean value) {
-        super.setFriday(value);
+    public void setTableNum(long value) {
+        super.setTableNum(value);
     }
 }

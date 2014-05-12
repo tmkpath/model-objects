@@ -574,4 +574,62 @@ public class ModelObjectsFactory extends ObjectFactory {
     return new SimulatedSensorDataSet();
   }
 
+    @Override
+    public SignalMovementElement createSignalMovementElement() {
+        return new SignalMovementElement();
+    }
+
+    @Override
+    public SignalPlanScheduleElement createSignalPlanScheduleElement() {
+        return new SignalPlanScheduleElement();
+    }
+
+    @Override
+    public SignalPlanSchedule createSignalPlanSchedule() {
+        return new SignalPlanSchedule();
+    }
+
+    @Override
+    public SignalPlanScheduleSet createSignalPlanScheduleSet() {
+        return new SignalPlanScheduleSet();
+    }
+
+    @Override
+    public SignalTimingElement createSignalTimingElement() {
+        return new SignalTimingElement();
+    }
+
+    @Override
+    public SignalPhase createSignalPhase() {
+        return new SignalPhase();
+    }
+
+    @Override
+    public SignalPhaseMovement createSignalPhaseMovement() {
+        return new SignalPhaseMovement();
+    }
+
+    @Override
+    public SignalPhaseElement createSignalPhaseElement() {
+        return new SignalPhaseElement();
+    }
+
+    @Override
+    public SignalTiming createSignalTiming() {
+        return new SignalTiming();
+    }
+
+    public SignalTimingSet createSignalTimingSet() {
+        return new SignalTimingSet();
+    }
+
+    @Override
+    public SignalPlanSet createSignalPlanSet() {
+        return new SignalPlanSet();
+    }
+
+    @Override
+    public SignalPlan createSignalPlan() {
+        return new SignalPlan();
+    }
 }

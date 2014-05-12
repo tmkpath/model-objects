@@ -69,13 +69,13 @@ public class SignalTiming extends edu.berkeley.path.model_objects.jaxb.SignalTim
     }
 
     @Override
-    public long getPlanId() {
-        return super.getPlanId();
+    public long getTimingSetId() {
+        return super.getTimingSetId();
     }
 
     @Override
-    public void setPlanId(long value) {
-        super.setPlanId(value);
+    public void setTimingSetId(long value) {
+        super.setTimingSetId(value);
     }
 
     @Override

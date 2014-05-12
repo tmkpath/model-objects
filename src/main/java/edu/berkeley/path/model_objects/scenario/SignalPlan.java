@@ -26,6 +26,9 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import edu.berkeley.path.model_objects.jaxb.*;
+import edu.berkeley.path.model_objects.jaxb.SignalTimingSet;
+
 import java.util.List;
 
 public class SignalPlan extends edu.berkeley.path.model_objects.jaxb.SignalPlan {
@@ -38,13 +41,14 @@ public class SignalPlan extends edu.berkeley.path.model_objects.jaxb.SignalPlan 
         getListOfSignalPhases().addAll(phases);
     }
 
-    public List<SignalTiming> getListOfSignalTimings() {
-        return (List<SignalTiming>)(List<?>) super.getSignalTiming();
+    @Override
+    public SignalTimingSet getSignalTimingSet() {
+        return super.getSignalTimingSet();
     }
 
-    public void setListOfSignalTimings(List<SignalTiming> timings) {
-        getListOfSignalTimings().clear();
-        getListOfSignalTimings().addAll(timings);
+    @Override
+    public void setSignalTimingSet(SignalTimingSet value) {
+        super.setSignalTimingSet(value);
     }
 
     @Override

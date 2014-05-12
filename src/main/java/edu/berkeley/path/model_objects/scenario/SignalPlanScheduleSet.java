@@ -26,29 +26,16 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
-import edu.berkeley.path.model_objects.jaxb.*;
-import edu.berkeley.path.model_objects.jaxb.SignalPlanScheduleSet;
-
 import java.util.List;
 
-public class SignalPlanSet extends edu.berkeley.path.model_objects.jaxb.SignalPlanSet {
-    public List<SignalPlan> getListOfSignalPlans() {
-        return (List<SignalPlan>)(List<?>) super.getSignalPlan();
+public class SignalPlanScheduleSet extends edu.berkeley.path.model_objects.jaxb.SignalPlanScheduleSet {
+    public List<SignalPlanSchedule> getListOfSignalPlanSchedules() {
+        return (List<SignalPlanSchedule>)(List<?>) super.getSignalPlanSchedule();
     }
 
-    public void setListOfSignalPlans(List<SignalPlan> plans) {
-        getListOfSignalPlans().clear();
-        getListOfSignalPlans().addAll(plans);
-    }
-
-    @Override
-    public SignalPlanScheduleSet getSignalPlanScheduleSet() {
-        return super.getSignalPlanScheduleSet();
-    }
-
-    @Override
-    public void setSignalPlanScheduleSet(SignalPlanScheduleSet value) {
-        super.setSignalPlanScheduleSet(value);
+    public void setListOfSignalPlanSchedules(List<SignalPlanSchedule> schedules) {
+        getListOfSignalPlanSchedules().clear();
+        getListOfSignalPlanSchedules().addAll(schedules);
     }
 
     @Override
@@ -59,16 +46,6 @@ public class SignalPlanSet extends edu.berkeley.path.model_objects.jaxb.SignalPl
     @Override
     public void setId(long value) {
         super.setId(value);
-    }
-
-    @Override
-    public long getProjectId() {
-        return super.getProjectId();
-    }
-
-    @Override
-    public void setProjectId(long value) {
-        super.setProjectId(value);
     }
 
     @Override
@@ -112,12 +89,12 @@ public class SignalPlanSet extends edu.berkeley.path.model_objects.jaxb.SignalPl
     }
 
     @Override
-    public long getDefaultPlanId() {
-        return super.getDefaultPlanId();
+    public long getPlanSetId() {
+        return super.getPlanSetId();
     }
 
     @Override
-    public void setDefaultPlanId(long value) {
-        super.setDefaultPlanId(value);
+    public void setPlanSetId(long value) {
+        super.setPlanSetId(value);
     }
 }

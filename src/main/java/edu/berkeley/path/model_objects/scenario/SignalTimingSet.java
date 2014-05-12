@@ -26,29 +26,16 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
-import edu.berkeley.path.model_objects.jaxb.*;
-import edu.berkeley.path.model_objects.jaxb.SignalPlanScheduleSet;
-
 import java.util.List;
 
-public class SignalPlanSet extends edu.berkeley.path.model_objects.jaxb.SignalPlanSet {
-    public List<SignalPlan> getListOfSignalPlans() {
-        return (List<SignalPlan>)(List<?>) super.getSignalPlan();
+public class SignalTimingSet extends edu.berkeley.path.model_objects.jaxb.SignalTimingSet {
+    public List<SignalTiming> getListOfSignalTimings() {
+        return (List<SignalTiming>)(List<?>) super.getSignalTiming();
     }
 
-    public void setListOfSignalPlans(List<SignalPlan> plans) {
-        getListOfSignalPlans().clear();
-        getListOfSignalPlans().addAll(plans);
-    }
-
-    @Override
-    public SignalPlanScheduleSet getSignalPlanScheduleSet() {
-        return super.getSignalPlanScheduleSet();
-    }
-
-    @Override
-    public void setSignalPlanScheduleSet(SignalPlanScheduleSet value) {
-        super.setSignalPlanScheduleSet(value);
+    public void setListOfSignalTimings(List<SignalTiming> timings) {
+        getListOfSignalTimings().clear();
+        getListOfSignalTimings().addAll(timings);
     }
 
     @Override
@@ -59,16 +46,6 @@ public class SignalPlanSet extends edu.berkeley.path.model_objects.jaxb.SignalPl
     @Override
     public void setId(long value) {
         super.setId(value);
-    }
-
-    @Override
-    public long getProjectId() {
-        return super.getProjectId();
-    }
-
-    @Override
-    public void setProjectId(long value) {
-        super.setProjectId(value);
     }
 
     @Override
@@ -112,12 +89,12 @@ public class SignalPlanSet extends edu.berkeley.path.model_objects.jaxb.SignalPl
     }
 
     @Override
-    public long getDefaultPlanId() {
-        return super.getDefaultPlanId();
+    public long getPlanId() {
+        return super.getPlanId();
     }
 
     @Override
-    public void setDefaultPlanId(long value) {
-        super.setDefaultPlanId(value);
+    public void setPlanId(long value) {
+        super.setPlanId(value);
     }
 }
