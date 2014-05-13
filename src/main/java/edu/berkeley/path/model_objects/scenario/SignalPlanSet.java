@@ -26,9 +26,6 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
-import edu.berkeley.path.model_objects.jaxb.*;
-import edu.berkeley.path.model_objects.jaxb.SignalPlanScheduleSet;
-
 import java.util.List;
 
 public class SignalPlanSet extends edu.berkeley.path.model_objects.jaxb.SignalPlanSet {
@@ -43,10 +40,9 @@ public class SignalPlanSet extends edu.berkeley.path.model_objects.jaxb.SignalPl
 
     @Override
     public SignalPlanScheduleSet getSignalPlanScheduleSet() {
-        return super.getSignalPlanScheduleSet();
+        return (SignalPlanScheduleSet) super.getSignalPlanScheduleSet();
     }
 
-    @Override
     public void setSignalPlanScheduleSet(SignalPlanScheduleSet value) {
         super.setSignalPlanScheduleSet(value);
     }
