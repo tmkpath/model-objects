@@ -1,0 +1,56 @@
+package edu.berkeley.path.model_objects.validation;
+
+import edu.berkeley.path.model_objects.network.Network;
+import edu.berkeley.path.model_objects.network.Link;
+import java.util.ArrayList;
+import java.util.List;
+
+rule "All Links must have non-zero length"
+when
+  $network : Network()
+  $link : Link(length == null || length == 0.0) from $network.getListOfLinks()
+  $result : ValidationResult()
+then
+  $result.addMessage("Invalid Network. Link id " + $link.getId() + " cannot have length of zero.",
+    ValidationMessage.Severity.ERROR);
+end
+
+rule "All Links must have a position with at least two points."
+when
+  $network : Network()
+  $link : Link(position == null || position.point.size() > 1 ) from $network.getListOfLinks()
+  $result : ValidationResult()
+then
+  $result.addMessage("Invalid Network. Link id " + $link.getId() + " has an invalid position.",
+    ValidationMessage.Severity.ERROR);
+end
+
+rule "All Links must have a lane count greater than 0."
+when
+  $network : Network()
+  $link : Link(lanes == null || lanes <=0) from $network.getListOfLinks()
+  $result : ValidationResult()
+then
+  $result.addMessage("Invalid Network. Link id " + $link.getId() + " has a lane count of undefined or zero.",
+    ValidationMessage.Severity.ERROR);
+end
+
+rule "All Links must have a begin node."
+when
+  $network : Network()
+  $link : Link(beginNode == null) from $network.getListOfLinks()
+  $result : ValidationResult()
+then
+  $result.addMessage("Invalid network. Link id " + $link.getId() + " has an undefined begin node.",
+    ValidationMessage.Severity.ERROR);
+end
+
+rule "All Links must have an end node."
+when
+  $network : Network()
+  $link : Link(endNode == null) from $network.getListOfLinks()
+  $result : ValidationResult()
+then
+  $result.addMessage("Invalid network. Link id " + $link.getId() + " has an undefined end node.",
+    ValidationMessage.Severity.ERROR);
+end

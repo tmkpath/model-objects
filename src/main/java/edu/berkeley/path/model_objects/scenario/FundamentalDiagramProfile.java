@@ -302,7 +302,7 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
 		if(getListOfFDs().size() > offset) {
 			return getListOfFDs().get(offset);
 		} else {
-			throw new IllegalStateException("Error, cannot find fundamental diagram for time " + time + " (offset " + offset + ").");
+			throw new IllegalStateException("Error, cannot find fundamental diagram for link " + getLinkId() + " and time " + time + " (offset " + offset + ").");
 		}
 	}
 

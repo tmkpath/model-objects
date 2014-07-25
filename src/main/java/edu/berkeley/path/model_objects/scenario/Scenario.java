@@ -37,6 +37,8 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
   /** @y.exclude */  private Long demandSetId;
   /** @y.exclude */  private Long fdSetId;
   /** @y.exclude */  private Long sensorSetId;
+  /** @y.exclude */  private Long actuatorSetId;
+  /** @y.exclude */  private Long controllerSetId;
   /** @y.exclude */  private Long routeSetId;
 
   /**
@@ -95,16 +97,16 @@ public List<Network> getListOfNetworks() {
     super.setVehicleTypeSet(value);
   }
 
-  //TODO Needs SignalSet MO
-  @Override
-  public SignalSet getSignalSet() {
-    return super.getSignalSet();
-  }
-
-  @Override
-  public void setSignalSet(SignalSet value) {
-    super.setSignalSet(value);
-  }
+  //TODO Needs MOs for Signal Plan, Phase, Set, etc 
+//  @Override
+//  public SignalSet getSignalSet() {
+//    return super.getSignalSet();
+//  }
+//
+//  @Override
+//  public void setSignalSet(SignalSet value) {
+//    super.setSignalSet(value);
+//  }
 
   @Override
   public SensorSet getSensorSet() {
@@ -114,6 +116,16 @@ public List<Network> getListOfNetworks() {
 
   public void setSensorSet(SensorSet value) {
     super.setSensorSet(value);
+  }
+
+  @Override
+  public ActuatorSet getActuatorSet() {
+    return (ActuatorSet) super.getActuatorSet();
+  }
+
+
+  public void setActuatorSet(ActuatorSet value) {
+    super.setActuatorSet(value);
   }
 
   @Override
@@ -193,6 +205,13 @@ public List<Network> getListOfNetworks() {
     return (FundamentalDiagramSet) super.getFundamentalDiagramSet();
   }
 
+  public RouteSet getRouteSet() {
+    return (RouteSet) super.getRouteSet();
+  }
+
+  public void setRouteSet(RouteSet routeSet) {
+    super.setRouteSet(routeSet);
+  }
 
   public void setFundamentalDiagramSet(FundamentalDiagramSet value) {
     super.setFundamentalDiagramSet(value);
@@ -239,6 +258,13 @@ public List<Network> getListOfNetworks() {
   }
 
   public Long getSplitRatioSetId() {
+    // if the split ratio set id is not set, try and get it from split ratio set
+    if (splitRatioSetId == null) {
+      SplitRatioSet splitRatioSet = getSplitRatioSet();
+      if (splitRatioSet != null) {
+        setSplitRatioSetId(splitRatioSet.getId());
+      }
+    }
     return splitRatioSetId;
   }
 
@@ -247,6 +273,13 @@ public List<Network> getListOfNetworks() {
   }
 
   public Long getDemandSetId() {
+    // if the demand set id is not set, try and get it from demand set
+    if (demandSetId == null) {
+      DemandSet demandSet = getDemandSet();
+      if (demandSet != null) {
+        setDemandSetId(demandSet.getId());
+      }
+    }
     return demandSetId;
   }
 
@@ -255,6 +288,13 @@ public List<Network> getListOfNetworks() {
   }
 
   public Long getFdSetId() {
+    // if the FD set id is not set, try and get it from FD set
+    if (fdSetId == null) {
+      FundamentalDiagramSet fdSet = getFundamentalDiagramSet();
+      if (fdSet != null) {
+        setFdSetId(fdSet.getId());
+      }
+    }
     return fdSetId;
   }
 
@@ -263,6 +303,13 @@ public List<Network> getListOfNetworks() {
   }
 
   public Long getSensorSetId() {
+    // if the sensor set id is not set, try and get it from sensor set
+    if (sensorSetId == null) {
+      SensorSet sensorSet = getSensorSet();
+      if (sensorSet != null) {
+        setSensorSetId(sensorSet.getId());
+      }
+    }
     return sensorSetId;
   }
 
@@ -270,7 +317,45 @@ public List<Network> getListOfNetworks() {
     this.sensorSetId = sensorSetId;
   }
 
+  public Long getActuatorSetId() {
+    // if the actuator set id is not set, try and get it from actuator set
+    if (actuatorSetId == null) {
+      ActuatorSet actuatorSet = getActuatorSet();
+      if (actuatorSet != null) {
+        setActuatorSetId(actuatorSet.getId());
+      }
+    }
+    return actuatorSetId;
+  }
+
+  public void setActuatorSetId(Long actuatorSetId) {
+    this.actuatorSetId = actuatorSetId;
+  }
+
+  public Long getControllerSetId() {
+    // if the controller set id is not set, try and get it from controller set
+    if (controllerSetId == null) {
+      ControllerSet controllerSet = getControllerSet();
+      if (controllerSet != null) {
+        setControllerSetId(controllerSet.getId());
+      }
+    }
+    return controllerSetId;
+  }
+
+  public void setControllerSetId(Long controllerSetId) {
+    this.controllerSetId = controllerSetId;
+  }
+
+
   public Long getRouteSetId() {
+    // if the route set id is not set, try and get it from route set
+    if (routeSetId == null) {
+      RouteSet routeSet = (RouteSet) getRouteSet();
+      if (routeSet != null) {
+        setRouteSetId(routeSet.getId());
+      }
+    }
     return routeSetId;
   }
 
@@ -308,7 +393,7 @@ public List<Network> getListOfNetworks() {
     super.setModStamp(value);
   }
 
-  /**
+    /**
    * Function to validate model object Scenario. Should call the isValid method
    * of each Set, Network, etc, it contains.
    *

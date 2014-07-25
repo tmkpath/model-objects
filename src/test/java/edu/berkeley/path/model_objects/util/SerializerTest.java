@@ -34,7 +34,6 @@ import edu.berkeley.path.model_objects.network.*;
 import edu.berkeley.path.model_objects.scenario.Sensor;
 import edu.berkeley.path.model_objects.scenario.SensorSet;
 import edu.berkeley.path.model_objects.shared.Point;
-import core.*;
 
 import java.util.*;
 
@@ -48,13 +47,13 @@ public class SerializerTest {
    * Mock class to test marshalling and unmarshalling of Extending a model objects
    */
   public static class NodeExt extends edu.berkeley.path.model_objects.network.Node {
-    private int testAttr;
-    
-    public int getTestAttr() {
+    private Integer testAttr;
+
+    public Integer getTestAttr() {
       return this.testAttr;
     }
-    
-    public void setTestAttr(int value) {
+
+    public void setTestAttr(Integer value) {
       this.testAttr = value;
     }
   }
@@ -67,7 +66,7 @@ public class SerializerTest {
     // Extended Model Object to test JAXB unmarshalling and marshalling fucntionality in Serializer class
     nodeExt = new NodeExt();
     nodeExt.setId(1);
-    nodeExt.setTestAttr(2);
+    nodeExt.setTestAttr(3);
   }
 
   @Test
@@ -110,8 +109,8 @@ public class SerializerTest {
         "<node id=\"1\"/>\n";
     
     // Convert nodeExt object to JSON
-    String nodeExtJSON = Serializer.objectToJSON(node);
-    String expectedJSON = "{\"node\":{\"@id\":\"1\"}}";
+    String nodeExtJSON = Serializer.objectToJSON(nodeExt);
+    String expectedJSON = "{\"node\":{\"id\":\"1\"}}";
     
     // Compare expected with actual results
     assertEquals(expectedXML, nodeExtXML);

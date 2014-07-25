@@ -1,0 +1,14 @@
+package edu.berkeley.path.model_objects.validation;
+
+import edu.berkeley.path.model_objects.network.Network;
+import java.util.ArrayList;
+import java.util.List;
+import core.*;
+
+rule "Network Name is not null"
+when
+  $network : Network( name == null || name == "")
+  $result : ValidationResult()
+then
+  $result.addMessage("Invalid Network Name. Cannot be null.", ValidationMessage.Severity.ERROR);
+end

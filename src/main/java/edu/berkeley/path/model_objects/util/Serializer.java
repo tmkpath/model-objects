@@ -27,7 +27,11 @@ package edu.berkeley.path.model_objects.util;
 
 import core.Monitor;
 import edu.berkeley.path.model_objects.MOException;
+import edu.berkeley.path.model_objects.jaxb.Point;
 import edu.berkeley.path.model_objects.jaxb.ObjectFactory;
+import edu.berkeley.path.model_objects.network.Network;
+import edu.berkeley.path.model_objects.network.Link;
+import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.codehaus.jettison.mapped.MappedNamespaceConvention;
@@ -232,6 +236,8 @@ public class Serializer {
     StringWriter result = new StringWriter();
     try {
       org.codehaus.jettison.mapped.Configuration config = new org.codehaus.jettison.mapped.Configuration();
+      // removes '@' character in front of attributes
+      config.setSupressAtAttributes(true);
       XMLStreamWriter xmlsw = new MappedXMLStreamWriter(new MappedNamespaceConvention(config), result);
       Marshaller jaxbMarshaller = globalJAXBContext.createMarshaller();
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -245,6 +251,72 @@ public class Serializer {
           + exc.getMessage());
     }
     return json;
+  }
+
+  /**
+   * Method to serialize network to GeoJSON format
+   *
+   * @param network Network to be serialized to GeoJSON
+   */
+  public static <T> String networkToGeoJSON(Network network) throws MOException {
+    String geoJSON = null;
+    JSONObject featureCollection = new JSONObject();
+    try {
+      featureCollection.put("type", "FeatureCollection");
+      JSONArray featureList = new JSONArray();
+
+      // For each link unpack coordinates and set id as property
+      for (Link link : network.getListOfLinks()) {
+        // Contruct new feature for each link
+        JSONObject feature = new JSONObject();
+        feature.put("type", "Feature");
+        // Construct geometry {"geometry": {"type": "Point", "coordinates": [lng, lat]}
+        JSONObject lineString = new JSONObject();
+        lineString.put("type", "LineString");
+
+        String coordsString = "[";
+        int count = 0;
+        // construct a JSONArray from a string; can also use an array or list
+        for (Point p : link.getPoints()) {
+          count++;
+          coordsString = coordsString + "[" + p.getLng() + "," + p.getLat() + "]";
+          if (count < link.getPoints().size()) {
+            // add comma to separate coords
+            coordsString = coordsString + ',';
+          }
+        }
+        coordsString = coordsString + "]";
+        lineString.put("coordinates", new JSONArray(coordsString));
+        // add geometry to feature
+        feature.put("geometry", lineString);
+
+        // Construct properties {"properties" : { linkId: #} }
+        JSONObject properties = new JSONObject();
+        properties.put("LinkId", link.getId());
+        // add properties to feature
+        feature.put("properties", properties);
+
+        featureList.put(feature);
+        // TODO Nodes
+      }
+      featureCollection.put("features", featureList);
+
+    } catch (JSONException exc) {
+      Monitor.err("Unable to parse network in geoJSON format.");
+      throw new MOException(exc, "Unable to parse network in geoJSON format. "
+          + exc.getMessage());
+    }
+    // construct JSON result
+    geoJSON =
+        "{ \"center\": " +
+          "{ \"lat\": " + network.getPosition().getPoint().get(0).getLat() +
+          ", \"lng\": " + network.getPosition().getPoint().get(0).getLng() +
+          "}" +
+        ",\"links\": " +
+          featureCollection.toString().replace("\"[", "[").replace("\"]", "]") +
+        "}";
+
+    return geoJSON;
   }
   
 }

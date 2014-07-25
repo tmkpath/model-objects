@@ -60,6 +60,27 @@ public class ModelObjectsFactory extends ObjectFactory {
   }
 
   /**
+   * Create an instance of TargetActuator Model Object
+   *
+   * @return Target Actuator Model Object
+   *
+   */
+  public TargetActuator createTargetActuator() {
+    return new TargetActuator();
+  }
+
+  /**
+   * Create an instance of ScenarioElement Model Object
+   *
+   * @return Scenario Element Model Object
+   *
+   */
+  @Override
+  public ScenarioElement createScenarioElement() {
+    return new ScenarioElement();
+  }
+
+  /**
    * Create an instance of Sensor Model Object
    *
    * @return Sensor Model Object
@@ -77,6 +98,16 @@ public class ModelObjectsFactory extends ObjectFactory {
   @Override
   public SensorSet createSensorSet() {
     return new SensorSet();
+  }
+
+  /**
+   * Create an instance of FeedbackSensor Model Object
+   *
+   * @return Feedback Sensor Model Object
+   */
+  @Override
+  public FeedbackSensor createFeedbackSensor() {
+    return new FeedbackSensor();
   }
 
   /**
@@ -327,6 +358,16 @@ public class ModelObjectsFactory extends ObjectFactory {
   }
 
   /**
+   * Create an instance of RouteSet Model Object
+   *
+   * @return RouteSet Model Object
+   */
+  @Override
+  public RouteSet createRouteSet() {
+    return new RouteSet();
+  }
+
+  /**
    * Create an instance of Route Model Object
    *
    * @return Route Model Object
@@ -506,4 +547,89 @@ public class ModelObjectsFactory extends ObjectFactory {
     return new PeMSAggregateDataSet();
   }
 
+  /**
+   * Create an instance of SimulatedSensorDatum object
+   * @return SimulatedSensorDatum object
+   */
+  @Override
+  public SimulatedSensorDatum createSimulatedSensorDatum(){
+    return new SimulatedSensorDatum();
+  }
+
+  /**
+   * Create an instance of SimulatedSensorDataProfile object
+   * @return SimulatedSensorDataProfile object
+   */
+  @Override
+  public SimulatedSensorDataProfile createSimulatedSensorDataProfile(){
+    return new SimulatedSensorDataProfile();
+  }
+
+  /**
+   * Create an instance of SimulatedSensorDataSet object
+   * @return SimulatedSensorDataSet object
+   */
+  @Override
+  public SimulatedSensorDataSet createSimulatedSensorDataSet(){
+    return new SimulatedSensorDataSet();
+  }
+
+    @Override
+    public SignalMovementElement createSignalMovementElement() {
+        return new SignalMovementElement();
+    }
+
+    @Override
+    public SignalPlanScheduleElement createSignalPlanScheduleElement() {
+        return new SignalPlanScheduleElement();
+    }
+
+    @Override
+    public SignalPlanSchedule createSignalPlanSchedule() {
+        return new SignalPlanSchedule();
+    }
+
+    @Override
+    public SignalPlanScheduleSet createSignalPlanScheduleSet() {
+        return new SignalPlanScheduleSet();
+    }
+
+    @Override
+    public SignalTimingElement createSignalTimingElement() {
+        return new SignalTimingElement();
+    }
+
+    @Override
+    public SignalPhase createSignalPhase() {
+        return new SignalPhase();
+    }
+
+    @Override
+    public SignalPhaseMovement createSignalPhaseMovement() {
+        return new SignalPhaseMovement();
+    }
+
+    @Override
+    public SignalPhaseElement createSignalPhaseElement() {
+        return new SignalPhaseElement();
+    }
+
+    @Override
+    public SignalTiming createSignalTiming() {
+        return new SignalTiming();
+    }
+
+    public SignalTimingSet createSignalTimingSet() {
+        return new SignalTimingSet();
+    }
+
+    @Override
+    public SignalPlanSet createSignalPlanSet() {
+        return new SignalPlanSet();
+    }
+
+    @Override
+    public SignalPlan createSignalPlan() {
+        return new SignalPlan();
+    }
 }
