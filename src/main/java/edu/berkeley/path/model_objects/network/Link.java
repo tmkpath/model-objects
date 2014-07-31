@@ -79,18 +79,18 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	}
 	
 	/**
-	 * Return wkt for link
+	 * Return WKT Representation of the Link(LINESTRING)
 	 * 
-	 * @return wkt for link as String
+	 * @return wkt WKT Representation of the Link(LINESTRING)
 	 */
 	public String getWKT() {
 	  return this.wkt;
 	}
 	
 	/**
-	 * Set wkt of link
+	 * Set WKT Representation of the Link(LINESTRING)
 	 * 
-	 * @param wky of link as String
+	 * @param wkt WKT Representation of the Link(LINESTRING)
 	 */
 	public void setWKT(String wkt) {
 	  this.wkt = wkt;
