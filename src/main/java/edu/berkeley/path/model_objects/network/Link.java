@@ -56,6 +56,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	
 	/** @y.exclude */  protected Boolean isSource;
 	/** @y.exclude */  protected Boolean isSink;
+		/** @y.exclude */  protected String wkt;
 	
 	/**
 	 * Return id of link
@@ -75,6 +76,24 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	@Override
 	public void setId(long id) {
 	  super.setId(id);
+	}
+	
+	/**
+	 * Return wkt for link
+	 * 
+	 * @return wkt for link as String
+	 */
+	public String getWKT() {
+	  return this.wkt;
+	}
+	
+	/**
+	 * Set wkt of link
+	 * 
+	 * @param wky of link as String
+	 */
+	public void setWKT(String wkt) {
+	  this.wkt = wkt
 	}
 	
 	/**
