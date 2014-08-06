@@ -27,14 +27,15 @@
 package edu.berkeley.path.model_objects.scenario;
 
 public class SignalTimingElement extends edu.berkeley.path.model_objects.jaxb.SignalTimingElement {
+
     @Override
-    public String getContent() {
-        return super.getContent();
+    public long getId() {
+        return super.getId();
     }
 
     @Override
-    public void setContent(String value) {
-        super.setContent(value);
+    public void setId(long value) {
+        super.setId(value);
     }
 
     @Override
@@ -57,23 +58,14 @@ public class SignalTimingElement extends edu.berkeley.path.model_objects.jaxb.Si
         super.setCrudFlag(value);
     }
 
+
     @Override
-    public int getOrder() {
-        return super.getOrder();
+    public int getPhaseNum() {
+        return super.getPhaseNum();
     }
 
     @Override
-    public void setOrder(int value) {
-        super.setOrder(value);
-    }
-
-    @Override
-    public long getTimeStepMs() {
-        return super.getTimeStepMs();
-    }
-
-    @Override
-    public void setTimeStepMs(long value) {
-        super.setTimeStepMs(value);
+    public void setPhaseNum(int value) {
+        super.setPhaseNum(value);
     }
 }

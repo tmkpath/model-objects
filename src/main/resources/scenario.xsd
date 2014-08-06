@@ -281,7 +281,7 @@
 	<xs:element name="SignalTiming">
 		<xs:complexType>
       <xs:sequence>
-        <xs:element ref="SignalTimingElement" minOccurs="1" maxOccurs="unbounded" />
+        <xs:element ref="SignalTimingEntry" minOccurs="1" maxOccurs="unbounded" />
       </xs:sequence>
 			<xs:attribute name="id" type="xs:long" use="required"/>
 			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
@@ -291,14 +291,28 @@
 			<xs:attribute name="type" type="xs:long" use="required"/> 
 		</xs:complexType>
 	</xs:element>
-	  
+
+    <xs:element name="SignalTimingEntry">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="SignalTimingElement" minOccurs="1" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
+            <xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+
+            <xs:attribute name="order" type="xs:int" use="required"/>
+            <xs:attribute name="time_step_ms" type="xs:long" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
 	<xs:element name="SignalTimingElement">
-		<xs:complexType mixed="true"> <!-- content is list of phase_number (int) -->
-			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
+		<xs:complexType>
+            <xs:attribute name="id" type="xs:long" use="required"/>
+
+            <xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
 			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 
-			<xs:attribute name="order" type="xs:int" use="required"/>
-			<xs:attribute name="time_step_ms" type="xs:long" use="required"/>
+			<xs:attribute name="phase_num" type="xs:int" use="required"/>
 		</xs:complexType>
 	</xs:element>
 
