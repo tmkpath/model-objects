@@ -39,16 +39,6 @@ public class SignalTiming extends edu.berkeley.path.model_objects.jaxb.SignalTim
     }
 
     @Override
-    public long getId() {
-        return super.getId();
-    }
-
-    @Override
-    public void setId(long value) {
-        super.setId(value);
-    }
-
-    @Override
     public String getModStamp() {
         return super.getModStamp();
     }
