@@ -595,6 +595,11 @@ public class ModelObjectsFactory extends ObjectFactory {
     }
 
     @Override
+    public SignalTimingEntry createSignalTimingEntry() {
+        return new SignalTimingEntry();
+    }
+
+    @Override
     public SignalTimingElement createSignalTimingElement() {
         return new SignalTimingElement();
     }
