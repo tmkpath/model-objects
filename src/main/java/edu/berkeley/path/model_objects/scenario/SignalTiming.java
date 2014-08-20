@@ -29,23 +29,13 @@ package edu.berkeley.path.model_objects.scenario;
 import java.util.List;
 
 public class SignalTiming extends edu.berkeley.path.model_objects.jaxb.SignalTiming {
-    public List<SignalTimingElement> getListOfSignalTimingElements() {
-        return (List<SignalTimingElement>)(List<?>) super.getSignalTimingElement();
+    public List<SignalTimingEntry> getListOfSignalTimingEntries() {
+        return (List<SignalTimingEntry>)(List<?>) super.getSignalTimingEntry();
     }
 
-    public void setListOfSignalTimingElements(List<SignalTimingElement> elements) {
-        getListOfSignalTimingElements().clear();
-        getListOfSignalTimingElements().addAll(elements);
-    }
-
-    @Override
-    public long getId() {
-        return super.getId();
-    }
-
-    @Override
-    public void setId(long value) {
-        super.setId(value);
+    public void setListOfSignalTimingEntries(List<SignalTimingEntry> entries) {
+        getListOfSignalTimingEntries().clear();
+        getListOfSignalTimingEntries().addAll(entries);
     }
 
     @Override
