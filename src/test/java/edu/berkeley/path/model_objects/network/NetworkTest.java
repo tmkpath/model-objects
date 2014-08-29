@@ -67,6 +67,8 @@ public class NetworkTest {
     ln.setType(1, "highway");
     ln.setLanes(4.0d);
     ln.setLength(1000.0d);
+    ln.setWKT("TEST WKT");
+    ln.setDetailLevel(5);
     
     ln.setBeginNode(nd1);
     ln.setEndNode(nd2);
@@ -104,7 +106,9 @@ public class NetworkTest {
     assert(ln3 != null);
     assertEquals("three", ln3.getFirstRoadName() );
 		assertEquals(2, ln3.getPoints().size());
-
+    assertEquals("TEST WKT", ln3.getWKT());
+    assertEquals(5, ln3.getDetailLevel());
+    
     // note that lookups by string ID work too:
     Node n2 = nw.getNodeWithId(2);
     assertTrue(n2 != null);

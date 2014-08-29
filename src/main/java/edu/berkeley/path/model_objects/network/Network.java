@@ -345,7 +345,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
           throw new MOException(null, "Invalid begin node id value for Link id " + link.getId());
         }
         if (endNode == null) {
-          throw new MOException(null, "Invalid end node id value for Link id \" + link.getId()");
+          throw new MOException(null, "Invalid end node id value for Link id " + link.getId());
         }
         // add link as output link to begin node and input link to end node
         beginNode.addOutputLink(link.getId());

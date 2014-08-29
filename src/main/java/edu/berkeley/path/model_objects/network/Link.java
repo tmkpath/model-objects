@@ -56,6 +56,8 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	
 	/** @y.exclude */  protected Boolean isSource;
 	/** @y.exclude */  protected Boolean isSink;
+	/** @y.exclude */  protected String wkt;
+	/** @y.exclude */  protected int detailLevel;
 	
 	/**
 	 * Return id of link
@@ -75,6 +77,43 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	@Override
 	public void setId(long id) {
 	  super.setId(id);
+	}
+	
+	/**
+	 * Return WKT Representation of the Link(LINESTRING)
+	 * 
+	 * @return wkt WKT Representation of the Link(LINESTRING)
+	 */
+	public String getWKT() {
+	  return this.wkt;
+	}
+	
+	/**
+	 * Set WKT Representation of the Link(LINESTRING)
+	 * 
+	 * @param wkt WKT Representation of the Link(LINESTRING)
+	 */
+	public void setWKT(String wkt) {
+	  this.wkt = wkt;
+	}
+
+	/**
+	 * Return detail level of link
+	 * 
+	 * @return Detail Level The integer representing the detail level
+	 *         of the link. (0 - 5)
+	 */
+	public int getDetailLevel() {
+	  return this.detailLevel;
+	}
+	
+	/**
+	 * Set Detail Level of the link
+	 * 
+	 * @param dLevel The detail level for the link
+	 */
+	public void setDetailLevel(int dLevel) {
+	  this.detailLevel = dLevel;
 	}
 	
 	/**
