@@ -59,7 +59,23 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
     return true;
   }
 
-  /**
+    /**
+     * @param id the signal plan set id to set
+     * */
+    public void setSigPlanSetId(long id) {
+        super.setSigPlanSetId(id);
+    }
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public Long getSigPlanSetId() {
+        return super.getSigPlanSetId();
+    }
+
+    /**
    * @param id the id to set
    */
   @Override
