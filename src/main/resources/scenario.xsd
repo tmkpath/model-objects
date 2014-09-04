@@ -722,6 +722,7 @@
 				<xs:attribute name="id" type="xs:long" use="required" />
 				<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
 				<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+                <xs:attribute name="SigPlanSetId" type="xs:long" use="optional" />
 			</xs:complexType>
 		</xs:element>
 

@@ -1,0 +1,6 @@
+#!/bin/bash
+echo "Building Model-Objects ..."
+echo ""
+echo "Additional parameters = $1"
+mvn clean install -Duname=test_user -Dupass=via_test -Dhost=cctest.path.berkeley.edu -Dport=1521 -Dsid=viatest -DconnTimeOut=10 $1
+
