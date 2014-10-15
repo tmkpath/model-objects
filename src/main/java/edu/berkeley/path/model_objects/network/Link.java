@@ -56,7 +56,6 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	
 	/** @y.exclude */  protected Boolean isSource;
 	/** @y.exclude */  protected Boolean isSink;
-	/** @y.exclude */  protected String wkt;
 	/** @y.exclude */  protected int detailLevel;
 	
 	/**
@@ -82,19 +81,19 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	/**
 	 * Return WKT Representation of the Link(LINESTRING)
 	 * 
-	 * @return wkt WKT Representation of the Link(LINESTRING)
+	 * @return shape WKT Representation of the Link(LINESTRING)
 	 */
-	public String getWKT() {
-	  return this.wkt;
+	public String getShape() {
+	  return this.shape;
 	}
 	
 	/**
 	 * Set WKT Representation of the Link(LINESTRING)
 	 * 
-	 * @param wkt WKT Representation of the Link(LINESTRING)
+	 * @param shape WKT Representation of the Link(LINESTRING)
 	 */
-	public void setWKT(String wkt) {
-	  this.wkt = wkt;
+	public void setShape(String shape) {
+	  this.shape = shape;
 	}
 
 	/**
