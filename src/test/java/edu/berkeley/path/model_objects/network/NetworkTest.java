@@ -107,7 +107,7 @@ public class NetworkTest {
     assertEquals("three", ln3.getFirstRoadName() );
 		assertEquals(2, ln3.getPoints().size());
     assertEquals("TEST WKT", ln3.getWKT());
-    assertEquals(5, ln3.getDetailLevel());
+    assertEquals(5L, ln3.getDetailLevel().longValue());
     
     // note that lookups by string ID work too:
     Node n2 = nw.getNodeWithId(2);
