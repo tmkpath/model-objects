@@ -68,7 +68,7 @@ public class NetworkTest {
     ln.setLanes(4.0d);
     ln.setLength(1000.0d);
     ln.setWKT("TEST WKT");
-    ln.setDetailLevel(5L);
+    ln.setDetailLevel(5);
     
     ln.setBeginNode(nd1);
     ln.setEndNode(nd2);

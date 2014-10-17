@@ -137,27 +137,27 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
   }
 
   /**
-   * Return detail level of link. Returns 0L if detail level is null.
+   * Return detail level of link. Returns 0 if detail level is null.
    *
    * @return Detail Level The integer representing the detail level
    *         of the link. (0 - 5)
    */
   @Override
-  public Long getDetailLevel() {
-      if (null == super.getDetailLevel()) return 0L;
+  public Integer getDetailLevel() {
+      if (null == super.getDetailLevel()) return 0;
 
       return super.getDetailLevel();
     }
 
   /**
-   * Set Detail Level of the link.  Sets to 0L if dLevel is null.
+   * Set Detail Level of the link.  Sets to 0 if dLevel is null.
    *
    * @param dLevel The detail level for the link
    */
   @Override
-  public void setDetailLevel(Long dLevel) {
+  public void setDetailLevel(Integer dLevel) {
       if (null == dLevel) {
-          super.setDetailLevel(0L);
+          super.setDetailLevel(0);
       } else {
           super.setDetailLevel(dLevel);
       }
