@@ -57,7 +57,6 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	/** @y.exclude */  protected Boolean isSource;
 	/** @y.exclude */  protected Boolean isSink;
 	/** @y.exclude */  protected String wkt;
-	/** @y.exclude */  protected int detailLevel;
 	
 	/**
 	 * Return id of link
@@ -95,25 +94,6 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	 */
 	public void setWKT(String wkt) {
 	  this.wkt = wkt;
-	}
-
-	/**
-	 * Return detail level of link
-	 * 
-	 * @return Detail Level The integer representing the detail level
-	 *         of the link. (0 - 5)
-	 */
-	public int getDetailLevel() {
-	  return this.detailLevel;
-	}
-	
-	/**
-	 * Set Detail Level of the link
-	 * 
-	 * @param dLevel The detail level for the link
-	 */
-	public void setDetailLevel(int dLevel) {
-	  this.detailLevel = dLevel;
 	}
 	
 	/**
@@ -155,6 +135,33 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
   public void setSpeedLimit(Double speed) {
     super.setSpeedLimit(speed);
   }
+
+  /**
+   * Return detail level of link. Returns 0L if detail level is null.
+   *
+   * @return Detail Level The integer representing the detail level
+   *         of the link. (0 - 5)
+   */
+  @Override
+  public Long getDetailLevel() {
+      if (null == super.getDetailLevel()) return 0L;
+
+      return super.getDetailLevel();
+    }
+
+  /**
+   * Set Detail Level of the link.  Sets to 0L if dLevel is null.
+   *
+   * @param dLevel The detail level for the link
+   */
+  @Override
+  public void setDetailLevel(Long dLevel) {
+      if (null == dLevel) {
+          super.setDetailLevel(0L);
+      } else {
+          super.setDetailLevel(dLevel);
+      }
+    }
 
   /**
    * Return lane offset of link
