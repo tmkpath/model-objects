@@ -56,7 +56,6 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	
 	/** @y.exclude */  protected Boolean isSource;
 	/** @y.exclude */  protected Boolean isSink;
-	/** @y.exclude */  protected String wkt;
 	
 	/**
 	 * Return id of link
@@ -77,24 +76,24 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	public void setId(long id) {
 	  super.setId(id);
 	}
-	
-	/**
-	 * Return WKT Representation of the Link(LINESTRING)
-	 * 
-	 * @return wkt WKT Representation of the Link(LINESTRING)
-	 */
-	public String getWKT() {
-	  return this.wkt;
-	}
-	
-	/**
-	 * Set WKT Representation of the Link(LINESTRING)
-	 * 
-	 * @param wkt WKT Representation of the Link(LINESTRING)
-	 */
-	public void setWKT(String wkt) {
-	  this.wkt = wkt;
-	}
+
+
+    /**
+     * Gets the value of the shape property.
+     *
+     * @return Shape of link -- WKT of the geometry
+     *
+     */
+    @Override
+    public String getShape() { return super.getShape(); }
+
+    /**
+     * Sets the value of the shape property.
+     *
+     * @param shape -- string WKT of the geometry
+     */
+    @Override
+    public void setShape(String shape) { super.setShape(shape); }
 	
 	/**
    * Return number of lanes of link
