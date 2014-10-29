@@ -64,28 +64,20 @@ public class RampMeterRamValue extends edu.berkeley.path.model_objects.jaxb.Ramp
 
 
     @Override
-    public String getValue() {
-        if (value == null) {
-            return "";
-        } else {
-            return value;
-        }
-    }
+    public String getValue() { return super.getValue(); }
 
     @Override
-    public void setValue(String value) {
-        this.value = value;
-    }
+    public void setValue(String value) {  super.setValue(value); }
 
 
     @Override
     public String getModStamp() {
-        return modStamp;
+        return super.getModStamp();
     }
 
     @Override
     public void setModStamp(String value) {
-        this.modStamp = value;
+        super.setModStamp(value);
     }
 
     @Override

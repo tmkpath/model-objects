@@ -47,12 +47,12 @@ public class IntersectionPlanSet extends edu.berkeley.path.model_objects.jaxb.In
 
     @Override
     public String getModStamp() {
-        return modStamp;
+        return super.getModStamp();
     }
 
     @Override
     public void setModStamp(String value) {
-        this.modStamp = value;
+        super.setModStamp(value);
     }
 
     @Override
@@ -68,50 +68,39 @@ public class IntersectionPlanSet extends edu.berkeley.path.model_objects.jaxb.In
 
     @Override
     public String getDescription() {
-        return description;
+        return super.getDescription();
     }
 
     @Override
     public void setDescription(String value) {
-        this.description = value;
+        super.setDescription(value);
     }
 
 
     @Override
-    public long getProjectId() {
-        return projectId;
-    }
+    public long getProjectId() { return super.getProjectId(); }
 
     @Override
     public void setProjectId(long value) {
-        this.projectId = value;
+        super.setProjectId(value);
     }
 
 
     @Override
-    public long getId() {
-        return id;
-    }
+    public long getId() { return  super.getId(); }
 
     @Override
     public void setId(long value) {
-        this.id = value;
+        super.setId(value);
     }
 
 
     @Override
-    public String getName() {
-        if (name == null) {
-            return "";
-        } else {
-            return name;
-        }
-    }
+    public String getName() {  return super.getName();  }
 
     @Override
-    public void setName(String value) {
-        this.name = value;
-    }
+    public void setName(String name) {   super.setName(name); }
+
 
     /**
      * Ensures all required fields are set

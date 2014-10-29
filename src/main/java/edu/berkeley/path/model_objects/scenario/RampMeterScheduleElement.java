@@ -70,18 +70,10 @@ public class RampMeterScheduleElement extends edu.berkeley.path.model_objects.ja
 
 
     @Override
-    public String getRate() {
-        if (rate == null) {
-            return "";
-        } else {
-            return rate;
-        }
-    }
+    public String getRate() { return super.getRate(); }
 
     @Override
-    public void setRate(String value) {
-        this.rate = value;
-    }
+    public void setRate(String value) { super.setRate(value); }
 
 
     @Override
@@ -185,12 +177,12 @@ public class RampMeterScheduleElement extends edu.berkeley.path.model_objects.ja
 
     @Override
     public String getModStamp() {
-        return modStamp;
+        return super.getModStamp();
     }
 
     @Override
     public void setModStamp(String value) {
-        this.modStamp = value;
+        super.setModStamp(value);
     }
 
     @Override

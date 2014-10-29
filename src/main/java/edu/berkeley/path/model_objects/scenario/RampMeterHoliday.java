@@ -53,18 +53,10 @@ public class RampMeterHoliday extends edu.berkeley.path.model_objects.jaxb.RampM
 
 
     @Override
-    public String getName() {
-        if (name == null) {
-            return "";
-        } else {
-            return name;
-        }
-    }
+    public String getName() {  return super.getName();  }
 
     @Override
-    public void setName(String value) {
-        this.name = value;
-    }
+    public void setName(String name) {   super.setName(name); }
 
 
     @Override
@@ -91,12 +83,12 @@ public class RampMeterHoliday extends edu.berkeley.path.model_objects.jaxb.RampM
 
     @Override
     public String getModStamp() {
-        return modStamp;
+        return super.getModStamp();
     }
 
     @Override
     public void setModStamp(String value) {
-        this.modStamp = value;
+        super.setModStamp(value);
     }
 
 

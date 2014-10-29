@@ -74,12 +74,12 @@ public class RampMeterLsdValue extends edu.berkeley.path.model_objects.jaxb.Ramp
 
     @Override
     public String getModStamp() {
-        return modStamp;
+        return super.getModStamp();
     }
 
     @Override
     public void setModStamp(String value) {
-        this.modStamp = value;
+        super.setModStamp(value);
     }
 
 
