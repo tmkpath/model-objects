@@ -31,7 +31,6 @@ package edu.berkeley.path.model_objects.scenario;
 
 import edu.berkeley.path.model_objects.shared.CrudFlag;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

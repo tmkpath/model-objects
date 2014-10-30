@@ -1065,7 +1065,7 @@
         <xs:complexType>
             <xs:attribute name="id" type="xs:long" use="required" />
             <xs:attribute name="plan_id" type="xs:long" use="required" />
-            <xs:attribute name="name" type="xs:string" use="required" />
+            <xs:attribute name="name" type="xs:string" use="required"  default=""/>
             <xs:attribute name="month" type="xs:long" use="required" />
             <xs:attribute name="day" type="xs:long" use="required" />
             <xs:attribute name="mod_stamp" type="xs:string" use="optional"  />

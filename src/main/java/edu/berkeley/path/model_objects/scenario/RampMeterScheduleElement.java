@@ -28,12 +28,6 @@ package edu.berkeley.path.model_objects.scenario;
 
 import edu.berkeley.path.model_objects.shared.DateTime;
 
-import java.util.Date;
-import javax.xml.bind.DatatypeConverter;
-import javax.xml.datatype.XMLGregorianCalendar;
-import javax.xml.datatype.DatatypeFactory;
-import java.util.GregorianCalendar;
-
 
 public class RampMeterScheduleElement extends edu.berkeley.path.model_objects.jaxb.RampMeterScheduleElement  {
 

@@ -25,8 +25,6 @@
  **/
 package edu.berkeley.path.model_objects.scenario;
 
-import edu.berkeley.path.model_objects.scenario.RampMeterPlan;
-
 import java.util.List;
 
 
