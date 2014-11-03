@@ -629,6 +629,9 @@ public class ModelObjectsFactory extends ObjectFactory {
     }
 
     @Override
+    public IntersectionPlanSet createIntersectionPlanSet() { return new IntersectionPlanSet(); }
+
+    @Override
     public SignalPlanSet createSignalPlanSet() {
         return new SignalPlanSet();
     }
@@ -637,4 +640,51 @@ public class ModelObjectsFactory extends ObjectFactory {
     public SignalPlan createSignalPlan() {
         return new SignalPlan();
     }
+
+    @Override
+    public RampMeterPlanSet createRampMeterPlanSet() {
+        return new RampMeterPlanSet();
+    }
+
+    @Override
+    public RampMeterPlan createRampMeterPlan() {
+        return new RampMeterPlan();
+    }
+
+    @Override
+    public RampMeterScheduleElement createRampMeterScheduleElement() {
+        return new RampMeterScheduleElement();
+    }
+
+    @Override
+    public RampMeterSchedule createRampMeterSchedule() {
+        return new RampMeterSchedule();
+    }
+
+    @Override
+    public RampMeterHoliday createRampMeterHoliday() {
+        return new RampMeterHoliday();
+    }
+
+    @Override
+    public RampMeterLsdType createRampMeterLsdType() {
+        return new RampMeterLsdType();
+    }
+
+    @Override
+    public RampMeterLsdValue createRampMeterLsdValue() {
+        return new RampMeterLsdValue();
+    }
+
+
+    @Override
+    public RampMeterRamType createRampMeterRamType() {
+        return new RampMeterRamType();
+    }
+
+    @Override
+    public RampMeterRamValue createRampMeterRamValue() {
+        return new RampMeterRamValue();
+    }
+
 }

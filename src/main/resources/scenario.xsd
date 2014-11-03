@@ -2,6 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0.2">
   <xs:include schemaLocation="network.xsd"/>
 
+
   <!-- common .................................................................. -->
   
 	<!-- used by event, controller -->
@@ -80,6 +81,8 @@
         <xs:element ref="FundamentalDiagramSet" minOccurs="0" maxOccurs="1" />
         <xs:element ref="NetworkConnections" minOccurs="0" maxOccurs="1" />
         <xs:element ref="DestinationNetworks" minOccurs="0" maxOccurs="1" />
+        <xs:element ref="IntersectionPlanSet" minOccurs="0" maxOccurs="1" />
+        <xs:element ref="RampMeterPlanSet" minOccurs="0" maxOccurs="1" />
         <xs:element ref="RouteSet" minOccurs="0" />
       </xs:all>
 			<xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
@@ -115,6 +118,24 @@
 		</xs:complexType>
 	</xs:element>
 
+    <!-- IntersectionPlanSet ............................................................. -->
+
+    <xs:element name="IntersectionPlanSet">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="SignalPlanSet" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:long" use="required"/>
+            <xs:attribute name="project_id" type="xs:long" use="required" />
+            <xs:attribute name="name" type="xs:string" use="optional" default="" />
+            <xs:attribute name="description" type="xs:string" use="optional"/>
+            <xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
+            <xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+
+
   <!-- SignalPlanSet ............................................................. -->
 
 	<xs:element name="SignalPlanSet">
@@ -125,6 +146,7 @@
       </xs:sequence>
 			<xs:attribute name="id" type="xs:long" use="required"/>
 			<xs:attribute name="project_id" type="xs:long" use="required"/>
+            <xs:attribute name="intersection_plan_set_id" type="xs:long" use="required"/>
 			<xs:attribute name="name" type="xs:string" use="optional" />
 			<xs:attribute name="description" type="xs:string" use="optional"/>
 			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
@@ -191,12 +213,13 @@
 
 	<xs:element name="SignalPlanScheduleElement">
 		<xs:complexType>
+            <xs:sequence>
+                <xs:element name="start_time" type="dateTime" minOccurs="1" maxOccurs="1" />
+            </xs:sequence>
 			<xs:attribute name="id" type="xs:long" use="required"/>
 			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
 			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
-
 			<xs:attribute name="schedule_id" type="xs:long" use="required"/>
-			<xs:attribute name="period" type="xs:string" use="required"/>
 			<xs:attribute name="action_type" type="xs:long" use="required"/>
 			<xs:attribute name="action_item" type="xs:string" use="required"/>
 			<xs:attribute name="Saturday" type="xs:boolean" use="required"/>
@@ -278,18 +301,18 @@
 	</xs:element>
 
 
-	<xs:element name="SignalTiming">
-		<xs:complexType>
-      <xs:sequence>
-        <xs:element ref="SignalTimingEntry" minOccurs="1" maxOccurs="unbounded" />
-      </xs:sequence>
-			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
-			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+    <xs:element name="SignalTiming">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="SignalTimingEntry" minOccurs="1" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
+            <xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 
-			<xs:attribute name="timing_set_id" type="xs:long" use="required"/>
-			<xs:attribute name="type" type="xs:long" use="required"/> 
-		</xs:complexType>
-	</xs:element>
+            <xs:attribute name="timing_set_id" type="xs:long" use="required"/>
+            <xs:attribute name="type" type="xs:long" use="required"/>
+        </xs:complexType>
+    </xs:element>
 
     <xs:element name="SignalTimingEntry">
         <xs:complexType>
@@ -304,16 +327,16 @@
         </xs:complexType>
     </xs:element>
 
-	<xs:element name="SignalTimingElement">
-		<xs:complexType>
+    <xs:element name="SignalTimingElement">
+        <xs:complexType>
             <xs:attribute name="id" type="xs:long" use="required"/>
 
             <xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
-			<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+            <xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 
-			<xs:attribute name="phase_num" type="xs:int" use="required"/>
-		</xs:complexType>
-	</xs:element>
+            <xs:attribute name="phase_num" type="xs:int" use="required"/>
+        </xs:complexType>
+    </xs:element>
 
 	<xs:element name="SignalPhaseElementType">
 		<xs:complexType>
@@ -1006,6 +1029,134 @@
           <xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 				</xs:complexType>
 			</xs:element>
-			
+    <!-- RampMeterPlan  ...................................................  -->
+    <xs:element name="RampMeterPlanSet">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="RampMeterPlan" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:long" use="required" />
+            <xs:attribute name="project_id" type="xs:long" use="required" />
+            <xs:attribute name="name" type="xs:string" use="required" default="" />
+            <xs:attribute name="description" type="xs:string" use="optional"  />
+            <xs:attribute name="mod_stamp" type="xs:string" use="optional"  />
+            <xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RampMeterPlan">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="RampMeterHoliday" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="RampMeterRamValue" minOccurs="1" maxOccurs="unbounded" />
+                <xs:element ref="RampMeterLsdValue" minOccurs="1" maxOccurs="unbounded" />
+                <xs:element ref="RampMeterSchedule" minOccurs="1" maxOccurs="2" />
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:long" use="required" />
+            <xs:attribute name="ramp_meter_plan_set_id" type="xs:long" use="required" />
+            <xs:attribute name="name" type="xs:string" use="required" default="" />
+            <xs:attribute name="description" type="xs:string" use="optional"  />
+            <xs:attribute name="mod_stamp" type="xs:string" use="optional"  />
+            <xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RampMeterHoliday">
+        <xs:complexType>
+            <xs:attribute name="id" type="xs:long" use="required" />
+            <xs:attribute name="plan_id" type="xs:long" use="required" />
+            <xs:attribute name="name" type="xs:string" use="required"  default=""/>
+            <xs:attribute name="month" type="xs:long" use="required" />
+            <xs:attribute name="day" type="xs:long" use="required" />
+            <xs:attribute name="mod_stamp" type="xs:string" use="optional"  />
+            <xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RampMeterSchedule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="RampMeterScheduleElement" minOccurs="1" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:long" use="required" />
+            <xs:attribute name="plan_id" type="xs:long" use="required" />
+            <xs:attribute name="name" type="xs:string" use="required" />
+            <xs:attribute name="description" type="xs:string" use="optional"  />
+            <xs:attribute name="table_num" type="xs:long" use="optional" />
+            <xs:attribute name="mod_stamp" type="xs:string" use="optional" />
+            <xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RampMeterScheduleElement">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="start_time" type="dateTime" minOccurs="1" maxOccurs="1" />
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:long" use="required" />
+            <xs:attribute name="schedule_id" type="xs:long" use="required" />
+            <xs:attribute name="rate" type="xs:string" use="required" />
+            <xs:attribute name="Saturday" type="xs:boolean" use="required" />
+            <xs:attribute name="Sunday" type="xs:boolean" use="required" />
+            <xs:attribute name="Monday" type="xs:boolean" use="required" />
+            <xs:attribute name="Tuesday" type="xs:boolean" use="required" />
+            <xs:attribute name="Wednesday" type="xs:boolean" use="required" />
+            <xs:attribute name="Thursday" type="xs:boolean" use="required" />
+            <xs:attribute name="Friday" type="xs:boolean" use="required" />
+            <xs:attribute name="Dev1" type="xs:boolean" use="required" />
+            <xs:attribute name="Dev2" type="xs:boolean" use="required" />
+            <xs:attribute name="PlanA" type="xs:boolean" use="required" />
+            <xs:attribute name="PlanB" type="xs:boolean" use="required" />
+            <xs:attribute name="mod_stamp" type="xs:string" use="optional" />
+            <xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RampMeterRamValue">
+        <xs:complexType>
+            <xs:attribute name="id" type="xs:long" use="required" />
+            <xs:attribute name="plan_id" type="xs:long" use="required" />
+            <!-- type_id:  corresponding to the id entries in RAMP_METER_RAM_TYPES -->
+            <xs:attribute name="type_id" type="xs:long" use="required" />
+            <xs:attribute name="value" type="xs:string" use="required" />
+            <xs:attribute name="mod_stamp" type="xs:string" use="optional" />
+            <xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RampMeterRamType">
+        <xs:complexType>
+            <xs:attribute name="id" type="xs:long" use="required" />
+            <xs:attribute name="name" type="xs:string" use="required"  />
+            <xs:attribute name="description" type="xs:string" use="optional"  />
+            <xs:attribute name="mod_stamp" type="xs:string" use="optional"  />
+            <xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+            <xs:attribute name="in_use" type="xs:int" use="optional" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RampMeterLsdValue">
+        <xs:complexType>
+            <xs:attribute name="id" type="xs:long" use="required" />
+            <xs:attribute name="plan_id" type="xs:long" use="required" />
+            <!-- type_id:  corresponding to the id entries in RAMP_METER_LSD_TYPES -->
+            <xs:attribute name="type_id" type="xs:long" use="required" />
+            <xs:attribute name="value" type="xs:boolean" use="required" />
+            <xs:attribute name="mod_stamp" type="xs:string" use="optional"  />
+            <xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RampMeterLsdType">
+        <xs:complexType>
+            <xs:attribute name="id" type="xs:long" use="required" />
+            <xs:attribute name="name" type="xs:string" use="required"  />
+            <xs:attribute name="description" type="xs:string" use="optional"  />
+            <xs:attribute name="mod_stamp" type="xs:string" use="optional"  />
+            <xs:attribute name="crudFlag" type="xs:string" use="optional"/>
+            <xs:attribute name="in_use" type="xs:int" use="optional" />
+        </xs:complexType>
+    </xs:element>
+
 </xs:schema>
 

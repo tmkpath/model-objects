@@ -26,6 +26,8 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import edu.berkeley.path.model_objects.shared.DateTime;
+
 public class SignalPlanScheduleElement extends edu.berkeley.path.model_objects.jaxb.SignalPlanScheduleElement {
     @Override
     public long getId() {
@@ -68,14 +70,10 @@ public class SignalPlanScheduleElement extends edu.berkeley.path.model_objects.j
     }
 
     @Override
-    public String getPeriod() {
-        return super.getPeriod();
-    }
+    public DateTime getStartTime() { return (DateTime) super.getStartTime();  }
 
-    @Override
-    public void setPeriod(String value) {
-        super.setPeriod(value);
-    }
+    //@Override
+    public void setStartTime(DateTime value) { super.setStartTime(value ); }
 
     @Override
     public long getActionType() {

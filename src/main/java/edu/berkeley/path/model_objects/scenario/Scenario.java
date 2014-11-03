@@ -40,6 +40,8 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
   /** @y.exclude */  private Long actuatorSetId;
   /** @y.exclude */  private Long controllerSetId;
   /** @y.exclude */  private Long routeSetId;
+  /** @y.exclude */  private Long intersectionPlanSetId;
+  /** @y.exclude */  private Long rampMeterPlanSetId;
 
   /**
    * Get the list of networks for this scenario
@@ -218,6 +220,18 @@ public List<Network> getListOfNetworks() {
   }
 
   @Override
+  public IntersectionPlanSet getIntersectionPlanSet() { return (IntersectionPlanSet) super.getIntersectionPlanSet();}
+
+  public void setIntersectionPlanSet(IntersectionPlanSet value) { super.setIntersectionPlanSet(value);  }
+
+  @Override
+  public RampMeterPlanSet getRampMeterPlanSet() {
+      return (RampMeterPlanSet) super.getRampMeterPlanSet();
+  }
+
+  public void setRampMeterPlanSet(RampMeterPlanSet value)  { super.setRampMeterPlanSet(value);}
+
+  @Override
   public long getProjectId() {
     return super.getProjectId();
   }
@@ -362,6 +376,35 @@ public List<Network> getListOfNetworks() {
   public void setRouteSetId(Long routeSetId) {
     this.routeSetId = routeSetId;
   }
+
+
+    public Long getIntersectionPlanSetId() {
+        // if the intersection plan set id is not set, try and get it from route set
+        if (intersectionPlanSetId == null) {
+            IntersectionPlanSet intersectionPlanSet = getIntersectionPlanSet();
+            if (intersectionPlanSet != null) {
+                setIntersectionPlanSetId(intersectionPlanSet.getId());
+            }
+        }
+        return intersectionPlanSetId;
+    }
+
+    public void setIntersectionPlanSetId(Long intersectionPlanSetId) { this.intersectionPlanSetId = intersectionPlanSetId; }
+
+
+    public Long getRampMeterPlanSetId() {
+        // if the ramp meter plan set id is not set, try and get it from route set
+        if (rampMeterPlanSetId == null) {
+            RampMeterPlanSet rampMeterPlanSet = (RampMeterPlanSet) getRampMeterPlanSet();
+            if (rampMeterPlanSet != null) {
+                setRampMeterPlanSetId(rampMeterPlanSet.getId());
+            }
+        }
+        return rampMeterPlanSetId;
+    }
+
+    public void setRampMeterPlanSetId(Long rampMeterPlanSetId) { this.rampMeterPlanSetId = rampMeterPlanSetId; }
+
 
   @Override
   public boolean isLockedForEdit() {
