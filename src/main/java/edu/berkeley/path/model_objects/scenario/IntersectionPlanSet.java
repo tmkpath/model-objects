@@ -44,6 +44,25 @@ public class IntersectionPlanSet extends edu.berkeley.path.model_objects.jaxb.In
         getListOfSignalPlanSets().addAll(plans);
     }
 
+    /**
+     *  Get the signal plan set for the given ID.
+     *
+     * @param sigPlanSetId
+     * @return the signal plan set if it exists, or null
+     */
+    public SignalPlanSet getSignalPlanSetById(long sigPlanSetId)
+    {
+        SignalPlanSet planSet = null;
+
+        for (SignalPlanSet p : this.getListOfSignalPlanSets()) {
+            if (sigPlanSetId == p.getId()) {
+                planSet = p;
+                break;
+            }
+        }
+        return planSet;
+    }
+
     @Override
     public String getModStamp() {
         return super.getModStamp();

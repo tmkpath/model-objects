@@ -101,6 +101,8 @@ public class IntersectionPlanSetTest {
         assertEquals(SPS2_ID, signalPlanSetList.get(1).getId());
         assertEquals(IPS1_ID, signalPlanSetList.get(0).getIntersectionPlanSetId());
         assertEquals(IPS1_ID, signalPlanSetList.get(1).getIntersectionPlanSetId());
+
+        assertEquals(IPS1_ID, intersectionPlanSet.getSignalPlanSetById(SPS2_ID).getIntersectionPlanSetId());
     }
 
 
