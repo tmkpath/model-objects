@@ -29,216 +29,239 @@ package edu.berkeley.path.model_objects.scenario;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet  {
+public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet {
 
-  // Describes set type to distinguish between master and controller sub-sets
-  /** @y.exclude */  private ScenarioSetType sensorSetType;
+    // Describes set type to distinguish between master and controller sub-sets
+    /**
+     * @y.exclude
+     */
+    private ScenarioSetType sensorSetType;
 
-	/**
-	 * Check to make sure all the Sensors are valid
-	 * 
-	 * @return boolean 
-	 */
-	public boolean isValid() {
-		for(Sensor s : getSensors()){
-			if(!s.isValid())
-				return false;
-		}
-		return true;
-	}
-	
-	/**
-	 * @return the projectId
-	 */
-	@Override
-	public long getProjectId() {
-		return super.getProjectId();
-	}
+    /**
+     * Check to make sure all the Sensors are valid
+     *
+     * @return boolean
+     */
+    public boolean isValid() {
+        for (Sensor s : getSensors()) {
+            if (!s.isValid())
+                return false;
+        }
+        return true;
+    }
 
-	/**
-	 * @param projectId the projectId to set
-	 */
-	 @Override
-	public void setProjectId(long projectId) {
-		 super.setProjectId(projectId);
-	}
+    /**
+     * @return the projectId
+     */
+    @Override
+    public long getProjectId() {
+        return super.getProjectId();
+    }
 
-	/**
-	 * @param id the id to set
-	 */
-	@Override
-	public void setId(long id) {
-		super.setId(id);	
-	}
+    /**
+     * @param projectId the projectId to set
+     */
+    @Override
+    public void setProjectId(long projectId) {
+        super.setProjectId(projectId);
+    }
 
-	/**
-	 * @return the id
-	 */
-	@Override
-	public long getId() {
-		return super.getId();
-	}
+    /**
+     * @param id the id to set
+     */
+    @Override
+    public void setId(long id) {
+        super.setId(id);
+    }
 
-	/**
-	 * @param name the name to set
-	 */
-	@Override
-	public void setName(String name) {
-		super.setName(name);
-	}
+    /**
+     * @return the id
+     */
+    @Override
+    public long getId() {
+        return super.getId();
+    }
 
-
-
-	/**
-	 * @param modstamp the modstamp to set
-	 */
-	@Override
-	public void setModStamp(String modstamp) {
-		super.setModStamp(modstamp);
-	}
+    /**
+     * @param name the name to set
+     */
+    @Override
+    public void setName(String name) {
+        super.setName(name);
+    }
 
 
-	/**
-	 * @return the modStamp
-	 */
-	@Override
-	public String getModStamp() {
-		return super.getModStamp();
-	}
+    /**
+     * @param modstamp the modstamp to set
+     */
+    @Override
+    public void setModStamp(String modstamp) {
+        super.setModStamp(modstamp);
+    }
 
-	/**
-	 * @return the name
-	 */
-	@Override
-	public String getName() {
-		return super.getName();
-	}
 
-	/**
-	 * @return the description
-	 */
-	@Override
-	public String getDescription() {
-		return super.getDescription();
-	}
-	
-	/**
-	 * @param description the description to set
-	 */
-	@Override
-	public void setDescription(String desc) {
-		super.setDescription(desc);
-		
-	}
-	
+    /**
+     * @return the modStamp
+     */
+    @Override
+    public String getModStamp() {
+        return super.getModStamp();
+    }
+
+    /**
+     * @return the name
+     */
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    /**
+     * @return the description
+     */
+    @Override
+    public String getDescription() {
+        return super.getDescription();
+    }
+
+    /**
+     * @param desc the description to set
+     */
+    @Override
+    public void setDescription(String desc) {
+        super.setDescription(desc);
+
+    }
+
     /**
      * Gets the value of the lockedForEdit property.
-     * 
+     *
      * @return boolean
-     *     
      */
     @Override
     public boolean isLockedForEdit() {
-       return super.isLockedForEdit();
+        return super.isLockedForEdit();
     }
 
     /**
      * Sets the value of the lockedForEdit property.
-     * 
+     *
      * @param Boolean value
-     *     
      */
     @Override
     public void setLockedForEdit(Boolean value) {
-    	super.setLockedForEdit(value);
+        super.setLockedForEdit(value);
     }
 
     /**
      * Gets the value of the lockedForHistory property.
-     * 
+     *
      * @return boolean
-     *     
      */
     @Override
     public boolean isLockedForHistory() {
-       return super.isLockedForHistory();
+        return super.isLockedForHistory();
     }
 
     /**
      * Sets the value of the lockedForHistory property.
-     * 
+     *
      * @param Boolean value
-     *     
      */
     @Override
     public void setLockedForHistory(Boolean value) {
-    	super.setLockedForHistory(value);
+        super.setLockedForHistory(value);
     }
-    
-	/**
-	 * Set the sensors list. Attaches list of Sensor Model Objects to scenario.
-	 * 
-	 * @param List<Sensor>	List of extended Sensors to add
-	 */
-	@SuppressWarnings("unchecked")
-	public void setSensors(List<Sensor> sensors) {
 
-			List<edu.berkeley.path.model_objects.jaxb.Sensor> sensorSet = getSensor();
-			if ( sensorSet == null ) {
-			  sensorSet = new ArrayList<edu.berkeley.path.model_objects.jaxb.Sensor>();  
-			}
-			sensorSet.clear();
-			sensorSet.addAll((List<edu.berkeley.path.model_objects.jaxb.Sensor>)(List<?>)sensors);
-			sensor = sensorSet;
-	}
-	
-	/** 
-	 * Get the list of sensors in the scenario.
-	 * 
-	 * @return List of all sensors as Sensor Model Objects. 
-	 */
-	@SuppressWarnings("unchecked")
-	public List<Sensor> getSensors() {
-		// return casted list of Sensors from JAXB base class
-		return (List<Sensor>)(List<?>)super.getSensor();
-	}
+    /**
+     * Set the sensors list. Attaches list of Sensor Model Objects to scenario.
+     *
+     * @param List<Sensor> List of extended Sensors to add
+     */
+    @SuppressWarnings("unchecked")
+    public void setSensors(List<Sensor> sensors) {
 
-  /**
-   * Get the object representing this sensor set type
-   *
-   * @return ScenarioSetType
-   */
-  public ScenarioSetType getSensorSetType() {
-    return sensorSetType;
-  }
-
-  /**
-   * Get id representing this sensor set types as defined in the database
-   *
-   * @return Long
-   */
-  public Long getSensorSetTypeId() {
-    if (sensorSetType != null) {
-      return sensorSetType.getId();
+        List<edu.berkeley.path.model_objects.jaxb.Sensor> sensorSet = getSensor();
+        if (sensorSet == null) {
+            sensorSet = new ArrayList<edu.berkeley.path.model_objects.jaxb.Sensor>();
+        }
+        sensorSet.clear();
+        sensorSet.addAll((List<edu.berkeley.path.model_objects.jaxb.Sensor>) (List<?>) sensors);
+        sensor = sensorSet;
     }
-    else {
-      return null;
-    }
-  }
 
-  /**
-   * Set the number representing the set type as defined in the database
-   *
-   * @param Id  Set type id as defined in database
-   * @param name  Name of set type (ie master or controller)
-   * @param description Description of set type
-   */
-  public void setSensorSetType(Long Id, String name, String description) {
-    ScenarioSetType setType = new ScenarioSetType();
-    setType.setId(Id);
-    setType.setName(name);
-    setType.setDescription(description);
-    sensorSetType = setType;
-  }
+    /**
+     * Get the list of sensors in the scenario.
+     *
+     * @return List of all sensors as Sensor Model Objects.
+     */
+    @SuppressWarnings("unchecked")
+    public List<Sensor> getSensors() {
+        // return casted list of Sensors from JAXB base class
+        return (List<Sensor>) (List<?>) super.getSensor();
+    }
+
+    /**
+     * Get the object representing this sensor set type
+     *
+     * @return ScenarioSetType
+     */
+    public ScenarioSetType getSensorSetType() {
+        return sensorSetType;
+    }
+
+    /**
+     * Get id representing this sensor set types as defined in the database
+     *
+     * @return Long
+     */
+    public Long getSensorSetTypeId() {
+        if (sensorSetType != null) {
+            return sensorSetType.getId();
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Set the number representing the set type as defined in the database
+     *
+     * @param Id          Set type id as defined in database
+     * @param name        Name of set type (ie master or controller)
+     * @param description Description of set type
+     */
+    public void setSensorSetType(Long Id, String name, String description) {
+        ScenarioSetType setType = new ScenarioSetType();
+        setType.setId(Id);
+        setType.setName(name);
+        setType.setDescription(description);
+        sensorSetType = setType;
+    }
+
+    /**
+     * Get single sensor by numerical original ID, if present.
+     * @param id
+     * @return
+     */
+    public Sensor getSensorByIdOriginal(String id) {
+        for (Sensor sensor : getSensors()) {
+            if (sensor.getSensorIdOriginal().equals(id))
+                return sensor;
+        }
+        return null;
+    }
+
+    /**
+     * Get single sensor by numerical ID, if present.
+     * @param id
+     * @return
+     */
+    public Sensor getSensorById(long id) {
+        for (Sensor sensor : getSensors()) {
+            if (sensor.getId() == id)
+                return sensor;
+        }
+        return null;
+    }
 
 }
