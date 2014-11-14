@@ -60,22 +60,6 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
   }
 
     /**
-     * @param id the signal plan set id to set
-     * */
-    public void setSigPlanSetId(long id) {
-        super.setSigPlanSetId(id);
-    }
-
-    /**
-     *
-     * @return
-     */
-    @Override
-    public Long getSigPlanSetId() {
-        return super.getSigPlanSetId();
-    }
-
-    /**
    * @param id the id to set
    */
   @Override
@@ -349,7 +333,24 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
     super.setParameters(parameters);
   }
 
-  /**
+    public SignalPlanSet getSignalPlanSet() {
+        return (SignalPlanSet) super.getSignalPlanSet();
+    }
+
+    public void setSignalPlanSet(SignalPlanSet value) {
+        super.setSignalPlanSet(value);
+    }
+
+    public RampMeterPlan getRampMeterPlan() {
+        return (RampMeterPlan) super.getRampMeterPlan();
+    }
+
+    public void setRampMeterPlan(RampMeterPlan value) {
+        super.setRampMeterPlan(value);
+    }
+
+
+    /**
    * Get the list of Target Actuators Attached to Controller.
    *
    * @return List of Target Actuator Model Objects.

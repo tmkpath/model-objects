@@ -68,7 +68,6 @@
         <xs:element ref="settings" minOccurs="0"  maxOccurs="1" />
         <xs:element ref="NetworkSet" minOccurs="0" maxOccurs="1" />
         <xs:element ref="VehicleTypeSet" minOccurs="1" />
-<!--        <xs:element ref="SignalSet" minOccurs="0" maxOccurs="1"  /> -->
         <xs:element ref="SensorSet" minOccurs="0" maxOccurs="1"  />
 				<xs:element ref="ActuatorSet" minOccurs="0" maxOccurs="1"  />
         <xs:element ref="InitialDensitySet" minOccurs="0" maxOccurs="1" />
@@ -81,8 +80,6 @@
         <xs:element ref="FundamentalDiagramSet" minOccurs="0" maxOccurs="1" />
         <xs:element ref="NetworkConnections" minOccurs="0" maxOccurs="1" />
         <xs:element ref="DestinationNetworks" minOccurs="0" maxOccurs="1" />
-        <xs:element ref="IntersectionPlanSet" minOccurs="0" maxOccurs="1" />
-        <xs:element ref="RampMeterPlanSet" minOccurs="0" maxOccurs="1" />
         <xs:element ref="RouteSet" minOccurs="0" />
       </xs:all>
 			<xs:attribute name="project_id" type="xs:long" use="optional" default="0" />
@@ -118,25 +115,7 @@
 		</xs:complexType>
 	</xs:element>
 
-    <!-- IntersectionPlanSet ............................................................. -->
-
-    <xs:element name="IntersectionPlanSet">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="SignalPlanSet" minOccurs="0" maxOccurs="unbounded" />
-            </xs:sequence>
-            <xs:attribute name="id" type="xs:long" use="required"/>
-            <xs:attribute name="project_id" type="xs:long" use="required" />
-            <xs:attribute name="name" type="xs:string" use="optional" default="" />
-            <xs:attribute name="description" type="xs:string" use="optional"/>
-            <xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
-            <xs:attribute name="crudFlag" type="xs:string" use="optional"/>
-        </xs:complexType>
-    </xs:element>
-
-
-
-  <!-- SignalPlanSet ............................................................. -->
+  <!-- SignalPlanSet .............................................................     -->
 
 	<xs:element name="SignalPlanSet">
 		<xs:complexType>
@@ -146,7 +125,7 @@
       </xs:sequence>
 			<xs:attribute name="id" type="xs:long" use="required"/>
 			<xs:attribute name="project_id" type="xs:long" use="required"/>
-            <xs:attribute name="intersection_plan_set_id" type="xs:long" use="required"/>
+            <xs:attribute name="controller_id" type="xs:long" use="required"/>
 			<xs:attribute name="name" type="xs:string" use="optional" />
 			<xs:attribute name="description" type="xs:string" use="optional"/>
 			<xs:attribute name="mod_stamp" type="xs:string" use="optional"/>
@@ -732,20 +711,21 @@
 		<xs:element name="controller">
 			<xs:complexType>
         <xs:sequence>
-          <xs:element ref="parameters" minOccurs="0" />
-					<xs:element ref="feedback_sensors" minOccurs="0" maxOccurs="1"/>
-					<xs:element ref="target_actuators" minOccurs="0" maxOccurs="1"/>
-          <xs:element ref="queue_controller" minOccurs="0" />
-          <xs:element ref="ActivationIntervals" minOccurs="0" />
-          <xs:element ref="table" minOccurs="0" maxOccurs="unbounded" />
-					<xs:element ref="controllerType" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="parameters" minOccurs="0" />
+            <xs:element ref="feedback_sensors" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="target_actuators" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="SignalPlanSet" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="RampMeterPlan" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="queue_controller" minOccurs="0" />
+            <xs:element ref="ActivationIntervals" minOccurs="0" />
+            <xs:element ref="table" minOccurs="0" maxOccurs="unbounded" />
+	        <xs:element ref="controllerType" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
 				<xs:attribute name="name" type="xs:string" use="optional" />
 				<xs:attribute name="dt" type="xs:double" use="required" />
 				<xs:attribute name="id" type="xs:long" use="required" />
 				<xs:attribute name="mod_stamp" type="xs:string" use="optional" default="0" />
 				<xs:attribute name="crudFlag" type="xs:string" use="optional"/>
-                <xs:attribute name="SigPlanSetId" type="xs:long" use="optional" />
 			</xs:complexType>
 		</xs:element>
 
@@ -1029,20 +1009,6 @@
           <xs:attribute name="crudFlag" type="xs:string" use="optional"/>
 				</xs:complexType>
 			</xs:element>
-    <!-- RampMeterPlan  ...................................................  -->
-    <xs:element name="RampMeterPlanSet">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="RampMeterPlan" minOccurs="0" maxOccurs="unbounded" />
-            </xs:sequence>
-            <xs:attribute name="id" type="xs:long" use="required" />
-            <xs:attribute name="project_id" type="xs:long" use="required" />
-            <xs:attribute name="name" type="xs:string" use="required" default="" />
-            <xs:attribute name="description" type="xs:string" use="optional"  />
-            <xs:attribute name="mod_stamp" type="xs:string" use="optional"  />
-            <xs:attribute name="crudFlag" type="xs:string" use="optional"/>
-        </xs:complexType>
-    </xs:element>
 
     <xs:element name="RampMeterPlan">
         <xs:complexType>
@@ -1053,7 +1019,7 @@
                 <xs:element ref="RampMeterSchedule" minOccurs="1" maxOccurs="2" />
             </xs:sequence>
             <xs:attribute name="id" type="xs:long" use="required" />
-            <xs:attribute name="ramp_meter_plan_set_id" type="xs:long" use="required" />
+            <xs:attribute name="controller_id" type="xs:long" use="required" />
             <xs:attribute name="name" type="xs:string" use="required" default="" />
             <xs:attribute name="description" type="xs:string" use="optional"  />
             <xs:attribute name="mod_stamp" type="xs:string" use="optional"  />

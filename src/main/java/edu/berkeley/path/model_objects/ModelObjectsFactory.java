@@ -629,9 +629,6 @@ public class ModelObjectsFactory extends ObjectFactory {
     }
 
     @Override
-    public IntersectionPlanSet createIntersectionPlanSet() { return new IntersectionPlanSet(); }
-
-    @Override
     public SignalPlanSet createSignalPlanSet() {
         return new SignalPlanSet();
     }
@@ -639,11 +636,6 @@ public class ModelObjectsFactory extends ObjectFactory {
     @Override
     public SignalPlan createSignalPlan() {
         return new SignalPlan();
-    }
-
-    @Override
-    public RampMeterPlanSet createRampMeterPlanSet() {
-        return new RampMeterPlanSet();
     }
 
     @Override
@@ -675,7 +667,6 @@ public class ModelObjectsFactory extends ObjectFactory {
     public RampMeterLsdValue createRampMeterLsdValue() {
         return new RampMeterLsdValue();
     }
-
 
     @Override
     public RampMeterRamType createRampMeterRamType() {

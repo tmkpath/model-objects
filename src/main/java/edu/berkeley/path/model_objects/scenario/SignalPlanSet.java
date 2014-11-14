@@ -68,13 +68,13 @@ public class SignalPlanSet extends edu.berkeley.path.model_objects.jaxb.SignalPl
     }
 
     @Override
-    public long getIntersectionPlanSetId() {
-        return super.getIntersectionPlanSetId();
+    public long getControllerId() {
+        return super.getControllerId();
     }
 
     @Override
-    public void setIntersectionPlanSetId(long value) {
-        super.setIntersectionPlanSetId(value);
+    public void setControllerId(long value) {
+        super.setControllerId(value);
     }
 
     @Override
