@@ -87,13 +87,13 @@ public class RampMeterPlan extends edu.berkeley.path.model_objects.jaxb.RampMete
 
 
     @Override
-    public void setRampMeterPlanSetId(long value) {
-        super.setRampMeterPlanSetId(value);
+    public void setControllerId(long value) {
+        super.setControllerId(value);
     }
 
     @Override
-    public long getRampMeterPlanSetId() {
-        return super.getRampMeterPlanSetId();
+    public long getControllerId() {
+        return super.getControllerId();
     }
 
 

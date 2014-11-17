@@ -70,10 +70,7 @@ public class RampMeterTest {
     private static final String RMP_NAME = "RMP Name";
     private static final String RMP_DESC = "RMP Description";
 
-    private static final int RMPS_ID = 16;
-    private static final int RMPS_PROJECT_ID = 17;
-    private static final String RMPS_NAME = "RMPS Name";
-    private static final String RMPS_DESC = "RMPS Description";
+    private static final int CNTRL_ID = 16;
 
     private static final String MOD_STAMP = "18-JAN-2008 02:51:00";
 
@@ -83,7 +80,6 @@ public class RampMeterTest {
     private edu.berkeley.path.model_objects.scenario.RampMeterRamValue rampMeterRamValue;
     private edu.berkeley.path.model_objects.scenario.RampMeterHoliday  rampMeterHoliday;
     private edu.berkeley.path.model_objects.scenario.RampMeterPlan  rampMeterPlan;
-    private edu.berkeley.path.model_objects.scenario.RampMeterPlanSet  rampMeterPlanSet;
     private edu.berkeley.path.model_objects.scenario.RampMeterRamType rampMeterRamType;
     private edu.berkeley.path.model_objects.scenario.RampMeterLsdType  rampMeterLsdType;
 
@@ -149,7 +145,7 @@ public class RampMeterTest {
         //RampMeterPlan
         rampMeterPlan = new RampMeterPlan();
         rampMeterPlan.setId(RMP_ID);
-        rampMeterPlan.setRampMeterPlanSetId(RMPS_ID);
+        rampMeterPlan.setControllerId(CNTRL_ID);
         rampMeterPlan.setName(RMP_NAME);
         rampMeterPlan.setDescription(RMP_DESC);
 
@@ -168,14 +164,6 @@ public class RampMeterTest {
         List<RampMeterSchedule> rampMeterScheduleList = new ArrayList<RampMeterSchedule>();
         rampMeterScheduleList.add(rampMeterSchedule);
         rampMeterPlan.setListOfRampMeterSchedule(rampMeterScheduleList);
-
-        //RampMeterPlanSet
-        rampMeterPlanSet = new RampMeterPlanSet();
-        rampMeterPlanSet.setId(RMPS_ID);
-        rampMeterPlanSet.setProjectId(RMPS_PROJECT_ID);
-        rampMeterPlanSet.setName(RMPS_NAME);
-        rampMeterPlanSet.setDescription(RMPS_DESC);
-
     }
 
     @Test
@@ -228,19 +216,13 @@ public class RampMeterTest {
 
         //RampMeterPlan
         assertEquals(RMP_ID, rampMeterPlan.getId());
-        assertEquals(RMPS_ID, rampMeterPlan.getRampMeterPlanSetId());
+        assertEquals(CNTRL_ID, rampMeterPlan.getControllerId());
         assertEquals(RMP_NAME,rampMeterPlan.getName());
         assertEquals(RMP_DESC,rampMeterPlan.getDescription());
         assertEquals(1,rampMeterPlan.getListOfRampMeterLsdValue().size());
         assertEquals(1,rampMeterPlan.getListOfRampMeterHoliday().size());
         assertEquals(1,rampMeterPlan.getListOfRampMeterRamValue().size());
         assertEquals(1,rampMeterPlan.getListOfRampMeterSchedule().size());
-
-        //RampMeterPlanSet
-        assertEquals(RMPS_ID, rampMeterPlanSet.getId());
-        assertEquals(RMPS_PROJECT_ID, rampMeterPlanSet.getProjectId());
-        assertEquals(RMPS_NAME,rampMeterPlanSet.getName());
-        assertEquals(RMPS_DESC,rampMeterPlanSet.getDescription());
 
     }
 
