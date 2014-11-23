@@ -111,7 +111,7 @@ public class Serializer {
     catch (JAXBException exc) {
       Monitor.err("Error unmarshalling object " + jaxbClass.getName() + " from XML");
       throw new MOException(exc, "Unable to convert XML to " + jaxbClass.getName() + " Model Object. "
-          + exc.getMessage());
+          + exc.getLinkedException().getMessage());
     }
     // catch all other exceptions since JAXB unmarshaller can throw unchecked exceptions, for
     // example
