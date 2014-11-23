@@ -100,7 +100,22 @@ public class SerializerTest {
     assertEquals(3, node.getId());
     
   }
-  
+
+  @Test
+  public void testBadlyFormattedXMLUnMarshaller() throws Exception {
+      String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
+                "<node name=\"test\" name=\"test\" id=\"2\"/>\n";
+      // unmarshal XML into Node object
+      try {
+        node = Serializer.xmlToObject(xml, node.getClass(), null);
+      }catch(Exception e){
+        String expM = "Unable to convert XML to edu.berkeley.path.model_objects.jaxb.Node Model Object. ";
+        expM += "Attribute \"name\" was already specified for element \"node\".";
+        assertEquals(expM, e.getMessage());
+      }
+
+  }
+
   @Test
   public void testMarshallerExtenedApp() throws Exception {
     // Convert nodeExt object to XML
