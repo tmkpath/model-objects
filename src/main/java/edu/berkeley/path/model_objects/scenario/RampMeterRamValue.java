@@ -62,6 +62,15 @@ public class RampMeterRamValue extends edu.berkeley.path.model_objects.jaxb.Ramp
         super.setTypeId(value);
     }
 
+    @Override
+    public String getTypeName() {
+        return super.getTypeName();
+    }
+
+    @Override
+    public void setTypeName(String value) {
+        super.setTypeName(value);
+    }
 
     @Override
     public String getValue() { return super.getValue(); }

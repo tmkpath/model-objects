@@ -1082,8 +1082,9 @@
         <xs:complexType>
             <xs:attribute name="id" type="xs:long" use="required" />
             <xs:attribute name="plan_id" type="xs:long" use="required" />
-            <!-- type_id:  corresponding to the id entries in RAMP_METER_RAM_TYPES -->
+            <!-- type_id and type_name:  corresponding to the entries in RAMP_METER_RAM_TYPES -->
             <xs:attribute name="type_id" type="xs:long" use="required" />
+            <xs:attribute name="type_name" type="xs:string" use="required" />
             <xs:attribute name="value" type="xs:string" use="required" />
             <xs:attribute name="mod_stamp" type="xs:string" use="optional" />
             <xs:attribute name="crudFlag" type="xs:string" use="optional"/>
@@ -1105,8 +1106,9 @@
         <xs:complexType>
             <xs:attribute name="id" type="xs:long" use="required" />
             <xs:attribute name="plan_id" type="xs:long" use="required" />
-            <!-- type_id:  corresponding to the id entries in RAMP_METER_LSD_TYPES -->
+            <!-- type_id and type_name:  corresponding to the id entries in RAMP_METER_LSD_TYPES -->
             <xs:attribute name="type_id" type="xs:long" use="required" />
+            <xs:attribute name="type_name" type="xs:string" use="required" />
             <xs:attribute name="value" type="xs:boolean" use="required" />
             <xs:attribute name="mod_stamp" type="xs:string" use="optional"  />
             <xs:attribute name="crudFlag" type="xs:string" use="optional"/>
