@@ -70,7 +70,7 @@ public class SignalPlanScheduleElement extends edu.berkeley.path.model_objects.j
     }
 
     @Override
-    public DateTime getStartTime() { return (DateTime) super.getStartTime();  }
+    public DateTime getStartTime() { return new DateTime(super.getStartTime().getMilliseconds()); }
 
     //@Override
     public void setStartTime(DateTime value) { super.setStartTime(value ); }
