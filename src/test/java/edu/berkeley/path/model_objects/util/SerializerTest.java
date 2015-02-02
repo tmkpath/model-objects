@@ -176,7 +176,7 @@ public class SerializerTest {
 	@Test
 	public void testUnMarshallerNetworkExt () throws Exception {
 		String beforeXML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
-				"   <network>\n" +
+				"   <network project_id=\"1\">\n" +
 				"      <description/>\n" +
 				"      <position>\n" +
 				"        <point lat=\"37.8705\" lng=\"-122.29919999999998\" elevation=\"0\"/>\n" +
@@ -248,7 +248,7 @@ public class SerializerTest {
 				"    </network>";
 
 		String expectedXML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
-				"<network id=\"0\">\n" +
+				"<network project_id=\"1\" id=\"0\">\n" +
 				"    <description></description>\n" +
 				"    <NodeList>\n" +
 				"        <node id=\"9999\">\n" +
