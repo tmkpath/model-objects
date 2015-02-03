@@ -62,8 +62,28 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
   public void setId(long id) {
     super.setId(id);
   }
-  
-  /**
+
+    /**
+     * Return id of network
+     *
+     * @return id of network as long
+     */
+    @Override
+    public long getProjectId() {
+        return super.getProjectId();
+    }
+
+    /**
+     * Set id of network
+     *
+     * @param id of network as long
+     */
+    @Override
+    public void setProjectId(long id) {
+        super.setProjectId(id);
+    }
+
+    /**
    * Return name of network
    * 
    * @return name of network as string
