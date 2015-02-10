@@ -20,7 +20,6 @@ public class TestConfiguration {
 		profile.setNodeId(nodeId);
 		profile.setStartTime(start);
 		profile.setDt(dt);
-		profile.setDestinationNetworkId(dest);
 		profile.setCrudFlagEnum(flag);
 		
 		List<Splitratio> ratios = new ArrayList<Splitratio>();
