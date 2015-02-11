@@ -73,7 +73,7 @@ public class SplitRatioSetTest {
 	public void testGetters(){
 		assertEquals(DESCRIPTION, set.getDescription());
 		assertEquals(PROJECT_ID, set.getProjectId());
-        assertEquals(NETWORK_ID, set.getNetworkId().longValue());
+        assertEquals(NETWORK_ID, set.getNetworkId());
 		assertEquals(ID,set.getId());
 		assertEquals(NAME, set.getName());
 		assertEquals(MOD_STAMP, set.getModStamp());
