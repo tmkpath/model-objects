@@ -187,26 +187,6 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
     public void setId(long value) {
         super.setId(value);
     }
-    
-    /**
-     * Get Network ID associated with profile
-     * 
-     * @return network ID
-     */
-    @Override
-    public Long getNetworkId() {
-      return super.getNetworkId();
-    }
-
-    /**
-     * Set Network ID associated with profile
-     * 
-     * @param id of network to associate profile with
-     */
-    @Override
-    public void setNetworkId(Long id) {
-      super.setNetworkId(id);
-    }
 
 
 	/**
@@ -343,27 +323,6 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
         super.setDt(value);
     }
 
-    /**
-     * Gets the value of the destinationNetworkId property.
-     * 
-     * @return Long
-     *     
-     */
-    @Override
-    public Long getDestinationNetworkId() {
-        return super.getDestinationNetworkId();
-    }
-
-    /**
-     * Sets the value of the destinationNetworkId property.
-     * 
-     * @param Long value
-     *     
-     */
-    @Override
-    public void setDestinationNetworkId(Long value) {
-    	 super.setDestinationNetworkId(value);
-    }
     
 	/**
 	 * @param modstamp the modstamp to set
@@ -391,7 +350,6 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 		prof.setNodeId(this.getNodeId());
 		prof.setStartTime(this.getStartTime());
 		prof.setDt(this.getDt());
-		prof.setDestinationNetworkId(this.getDestinationNetworkId());
 		prof.setModStamp(this.getModStamp());
 		prof.setListOfSplitRatios(this.getListOfSplitratios());
 		return prof;

@@ -39,8 +39,7 @@ import edu.berkeley.path.model_objects.MOException;
 
 public class SplitRatioProfileTest {
 	private static final long ID = 1;
-	private static final long NODE_ID = 10;  
-	private static final long DEST_NETWORK_ID = 99999;
+	private static final long NODE_ID = 10;
 	private static final double DT = 300;
 	private static final double START_TIME = 3600;
 	private static final String MOD_STAMP = "01-APR-1982 23:23:12";
@@ -54,7 +53,6 @@ public class SplitRatioProfileTest {
 		profile.setNodeId(NODE_ID);
 		profile.setStartTime(START_TIME);
 		profile.setDt(DT);
-		profile.setDestinationNetworkId(DEST_NETWORK_ID);
 		profile.setCrudFlagEnum(CrudFlag.CREATE);
 		profile.setModStamp(MOD_STAMP);
 		
@@ -71,7 +69,6 @@ public class SplitRatioProfileTest {
 		assertEquals(CrudFlag.CREATE,profile.getCrudFlagEnum());
 		assertEquals(START_TIME,profile.getStartTime(), 0.0);
 		assertEquals(DT,profile.getDt().doubleValue(), 0.0);
-		assertEquals(DEST_NETWORK_ID, profile.getDestinationNetworkId().longValue());
 		assertEquals(MOD_STAMP, profile.getModStamp());
 		assertEquals(1, profile.getListOfSplitratios().size());
 	}

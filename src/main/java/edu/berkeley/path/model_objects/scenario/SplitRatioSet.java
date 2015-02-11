@@ -120,6 +120,27 @@ public class SplitRatioSet extends edu.berkeley.path.model_objects.jaxb.SplitRat
         super.setProjectId(value);
     }
 
+
+    /**
+     * Get Network ID associated with profile
+     *
+     * @return network ID
+     */
+    @Override
+    public Long getNetworkId() {
+        return super.getNetworkId();
+    }
+
+    /**
+     * Set Network ID associated with profile
+     *
+     * @param id of network to associate profile with
+     */
+    @Override
+    public void setNetworkId(Long id) {
+        super.setNetworkId(id);
+    }
+
     /**
      * Gets the value of the id property.
      * 
