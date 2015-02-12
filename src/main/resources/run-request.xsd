@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0.2">
+<xs:include schemaLocation="scenario.xsd"/> <!-- Also pulls in network.xsd, which pulls in generic.xsd -->
+
+   <xs:element name="run_request">
+      <xs:complexType>
+         <xs:all>
+            <xs:element ref="scenario" minOccurs="1" maxOccurs="1" />
+            <xs:element ref="parameters" minOccurs="1" maxOccurs="1" />
+         </xs:all>
+         <xs:attribute name="id" type="xs:long" use="required"/>
+         <xs:attribute name="project_id" type="xs:long" use="required"/>
+         <xs:attribute name="name" type="xs:string" use="required" />
+      </xs:complexType>
+   </xs:element>
+
+</xs:schema>
