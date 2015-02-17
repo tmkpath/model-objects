@@ -28,7 +28,6 @@ public class RunRequest extends edu.berkeley.path.model_objects.jaxb.RunRequest 
      * @param value {@link Scenario }
      *
      */
-    @Override
     public void setScenario(Scenario value) {
         super.setScenario(value);
     }
@@ -52,7 +51,6 @@ public class RunRequest extends edu.berkeley.path.model_objects.jaxb.RunRequest 
      * @param value {@link Parameters }
      *
      */
-    @Override
     public void setParameters(Parameters value) {
         super.setParameters(value);
     }
