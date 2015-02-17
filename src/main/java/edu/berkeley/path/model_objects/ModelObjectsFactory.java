@@ -297,6 +297,14 @@ public class ModelObjectsFactory extends ObjectFactory {
   }
 
   /**
+   * Create an instance of RunRequest Model Object
+   *
+   * @return RunRequest  Model Object
+   */
+  @Override
+  public RunRequest createRunRequest() { return new RunRequest(); }
+
+  /**
    * Create an instance of SplitRatioSet  Model Object
    *
    * @return SplitRatioSet  Model Object
