@@ -122,7 +122,56 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
   public void setDescription(String description) {
     super.setDescription(description);
   }
-  
+
+  /**
+   * Set the Network Type
+   *
+   * @param type NetworkType
+   */
+  public void setNetworkType(NetworkType type) {
+        super.setNetworkType(type);
+    }
+
+  /**
+   * Get the Network Type
+   *
+   * @return NetworkType object
+   */
+  @Override
+  public edu.berkeley.path.model_objects.jaxb.NetworkType getNetworkType() {
+      return super.getNetworkType();
+  }
+
+  /**
+   * Convenience method for users to get Network Type Id directly
+   *
+   * @return Integer The id of the Network Type
+   */
+  public Integer getNetworkTypeId() {
+      if (getNetworkType() != null) {
+          return getNetworkType().getId();
+      }
+      else {
+          return null;
+      }
+  }
+
+  /**
+   * Set the Network Type for this object based on the parameters passed in.
+   *
+   * @param typeId Id of the NetworkType
+   * @param name Name of the NetworkType
+   * @param desc Description of the NetworkType
+   */
+  public void setNetworkType(Integer typeId, String name, String desc) {
+      edu.berkeley.path.model_objects.jaxb.NetworkType type =
+              new edu.berkeley.path.model_objects.jaxb.NetworkType();
+      type.setId(typeId);
+      type.setName(name);
+      type.setDescription(desc);
+      super.setNetworkType(type);
+  }
+
   /**
    * Return whether network is locked for edit
    * 

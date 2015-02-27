@@ -42,6 +42,7 @@ public class NetworkTest {
     nw.setName("test network");
     nw.setId(42);
     nw.setProjectId(1);
+    nw.setNetworkType(2,"Reference","Reference Network Type");
 
     nw.setListOfNodes(new ArrayList<Node>());
     nw.setListOfLinks(new ArrayList<Link>());
@@ -121,6 +122,7 @@ public class NetworkTest {
 
     assertEquals(nw.getProjectId(), 1);
     assertEquals(nw.getId(), 42);
+    assertEquals(nw.getNetworkTypeId().intValue(), 2);
     
     //TODO: ADD getOutLinksToNode
     /*HashSet<Link> links_n1_to_n2 = n1.getOutLinksToNode(n2);
