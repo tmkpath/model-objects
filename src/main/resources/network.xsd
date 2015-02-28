@@ -28,6 +28,7 @@
             <xs:element ref="NodeList" minOccurs="0" />
             <xs:element ref="LinkList" minOccurs="0" />
             <xs:element ref="position" minOccurs="0" />
+            <xs:element ref="network_type" minOccurs="1" maxOccurs="1"/>
          </xs:all>
          <xs:attribute name="name" type="xs:string" use="required" />
          <xs:attribute name="id" type="xs:long" use="required" />
@@ -37,6 +38,18 @@
             default="false" />
          <xs:attribute name="lockedForHistory" type="xs:boolean" 
             use="optional" default="false" />
+      </xs:complexType>
+   </xs:element>
+
+
+   <xs:element name="network_type">
+      <xs:complexType>
+         <xs:attribute name="id" type="xs:int" use="required" />
+         <xs:attribute name="name" type="xs:string" use="required" />
+         <xs:attribute name="description" type="xs:string" use="optional" />
+         <xs:attribute name="in_use" type="xs:int" use="optional" />
+         <xs:attribute name="mod_stamp" type="xs:string" use="optional"
+                       default="0" />
       </xs:complexType>
    </xs:element>
 
