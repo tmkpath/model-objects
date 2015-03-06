@@ -77,6 +77,30 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
 	  super.setId(id);
 	}
 
+    /**
+     * Gets the value of the sourceLinkId property.
+     *
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *
+     */
+    @Override
+    public Long getSourceLinkId() {
+        return super.getSourceLinkId();
+    }
+
+    /**
+     * Sets the value of the sourceLinkId property.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *
+     */
+    public void setSourceLinkId(Long value) {
+        super.setSourceLinkId(value);
+    }
 
     /**
      * Gets the value of the shape property.
