@@ -198,7 +198,6 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet {
      * @return List of all sensors as Sensor Model Objects.
      */
     @SuppressWarnings("unchecked")
-    @JsonIgnore
     public List<Sensor> getSensors() {
         // return casted list of Sensors from JAXB base class
         return (List<Sensor>) (List<?>) super.getSensor();

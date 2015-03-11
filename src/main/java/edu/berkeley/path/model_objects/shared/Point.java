@@ -26,6 +26,8 @@
 
 package edu.berkeley.path.model_objects.shared;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Point extends edu.berkeley.path.model_objects.jaxb.Point {
   
   /**
@@ -83,4 +85,22 @@ public class Point extends edu.berkeley.path.model_objects.jaxb.Point {
   public void setElevation(Double elevation) {
       super.setElevation(elevation);
   }
+
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public double getLng() {
+        return lng;
+    }
+
+    @Override
+    @JsonIgnore
+    public double getLat() {
+        return lat;
+    }
+
+
 }

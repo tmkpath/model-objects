@@ -26,6 +26,7 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import edu.berkeley.path.model_objects.jaxb.DisplayPosition;
 import edu.berkeley.path.model_objects.jaxb.LinkReference;
 import edu.berkeley.path.model_objects.jaxb.SensorType;
@@ -126,6 +127,7 @@ public class Sensor extends edu.berkeley.path.model_objects.jaxb.Sensor {
    * 
    * @return Long The id of the SensorType
    */
+  @JsonIgnore
   public Long getSensorTypeId() {
     if (getSensorType() != null) {
       return getSensorType().getId();
