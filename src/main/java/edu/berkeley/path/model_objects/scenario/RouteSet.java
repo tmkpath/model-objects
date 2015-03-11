@@ -26,6 +26,9 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class RouteSet extends edu.berkeley.path.model_objects.jaxb.RouteSet {
@@ -138,4 +141,18 @@ public class RouteSet extends edu.berkeley.path.model_objects.jaxb.RouteSet {
   public boolean isValid() {
     return true;
   }
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+  @Override
+  @JsonIgnore
+  public List<edu.berkeley.path.model_objects.jaxb.Route> getRoute() {
+    if (route == null) {
+        route = new ArrayList<edu.berkeley.path.model_objects.jaxb.Route>();
+    }
+      return this.route;
+  }
+
+
 }

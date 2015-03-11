@@ -26,6 +26,7 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import edu.berkeley.path.model_objects.jaxb.*;
 import edu.berkeley.path.model_objects.network.Network;
 
@@ -45,16 +46,16 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
    * Get the list of networks for this scenario
    * @return  a List of Network model objects
    */
-  @SuppressWarnings("unchecked")
-public List<Network> getListOfNetworks() {
-    // Check for null NetworkSet
-    NetworkSet networkSet = super.getNetworkSet();
-    if(networkSet == null) {
-      super.setNetworkSet(new NetworkSet());
-    }
+    @SuppressWarnings("unchecked")
+    public List<Network> getListOfNetworks() {
+        // Check for null NetworkSet
+        NetworkSet networkSet = super.getNetworkSet();
+        if(networkSet == null) {
+          super.setNetworkSet(new NetworkSet());
+        }
 
-    return (List<Network>) (List<?>) super.getNetworkSet().getNetwork();
-  }
+        return (List<Network>) (List<?>) super.getNetworkSet().getNetwork();
+    }
 
   /**
    * Set the list of networks for this scenario

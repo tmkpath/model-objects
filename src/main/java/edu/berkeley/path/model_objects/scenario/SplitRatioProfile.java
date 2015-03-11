@@ -28,6 +28,8 @@ package edu.berkeley.path.model_objects.scenario;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import core.Monitor;
 import edu.berkeley.path.model_objects.shared.DateTime;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
@@ -354,5 +356,17 @@ public class SplitRatioProfile extends edu.berkeley.path.model_objects.jaxb.Spli
 		prof.setListOfSplitRatios(this.getListOfSplitratios());
 		return prof;
 	}
-	
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.Splitratio> getSplitratio() {
+        if (splitratio == null) {
+            splitratio = new ArrayList<edu.berkeley.path.model_objects.jaxb.Splitratio>();
+        }
+        return this.splitratio;
+    }
+
 }

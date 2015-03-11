@@ -29,6 +29,7 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
 
 import java.util.ArrayList;
@@ -353,5 +354,17 @@ public class DemandSet extends edu.berkeley.path.model_objects.jaxb.DemandSet {
     // Otherwise not found so return null
     return null;
   }
-    
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.DemandProfile> getDemandProfile() {
+        if (demandProfile == null) {
+            demandProfile = new ArrayList<edu.berkeley.path.model_objects.jaxb.DemandProfile>();
+        }
+        return this.demandProfile;
+    }
+
 }

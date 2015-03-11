@@ -26,6 +26,8 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -263,5 +265,18 @@ public class SensorSet extends edu.berkeley.path.model_objects.jaxb.SensorSet {
         }
         return null;
     }
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.Sensor> getSensor() {
+        if (sensor == null) {
+            sensor = new ArrayList<edu.berkeley.path.model_objects.jaxb.Sensor>();
+        }
+        return this.sensor;
+    }
+
 
 }

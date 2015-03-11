@@ -27,6 +27,7 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import core.Monitor;
 import edu.berkeley.path.model_objects.MOException;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
@@ -477,6 +478,18 @@ public class DemandProfile extends edu.berkeley.path.model_objects.jaxb.DemandPr
 	@Override
 	public void setModStamp(String value) {
         this.modStamp = value;
+    }
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.Demand> getDemand() {
+        if (demand == null) {
+            demand = new ArrayList<edu.berkeley.path.model_objects.jaxb.Demand>();
+        }
+        return this.demand;
     }
 		
 }

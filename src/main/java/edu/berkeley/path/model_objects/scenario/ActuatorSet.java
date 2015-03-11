@@ -26,6 +26,9 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -203,6 +206,7 @@ public class ActuatorSet extends edu.berkeley.path.model_objects.jaxb.ActuatorSe
    * @return List of all actuators as Actuator Model Objects.
    */
   @SuppressWarnings("unchecked")
+  @JsonManagedReference
   public List<Actuator> getActuators() {
     // return casted list of actuators from JAXB base class
     return (List<Actuator>)(List<?>)super.getActuator();
@@ -214,6 +218,7 @@ public class ActuatorSet extends edu.berkeley.path.model_objects.jaxb.ActuatorSe
 	 * @param id Numerical actuator ID
 	 * @return Actuator with the specified ID if present, else null
 	 */
+    @JsonIgnore
 	public Actuator getActuatorById(long id) {
 		for (Actuator act : getActuators()) {
 			if (act.getId() == id)
@@ -228,6 +233,7 @@ public class ActuatorSet extends edu.berkeley.path.model_objects.jaxb.ActuatorSe
    * @param id Numerical original actuator ID
    * @return Actuator with the specified ID if present, else null
    */
+  @JsonIgnore
   public Actuator getActuatorByIdOriginal(String id) {
     for (Actuator act : getActuators()) {
       if (act.getActuatorIdOriginal().equals(id))
@@ -273,5 +279,18 @@ public class ActuatorSet extends edu.berkeley.path.model_objects.jaxb.ActuatorSe
     setType.setDescription(description);
     actuatorSetType = setType;
   }
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.Actuator> getActuator() {
+        if (actuator == null) {
+            actuator = new ArrayList<edu.berkeley.path.model_objects.jaxb.Actuator>();
+        }
+        return this.actuator;
+    }
+
 
 }

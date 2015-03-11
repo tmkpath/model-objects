@@ -26,6 +26,9 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class InitialDensitySet extends edu.berkeley.path.model_objects.jaxb.InitialDensitySet {
@@ -124,4 +127,17 @@ public class InitialDensitySet extends edu.berkeley.path.model_objects.jaxb.Init
   public void setTstamp(Double value) {
     super.setTstamp(value);    //To change body of overridden methods use File | Settings | File Templates.
   }
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.Density> getDensity() {
+        if (density == null) {
+            density = new ArrayList<edu.berkeley.path.model_objects.jaxb.Density>();
+        }
+        return this.density;
+    }
+
 }

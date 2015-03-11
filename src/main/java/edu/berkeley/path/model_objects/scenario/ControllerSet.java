@@ -26,6 +26,8 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -236,5 +238,18 @@ public class ControllerSet extends edu.berkeley.path.model_objects.jaxb.Controll
     setType.setDescription(description);
     controllerSetType = setType;
   }
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.Controller> getController() {
+        if (controller == null) {
+            controller = new ArrayList<edu.berkeley.path.model_objects.jaxb.Controller>();
+        }
+        return this.controller;
+    }
+
 
 }
