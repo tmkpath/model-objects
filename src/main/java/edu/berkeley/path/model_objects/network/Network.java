@@ -124,6 +124,32 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
   }
 
   /**
+   * Gets the value of the sourceNetworkId property.
+   *
+   * @return
+   *     possible object is
+   *     {@link Long }
+   *
+   */
+  @Override
+  public Long getSourceNetworkId() {
+        return super.getSourceNetworkId();
+    }
+
+  /**
+   * Sets the value of the sourceNetworkId property.
+   *
+   * @param value
+   *     allowed object is
+   *     {@link Long }
+   *
+   */
+  @Override
+  public void setSourceNetworkId(Long value) {
+      super.setSourceNetworkId(value);
+  }
+
+    /**
    * Set the Network Type
    *
    * @param type NetworkType
