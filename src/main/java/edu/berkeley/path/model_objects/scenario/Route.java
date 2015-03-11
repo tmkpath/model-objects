@@ -26,6 +26,9 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /** Route class
@@ -122,6 +125,18 @@ public class Route extends edu.berkeley.path.model_objects.jaxb.Route {
      */
     public boolean isValid() {
         return true;
+    }
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.RouteLink> getRouteLink() {
+        if (routeLink == null) {
+            routeLink = new ArrayList<edu.berkeley.path.model_objects.jaxb.RouteLink>();
+        }
+        return this.routeLink;
     }
 
 }

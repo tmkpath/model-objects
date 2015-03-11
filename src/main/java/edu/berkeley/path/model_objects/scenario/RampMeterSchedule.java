@@ -26,6 +26,9 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -107,4 +110,17 @@ public class RampMeterSchedule extends edu.berkeley.path.model_objects.jaxb.Ramp
     public void setCrudFlag(String value) {
         super.setCrudFlag(value);
     }
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.RampMeterScheduleElement> getRampMeterScheduleElement() {
+        if (rampMeterScheduleElement == null) {
+            rampMeterScheduleElement = new ArrayList<edu.berkeley.path.model_objects.jaxb.RampMeterScheduleElement>();
+        }
+        return this.rampMeterScheduleElement;
+    }
+
 }

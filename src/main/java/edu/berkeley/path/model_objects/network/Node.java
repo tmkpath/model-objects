@@ -28,6 +28,7 @@ package edu.berkeley.path.model_objects.network;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import edu.berkeley.path.model_objects.jaxb.Position;
 import edu.berkeley.path.model_objects.jaxb.RoadwayMarkers;
 import edu.berkeley.path.model_objects.jaxb.Marker;
@@ -187,7 +188,8 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
    * with a network by calling the populate function.
    * 
    * @return  Network node belongs to
-   */	
+   */
+    @JsonIgnore
 	public Network getMyNetwork() {
 		return myNetwork;
 	}

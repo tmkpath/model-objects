@@ -29,6 +29,7 @@ package edu.berkeley.path.model_objects.network;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import core.Monitor;
 
 import edu.berkeley.path.model_objects.shared.CrudFlag;
@@ -269,6 +270,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * 
    * @return  Network link belongs to
    */
+  @JsonIgnore
   public Network getMyNetwork() {
     return myNetwork;
   }

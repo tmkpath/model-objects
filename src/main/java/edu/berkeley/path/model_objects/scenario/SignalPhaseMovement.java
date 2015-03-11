@@ -26,6 +26,9 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class SignalPhaseMovement extends edu.berkeley.path.model_objects.jaxb.SignalPhaseMovement {
@@ -77,4 +80,17 @@ public class SignalPhaseMovement extends edu.berkeley.path.model_objects.jaxb.Si
     public void setPhaseNumber(int value) {
         super.setPhaseNumber(value);
     }
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.SignalMovementElement> getSignalMovementElement() {
+        if (signalMovementElement == null) {
+            signalMovementElement = new ArrayList<edu.berkeley.path.model_objects.jaxb.SignalMovementElement>();
+        }
+        return this.signalMovementElement;
+    }
+
 }

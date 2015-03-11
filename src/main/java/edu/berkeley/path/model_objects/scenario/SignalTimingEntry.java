@@ -1,5 +1,8 @@
 package edu.berkeley.path.model_objects.scenario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -53,5 +56,17 @@ public class SignalTimingEntry extends edu.berkeley.path.model_objects.jaxb.Sign
     @Override
     public void setTimeStepMs(long value) {
         super.setTimeStepMs(value);
+    }
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.SignalTimingElement> getSignalTimingElement() {
+        if (signalTimingElement == null) {
+            signalTimingElement = new ArrayList<edu.berkeley.path.model_objects.jaxb.SignalTimingElement>();
+        }
+        return this.signalTimingElement;
     }
 }

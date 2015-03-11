@@ -26,6 +26,9 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class SignalPlan extends edu.berkeley.path.model_objects.jaxb.SignalPlan {
@@ -166,4 +169,17 @@ public class SignalPlan extends edu.berkeley.path.model_objects.jaxb.SignalPlan 
     public void setReferencePhase(Long value) {
         super.setReferencePhase(value);
     }
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.SignalPhase> getSignalPhase() {
+        if (signalPhase == null) {
+            signalPhase = new ArrayList<edu.berkeley.path.model_objects.jaxb.SignalPhase>();
+        }
+        return this.signalPhase;
+    }
+
 }

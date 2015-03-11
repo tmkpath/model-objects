@@ -27,9 +27,12 @@
 package edu.berkeley.path.model_objects.scenario;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
 import edu.berkeley.path.model_objects.shared.DateTime;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /** 
@@ -287,6 +290,7 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
     }
 
 
+    @JsonIgnore
 	public FundamentalDiagram getFD(String time) {
 		DateTime dateTime = new DateTime();
 		org.joda.time.DateTime joda = dateTime.setDateString("1970-01-01 00:00:00");
@@ -306,6 +310,7 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
 		}
 	}
 
+    @JsonIgnore
 	public FundamentalDiagram getFD(long offsetTime) {
 		int offset = (int)Math.floor(offsetTime / this.getDt());
 
@@ -315,4 +320,18 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
 			throw new IllegalStateException("Error, cannot find fundamental diagram for offset time " + offsetTime + " (offset " + offset + ").");
 		}
 	}
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.FundamentalDiagram> getFundamentalDiagram() {
+        if (fundamentalDiagram == null) {
+            fundamentalDiagram = new ArrayList<edu.berkeley.path.model_objects.jaxb.FundamentalDiagram>();
+        }
+        return this.fundamentalDiagram;
+    }
+
+
 }

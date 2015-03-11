@@ -29,6 +29,9 @@ package edu.berkeley.path.model_objects.scenario;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import edu.berkeley.path.model_objects.scenario.FundamentalDiagramProfile;
 
 public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.FundamentalDiagramSet{
@@ -40,6 +43,7 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
 	 * @param linkId the link id associated with the profile
 	 * @return FundamentalDiagramProfile associated with linkId
 	 */
+    @JsonIgnore
 	 public FundamentalDiagramProfile getFundamentalDiagramProfile(int linkId) {
 	        for(FundamentalDiagramProfile fdp : this.getListOfFundamentalDiagramProfiles()) {
 	        	if(fdp.getLinkId() == linkId) {
@@ -55,6 +59,7 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
 	  * @param sensorId the sensor id associated with the profile
 	  * @return FundamentalDiagramProfile associated with sensorId
 	  */
+     @JsonIgnore
 	 public FundamentalDiagramProfile getFundamentalDiagramProfileBySensor(long sensorId) {
 		 for(FundamentalDiagramProfile fdp : this.getListOfFundamentalDiagramProfiles()) {
 			 if(fdp.getSensorId() == sensorId) {
@@ -93,6 +98,7 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
      * 
      */
     @SuppressWarnings("unchecked")
+    @JsonManagedReference
     public List<FundamentalDiagramProfile> getListOfFundamentalDiagramProfiles() {
         return (List<FundamentalDiagramProfile>)(List<?>)super.getFundamentalDiagramProfile();
     }
@@ -103,6 +109,7 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
 	 * @param List<FundamentalDiagramProfile>	List of extended Fundamental Diagram Profiles to add to set
 	 */
 	@SuppressWarnings("unchecked")
+    @JsonIgnore
 	public void setListOfFundamentalDiagramProfiles(List<FundamentalDiagramProfile> profiles) {
 		super.getFundamentalDiagramProfile().clear();
 		super.getFundamentalDiagramProfile().addAll(
@@ -255,4 +262,17 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
     public void setLockedForHistory(Boolean value) {
     	super.setLockedForHistory(value);
     }
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.FundamentalDiagramProfile> getFundamentalDiagramProfile() {
+        if (fundamentalDiagramProfile == null) {
+            fundamentalDiagramProfile = new ArrayList<edu.berkeley.path.model_objects.jaxb.FundamentalDiagramProfile>();
+        }
+        return this.fundamentalDiagramProfile;
+    }
+
 }

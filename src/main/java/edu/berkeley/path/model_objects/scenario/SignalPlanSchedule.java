@@ -26,6 +26,9 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class SignalPlanSchedule extends edu.berkeley.path.model_objects.jaxb.SignalPlanSchedule {
@@ -96,5 +99,17 @@ public class SignalPlanSchedule extends edu.berkeley.path.model_objects.jaxb.Sig
     @Override
     public void setTableNum(long value) {
         super.setTableNum(value);
+    }
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.SignalPlanScheduleElement> getSignalPlanScheduleElement() {
+        if (signalPlanScheduleElement == null) {
+            signalPlanScheduleElement = new ArrayList<edu.berkeley.path.model_objects.jaxb.SignalPlanScheduleElement>();
+        }
+        return this.signalPlanScheduleElement;
     }
 }

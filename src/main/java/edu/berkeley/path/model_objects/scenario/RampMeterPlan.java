@@ -26,6 +26,9 @@
 
 package edu.berkeley.path.model_objects.scenario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -135,4 +138,46 @@ public class RampMeterPlan extends edu.berkeley.path.model_objects.jaxb.RampMete
     public void setCrudFlag(String value) {
         super.setCrudFlag(value);
     }
+
+
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.RampMeterHoliday> getRampMeterHoliday() {
+        if (rampMeterHoliday == null) {
+            rampMeterHoliday = new ArrayList<edu.berkeley.path.model_objects.jaxb.RampMeterHoliday>();
+        }
+        return this.rampMeterHoliday;
+    }
+
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.RampMeterRamValue> getRampMeterRamValue() {
+        if (rampMeterRamValue == null) {
+            rampMeterRamValue = new ArrayList<edu.berkeley.path.model_objects.jaxb.RampMeterRamValue>();
+        }
+        return this.rampMeterRamValue;
+    }
+
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.RampMeterLsdValue> getRampMeterLsdValue() {
+        if (rampMeterLsdValue == null) {
+            rampMeterLsdValue = new ArrayList<edu.berkeley.path.model_objects.jaxb.RampMeterLsdValue>();
+        }
+        return this.rampMeterLsdValue;
+    }
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.RampMeterSchedule> getRampMeterSchedule() {
+        if (rampMeterSchedule == null) {
+            rampMeterSchedule = new ArrayList<edu.berkeley.path.model_objects.jaxb.RampMeterSchedule>();
+        }
+        return this.rampMeterSchedule;
+    }
+
+
 }
