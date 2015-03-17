@@ -393,4 +393,28 @@ public class Scenario extends edu.berkeley.path.model_objects.jaxb.Scenario {
     // TODO: Implement, return true for now.
     return true;
   }
+
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public NetworkSet getNetworkSet() {
+        return networkSet;
+    }
+
+    @Override
+    @JsonIgnore
+    public NetworkConnections getNetworkConnections() {
+        return networkConnections;
+    }
+
+    @Override
+    @JsonIgnore
+    public DestinationNetworks getDestinationNetworks() {
+        return destinationNetworks;
+    }
+
+
 }

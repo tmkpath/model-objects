@@ -1,5 +1,7 @@
 package edu.berkeley.path.model_objects.shared;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -193,5 +195,18 @@ public class Parameters extends edu.berkeley.path.model_objects.jaxb.Parameters{
       }
     }
   }
-	
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public List<edu.berkeley.path.model_objects.jaxb.Parameter> getParameter() {
+        if (parameter == null) {
+            parameter = new ArrayList<edu.berkeley.path.model_objects.jaxb.Parameter>();
+        }
+        return this.parameter;
+    }
+
+
 }
