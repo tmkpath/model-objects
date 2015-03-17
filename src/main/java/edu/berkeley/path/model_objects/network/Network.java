@@ -26,7 +26,10 @@
 
 package edu.berkeley.path.model_objects.network;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import core.Monitor;
+import edu.berkeley.path.model_objects.jaxb.LinkList;
+import edu.berkeley.path.model_objects.jaxb.NodeList;
 import edu.berkeley.path.model_objects.jaxb.Position;
 import edu.berkeley.path.model_objects.shared.Point;
 import edu.berkeley.path.model_objects.MOException;
@@ -582,4 +585,23 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
       throw new MOException(null, "Could not calculate Bounding Box. No Nodes set in network.");
     }
   }
+
+
+    /**
+     * Override Jaxb getters for children to manage Json serialization
+     */
+    @Override
+    @JsonIgnore
+    public NodeList getNodeList() {
+        return nodeList;
+    }
+
+    @Override
+    @JsonIgnore
+    public LinkList getLinkList() {
+        return linkList;
+    }
+
+
+
 }
