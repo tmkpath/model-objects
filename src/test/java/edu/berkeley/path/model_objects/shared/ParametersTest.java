@@ -16,6 +16,7 @@ public class ParametersTest {
 	@Before
 	public void setUp(){
 		pSet = new Parameters();
+        pSet.setProjectId(1L);
 		p = new Parameter();
 		p.setName(NAME);
 		p.setValue(VALUE);

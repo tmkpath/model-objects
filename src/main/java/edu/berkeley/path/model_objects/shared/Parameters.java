@@ -30,6 +30,22 @@ public class Parameters extends edu.berkeley.path.model_objects.jaxb.Parameters{
     super.setId(value);
   }
 
+    /**
+     * @return the projectId
+     */
+    @Override
+    public Long getProjectId() {
+        return super.getProjectId();
+    }
+
+    /**
+     * @param projectId the projectId to set
+     */
+
+    @Override
+    public void setProjectId(Long projectId) { super.setProjectId(projectId); }
+
+
   /**
    * Gets the value of the parameter config type id property.
    *
