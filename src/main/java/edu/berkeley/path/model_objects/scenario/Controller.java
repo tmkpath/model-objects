@@ -163,7 +163,7 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
   /**
    * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
    *
-   * @param CRUD Flag enumeration
+   * @param  flag  CRUD enumeration
    */
   public void setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag flag) {
     // Check if CRUDFlag is null, if so return NONE enumeration
@@ -252,7 +252,7 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
   /**
    * Set Activation Start time
    *
-   * @param Activation start time in seconds
+   * @param seconds Activation start time in seconds
    */
   public void setActivationStartTime (Double seconds) {
     // If the activation interval exists, change start time
@@ -292,7 +292,7 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
   /**
    * Set Activation end time
    *
-   * @param Activation end time in seconds
+   * @param seconds Activation end time in seconds
    */
   public void setActivationEndTime (Double seconds) {
     // If the activation interval exists, change end time
@@ -327,7 +327,7 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
   /**
    * Set Controller Parameters
    *
-   * @param Parameters the parameters to set the actuator
+   * @param parameters The parameters to set the actuator
    */
   public void setParameters(edu.berkeley.path.model_objects.shared.Parameters parameters) {
     super.setParameters(parameters);
@@ -358,13 +358,7 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
   @SuppressWarnings("unchecked")
   public List<TargetActuator> getListOfTargetActuators() {
     edu.berkeley.path.model_objects.jaxb.TargetActuators actuatorList = getTargetActuators();
-    // check if actuator exists, if not create it and add list of actuators
-//    if ( actuatorList == null ) {
-//      actuatorList = new edu.berkeley.path.model_objects.jaxb.TargetActuators();
-//      actuatorList.getTargetActuator().clear();
-//      // set newly created actuator list object to controller class, so a Actuatorlist now exists
-//      setTargetActuators(actuatorList);
-//    }
+
     // return casted list of Actuators from JAXB base class
 
     if (null != actuatorList) {
@@ -405,12 +399,6 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
   public List<FeedbackSensor> getListOfFeedbackSensors() {
     edu.berkeley.path.model_objects.jaxb.FeedbackSensors sensorList = getFeedbackSensors();
 
-//    if ( sensorList == null ) {
-//      sensorList = new edu.berkeley.path.model_objects.jaxb.FeedbackSensors();
-//      sensorList.getFeedbackSensor().clear();
-//      // set newly created sensor list object to controller class, so a Sensorlist now exists
-//      setFeedbackSensors(sensorList);
-//    }
     // return casted list of Sensors from JAXB base class
     if (null != sensorList) {
         return (List<FeedbackSensor>) (List<?>) sensorList.getFeedbackSensor();
