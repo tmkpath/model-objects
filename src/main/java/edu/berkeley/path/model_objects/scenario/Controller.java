@@ -163,7 +163,7 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
   /**
    * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
    *
-   * @param CRUD Flag enumeration
+   * @param  flag  CRUD enumeration
    */
   public void setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag flag) {
     // Check if CRUDFlag is null, if so return NONE enumeration
@@ -252,7 +252,7 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
   /**
    * Set Activation Start time
    *
-   * @param Activation start time in seconds
+   * @param seconds Activation start time in seconds
    */
   public void setActivationStartTime (Double seconds) {
     // If the activation interval exists, change start time
@@ -292,7 +292,7 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
   /**
    * Set Activation end time
    *
-   * @param Activation end time in seconds
+   * @param seconds Activation end time in seconds
    */
   public void setActivationEndTime (Double seconds) {
     // If the activation interval exists, change end time
@@ -327,7 +327,7 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
   /**
    * Set Controller Parameters
    *
-   * @param Parameters the parameters to set the actuator
+   * @param parameters The parameters to set the actuator
    */
   public void setParameters(edu.berkeley.path.model_objects.shared.Parameters parameters) {
     super.setParameters(parameters);
@@ -358,30 +358,35 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
   @SuppressWarnings("unchecked")
   public List<TargetActuator> getListOfTargetActuators() {
     edu.berkeley.path.model_objects.jaxb.TargetActuators actuatorList = getTargetActuators();
-    // check if actuator exists, if not create it and add list of actuators
-    if ( actuatorList == null ) {
-      actuatorList = new edu.berkeley.path.model_objects.jaxb.TargetActuators();
-      actuatorList.getTargetActuator().clear();
-      // set newly created actuator list object to controller class, so a Actuatorlist now exists
-      setTargetActuators(actuatorList);
-    }
+
     // return casted list of Actuators from JAXB base class
-    return (List<TargetActuator>)(List<?>)actuatorList.getTargetActuator();
+
+    if (null != actuatorList) {
+        return (List<TargetActuator>) (List<?>) actuatorList.getTargetActuator();
+    } else {
+        return null;
+    }
   }
 
   /**
    * Set the target actuators. Attaches list of Actuator Model Objects to Controller.
    *
-   * @param List<TargetActuator>	List of extended Target Actuators to add
+   * @param actuators	List of extended Target Actuators to add
    */
   @SuppressWarnings("unchecked")
   public void setListOfTargetActuators(List<TargetActuator> actuators) {
     edu.berkeley.path.model_objects.jaxb.TargetActuators actuatorList = getTargetActuators();
+
     if ( actuatorList == null ) {
       actuatorList = new edu.berkeley.path.model_objects.jaxb.TargetActuators();
     }
-    actuatorList.getTargetActuator().clear();
-    actuatorList.getTargetActuator().addAll((List<edu.berkeley.path.model_objects.jaxb.TargetActuator>)(List<?>)actuators);
+    if (null != actuators) {
+        actuatorList.getTargetActuator().clear();
+        actuatorList.getTargetActuator().addAll((List<edu.berkeley.path.model_objects.jaxb.TargetActuator>) (List<?>) actuators);
+    } else {
+        actuatorList = null;
+    }
+
     setTargetActuators(actuatorList);
   }
 
@@ -393,30 +398,34 @@ public class Controller extends edu.berkeley.path.model_objects.jaxb.Controller 
   @SuppressWarnings("unchecked")
   public List<FeedbackSensor> getListOfFeedbackSensors() {
     edu.berkeley.path.model_objects.jaxb.FeedbackSensors sensorList = getFeedbackSensors();
-    // check if sensor exists, if not create it and add list of sensors
-    if ( sensorList == null ) {
-      sensorList = new edu.berkeley.path.model_objects.jaxb.FeedbackSensors();
-      sensorList.getFeedbackSensor().clear();
-      // set newly created sensor list object to controller class, so a Sensorlist now exists
-      setFeedbackSensors(sensorList);
-    }
+
     // return casted list of Sensors from JAXB base class
-    return (List<FeedbackSensor>)(List<?>)sensorList.getFeedbackSensor();
+    if (null != sensorList) {
+        return (List<FeedbackSensor>) (List<?>) sensorList.getFeedbackSensor();
+    } else {
+        return null;
+    }
   }
 
   /**
    * Set the feedback sensors. Attaches list of Sensor Model Objects to Controller.
    *
-   * @param List<FeedbackSensor>	List of extended Feedback Sensors to add
+   * @param sensors  	List of extended Feedback Sensors to add
    */
   @SuppressWarnings("unchecked")
   public void setListOfFeedbackSensors(List<FeedbackSensor> sensors) {
     edu.berkeley.path.model_objects.jaxb.FeedbackSensors sensorList = getFeedbackSensors();
-    if ( sensorList == null ) {
-      sensorList = new edu.berkeley.path.model_objects.jaxb.FeedbackSensors();
+
+    if (null == sensorList) {
+        sensorList = new edu.berkeley.path.model_objects.jaxb.FeedbackSensors();
     }
-    sensorList.getFeedbackSensor().clear();
-    sensorList.getFeedbackSensor().addAll((List<edu.berkeley.path.model_objects.jaxb.FeedbackSensor>)(List<?>)sensors);
+    if (null != sensors) {
+        sensorList.getFeedbackSensor().clear();
+        sensorList.getFeedbackSensor().addAll((List<edu.berkeley.path.model_objects.jaxb.FeedbackSensor>) (List<?>) sensors);
+    } else {
+        sensorList = null;
+    }
+
     setFeedbackSensors(sensorList);
   }
 
