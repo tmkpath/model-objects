@@ -14,4 +14,116 @@
       </xs:complexType>
    </xs:element>
 
+    <xs:element name="model_components">
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="ParametersList" minOccurs="1" maxOccurs="1" />
+                <xs:element ref="SensorSetList" minOccurs="1" maxOccurs="1" />
+                <xs:element ref="VehicleTypeSetList" minOccurs="1" maxOccurs="1"   />
+                <xs:element ref="FundamentalDiagramSetList" minOccurs="1" maxOccurs="1"   />
+                <xs:element ref="ControllerSetList" minOccurs="1" maxOccurs="1"   />
+                <xs:element ref="ActuatorSetList" minOccurs="1" maxOccurs="1"   />
+                <xs:element ref="InitialDensitySetList" minOccurs="1" maxOccurs="1"   />
+                <xs:element ref="RouteSetList" minOccurs="1" maxOccurs="1"   />
+                <xs:element ref="SplitRatioSetList" minOccurs="1" maxOccurs="1"   />
+
+                <xs:element ref="CTMNetwork" minOccurs="1" maxOccurs="1" />
+                <xs:element ref="BaseNetwork" minOccurs="1" maxOccurs="1" />
+            </xs:all>
+            <xs:attribute name="model_id" type="xs:long" use="required"/>
+            <xs:attribute name="task_id" type="xs:long" use="required"/>
+            <xs:attribute name="project_id" type="xs:long" use="required"/>
+            <xs:attribute name="name" type="xs:string" use="required" />
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="CTMNetwork">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="network" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="BaseNetwork">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="network" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="ParametersList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="parameters" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SensorSetList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="SensorSet" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleTypeSetList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="VehicleTypeSet" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ActuatorSetList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ActuatorSet" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="InitialDensitySetList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="InitialDensitySet" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="DemandSetList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="DemandSet" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ControllerSetList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ControllerSet" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="FundamentalDiagramSetList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="FundamentalDiagramSet" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RouteSetList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="RouteSet" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SplitRatioSetList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="SplitRatioSet" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
 </xs:schema>
