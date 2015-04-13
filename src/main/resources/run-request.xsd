@@ -14,21 +14,25 @@
       </xs:complexType>
    </xs:element>
 
-    <xs:element name="model_components">
+    <xs:element name="scenario_request">
         <xs:complexType>
             <xs:all>
                 <xs:element ref="ParametersList" minOccurs="1" maxOccurs="1" />
                 <xs:element ref="SensorSetList" minOccurs="1" maxOccurs="1" />
-                <xs:element ref="VehicleTypeSetList" minOccurs="1" maxOccurs="1"   />
+                <!--<xs:element ref="VehicleTypeSetList" minOccurs="1" maxOccurs="1"   />-->
                 <xs:element ref="FundamentalDiagramSetList" minOccurs="1" maxOccurs="1"   />
                 <xs:element ref="ControllerSetList" minOccurs="1" maxOccurs="1"   />
                 <xs:element ref="ActuatorSetList" minOccurs="1" maxOccurs="1"   />
                 <xs:element ref="InitialDensitySetList" minOccurs="1" maxOccurs="1"   />
                 <xs:element ref="RouteSetList" minOccurs="1" maxOccurs="1"   />
                 <xs:element ref="SplitRatioSetList" minOccurs="1" maxOccurs="1"   />
+                <xs:element ref="DemandSetList" minOccurs="1" maxOccurs="1"   />
+
 
                 <xs:element ref="CTMNetwork" minOccurs="1" maxOccurs="1" />
                 <xs:element ref="BaseNetwork" minOccurs="1" maxOccurs="1" />
+
+                <xs:element ref="scenario" minOccurs="1" maxOccurs="1" />
             </xs:all>
             <xs:attribute name="model_id" type="xs:long" use="required"/>
             <xs:attribute name="task_id" type="xs:long" use="required"/>
