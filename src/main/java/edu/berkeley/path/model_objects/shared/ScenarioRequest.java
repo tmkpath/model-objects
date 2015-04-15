@@ -96,7 +96,27 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
         super.setName(value);
     }
 
+    /**
+     * Gets the value of the description property.
+     *
+     * @return {@link String }
+     *
+     */
+    @Override
+    public String getDescription() {
+        return super.getDescription();
+    }
 
+    /**
+     * Sets the value of the name property.
+     *
+     * @param value {@link String }
+     *
+     */
+    @Override
+    public void setDescription(String value) {
+        super.setDescription(value);
+    }
 
     /**
      * Gets the value of the scenario property.
