@@ -66,7 +66,7 @@ public class ScenarioRequestTest {
         scenarioRequest.setListOfActuatorSets(actuatorSetList);
 
         Network network = new Network();
-        scenarioRequest.setBaseTypeNetwork(network);
+        scenarioRequest.setDerivedTypeNetwork(network);
 
 
         // validate that setters and getters
@@ -79,7 +79,7 @@ public class ScenarioRequestTest {
         assertEquals(scenarioRequest.getListOfInitialDensitySets().size(), 2);
         assertEquals(scenarioRequest.getListOfDemandSets(), null);
         assertEquals(scenarioRequest.getCTMTypeNetwork(), null);
-        assertNotNull(scenarioRequest.getBaseTypeNetwork());
+        assertNotNull(scenarioRequest.getDerivedTypeNetwork());
 
     }
 

@@ -128,9 +128,9 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
      *
      */
     @SuppressWarnings("unchecked")
-    public Network getBaseTypeNetwork() {
-        if (super.getBaseNetwork() != null) {
-            return (Network) super.getBaseNetwork().getNetwork();
+    public Network getDerivedTypeNetwork() {
+        if (super.getDerivedNetwork() != null) {
+            return (Network) super.getDerivedNetwork().getNetwork();
         }
         else
             return null;
@@ -143,11 +143,11 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
      *
      */
     @SuppressWarnings("unchecked")
-    public void setBaseTypeNetwork(Network value) {
-        if (this.baseNetwork == null) {
-            this.baseNetwork = new BaseNetwork();
+    public void setDerivedTypeNetwork(Network value) {
+        if (this.derivedNetwork == null) {
+            this.derivedNetwork = new DerivedNetwork();
         }
-        super.getBaseNetwork().setNetwork(value);
+        super.getDerivedNetwork().setNetwork(value);
     }
 
 
@@ -193,7 +193,7 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
     @SuppressWarnings("unchecked")
     public List<Parameters> getListOfParameters() {
         // return casted list of Parameters from JAXB base class
-        if (this.parametersList != null &&  this.parametersList.getParameters().size() > 0) {
+        if (this.parametersList != null ) {
             return (List<Parameters>) (List<?>) this.parametersList.getParameters();
         } else {
             return null;
@@ -226,7 +226,7 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
     @SuppressWarnings("unchecked")
     public List<SensorSet> getListOfSensorSets() {
         // return casted list of SensorSets from JAXB base class
-        if (this.sensorSetList != null && this.sensorSetList.getSensorSet().size() > 0) {
+        if (this.sensorSetList != null ) {
             return (List<SensorSet>) (List<?>) this.sensorSetList.getSensorSet();
         } else {
             return null;
@@ -260,7 +260,7 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
     @SuppressWarnings("unchecked")
     public List<ActuatorSet> getListOfActuatorSets() {
         // return casted list of ActuatorSets from JAXB base class
-        if (this.actuatorSetList != null && this.actuatorSetList.getActuatorSet().size() > 0) {
+        if (this.actuatorSetList != null ) {
             return (List<ActuatorSet>) (List<?>) this.actuatorSetList.getActuatorSet();
         } else {
             return null;
@@ -294,7 +294,7 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
     @SuppressWarnings("unchecked")
     public List<InitialDensitySet> getListOfInitialDensitySets() {
         // return casted list of InitialDensitySet from JAXB base class
-        if (this.initialDensitySetList != null && this.initialDensitySetList.getInitialDensitySet().size() > 0) {
+        if (this.initialDensitySetList != null ) {
             return (List<InitialDensitySet>) (List<?>) this.initialDensitySetList.getInitialDensitySet();
         } else {
             return null;
@@ -329,7 +329,7 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
     @SuppressWarnings("unchecked")
     public List<DemandSet> getListOfDemandSets() {
         // return casted list of DemandSet from JAXB base class
-        if (this.demandSetList != null && this.demandSetList.getDemandSet().size() > 0) {
+        if (this.demandSetList != null ) {
             return (List<DemandSet>) (List<?>) this.demandSetList.getDemandSet();
         } else {
             return null;
@@ -363,7 +363,7 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
     @SuppressWarnings("unchecked")
     public List<ControllerSet> getListOfControllerSets() {
         // return casted list of ControllerSet from JAXB base class
-        if (this.controllerSetList != null && this.controllerSetList.getControllerSet().size() > 0) {
+        if (this.controllerSetList != null ) {
             return (List<ControllerSet>) (List<?>) this.controllerSetList.getControllerSet();
         } else {
             return null;
@@ -397,7 +397,7 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
     @SuppressWarnings("unchecked")
     public List<FundamentalDiagramSet> getListOfFundamentalDiagramSets() {
         // return casted list of FundamentalDiagramSet from JAXB base class
-        if (this.fundamentalDiagramSetList != null && this.fundamentalDiagramSetList.getFundamentalDiagramSet().size() > 0) {
+        if (this.fundamentalDiagramSetList != null ) {
             return (List<FundamentalDiagramSet>) (List<?>) this.fundamentalDiagramSetList.getFundamentalDiagramSet();
         } else {
             return null;
@@ -431,7 +431,7 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
     @SuppressWarnings("unchecked")
     public List<RouteSet> getListOfRouteSets() {
         // return casted list of RouteSet from JAXB base class
-        if (this.routeSetList != null && this.routeSetList.getRouteSet().size() > 0) {
+        if (this.routeSetList != null ) {
             return (List<RouteSet>) (List<?>) this.routeSetList.getRouteSet();
         } else {
             return null;
@@ -467,7 +467,7 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
     @SuppressWarnings("unchecked")
     public List<SplitRatioSet> getListOfSplitRatioSets() {
         // return casted list of SplitRatioSet from JAXB base class
-        if (this.splitRatioSetList != null && this.splitRatioSetList.getSplitRatioSet().size() > 0) {
+        if (this.splitRatioSetList != null ) {
             return (List<SplitRatioSet>) (List<?>) this.splitRatioSetList.getSplitRatioSet();
         } else {
             return null;

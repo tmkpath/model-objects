@@ -30,7 +30,7 @@
 
 
                 <xs:element ref="CTMNetwork" minOccurs="1" maxOccurs="1" />
-                <xs:element ref="BaseNetwork" minOccurs="1" maxOccurs="1" />
+                <xs:element ref="DerivedNetwork" minOccurs="1" maxOccurs="1" />
 
                 <xs:element ref="scenario" minOccurs="1" maxOccurs="1" />
             </xs:all>
@@ -49,7 +49,7 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="BaseNetwork">
+    <xs:element name="DerivedNetwork">
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="network" minOccurs="0" maxOccurs="1" />
