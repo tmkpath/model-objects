@@ -17,22 +17,22 @@
     <xs:element name="scenario_request">
         <xs:complexType>
             <xs:all>
-                <xs:element ref="ParametersList" minOccurs="1" maxOccurs="1" />
-                <xs:element ref="SensorSetList" minOccurs="1" maxOccurs="1" />
-                <!--<xs:element ref="VehicleTypeSetList" minOccurs="1" maxOccurs="1"   />-->
-                <xs:element ref="FundamentalDiagramSetList" minOccurs="1" maxOccurs="1"   />
-                <xs:element ref="ControllerSetList" minOccurs="1" maxOccurs="1"   />
-                <xs:element ref="ActuatorSetList" minOccurs="1" maxOccurs="1"   />
-                <xs:element ref="InitialDensitySetList" minOccurs="1" maxOccurs="1"   />
-                <xs:element ref="RouteSetList" minOccurs="1" maxOccurs="1"   />
-                <xs:element ref="SplitRatioSetList" minOccurs="1" maxOccurs="1"   />
-                <xs:element ref="DemandSetList" minOccurs="1" maxOccurs="1"   />
+                <xs:element ref="ParametersList" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="SensorSetList" minOccurs="0" maxOccurs="1" />
+                <!--<xs:element ref="VehicleTypeSetList" minOccurs="0" maxOccurs="1"   />-->
+                <xs:element ref="FundamentalDiagramSetList" minOccurs="0" maxOccurs="1"   />
+                <xs:element ref="ControllerSetList" minOccurs="0" maxOccurs="1"   />
+                <xs:element ref="ActuatorSetList" minOccurs="0" maxOccurs="1"   />
+                <xs:element ref="InitialDensitySetList" minOccurs="0" maxOccurs="1"   />
+                <xs:element ref="RouteSetList" minOccurs="0" maxOccurs="1"   />
+                <xs:element ref="SplitRatioSetList" minOccurs="0" maxOccurs="1"   />
+                <xs:element ref="DemandSetList" minOccurs="0" maxOccurs="1"   />
 
 
-                <xs:element ref="CTMNetwork" minOccurs="1" maxOccurs="1" />
-                <xs:element ref="DerivedNetwork" minOccurs="1" maxOccurs="1" />
+                <xs:element ref="CTMTypeNetwork" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="DerivedTypeNetwork" minOccurs="0" maxOccurs="1" />
 
-                <xs:element ref="scenario" minOccurs="1" maxOccurs="1" />
+                <xs:element ref="scenario" minOccurs="0" maxOccurs="1" />
             </xs:all>
             <xs:attribute name="model_id" type="xs:long" use="required"/>
             <xs:attribute name="task_id" type="xs:long" use="required"/>
@@ -43,14 +43,14 @@
     </xs:element>
 
 
-    <xs:element name="CTMNetwork">
+    <xs:element name="CTMTypeNetwork">
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="network" minOccurs="0" maxOccurs="1" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="DerivedNetwork">
+    <xs:element name="DerivedTypeNetwork">
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="network" minOccurs="0" maxOccurs="1" />

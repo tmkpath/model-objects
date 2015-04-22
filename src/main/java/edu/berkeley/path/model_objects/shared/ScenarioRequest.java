@@ -1,7 +1,5 @@
 package edu.berkeley.path.model_objects.shared;
 
-
-import edu.berkeley.path.model_objects.jaxb.*;
 import edu.berkeley.path.model_objects.scenario.Scenario;
 import edu.berkeley.path.model_objects.scenario.SensorSet;
 import edu.berkeley.path.model_objects.scenario.ActuatorSet;
@@ -140,34 +138,31 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
     }
 
 
-
     /**
-     * Gets the value of the BaseNetwork property.
+     * Gets the value of the DerivedNetwork property.
      *
      * @return  {@link Network }
      *
      */
-    @SuppressWarnings("unchecked")
-    public Network getDerivedTypeNetwork() {
-        if (super.getDerivedNetwork() != null) {
-            return (Network) super.getDerivedNetwork().getNetwork();
+    public Network getDerivedNetwork() {
+        if (super.getDerivedTypeNetwork() != null) {
+            return (Network) super.getDerivedTypeNetwork().getNetwork();
         }
         else
             return null;
     }
 
     /**
-     * Sets the value of the BaseNetwork property.
+     * Sets the value of the DerivedNetwork property.
      *
      * @param value {@link Network }
      *
      */
-    @SuppressWarnings("unchecked")
-    public void setDerivedTypeNetwork(Network value) {
-        if (this.derivedNetwork == null) {
-            this.derivedNetwork = new DerivedNetwork();
+    public void setDerivedNetwork(Network value) {
+        if (this.derivedTypeNetwork == null) {
+            this.derivedTypeNetwork = new edu.berkeley.path.model_objects.jaxb.DerivedTypeNetwork();
         }
-        super.getDerivedNetwork().setNetwork(value);
+        super.getDerivedTypeNetwork().setNetwork(value);
     }
 
 
@@ -177,10 +172,9 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
      * @return  {@link Network }
      *
      */
-    @SuppressWarnings("unchecked")
-    public Network getCTMTypeNetwork() {
-        if (super.getCTMNetwork() != null) {
-            return (Network) super.getCTMNetwork().getNetwork();
+    public Network getCTMNetwork() {
+        if (super.getCTMTypeNetwork() != null) {
+            return (Network) super.getCTMTypeNetwork().getNetwork();
         }
         else
             return null;
@@ -193,12 +187,11 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
      * @param value {@link Network }
      *
      */
-    @SuppressWarnings("unchecked")
-    public void setCTMTypeNetwork(Network value) {
-        if (this.ctmNetwork == null) {
-            this.ctmNetwork = new CTMNetwork();
+    public void setCTMNetwork(Network value) {
+        if (this.ctmTypeNetwork == null) {
+            this.ctmTypeNetwork = new edu.berkeley.path.model_objects.jaxb.CTMTypeNetwork();
         }
-        super.getCTMNetwork().setNetwork(value);
+        super.getCTMTypeNetwork().setNetwork(value);
     }
 
 
@@ -232,7 +225,7 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
                 this.parametersList.getParameters().clear();
             }
             else {
-                this.parametersList = new ParametersList();
+                this.parametersList = new edu.berkeley.path.model_objects.jaxb.ParametersList();
             }
             this.parametersList.getParameters().addAll((List<edu.berkeley.path.model_objects.jaxb.Parameters>) (List<?>) parametersList);
         }
@@ -265,7 +258,7 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
                 this.sensorSetList.getSensorSet().clear();
             }
             else {
-                this.sensorSetList = new SensorSetList();
+                this.sensorSetList = new edu.berkeley.path.model_objects.jaxb.SensorSetList();
             }
             this.sensorSetList.getSensorSet().addAll((List<edu.berkeley.path.model_objects.jaxb.SensorSet>) (List<?>) sensorSetList);
         }
@@ -299,7 +292,7 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
                 this.actuatorSetList.getActuatorSet().clear();
             }
             else {
-                this.actuatorSetList = new ActuatorSetList();
+                this.actuatorSetList = new edu.berkeley.path.model_objects.jaxb.ActuatorSetList();
             }
             this.actuatorSetList.getActuatorSet().addAll((List<edu.berkeley.path.model_objects.jaxb.ActuatorSet>) (List<?>) actuatorSetList);
         }
@@ -368,7 +361,7 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
                 this.demandSetList.getDemandSet().clear();
             }
             else {
-                this.demandSetList = new DemandSetList();
+                this.demandSetList = new edu.berkeley.path.model_objects.jaxb.DemandSetList();
             }
             this.demandSetList.getDemandSet().addAll((List<edu.berkeley.path.model_objects.jaxb.DemandSet>) (List<?>) demandSetList);
         }
@@ -402,7 +395,7 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
                 this.controllerSetList.getControllerSet().clear();
             }
             else {
-                this.controllerSetList = new ControllerSetList();
+                this.controllerSetList = new edu.berkeley.path.model_objects.jaxb.ControllerSetList();
             }
             this.controllerSetList.getControllerSet().addAll((List<edu.berkeley.path.model_objects.jaxb.ControllerSet>) (List<?>) controllerSetList);
         }
@@ -436,7 +429,7 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
                 this.fundamentalDiagramSetList.getFundamentalDiagramSet().clear();
             }
             else {
-                this.fundamentalDiagramSetList = new FundamentalDiagramSetList();
+                this.fundamentalDiagramSetList = new edu.berkeley.path.model_objects.jaxb.FundamentalDiagramSetList();
             }
             this.fundamentalDiagramSetList.getFundamentalDiagramSet().addAll((List<edu.berkeley.path.model_objects.jaxb.FundamentalDiagramSet>) (List<?>) fundamentalDiagramSetList);
         }
@@ -470,7 +463,7 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
                 this.routeSetList.getRouteSet().clear();
             }
             else {
-                this.routeSetList = new RouteSetList();
+                this.routeSetList = new edu.berkeley.path.model_objects.jaxb.RouteSetList();
             }
             this.routeSetList.getRouteSet().addAll((List<edu.berkeley.path.model_objects.jaxb.RouteSet>) (List<?>) routeSetList);
         }
@@ -506,7 +499,7 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
                 this.splitRatioSetList.getSplitRatioSet().clear();
             }
             else {
-                this.splitRatioSetList = new SplitRatioSetList();
+                this.splitRatioSetList = new edu.berkeley.path.model_objects.jaxb.SplitRatioSetList();
             }
             this.splitRatioSetList.getSplitRatioSet().addAll((List<edu.berkeley.path.model_objects.jaxb.SplitRatioSet>) (List<?>) splitRatioSetList);
         }
