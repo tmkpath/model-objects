@@ -27,6 +27,7 @@
 package edu.berkeley.path.model_objects.scenario;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import edu.berkeley.path.model_objects.shared.CrudFlag;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,8 +63,8 @@ public class Route extends edu.berkeley.path.model_objects.jaxb.Route {
      * @return name of route as string
      */
     @Override
-    public String getName() {
-        return super.getName();
+    public String getRouteName() {
+        return super.getRouteName();
     }
 
     /**
@@ -72,8 +73,8 @@ public class Route extends edu.berkeley.path.model_objects.jaxb.Route {
      * @param name of route as string
      */
     @Override
-    public void setName(String name) {
-        super.setName(name);
+    public void setRouteName(String name) {
+        super.setRouteName(name);
     }
 
     /**
@@ -89,7 +90,7 @@ public class Route extends edu.berkeley.path.model_objects.jaxb.Route {
     /**
      * Sets the value of the modStamp property.
      *
-     * @param String value of database mod-stamp
+     * @param value of database mod-stamp
      */
     @Override
     public void setModStamp(String value) {
@@ -110,7 +111,7 @@ public class Route extends edu.berkeley.path.model_objects.jaxb.Route {
     /**
      * Set the Route links. Attaches list of RouteLink Model Objects to Route.
      *
-     * @param List<RouteLink> List of extended Route Links to add
+     * @param links of extended Route Links to add
      */
     @SuppressWarnings("unchecked")
     public void setListOfRouteLinks(List<RouteLink> links) {
@@ -138,5 +139,75 @@ public class Route extends edu.berkeley.path.model_objects.jaxb.Route {
         }
         return this.routeLink;
     }
+
+    /**
+     * Get CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+     *
+     * @return CRUD Flag enumeration
+     */
+    public CrudFlag getCrudFlagEnum() {
+
+        CrudFlag flag = null;
+        // Check if CRUDFlag is null, if so return NONE enumeration
+        if (super.getCrudFlag() == null) {
+            setCrudFlagEnum(CrudFlag.NONE);
+            flag = CrudFlag.NONE;
+        }
+        else {
+            switch (CrudFlag.valueOf(super.getCrudFlag())) {
+                case CREATE:
+                    flag = CrudFlag.CREATE;
+                    break;
+                case RETRIEVE:
+                    flag = CrudFlag.RETRIEVE;
+                    break;
+                case UPDATE:
+                    flag = CrudFlag.UPDATE;
+                    break;
+                case DELETE:
+                    flag = CrudFlag.DELETE;
+                    break;
+                default:
+                    flag = CrudFlag.NONE;
+                    break;
+
+            }
+        }
+        return flag;
+    }
+
+    /**
+     * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
+     *
+     * @param  flag enumeration
+     */
+    public void setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag flag) {
+        // Check if CRUDFlag is null, if so return NONE enumeration
+        if (flag == null) {
+            super.setCrudFlag("NONE");
+        }
+        else {
+            switch (flag) {
+                case CREATE:
+                    super.setCrudFlag("CREATE");
+                    break;
+                case RETRIEVE:
+                    super.setCrudFlag("RETRIEVE");
+                    break;
+                case UPDATE:
+                    super.setCrudFlag("UPDATE");
+                    break;
+                case DELETE:
+                    super.setCrudFlag("DELETE");
+                    break;
+                default:
+                    super.setCrudFlag("NONE");
+                    break;
+
+            }
+        }
+    }
+
+
 
 }

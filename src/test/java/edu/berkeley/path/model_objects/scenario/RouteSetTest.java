@@ -60,7 +60,7 @@ public class RouteSetTest {
 
         // Mock route Object
         route = new Route();
-        route.setName(ROUTE_NAME);
+        route.setRouteName(ROUTE_NAME);
         route.setId(ROUTE_ID);
 
         // Add two route links
@@ -97,7 +97,7 @@ public class RouteSetTest {
         assertEquals(routeSet.getProjectId(), ROUTE_SET_PROJECT_ID);
 
         // test route model object
-        assertEquals(route.getName(), ROUTE_NAME);
+        assertEquals(route.getRouteName(), ROUTE_NAME);
         assertEquals(route.getId(), ROUTE_ID);
 
         // test first in list of route links

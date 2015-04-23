@@ -26,18 +26,56 @@
 
 package edu.berkeley.path.model_objects;
 
+
+import edu.berkeley.path.model_objects.config.ConfigKeyType;
+import edu.berkeley.path.model_objects.config.ConfigKeyTypeSet;
+import edu.berkeley.path.model_objects.config.ConfigValidKey;
+import edu.berkeley.path.model_objects.config.ConfigValidKeySet;
+import edu.berkeley.path.model_objects.dynamic.*;
 import edu.berkeley.path.model_objects.jaxb.ObjectFactory;
 import edu.berkeley.path.model_objects.measurements.*;
-import edu.berkeley.path.model_objects.network.*;
+import edu.berkeley.path.model_objects.network.Link;
+import edu.berkeley.path.model_objects.network.Network;
+import edu.berkeley.path.model_objects.network.Node;
 import edu.berkeley.path.model_objects.scenario.*;
 import edu.berkeley.path.model_objects.shared.*;
-import edu.berkeley.path.model_objects.dynamic.*;
 
 /**
  * This factory is intended to load a whole scenario from JSON/XML
  * Grouping all existing factories we can get a full model-objects representation instead of some jaxb-based elements
  */
 public class ModelObjectsFactory extends ObjectFactory {
+
+    /**
+     *
+     * @return valid configKeySet
+     */
+    public ConfigValidKeySet createConfigKeyValidKeySet() {
+        return new ConfigValidKeySet();
+    }
+
+    /**
+     * @return ConfigKeyTypeSet Model Object
+     */
+    public ConfigKeyTypeSet createConfigKeyTypeSet() {
+        return new ConfigKeyTypeSet();
+    }
+
+    /**
+     *
+     * @return configKeyTypes
+     */
+    public ConfigKeyType createConfigKeyTypes() {
+        return new ConfigKeyType();
+    }
+
+    /**
+     *
+     * @return ValidConfigKeys
+     */
+    public ConfigValidKey createConfigValidKeys() {
+        return new ConfigValidKey();
+    }
 
   /**
    * Create an instance of Actuator Model Object

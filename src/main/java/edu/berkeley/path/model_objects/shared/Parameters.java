@@ -99,7 +99,7 @@ public class Parameters extends edu.berkeley.path.model_objects.jaxb.Parameters{
 	/**
 	 * Set the parameters list. Attaches list of Parameter Model Objects to scenario.
 	 * 
-	 * @param List<Parameter>	List of extended Parameters to add
+	 * @param parameters	List of extended Parameters to add
 	 */
 	public void setParameters(List<Parameter> parameters) {
 		 List<edu.berkeley.path.model_objects.jaxb.Parameter> pSet = (ArrayList<edu.berkeley.path.model_objects.jaxb.Parameter>)parameter;
@@ -115,7 +115,7 @@ public class Parameters extends edu.berkeley.path.model_objects.jaxb.Parameters{
 	 *  Add the parameter to the parameters list.
 	 *  
 	 * 
-	 * @param Parameter	Parameter to add
+	 * @param p	Parameter to add
 	 */
 	public void setParameter(Parameter p) {
 		getParameters().add(p);
@@ -136,7 +136,7 @@ public class Parameters extends edu.berkeley.path.model_objects.jaxb.Parameters{
    * Sets the value of the modStamp property.
    * Format: DD-MON-YYYY HH24:MM:SS
    *
-   * @param String value
+   * @param  value
    *
    */
 	@Override
@@ -183,7 +183,7 @@ public class Parameters extends edu.berkeley.path.model_objects.jaxb.Parameters{
   /**
    * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
    *
-   * @param CRUD Flag enumeration
+   * @param  flag enumeration
    */
   public void setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag flag) {
     // Check if CRUDFlag is null, if so return NONE enumeration

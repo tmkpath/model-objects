@@ -26,8 +26,7 @@
 
 package edu.berkeley.path.model_objects.shared;
 
-import core.Monitor;
-
+import core.oraMonitor;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatterBuilder;
 import org.joda.time.format.DateTimeParser;
@@ -94,7 +93,7 @@ public class DateTime extends edu.berkeley.path.model_objects.jaxb.DateTime {
       // get milliseconds from to set
       setMilliseconds(joda.getMillis());
     } catch (Exception e) {
-      Monitor.debug("Error Setting date string to joda time: " + date);
+      oraMonitor.debug("Error Setting date string to joda time: " + date);
     }
     return joda;
   }

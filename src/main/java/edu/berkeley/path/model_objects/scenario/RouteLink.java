@@ -98,7 +98,7 @@ public class RouteLink extends edu.berkeley.path.model_objects.jaxb.RouteLink {
 	/**
 	 * Set CRUD (Create, Retrieve, Update, Delete) Action Flag for object
 	 *
-	 * @param CRUD Flag enumeration
+	 * @param  flag enumeration
 	 */
 	public void setCrudFlagEnum(edu.berkeley.path.model_objects.shared.CrudFlag flag) {
 		// Check if CRUDFlag is null, if so return NONE enumeration
@@ -140,7 +140,7 @@ public class RouteLink extends edu.berkeley.path.model_objects.jaxb.RouteLink {
     /**
      * Sets the value of the modStamp property.
      *
-     * @param String value of database mod-stamp
+     * @param value of database mod-stamp
      */
     @Override
     public void setModStamp(String value) {
