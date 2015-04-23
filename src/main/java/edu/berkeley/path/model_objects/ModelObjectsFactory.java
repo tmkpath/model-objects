@@ -305,6 +305,15 @@ public class ModelObjectsFactory extends ObjectFactory {
   public RunRequest createRunRequest() { return new RunRequest(); }
 
   /**
+   * Create an instance of ScenarioRequest Model Object
+   *
+   * @return ScenarioRequest  Model Object
+   */
+  @Override
+  public ScenarioRequest createScenarioRequest() { return new ScenarioRequest(); }
+
+
+  /**
    * Create an instance of SplitRatioSet  Model Object
    *
    * @return SplitRatioSet  Model Object
