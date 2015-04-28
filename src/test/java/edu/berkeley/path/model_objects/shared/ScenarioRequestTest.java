@@ -27,6 +27,7 @@ public class ScenarioRequestTest {
 
     private static final String NAME = "test envelope";
     private static final String SET_NAME = "test set";
+    private static final String USER_ID = "test user";
     private static final String SET_DESCRIPTION = "test set description";
 
     private static final String DERIVED_NAME = "derived network";
@@ -58,6 +59,7 @@ public class ScenarioRequestTest {
         scenarioRequest.setBuild(true);
         scenarioRequest.setPersist(true);
         scenarioRequest.setExecute(false);
+        scenarioRequest.setUserId(USER_ID);
 
         List<Parameters> parametersList = new ArrayList<Parameters>();
         Parameters parameters = new Parameters();
@@ -138,6 +140,7 @@ public class ScenarioRequestTest {
         assertEquals(scenarioRequest.getName(), NAME);
         assertEquals(scenarioRequest.getTaskId(), TASK_ID);
         assertEquals(scenarioRequest.getProjectId(), PROJECT_ID);
+        assertEquals(scenarioRequest.getUserId(), USER_ID);
 
         assertEquals(scenarioRequest.isBuild(), true);
         assertEquals(scenarioRequest.isPersist(), true);

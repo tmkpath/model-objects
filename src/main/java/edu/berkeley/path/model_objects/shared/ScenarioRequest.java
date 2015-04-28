@@ -117,6 +117,28 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
     }
 
     /**
+     * Gets the value of the user id property.
+     *
+     * @return {@link String }
+     *
+     */
+    @Override
+    public String getUserId() {
+        return super.getUserId();
+    }
+
+    /**
+     * Sets the value of the user id property.
+     *
+     * @param value {@link String }
+     *
+     */
+    @Override
+    public void setUserId(String value) {
+        super.setUserId(value);
+    }
+
+    /**
      * Gets the value of the Build property.
      *
      * @return {@link String }
