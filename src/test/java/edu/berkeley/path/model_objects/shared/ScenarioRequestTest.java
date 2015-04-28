@@ -55,6 +55,9 @@ public class ScenarioRequestTest {
     @Test
     public void testSetLists(){
 
+        scenarioRequest.setBuild(true);
+        scenarioRequest.setPersist(true);
+        scenarioRequest.setExecute(false);
 
         List<Parameters> parametersList = new ArrayList<Parameters>();
         Parameters parameters = new Parameters();
@@ -135,6 +138,10 @@ public class ScenarioRequestTest {
         assertEquals(scenarioRequest.getName(), NAME);
         assertEquals(scenarioRequest.getTaskId(), TASK_ID);
         assertEquals(scenarioRequest.getProjectId(), PROJECT_ID);
+
+        assertEquals(scenarioRequest.isBuild(), true);
+        assertEquals(scenarioRequest.isPersist(), true);
+        assertEquals(scenarioRequest.isExecute(), false);
 
         assertEquals(scenarioRequest.getListOfParameters().size(), 1);
         assertEquals(scenarioRequest.getListOfParameters().get(0).getParameter().size(), 3);
