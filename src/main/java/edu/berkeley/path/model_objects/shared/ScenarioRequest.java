@@ -106,7 +106,7 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
     }
 
     /**
-     * Sets the value of the name property.
+     * Sets the value of the description property.
      *
      * @param value {@link String }
      *
@@ -115,6 +115,103 @@ public class ScenarioRequest  extends edu.berkeley.path.model_objects.jaxb.Scena
     public void setDescription(String value) {
         super.setDescription(value);
     }
+
+    /**
+     * Gets the value of the user id property.
+     *
+     * @return {@link String }
+     *
+     */
+    @Override
+    public String getUserId() {
+        return super.getUserId();
+    }
+
+    /**
+     * Sets the value of the user id property.
+     *
+     * @param value {@link String }
+     *
+     */
+    @Override
+    public void setUserId(String value) {
+        super.setUserId(value);
+    }
+
+    /**
+     * Gets the value of the Build property.
+     *
+     * @return {@link String }
+     *
+     */
+    @Override
+    public boolean isBuild() { return super.isBuild();}
+
+    /**
+     * Sets the value of the Build property.
+     *
+     * @param value {@link String }
+     *
+     */
+    @Override
+    public void setBuild(Boolean value) { super.setBuild(value); }
+
+
+    /**
+     * Gets the value of the Validate property.
+     *
+     * @return {@link String }
+     *
+     */
+    @Override
+    public boolean isValidate() { return super.isValidate();}
+
+    /**
+     * Sets the value of the Build property.
+     *
+     * @param value {@link String }
+     *
+     */
+    @Override
+    public void setValidate(Boolean value) { super.setValidate(value); }
+
+
+    /**
+     * Gets the value of the Persist property.
+     *
+     * @return {@link String }
+     *
+     */
+    @Override
+    public boolean isPersist() { return super.isPersist();}
+
+    /**
+     * Sets the value of the Execute property.
+     *
+     * @param value {@link String }
+     *
+     */
+    @Override
+    public void setPersist(Boolean value) { super.setPersist(value); }
+
+
+    /**
+     * Gets the value of the Execute property.
+     *
+     * @return {@link String }
+     *
+     */
+    @Override
+    public boolean isExecute() { return super.isExecute();}
+
+    /**
+     * Sets the value of the Execute property.
+     *
+     * @param value {@link String }
+     *
+     */
+    @Override
+    public void setExecute(Boolean value) { super.setExecute(value); }
 
     /**
      * Gets the value of the scenario property.
