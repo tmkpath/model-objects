@@ -98,7 +98,7 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
      * 
      */
     @SuppressWarnings("unchecked")
-    @JsonManagedReference
+    @JsonIgnore
     public List<FundamentalDiagramProfile> getListOfFundamentalDiagramProfiles() {
         return (List<FundamentalDiagramProfile>)(List<?>)super.getFundamentalDiagramProfile();
     }
@@ -267,7 +267,7 @@ public class FundamentalDiagramSet extends edu.berkeley.path.model_objects.jaxb.
      * Override Jaxb getters for children to manage Json serialization
      */
     @Override
-    @JsonIgnore
+    @JsonManagedReference
     public List<edu.berkeley.path.model_objects.jaxb.FundamentalDiagramProfile> getFundamentalDiagramProfile() {
         if (fundamentalDiagramProfile == null) {
             fundamentalDiagramProfile = new ArrayList<edu.berkeley.path.model_objects.jaxb.FundamentalDiagramProfile>();

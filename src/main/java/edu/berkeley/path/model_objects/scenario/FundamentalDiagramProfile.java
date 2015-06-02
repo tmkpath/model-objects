@@ -48,6 +48,7 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
 	 * @return FD list as List<FundamentalDiagram>
 	 */
 	@SuppressWarnings("unchecked")
+    @JsonIgnore
 	public List<FundamentalDiagram> getListOfFDs() {
 	  List<edu.berkeley.path.model_objects.jaxb.FundamentalDiagram> fdList = super.getFundamentalDiagram();
 	  // return casted list of Nodes from JAXB base class
@@ -325,7 +326,7 @@ public class FundamentalDiagramProfile extends edu.berkeley.path.model_objects.j
      * Override Jaxb getters for children to manage Json serialization
      */
     @Override
-    @JsonIgnore
+    @JsonManagedReference
     public List<edu.berkeley.path.model_objects.jaxb.FundamentalDiagram> getFundamentalDiagram() {
         if (fundamentalDiagram == null) {
             fundamentalDiagram = new ArrayList<edu.berkeley.path.model_objects.jaxb.FundamentalDiagram>();
