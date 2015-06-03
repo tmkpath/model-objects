@@ -29,6 +29,7 @@ package edu.berkeley.path.model_objects.network;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import edu.berkeley.path.model_objects.jaxb.Position;
 import edu.berkeley.path.model_objects.jaxb.RoadwayMarkers;
 import edu.berkeley.path.model_objects.jaxb.Marker;
@@ -198,7 +199,8 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
    * Get Array of links exiting this node, after network has been populated
    * 
    * @return Array of links 
-   */ 
+   */
+  @JsonIgnore
 	public Link[] getOutputLink() {
 		return outputLink;
 	}
@@ -207,7 +209,8 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
    * Get Array of links entering this node, after network has been populated
    * 
    * @return  Array of links 
-   */ 
+   */
+  @JsonIgnore
 	public Link[] getInputLink() {
 		return inputLink;
 	}
@@ -399,6 +402,7 @@ public class Node extends edu.berkeley.path.model_objects.jaxb.Node {
 	 * @return Point  The point of the node
 	 */
 	@SuppressWarnings("unchecked")
+    @JsonIgnore
 	public Point getPoint() {
 		Point point = null;
 		// try and get first point, if not set return error message and null value
