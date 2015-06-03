@@ -34,6 +34,7 @@ import edu.berkeley.path.model_objects.jaxb.Position;
 import edu.berkeley.path.model_objects.shared.Point;
 import edu.berkeley.path.model_objects.MOException;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -44,7 +45,9 @@ import java.util.ArrayList;
 public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 
   /** @y.exclude */ protected boolean isempty;
-  /** @y.exclude */ protected Point center; 
+  /** @y.exclude */ protected Point center;
+  /** @y.exclude */ private HashMap<Long, Link> linkMap = null;
+  /** @y.exclude */ private HashMap<Long, Node> nodeMap = null;
 	
   /**
    * Return id of network
@@ -256,7 +259,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
   /**
    * Sets the value of the modStamp property.
    * 
-   * @param String value of database mod-stamp
+   * @param  value   value of database mod-stamp
    */
   @Override
   public void setModStamp(String value) {
@@ -328,11 +331,21 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 	public Link getLinkWithId(long id){
 		if(isempty)
 			return null;
-		for(edu.berkeley.path.model_objects.jaxb.Link link : getLinkList().getLink()){
-			if(link.getId() == id)
-				return (Link) link;
-		}
-		return null;
+
+        List<Link> listOfLinks = getListOfLinks();
+
+        if (null == listOfLinks) {
+            return null;
+        } else {
+            if (null == linkMap) {
+                linkMap = new HashMap<Long, Link>(listOfLinks.size());
+                for (Link l : listOfLinks) {
+                    linkMap.put(l.getId(), l);
+                }
+            }
+        }
+
+		return linkMap.get(id);
 	}
 
 	/** 
@@ -343,11 +356,21 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 	public Node getNodeWithId(long id){
 		if(isempty)
 			return null;
-		for(edu.berkeley.path.model_objects.jaxb.Node node : getNodeList().getNode()){
-			if(node.getId() == id)
-				return (Node) node;
-		}
-		return null;
+
+        List<Node> listOfNodes = getListOfNodes();
+
+        if (null == listOfNodes) {
+            return null;
+        } else {
+            if (null == nodeMap) {
+                nodeMap = new HashMap<Long, Node>(listOfNodes.size());
+                for (Node n : listOfNodes) {
+                    nodeMap.put(n.getId(), n);
+                }
+            }
+        }
+
+        return nodeMap.get(id);
 	}
 
 	/** 
@@ -363,7 +386,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
       nodeList = new edu.berkeley.path.model_objects.jaxb.NodeList();  
       nodeList.getNode().clear();
       // set newly created node list object to network class, so a Nodelist now exists
-      setNodeList(nodeList);
+      super.setNodeList(nodeList);
     }
     // return casted list of Nodes from JAXB base class
     return (List<Node>)(List<?>)nodeList.getNode();
@@ -382,7 +405,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
       linkList = new edu.berkeley.path.model_objects.jaxb.LinkList();  
       linkList.getLink().clear();
       // set newly created link list object to network class, so a Linklist now exists
-      setLinkList(linkList);
+      super.setLinkList(linkList);
     }
     // return casted list of Links from JAXB base class
     return (List<Link>)(List<?>)linkList.getLink();	
@@ -391,7 +414,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 	/**
 	 * Set the nodes. Attaches list of Node Model Objects to network.
 	 * 
-	 * @param List<Node>	List of extended Nodes to add
+	 * @param nodes	List of extended Nodes to add
 	 */
 	@SuppressWarnings("unchecked")
 	public void setListOfNodes(List<Node> nodes) {
@@ -401,13 +424,13 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 		}
 		nodeList.getNode().clear();
 		nodeList.getNode().addAll((List<edu.berkeley.path.model_objects.jaxb.Node>)(List<?>)nodes);
-		setNodeList(nodeList);
+		super.setNodeList(nodeList);
 	}
 	  
 	/**
 	 * Set the links. Attaches list of Link Model Objects to network.
 	 * 
-	 * @param List<Link>  List of extended Links to add
+	 * @param links  List of extended Links to add
 	 */
 	@SuppressWarnings("unchecked")
 	public void setListOfLinks(List<Link> links) {
@@ -417,7 +440,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
     }
     linkList.getLink().clear();
     linkList.getLink().addAll((List<edu.berkeley.path.model_objects.jaxb.Link>)(List<?>)links);
-    setLinkList(linkList);
+    super.setLinkList(linkList);
 	}
 
   /**
