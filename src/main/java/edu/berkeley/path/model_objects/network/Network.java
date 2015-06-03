@@ -27,6 +27,7 @@
 package edu.berkeley.path.model_objects.network;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import core.Monitor;
 import edu.berkeley.path.model_objects.jaxb.LinkList;
 import edu.berkeley.path.model_objects.jaxb.NodeList;
@@ -379,6 +380,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 	 * @return List of all nodes as Node Model Objects. 
 	 */
 	@SuppressWarnings("unchecked")
+    @JsonManagedReference
 	public List<Node> getListOfNodes() {
 	  edu.berkeley.path.model_objects.jaxb.NodeList nodeList = getNodeList();
 	  // check if node list exists, if not create it and add empty list of nodes
@@ -398,6 +400,7 @@ public class Network extends edu.berkeley.path.model_objects.jaxb.Network {
 	 * @return List of all links as Link model objects. 
 	 */
   @SuppressWarnings("unchecked")
+  @JsonManagedReference
 	public List<Link> getListOfLinks() {
 	  edu.berkeley.path.model_objects.jaxb.LinkList linkList = getLinkList();
     // check if links list exists, if not create it and add empty list of links

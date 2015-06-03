@@ -304,6 +304,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * 
    * @return  Begin Node Model object
    */
+  @JsonIgnore
   public Node getBeginNode() {
     return beginNode;
   }
@@ -313,6 +314,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * 
    * @return  End Node Model object
    */
+  @JsonIgnore
   public Node getEndNode() {
     return endNode;
   }
@@ -513,6 +515,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * 
    * @return  list of points
    */
+  @JsonIgnore
   public java.util.List<Point> getPoints() {
 		// try and get points, if not set return new empty list of points
 		if (getPosition() != null && getPosition().getPoint() != null) {
