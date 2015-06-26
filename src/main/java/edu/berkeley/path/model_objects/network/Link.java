@@ -325,7 +325,7 @@ public class Link extends edu.berkeley.path.model_objects.jaxb.Link {
    * @param   The node to set as begin node of link
    */
   public void setBeginNode(Node node) {
-    this.endNode = node;
+    this.beginNode = node;
     if (node != null) {
       setBegin(new Begin());
       getBegin().setNodeId(node.getId());
