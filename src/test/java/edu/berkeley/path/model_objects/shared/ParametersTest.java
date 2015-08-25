@@ -11,12 +11,17 @@ public class ParametersTest {
 	private static String NAME = "Parameter Name";
 	private static String VALUE = "Parameter Value";
 	private static Parameter p;
-	private static Parameters pSet; 
+	private static Parameters pSet;
+    private static long PROJECT_ID = 111L;
+    private static long SCENARIO_ID = 222L;
+    private static long RUN_ID = 333L;
 
 	@Before
 	public void setUp(){
 		pSet = new Parameters();
-        pSet.setProjectId(1L);
+        pSet.setProjectId(PROJECT_ID);
+        pSet.setScenarioId(SCENARIO_ID);
+        pSet.setRunId(RUN_ID);
 		p = new Parameter();
 		p.setName(NAME);
 		p.setValue(VALUE);
@@ -38,7 +43,8 @@ public class ParametersTest {
 		list.add(new Parameter());
 		pSet.setParameters(list);
 		assertEquals(4, pSet.getParameters().size());
-		
+        assertEquals(Long.valueOf(pSet.getScenarioId()).longValue(), SCENARIO_ID );
+        assertEquals(Long.valueOf(pSet.getRunId()).longValue(), RUN_ID );
 	}
 
 }
