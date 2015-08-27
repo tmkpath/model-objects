@@ -57,7 +57,9 @@
             <xs:element ref="description" minOccurs="0" maxOccurs="1" />
          </xs:sequence>
          <xs:attribute name="id" type="xs:long" use="optional" />
-          <xs:attribute name="project_id" type="xs:long" use="optional" />
+         <xs:attribute name="project_id" type="xs:long" use="optional" />
+          <xs:attribute name="scenario_id" type="xs:long" use="optional" />
+          <xs:attribute name="run_id" type="xs:long" use="optional" />
          <xs:attribute name="name" type="xs:string" use="optional" />
          <xs:attribute name="type_id" type="xs:long" use="optional" />
          <xs:attribute name="mod_stamp" type="xs:string" use="optional" 

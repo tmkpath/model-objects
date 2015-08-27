@@ -46,6 +46,37 @@ public class Parameters extends edu.berkeley.path.model_objects.jaxb.Parameters{
     public void setProjectId(Long projectId) { super.setProjectId(projectId); }
 
 
+    /**
+     * @return the scenarioId
+     */
+    @Override
+    public Long getScenarioId() {
+        return super.getScenarioId();
+    }
+
+    /**
+     * @param scenarioId the scenarioId to set
+     */
+
+    @Override
+    public void setScenarioId(Long scenarioId) { super.setScenarioId(scenarioId); }
+
+
+    /**
+     * @return the runId
+     */
+    @Override
+    public Long getRunId() {
+        return super.getRunId();
+    }
+
+    /**
+     * @param runId the runId to set
+     */
+
+    @Override
+    public void setRunId(Long runId) { super.setRunId(runId); }
+
   /**
    * Gets the value of the parameter config type id property.
    *
