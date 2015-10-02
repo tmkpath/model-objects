@@ -3,7 +3,9 @@ package edu.berkeley.path.model_objects.shared;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Parameters extends edu.berkeley.path.model_objects.jaxb.Parameters{
@@ -124,9 +126,23 @@ public class Parameters extends edu.berkeley.path.model_objects.jaxb.Parameters{
 	@SuppressWarnings("unchecked")
 	public ArrayList<Parameter> getParameters() {
 		return (ArrayList<Parameter>)(ArrayList<?>) super.getParameter();
-	}	
-	
-	
+	}
+
+    /**
+     * Gets a hash map of all parameters.
+     *
+     * @return HashMap<String, Parameter> the map of parameter names to parameter objects.
+     */
+    public Map<String, Parameter> getParametersMap() {
+        HashMap<String, Parameter> pmap = new HashMap<String, Parameter>();
+
+        for (Parameter p : getParameters()) {
+            pmap.put(p.getName(), p);
+        }
+        return pmap;
+    }
+
+
 	/**
 	 * Set the parameters list. Attaches list of Parameter Model Objects to scenario.
 	 * 
