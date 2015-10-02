@@ -1,6 +1,5 @@
 package edu.berkeley.path.model_objects.shared;
 
-
 import org.junit.Before;
 import org.junit.Test;
 
