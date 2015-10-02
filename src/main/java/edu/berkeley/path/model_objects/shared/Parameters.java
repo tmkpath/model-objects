@@ -10,7 +10,11 @@ import java.util.Map;
 
 public class Parameters extends edu.berkeley.path.model_objects.jaxb.Parameters{
 
-  /**
+
+    /** @y.exclude */ private HashMap<String, Parameter> parameterMap = null;
+
+
+    /**
    * Gets the value of the id property.
    *
    * @return Long id
@@ -134,12 +138,14 @@ public class Parameters extends edu.berkeley.path.model_objects.jaxb.Parameters{
      * @return HashMap<String, Parameter> the map of parameter names to parameter objects.
      */
     public Map<String, Parameter> getParametersMap() {
-        HashMap<String, Parameter> pmap = new HashMap<String, Parameter>();
+        if ( parameterMap == null || parameterMap.isEmpty() ) {
+            parameterMap = new HashMap<String, Parameter>();
+        }
 
         for (Parameter p : getParameters()) {
-            pmap.put(p.getName(), p);
+            parameterMap.put(p.getName(), p);
         }
-        return pmap;
+        return parameterMap;
     }
 
 
