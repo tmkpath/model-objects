@@ -1062,6 +1062,7 @@
          <xs:sequence>
             <xs:element ref="route" minOccurs="0" maxOccurs="unbounded" />
          </xs:sequence>
+         <xs:attribute name="network_id" type="xs:long" use="required" />
          <xs:attribute name="project_id" type="xs:long" use="required" />
          <xs:attribute name="id" type="xs:long" use="required" />
          <xs:attribute name="name" type="xs:string" use="required" />

@@ -54,6 +54,26 @@ public class RouteSet extends edu.berkeley.path.model_objects.jaxb.RouteSet {
   }
 
   /**
+   * Return id of network associated with routeSet
+   *
+   * @return network id for routeSet as long
+   */
+  @Override
+  public long getNetworkId() {
+        return super.getNetworkId();
+    }
+
+  /**
+   * Set network id for routeSet
+   *
+   * @param id of network
+   */
+  @Override
+  public void setNetworkId(long id) {
+        super.setNetworkId(id);
+    }
+
+  /**
    * Return project id of routeSet
    *
    * @return project id of routeSet as long
@@ -66,7 +86,7 @@ public class RouteSet extends edu.berkeley.path.model_objects.jaxb.RouteSet {
   /**
    * Set project id of routeSet
    *
-   * @param id of routeSet
+   * @param id of project
    */
   @Override
   public void setProjectId(long id) {

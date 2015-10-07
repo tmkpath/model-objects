@@ -41,6 +41,7 @@ public class RouteSetTest {
     private static String ROUTE_SET_NAME = "TEST ROUTE SET";
     private static long ROUTE_SET_ID = 1;
     private static long ROUTE_SET_PROJECT_ID = 1;
+    private static long ROUTE_SET_NETWORK_ID = 10101;
 
     private static String ROUTE_NAME = "TEST ROUTE";
     private static long ROUTE_ID = 1;
@@ -56,6 +57,8 @@ public class RouteSetTest {
         routeSet = new RouteSet();
         routeSet.setId(ROUTE_SET_ID);
         routeSet.setProjectId(ROUTE_SET_PROJECT_ID);
+        routeSet.setNetworkId(ROUTE_SET_NETWORK_ID);
+
         routeSet.setName(ROUTE_SET_NAME);
 
         // Mock route Object
@@ -88,6 +91,7 @@ public class RouteSetTest {
         assertEquals(routeSet.getName(), ROUTE_SET_NAME);
         assertEquals(routeSet.getId(), ROUTE_SET_ID);
         assertEquals(routeSet.getProjectId(), ROUTE_SET_PROJECT_ID);
+        assertEquals(routeSet.getNetworkId(), ROUTE_SET_NETWORK_ID);
 
         // test first in list of routes
         route = routeSet.getListOfRoutes().get(0);
