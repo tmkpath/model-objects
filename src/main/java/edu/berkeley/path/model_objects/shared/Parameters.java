@@ -3,12 +3,18 @@ package edu.berkeley.path.model_objects.shared;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Parameters extends edu.berkeley.path.model_objects.jaxb.Parameters{
 
-  /**
+
+    /** @y.exclude */ private HashMap<String, Parameter> parameterMap = null;
+
+
+    /**
    * Gets the value of the id property.
    *
    * @return Long id
@@ -124,9 +130,25 @@ public class Parameters extends edu.berkeley.path.model_objects.jaxb.Parameters{
 	@SuppressWarnings("unchecked")
 	public ArrayList<Parameter> getParameters() {
 		return (ArrayList<Parameter>)(ArrayList<?>) super.getParameter();
-	}	
-	
-	
+	}
+
+    /**
+     * Gets a hash map of all parameters.
+     *
+     * @return HashMap<String, Parameter> the map of parameter names to parameter objects.
+     */
+    public Map<String, Parameter> getParametersMap() {
+        if ( parameterMap == null || parameterMap.isEmpty() ) {
+            parameterMap = new HashMap<String, Parameter>();
+        }
+
+        for (Parameter p : getParameters()) {
+            parameterMap.put(p.getName(), p);
+        }
+        return parameterMap;
+    }
+
+
 	/**
 	 * Set the parameters list. Attaches list of Parameter Model Objects to scenario.
 	 * 

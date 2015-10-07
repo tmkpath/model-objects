@@ -1,7 +1,9 @@
 package edu.berkeley.path.model_objects.shared;
 
+import edu.berkeley.path.model_objects.MOException;
 import edu.berkeley.path.model_objects.scenario.Scenario;
-import edu.berkeley.path.model_objects.shared.Parameters;
+
+import java.util.Map;
 
 
 /**
@@ -134,6 +136,42 @@ public class RunRequest extends edu.berkeley.path.model_objects.jaxb.RunRequest 
     @Override
     public void setUserId(String value) {
         super.setUserId(value);
+    }
+
+
+    /**
+     * Calculates the number of time steps in this scenario.
+     *
+     */
+    public int getTimeStepCount() throws MOException {
+
+        Map<String, Parameter> parameterMap = getParameters().getParametersMap();
+
+        // retrieve the run characteristics
+        String simMode = parameterMap.get("global.sim_mode").getValue();
+        String runMode = parameterMap.get("global.run_mode").getValue();
+
+        // find the elements required for calculation
+        String startTime = parameterMap.get("global.start_time").getValue();
+        String endTime = parameterMap.get("global.end_time").getValue();
+        Long reportFreqMillis = Long.valueOf(parameterMap.get("output.report_freq").getValue());
+
+        if ( simMode == null || runMode == null || startTime == null || endTime == null || reportFreqMillis == null || reportFreqMillis == 0 ) {
+            throw new MOException(null, "Error getting properties required for time step count calculation");
+        }
+
+        //Validate run mode and sim mode
+        if ( simMode.equalsIgnoreCase("ESTIMATION") && runMode.equalsIgnoreCase("LIVE") ){
+            return 0;
+        }
+
+        DateTime dateTime = new DateTime();
+        org.joda.time.DateTime jodaStartTime = dateTime.setDateString(startTime);
+        org.joda.time.DateTime jodaEndTime = dateTime.setDateString(endTime);
+
+        long num = jodaEndTime.getMillis() - jodaStartTime.getMillis();
+
+        return (int) ( num / reportFreqMillis ) ;
     }
 
 }
