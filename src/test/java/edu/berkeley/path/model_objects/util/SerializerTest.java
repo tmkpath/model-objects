@@ -117,7 +117,7 @@ public class SerializerTest {
   }
 
   @Test
-  public void testMarshallerExtenedApp() throws Exception {
+  public void testMarshallerExtendedApp() throws Exception {
     // Convert nodeExt object to XML
     String nodeExtXML = Serializer.objectToXml(nodeExt);
     String expectedXML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
@@ -160,7 +160,7 @@ public class SerializerTest {
   }
   
   @Test
-  public void testUnMarshallerExtenedApp() throws Exception {
+  public void testUnMarshallerExtendedApp() throws Exception {
     String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
         "<node id=\"2\"/>\n";
     // unmarshal XML into Node object
@@ -174,158 +174,120 @@ public class SerializerTest {
   }
 
 	@Test
-	public void testUnMarshallerNetworkExt () throws Exception {
-		String beforeXML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
+	public void testUnMarshallerNetwork () throws Exception {
+		String inputXML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
 				"   <network project_id=\"1\">\n" +
 				"      <description/>\n" +
 				"      <position>\n" +
 				"        <point lat=\"37.8705\" lng=\"-122.29919999999998\" elevation=\"0\"/>\n" +
 				"      </position>\n" +
 				"      <NodeList>\n" +
-				"        <node type=\"\" id=\"9999\">\n" +
-				"          <roadway_markers>\n" +
-				"            <marker name=\"\" postmile=\"0\"/>\n" +
-				"          </roadway_markers>\n" +
+				"        <node id=\"9999\">\n" +
 				"          <position>\n" +
 				"            <point lat=\"37.87119153073403\" lng=\"-122.29870384788512\" elevation=\"NaN\"/>\n" +
 				"          </position>\n" +
+                "          <node_type id=\"6\" name=\"terminal\" />" +
 				"        </node>\n" +
-				"        <node type=\"\" id=\"10000\">\n" +
-				"          <roadway_markers>\n" +
-				"            <marker name=\"\" postmile=\"0\"/>\n" +
-				"          </roadway_markers>\n" +
+				"        <node id=\"10000\">\n" +
 				"          <position>\n" +
 				"            <point lat=\"37.8617218741896\" lng=\"-122.29564635581971\" elevation=\"0\"/>\n" +
 				"          </position>\n" +
 				"        </node>\n" +
-				"        <node type=\"terminal\" id=\"10001\">\n" +
-				"          <roadway_markers>\n" +
-				"            <marker name=\"\" postmile=\"0\"/>\n" +
-				"          </roadway_markers>\n" +
+				"        <node id=\"10001\">\n" +
 				"          <position>\n" +
 				"            <point lat=\"37.84636611153011\" lng=\"-122.29136822090146\" elevation=\"0\"/>\n" +
 				"          </position>\n" +
+                "          <node_type id=\"6\" name=\"terminal\" />" +
 				"        </node>\n" +
-				"        <node type=\"\" id=\"10002\">\n" +
-				"          <roadway_markers>\n" +
-				"            <marker name=\"\" postmile=\"0\"/>\n" +
-				"          </roadway_markers>\n" +
+				"        <node id=\"10002\">\n" +
 				"          <position>\n" +
 				"            <point lat=\"37.868030000000005\" lng=\"-122.29771000000001\" elevation=\"0\"/>\n" +
 				"          </position>\n" +
 				"        </node>\n" +
 				"      </NodeList>\n" +
 				"      <LinkList>\n" +
-				"        <link lanes=\"1\" lane_offset=\"0\" length=\"1916.4512171408285\" type=\"\" id=\"9999\" in_sync=\"true\">\n" +
+				"        <link lanes=\"1\" lane_offset=\"0\" length=\"1916.4512171408285\" id=\"9999\" in_sync=\"true\">\n" +
 				"          <begin node_id=\"10001\"/>\n" +
 				"          <end node_id=\"10000\"/>\n" +
-				"          <roads>\n" +
-				"            <road name=\"\"/>\n" +
-				"          </roads>\n" +
-				"          <dynamics type=\"CTM\"/>\n" +
-				"          <shape>_{~eF``liVkATy@PwCl@mEbAeAXo@JG@G?EAKAICOC??QqAk@sE??cBZq@Li@JaBXcBb@i@PoB`@gAVcATeARqDx@sBd@oAVmAXmDt@aFlAeATyAXaCh@q@RqAX??Of@_@dAe@rAIPIPGJMR??kDr@</shape>\n" +
-				"        </link>\n" +
-				"        <link lanes=\"1\" lane_offset=\"0\" length=\"724.8395315693305\" type=\"\" id=\"10000\" in_sync=\"true\">\n" +
+                "          <link_type id=\"15\" name=\"Source\" />" +
+                "        </link>\n" +
+				"        <link lanes=\"1\" lane_offset=\"0\" length=\"724.8395315693305\" id=\"10000\" source_link_id=\"22\" detail_level=\"3\" in_sync=\"true\">\n" +
 				"          <begin node_id=\"10000\"/>\n" +
 				"          <end node_id=\"10002\"/>\n" +
-				"          <roads>\n" +
-				"            <road name=\"\"/>\n" +
-				"          </roads>\n" +
-				"          <dynamics type=\"CTM\"/>\n" +
-				"          <shape>szafFrzliVIBaJpBqE`AkAZ_ATkAVuE`AyDbAy@RKB</shape>\n" +
-				"        </link>\n" +
-				"        <link lanes=\"1\" lane_offset=\"0\" length=\"366.7504885192787\" type=\"\" id=\"10001\" in_sync=\"true\">\n" +
+                "          <link_type id=\"1\" name=\"Freeway\" />" +
+                "        </link>\n" +
+				"        <link lanes=\"1\" lane_offset=\"0\" length=\"366.7504885192787\" id=\"10001\" in_sync=\"true\">\n" +
 				"          <begin node_id=\"10002\"/>\n" +
 				"          <end node_id=\"9999\"/>\n" +
-				"          <roads>\n" +
-				"            <road name=\"\"/>\n" +
-				"          </roads>\n" +
-				"          <dynamics type=\"CTM\"/>\n" +
-				"          <shape>_bcfFrgmiVE@uCj@YFqAVu@Pa@HaDt@OBo@NWDe@J</shape>\n" +
+                "          <link_type id=\"16\" name=\"Sink\" />" +
 				"        </link>\n" +
 				"      </LinkList>\n" +
-				"      <IntersectionCache/>\n" +
 				"    </network>";
 
-		String expectedXML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
-				"<network project_id=\"1\" id=\"0\">\n" +
-				"    <description></description>\n" +
-				"    <NodeList>\n" +
-				"        <node id=\"9999\">\n" +
-				"            <roadway_markers>\n" +
-				"                <marker postmile=\"0.0\" name=\"\" id=\"0\"/>\n" +
-				"            </roadway_markers>\n" +
-				"            <position>\n" +
-				"                <point elevation=\"NaN\" lng=\"-122.29870384788512\" lat=\"37.87119153073403\"/>\n" +
-				"            </position>\n" +
-				"        </node>\n" +
-				"        <node id=\"10000\">\n" +
-				"            <roadway_markers>\n" +
-				"                <marker postmile=\"0.0\" name=\"\" id=\"0\"/>\n" +
-				"            </roadway_markers>\n" +
-				"            <position>\n" +
-				"                <point elevation=\"0.0\" lng=\"-122.29564635581971\" lat=\"37.8617218741896\"/>\n" +
-				"            </position>\n" +
-				"        </node>\n" +
-				"        <node id=\"10001\">\n" +
-				"            <roadway_markers>\n" +
-				"                <marker postmile=\"0.0\" name=\"\" id=\"0\"/>\n" +
-				"            </roadway_markers>\n" +
-				"            <position>\n" +
-				"                <point elevation=\"0.0\" lng=\"-122.29136822090146\" lat=\"37.84636611153011\"/>\n" +
-				"            </position>\n" +
-				"        </node>\n" +
-				"        <node id=\"10002\">\n" +
-				"            <roadway_markers>\n" +
-				"                <marker postmile=\"0.0\" name=\"\" id=\"0\"/>\n" +
-				"            </roadway_markers>\n" +
-				"            <position>\n" +
-				"                <point elevation=\"0.0\" lng=\"-122.29771000000001\" lat=\"37.868030000000005\"/>\n" +
-				"            </position>\n" +
-				"        </node>\n" +
-				"    </NodeList>\n" +
-				"    <LinkList>\n" +
-				"        <link in_sync=\"true\" length=\"1916.4512171408285\" lane_offset=\"0.0\" lanes=\"1.0\" id=\"9999\">\n" +
-				"            <begin node_id=\"10001\"/>\n" +
-				"            <end node_id=\"10000\"/>\n" +
-				"            <roads>\n" +
-				"                <road name=\"\" id=\"0\"/>\n" +
-				"            </roads>\n" +
-				"            <dynamics type=\"CTM\"/>\n" +
-				"            <shape>_{~eF``liVkATy@PwCl@mEbAeAXo@JG@G?EAKAICOC??QqAk@sE??cBZq@Li@JaBXcBb@i@PoB`@gAVcATeARqDx@sBd@oAVmAXmDt@aFlAeATyAXaCh@q@RqAX??Of@_@dAe@rAIPIPGJMR??kDr@</shape>\n" +
-				"        </link>\n" +
-				"        <link in_sync=\"true\" length=\"724.8395315693305\" lane_offset=\"0.0\" lanes=\"1.0\" id=\"10000\">\n" +
-				"            <begin node_id=\"10000\"/>\n" +
-				"            <end node_id=\"10002\"/>\n" +
-				"            <roads>\n" +
-				"                <road name=\"\" id=\"0\"/>\n" +
-				"            </roads>\n" +
-				"            <dynamics type=\"CTM\"/>\n" +
-				"            <shape>szafFrzliVIBaJpBqE`AkAZ_ATkAVuE`AyDbAy@RKB</shape>\n" +
-				"        </link>\n" +
-				"        <link in_sync=\"true\" length=\"366.7504885192787\" lane_offset=\"0.0\" lanes=\"1.0\" id=\"10001\">\n" +
-				"            <begin node_id=\"10002\"/>\n" +
-				"            <end node_id=\"9999\"/>\n" +
-				"            <roads>\n" +
-				"                <road name=\"\" id=\"0\"/>\n" +
-				"            </roads>\n" +
-				"            <dynamics type=\"CTM\"/>\n" +
-				"            <shape>_bcfFrgmiVE@uCj@YFqAVu@Pa@HaDt@OBo@NWDe@J</shape>\n" +
-				"        </link>\n" +
-				"    </LinkList>\n" +
-				"    <position>\n" +
-				"        <point elevation=\"0.0\" lng=\"-122.29919999999998\" lat=\"37.8705\"/>\n" +
-				"    </position>\n" +
-				"</network>";
 
 		// unmarshal XML into Network object
 		Network network = new Network();
-		network = Serializer.xmlToObject(beforeXML, network.getClass(), new ModelObjectsFactory());
+		network = Serializer.xmlToObject(inputXML, network.getClass(), new ModelObjectsFactory());
+        try {
+            network.setInputOutputLinks();
+            network.populate();
+            // Check a substantial part of the network object that was deserialized
+            // Network properties
+            assertEquals(1, network.getProjectId());
+            assertEquals(37.8705, network.getBoundingPolygon().get(0).getLat(), 0.0001);
 
-		String afterXML = Serializer.objectToXml(network);
+            // Node properties
+            assertEquals(4, network.getListOfNodes().size());
 
-		// Compare XML string results stripped of all whitespace
-		assertEquals(expectedXML.replaceAll("\\s",""), afterXML.replaceAll("\\s",""));
+            assertEquals(9999, network.getListOfNodes().get(0).getId());
+            assertEquals(-122.298704, network.getListOfNodes().get(0).getPoint().getLongitude(), 0.000001);
+            assertEquals(6, network.getListOfNodes().get(0).getNodeType().getId());
+
+            assertEquals(10000, network.getListOfNodes().get(1).getId());
+            assertEquals(-122.295646, network.getListOfNodes().get(1).getPoint().getLongitude(), 0.000001);
+
+            assertEquals(10001, network.getListOfNodes().get(2).getId());
+            assertEquals(-122.291368, network.getListOfNodes().get(2).getPoint().getLongitude(), 0.000001);
+
+            assertEquals(10002, network.getListOfNodes().get(3).getId());
+            assertEquals(-122.297710, network.getListOfNodes().get(3).getPoint().getLongitude(), 0.000001);
+
+            // Link properties
+            assertEquals(3, network.getListOfLinks().size());
+
+            assertEquals(9999, network.getListOfLinks().get(0).getId());
+            assertEquals(10000, network.getListOfLinks().get(0).getEndNodeId());
+            assertEquals(10001, network.getListOfLinks().get(0).getBeginNodeId());
+            assertEquals(1916.45121, network.getListOfLinks().get(0).getLength(), 0.00001);
+            assertEquals(1.0, network.getListOfLinks().get(0).getLanes(), 0.001);
+            assertEquals(0.0, network.getListOfLinks().get(0).getLaneOffset(),0.001);
+            assertEquals(15, network.getListOfLinks().get(0).getLinkType().getId());
+
+            assertEquals(10000, network.getListOfLinks().get(1).getId());
+            assertEquals(10002, network.getListOfLinks().get(1).getEndNodeId());
+            assertEquals(10000, network.getListOfLinks().get(1).getBeginNodeId());
+            assertEquals(724.83953, network.getListOfLinks().get(1).getLength(), 0.00001);
+            assertEquals(22, network.getListOfLinks().get(1).getSourceLinkId().longValue());
+            assertEquals(3, network.getListOfLinks().get(1).getDetailLevel().longValue());
+            assertEquals(1.0, network.getListOfLinks().get(1).getLanes(), 0.001);
+            assertEquals(0.0, network.getListOfLinks().get(1).getLaneOffset(),0.001);
+            assertEquals(1, network.getListOfLinks().get(1).getLinkType().getId());
+
+            assertEquals(10001, network.getListOfLinks().get(2).getId());
+            assertEquals(9999, network.getListOfLinks().get(2).getEndNodeId());
+            assertEquals(10002, network.getListOfLinks().get(2).getBeginNodeId());
+            assertEquals(366.75048, network.getListOfLinks().get(2).getLength(), 0.00001);
+            assertEquals(1.0, network.getListOfLinks().get(2).getLanes(), 0.01);
+            assertEquals(16, network.getListOfLinks().get(2).getLinkType().getId());
+
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+
+//		String afterXML = Serializer.objectToXml(network);
+//
+//		// Compare XML string results stripped of all whitespace
+//		assertEquals(expectedXML.replaceAll("\\s",""), afterXML.replaceAll("\\s",""));
 	}
 
   @Test
