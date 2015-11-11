@@ -9,6 +9,8 @@ import edu.berkeley.path.model_objects.scenario.DemandProfile;
 import edu.berkeley.path.model_objects.scenario.SplitRatioProfile;
 import edu.berkeley.path.model_objects.scenario.Splitratio;
 import edu.berkeley.path.model_objects.shared.CrudFlag;
+import org.junit.Test;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,5 +114,14 @@ public class TestConfiguration {
     r.setVehicleTypeId(veh_id);
     r.setContent(demands);
     return r;
+  }
+
+  @Test
+  public void doTest() {
+      try {
+          SplitRatioProfile sr = createSplitRatioProfile(20202, 0.0, 300.0, 10101, CrudFlag.CREATE);
+      } catch (Exception e) {
+          fail(e.getMessage());
+      }
   }
 }
